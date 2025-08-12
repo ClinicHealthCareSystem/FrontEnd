@@ -40,10 +40,16 @@ export default function Login(){
 
 
         <Text style={styles.label}>CPF</Text>
-        <TextInput style={styles.input} placeholder="Digite seu CPF"/>
+        <Controller control={control} name="CPF" render={({field: {onChange, value}}) =>(
+          <TextInput style={styles.input} onChangeText={(text: string)=>onChange(text)} value={value} placeholder="Digite seu CPF"/>
+        )}/>
+        
 
         <Text style={styles.label}>Senha</Text>
-        <TextInput style={styles.input}  placeholder="Digite sua Senha"/>
+        <Controller control={control} name="password" render={({field: {onChange, value}}) =>(
+            <TextInput style={styles.input}  onChangeText={(text: string) => onChange(text)} value={value} placeholder="Digite sua Senha"/>
+        )}/>
+        
 
         
         <TouchableOpacity style={styles.buttonSenha}>  
