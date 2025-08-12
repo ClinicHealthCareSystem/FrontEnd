@@ -10,8 +10,23 @@ import styles from "../styles/cadastro";
 
 export default function Cadastro(){
     const {control, handleSubmit, formState: {errors}} = useForm({})
-    function handleSignIn(data: any){
-        console.log(data)
+    async function handleSignIn(data: any){
+        console.log(data);
+        try {
+            const response = await fetch(`http://localhost:3000/user/signUp`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            console.log(response);
+            const json = await response.json();
+            console.log(response.status);
+            console.log(json);
+        } catch (error) {
+            console.log("Não foi possível criar o usuário" + error);
+        }
     }
 
     return( 
@@ -26,7 +41,7 @@ export default function Cadastro(){
             <View style={styles.inputCaixa}>
                 
                 <Text style={styles.label}>Nome Completo</Text>
-                <Controller control={control} name="username" render={({field: {onChange, value}}) => (
+                <Controller control={control} name="name" render={({field: {onChange, value}}) => (
                     <TextInput style={styles.input} onChangeText={(text: string) => onChange(text)} value={value} placeholder="Digite seu nome"/>
                 )}/>
                 
@@ -53,7 +68,7 @@ export default function Cadastro(){
             </View>
             <View style={styles.inputCaixa}>
                 <Text style={styles.label}>Email</Text>
-                <Controller control={control} name="Email" render={({field: {onChange, value}}) =>(
+                <Controller control={control} name="email" render={({field: {onChange, value}}) =>(
                     <TextInput style={styles.input} onChangeText={(text: string) => onChange(text)} value={value} placeholder="Digite seu Email"/>
                 )}/>
                 
