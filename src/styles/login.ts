@@ -7,14 +7,15 @@ background:{
   flex: 1,
   backgroundColor: "#ADD8E6",
   justifyContent: "center",
-  alignItems: "center",
+  // alignItems: "center",
+  paddingHorizontal: 20,
 },
 caixa:{
   backgroundColor: "white",
   borderRadius: 10, 
-  width: "90%",
-  maxWidth: 400,
-  padding: 30,
+  // width: "90%",
+  // maxWidth: 400,
+  padding: 20,
   elevation: 5,
   shadowColor: "black",
   shadowOpacity: 0.8,
@@ -22,22 +23,24 @@ caixa:{
   shadowRadius: 8,
 
 },
-caixatittle:{
-  flexDirection: "row",
-  backgroundColor: "white",
-  justifyContent: "space-between",
+caixaTitulo:{
+  flexDirection: "row", 
   alignItems: "center",
-  marginBottom: 20,
+  marginBottom: 30,
+
 },
+
 titulo:{
   color: "#0D47AB",
-  fontSize: 30,
+  fontSize: 28,
   fontWeight: "bold",
-  //textAlign: "center",
+  textAlign: "center",
+  alignItems: "center",
   // left: 20,
   //bottom: 30,
 },
 logo:{
+  //flexDirection: "row",
   // justifyContent: "space-between",
   // alignSelf: "flex-start",
   // top: 20,
@@ -46,13 +49,16 @@ logo:{
 
 },
 
-textLogin:{
+subTitulo:{
   color: "#0D47AB",
   fontSize: 25,
   fontWeight: "bold",
   textAlign: "center",
-  marginTop: 20,
-  bottom: 25,
+  //alignItems: "center",
+  right: 20,
+  top: 20,
+  // marginTop: 20,
+  // bottom: 25,
 },
 
 input:{
@@ -65,6 +71,7 @@ input:{
   fontSize: 16,
   height: 45,
   borderWidth: 1,
+  // width: "100%",
 
 
 },
@@ -81,7 +88,7 @@ button:{
   backgroundColor: "#3284f1",
   paddingVertical: 12,
   borderRadius: 8,
-  marginTop: 10,
+  width: "100%"
   
 },
 buttonText:{
@@ -92,24 +99,34 @@ buttonText:{
 },
 
 buttonCadastro:{
-  justifyContent: "center",
-  alignContent: "center",
-  top:29,
+  color:"#3284f1",
+  //justifyContent: "center",
+  //alignContent: "center",
+  //alignItems:"flex-end",
+  alignSelf: "center",
   
-  
-},
-buttonSenha:{
-justifyContent: "center",
-alignContent: "center",
-alignSelf: "flex-end",
-flexDirection: "row",
-},
-textButtonOption:{
-color: "#3284f1",
-fontSize: width * 0.045,
-fontWeight: "bold",
 
 },
+buttonTextCadastro:{
+  color: "#3284f1",
+  fontWeight:"bold",
+  
+},
+textEsqueceu:{
+  color:"#3284f1",
+  fontWeight:"bold",
+},
+buttonSenha:{
+alignSelf: "flex-end",
+marginBottom: 20,
+},
+
+
+textinfo:{
+  textAlign:"center",
+  color:"#3284f1",
+
+}
 
 
 });

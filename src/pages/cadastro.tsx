@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   Text, TextInput, TouchableOpacity,
   View, Image, ScrollView,
@@ -7,7 +8,12 @@ import {
 import styles from "../styles/cadastro";
 
 export default function Cadastro(){
-    
+    const [formData, setFormData] = useState({
+        name: '',
+        password: '',
+        CPF: '',
+        email: '',
+    })
     return( 
     <ScrollView contentContainerStyle={styles.background}>
         <View style={styles.caixa}>
@@ -22,8 +28,8 @@ export default function Cadastro(){
                 <TextInput style={styles.input} placeholder="Digite seu nome"/>
             </View>
             <View style={styles.inputCaixa}>
-                <Text style={styles.label}>Endereço</Text>
-                <TextInput style={styles.input} placeholder="Digite seu endereço"/>
+                <Text style={styles.label}>Senha</Text>
+                <TextInput style={styles.input} placeholder="Crie sua senha"/>
             </View>
         </View>
         <View style={styles.camposCaixa}>

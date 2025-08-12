@@ -1,40 +1,50 @@
 import React from "react";
 import {
   Text, TextInput, TouchableOpacity,
-  View, Image,
+  View, Image, ScrollView,
 } from "react-native";
 import styles from "../styles/login";
 
 export default function Login(){
   return (
-    <View style={styles.background}>
+    <ScrollView contentContainerStyle={styles.background}>
       <View style={styles.caixa}>
-        <View style={styles.caixatittle}>  
-          <Image source={require("../assests/heart-pulse (2).png")}
-          style = {styles.logo}></Image>
-        <Text style={styles.titulo}>Saúde Mania </Text>
-        </View>
-        <Text style={styles.textLogin}>Login</Text>
+        <View style={styles.caixaTitulo}> 
 
-        <Text style={styles.label}>Email</Text>
-        <TextInput style={styles.input} placeholder="Digite seu Email"/>
+          <Image source={require("../assests/heart-pulse (2).png")} resizeMode="contain"
+          style = {styles.logo}></Image>
+          
+         <View>
+        <Text style={styles.titulo}>Saúde Mania </Text>
+        <Text style={styles.subTitulo}>Login</Text>
+          </View> 
+         </View>
+
+
+        <Text style={styles.label}>CPF</Text>
+        <TextInput style={styles.input} placeholder="Digite seu CPF"/>
 
         <Text style={styles.label}>Senha</Text>
         <TextInput style={styles.input}  placeholder="Digite sua Senha"/>
 
+        
+        <TouchableOpacity style={styles.buttonSenha}>  
+          <Text style={styles.textEsqueceu}>Esqueceu sua senha?</Text>
+        </TouchableOpacity>
+        
+
+
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Acessar</Text>
+          <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
 
+        <Text style={styles.textinfo}>Você ainda possui uma conta?</Text>
         <TouchableOpacity style={styles.buttonCadastro}>  
-            <Text style={styles.textButtonOption}>Cadastre-se</Text>
+            <Text style={styles.buttonTextCadastro}>Cadastre-se</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonSenha}>
-          <Text style={styles.textButtonOption}>Esqueci a Senha</Text>
-        </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
