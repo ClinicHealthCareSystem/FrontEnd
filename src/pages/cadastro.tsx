@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import {useForm, Controller} from "react-hook-form";
 import {
   Text, TextInput, TouchableOpacity,
   View, Image, ScrollView,
@@ -8,12 +9,11 @@ import {
 import styles from "../styles/cadastro";
 
 export default function Cadastro(){
-    const [formData, setFormData] = useState({
-        name: '',
-        password: '',
-        CPF: '',
-        email: '',
-    })
+    const {control, handleSubmit, formState: {errors}} = useForm({})
+    function handleSignIn(data: any){
+        console.log(data)
+    }
+
     return( 
     <ScrollView contentContainerStyle={styles.background}>
         <View style={styles.caixa}>
@@ -24,23 +24,40 @@ export default function Cadastro(){
 
         <View style={styles.camposCaixa}>
             <View style={styles.inputCaixa}>
+                
                 <Text style={styles.label}>Nome Completo</Text>
-                <TextInput style={styles.input} placeholder="Digite seu nome"/>
+                <Controller control={control} name="username" render={({field: {onChange, value}}) => (
+                    <TextInput style={styles.input} onChangeText={(text: string) => onChange(text)} value={value} placeholder="Digite seu nome"/>
+                )}/>
+                
+                
             </View>
             <View style={styles.inputCaixa}>
                 <Text style={styles.label}>Senha</Text>
-                <TextInput style={styles.input} placeholder="Crie sua senha"/>
+
+                <Controller control={control} name="password" render={({field: {onChange, value}}) =>(
+                    <TextInput style={styles.input} onChangeText={(text: string) => onChange(text)} value={value} placeholder="Crie sua senha"/>
+                )}/>
+                
             </View>
         </View>
         <View style={styles.camposCaixa}>
             <View style={styles.inputCaixa}>
                 <Text style={styles.label}>CPF</Text>
-                <TextInput style={styles.input} placeholder="Digite seu CPF"/>
+                <Controller control={control} name="CPF" render={({field: {onChange, value}}) =>(
+                    <TextInput style={styles.input} onChangeText={(text: string) => onChange(text)} value={value} placeholder="Digite seu CPF"/>
+                )}/>
+                
+                
 
             </View>
             <View style={styles.inputCaixa}>
                 <Text style={styles.label}>Email</Text>
-                <TextInput style={styles.input} placeholder="Digite seu Email"/>
+                <Controller control={control} name="Email" render={({field: {onChange, value}}) =>(
+                    <TextInput style={styles.input} onChangeText={(text: string) => onChange(text)} value={value} placeholder="Digite seu Email"/>
+                )}/>
+                
+                
 
             </View>  
         </View>
@@ -48,7 +65,7 @@ export default function Cadastro(){
                 <TouchableOpacity style={styles.buttonVoltar}>
                     <Text style={styles.buttonText}>Voltar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonCadastrar}>
+                <TouchableOpacity style={styles.buttonCadastrar} onPress={handleSubmit(handleSignIn)}>
                     <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
             </View>
