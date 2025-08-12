@@ -1,4 +1,5 @@
 import React from "react";
+import {useForm, Controller} from "react-hook-form";
 import {
   Text, TextInput, TouchableOpacity,
   View, Image, ScrollView,
@@ -6,6 +7,23 @@ import {
 import styles from "../styles/login";
 
 export default function Login(){
+  const {control, handleSubmit, formState: {errors}} = useForm({})
+  async function handleSignUp(data: any){
+    console.log(data);
+    try{
+      const response = await fetch(`http://localhost:3000/user/login`,{
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    }
+    catch (error){
+      console.log("Não foi possivel criar o usuário" + error);
+
+    }
+  }
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <View style={styles.caixa}>
@@ -39,7 +57,7 @@ export default function Login(){
         </TouchableOpacity>
 
         <Text style={styles.textinfo}>Você ainda possui uma conta?</Text>
-        <TouchableOpacity style={styles.buttonCadastro}>  
+        <TouchableOpacity style={styles.buttonCadastro} onPress={handleSubmit(handleSignUp)}>  
             <Text style={styles.buttonTextCadastro}>Cadastre-se</Text>
         </TouchableOpacity>
 

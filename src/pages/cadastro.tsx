@@ -10,7 +10,7 @@ import styles from "../styles/cadastro";
 
 export default function Cadastro(){
     const {control, handleSubmit, formState: {errors}} = useForm({})
-    async function handleSignIn(data: any){
+    async function handleSignUp(data: any){
         console.log(data);
         try {
             const response = await fetch(`http://localhost:3000/user/signUp`, {
@@ -80,7 +80,7 @@ export default function Cadastro(){
                 <TouchableOpacity style={styles.buttonVoltar}>
                     <Text style={styles.buttonText}>Voltar</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonCadastrar} onPress={handleSubmit(handleSignIn)}>
+                <TouchableOpacity style={styles.buttonCadastrar} onPress={handleSubmit(handleSignUp)}>
                     <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
             </View>

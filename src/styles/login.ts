@@ -1,7 +1,7 @@
 
 import {Dimensions, StyleSheet} from "react-native";
 const {width, height} = Dimensions.get("window");
-
+const isSmallScreen = width < 380;
 export default  StyleSheet.create({
 background:{
   flex: 1,
@@ -21,6 +21,9 @@ caixa:{
   shadowOpacity: 0.8,
   shadowOffset: { width: 0, height: 2},
   shadowRadius: 8,
+  width: isSmallScreen ? "100%" : "100%", 
+  marginBottom: 16,
+  marginHorizontal: isSmallScreen ? 0 : 4,
 
 },
 caixaTitulo:{
