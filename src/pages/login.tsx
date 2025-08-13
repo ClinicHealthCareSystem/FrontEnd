@@ -26,48 +26,25 @@ export default function Login(){
   }
   return (
     <ScrollView contentContainerStyle={styles.background}>
-      <View style={styles.caixa}>
-        <View style={styles.caixaTitulo}> 
-
-          <Image source={require("../assests/heart-pulse (2).png")} resizeMode="contain"
-          style = {styles.logo}></Image>
-          
-         <View>
-        <Text style={styles.titulo}>Saúde Mania </Text>
-        <Text style={styles.subTitulo}>Login</Text>
-          </View> 
-         </View>
-
-
-        <Text style={styles.label}>CPF</Text>
-        <Controller control={control} name="CPF" render={({field: {onChange, value}}) =>(
-          <TextInput style={styles.input} onChangeText={(text: string)=>onChange(text)} value={value} placeholder="Digite seu CPF"/>
-        )}/>
-        
-
-        <Text style={styles.label}>Senha</Text>
-        <Controller control={control} name="password" render={({field: {onChange, value}}) =>(
-            <TextInput style={styles.input}  onChangeText={(text: string) => onChange(text)} value={value} placeholder="Digite sua Senha"/>
-        )}/>
-        
-
-        
-        <TouchableOpacity style={styles.buttonSenha}>  
-          <Text style={styles.textEsqueceu}>Esqueceu sua senha?</Text>
-        </TouchableOpacity>
-        
-
-
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.textinfo}>Você ainda possui uma conta?</Text>
-        <TouchableOpacity style={styles.buttonCadastro} onPress={handleSubmit(handleSignUp)}>  
-            <Text style={styles.buttonTextCadastro}>Cadastre-se</Text>
-        </TouchableOpacity>
-
+     <Text style={styles.tittle}>Login</Text>
+     <View style={styles.inputCaixa}>
+      <Controller control={control} name="CPF" render={({field: {onChange, value}}) =>(
+        <TextInput style={styles.input } onChangeText={(text: string)=>onChange(text)} value={value} placeholder="CPF"/>
+      )}/>
       </View>
+
+
+     <View style={styles.inputCaixa}>
+      <Controller control={control} name="password" render={({field: {onChange, value}}) =>(
+        <TextInput style={styles.input} onChangeText={(text: string)=> onChange(text)} value={value} placeholder="Senha"/>
+      )}/>
+      
+      </View>
+<TouchableOpacity><Text style={styles.esqueci}>Esqueceu a senha?</Text> </TouchableOpacity>
+
+<TouchableOpacity style={styles.button} onPress={handleSubmit(handleSignUp)}>< Text style={styles.buttonText}> Login</Text></TouchableOpacity>
+
+<TouchableOpacity><Text style={styles.cadastro}>Cadastre-se</Text></TouchableOpacity>
     </ScrollView>
   );
 }
