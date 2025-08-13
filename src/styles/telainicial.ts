@@ -46,9 +46,8 @@ borderRadius: 8,
 borderWidth: 1,
 marginVertical: 10,
 paddingVertical: 5,
-
-
 },
+
 textButton:{
 color: "white",
 fontWeight: "bold",

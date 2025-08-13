@@ -1,4 +1,3 @@
-
 import {Dimensions, StyleSheet} from "react-native";
 import cadastro from "./cadastro";
 //const {width, height} = Dimensions.get("window");
@@ -51,7 +50,8 @@ marginBottom: 10,
 bottom: 5,
 color: "#0D47AB",
 fontWeight: "bold",
-fontSize: 18,
+fontSize: 16,
+textDecorationLine: "underline",
 },
 button:{
 backgroundColor: "#3284f1",
@@ -75,59 +75,4 @@ color: "#0D47AB",
 fontSize: 18,
 },
 
-// label:{
-//   fontSize: 16,
-//   color: "#0047AB",
-//   fontWeight: "bold",
-//   marginBottom: 5,
-
-// },
-
-// button:{
-//   backgroundColor: "#3284f1",
-//   paddingVertical: 12,
-//   borderRadius: 8,
-//   width: "100%"
-  
-// },
-// buttonText:{
-//   color: "white",
-//   fontSize: 16,
-//   fontWeight: "bold",
-//   textAlign: "center"
-// },
-
-// buttonCadastro:{
-//   color:"#3284f1",
-//   //justifyContent: "center",
-//   //alignContent: "center",
-//   //alignItems:"flex-end",
-//   alignSelf: "center",
-  
-
-// },
-// buttonTextCadastro:{
-//   color: "#3284f1",
-//   fontWeight:"bold",
-  
-// },
-// textEsqueceu:{
-//   color:"#3284f1",
-//   fontWeight:"bold",
-// },
-// buttonSenha:{
-// alignSelf: "flex-end",
-// marginBottom: 20,
-// },
-
-
-// textinfo:{
-//   textAlign:"center",
-//   color:"#3284f1",
-
-// }
-
-
 });
-
-
