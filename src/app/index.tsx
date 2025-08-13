@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View, Image, ScrollView,Dimensions, Keyboard, P
 import styles from "../styles/telainicial";
 import { useRouter } from 'expo-router';
 
+
 export default function index(){
     const router = useRouter();
     return(
@@ -14,7 +15,7 @@ export default function index(){
                 <Text style={styles.subTitulo}>
                     A nossa mania é a sua saúde
                 </Text>
-                <TouchableOpacity style={styles.buttonLogin} onPress={() => router.navigate('/login')}>
+                <TouchableOpacity style={styles.buttonLogin} onPress={() => router.navigate("/login")} >
                     <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
 

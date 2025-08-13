@@ -8,9 +8,9 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import styles from "../styles/login";
+import styles from "../../styles/login";
 import { useRouter } from 'expo-router';
-import cadastro from "../styles/cadastro";
+
 
 export default function Login() {
   const {

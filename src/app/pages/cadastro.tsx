@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 
 import { Text,TextInput,TouchableOpacity,View,Image,ScrollView} from "react-native";
-import styles from "../styles/cadastro";
+import styles from "../../styles/cadastro";
 
 export default function Cadastro() {
   const {
@@ -36,7 +36,7 @@ export default function Cadastro() {
     <ScrollView contentContainerStyle={styles.background}>
       <View style={styles.caixa}>
         <Image
-          source={require("../assests/heart-pulse (2).png")}
+          source={require("../../assests/heart-pulse (2).png")}
           style={styles.logo}
         ></Image>
         <Text style={styles.titulo}>Saúde Mania</Text>
