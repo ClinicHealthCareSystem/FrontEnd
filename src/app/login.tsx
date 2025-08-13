@@ -9,6 +9,8 @@ import {
   ScrollView,
 } from "react-native";
 import styles from "../styles/login";
+import { useRouter } from 'expo-router';
+import cadastro from "../styles/cadastro";
 
 export default function Login() {
   const {
@@ -16,6 +18,8 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm({});
+  const router = useRouter();
+
   async function handleSignIp(data: any) {
     console.log(data);
     try {
@@ -89,9 +93,9 @@ export default function Login() {
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
 
-        <Text style={styles.textinfo}>Você ainda possui uma conta?</Text>
-        <TouchableOpacity style={styles.buttonCadastro}>
-          <Text style={styles.buttonTextCadastro}>Cadastre-se</Text>
+        <Text style={styles.textinfo}>Você não possui uma conta?</Text>
+        <TouchableOpacity style={styles.buttonCadastro} onPress={() => router.navigate('/cadastro')}>
+          <Text style={styles.buttonTextCadastro}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

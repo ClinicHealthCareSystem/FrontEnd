@@ -1,14 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-  ScrollView,
-} from "react-native";
+import { useRouter } from "expo-router";
+
+import { Text,TextInput,TouchableOpacity,View,Image,ScrollView} from "react-native";
 import styles from "../styles/cadastro";
 
 export default function Cadastro() {
@@ -17,6 +12,8 @@ export default function Cadastro() {
     handleSubmit,
     formState: { errors },
   } = useForm({});
+  const router = useRouter();
+
   async function handleSignUp(data: any) {
     console.log(data);
     try {
@@ -111,13 +108,11 @@ export default function Cadastro() {
           </View>
         </View>
         <View style={styles.buttons}>
-          <TouchableOpacity style={styles.buttonVoltar}>
+          <TouchableOpacity style={styles.buttonVoltar} onPress={() => router.navigate('/')}>
             <Text style={styles.buttonText}>Voltar</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonCadastrar}
-            onPress={handleSubmit(handleSignUp)}
-          >
+
+          <TouchableOpacity style={styles.buttonCadastrar} onPress={handleSubmit(handleSignUp)}>
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
         </View>

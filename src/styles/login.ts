@@ -1,4 +1,3 @@
-
 import {Dimensions, StyleSheet} from "react-native";
 const {width, height} = Dimensions.get("window");
 const isSmallScreen = width < 380;
@@ -113,6 +112,7 @@ buttonCadastro:{
 buttonTextCadastro:{
   color: "#3284f1",
   fontWeight:"bold",
+  textDecorationLine: "underline",
   
 },
 textEsqueceu:{
@@ -128,7 +128,6 @@ marginBottom: 20,
 textinfo:{
   textAlign:"center",
   color:"#3284f1",
-
 }
 
 
