@@ -1,5 +1,5 @@
 import CadastroScreen from "../screens/CadastroScreen";
 
-export default function LoginRoute() {
+export default function CadastroRoute() {
   return <CadastroScreen />;
 }
