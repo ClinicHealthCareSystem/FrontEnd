@@ -21,20 +21,20 @@ export default function index() {
       keyboardShouldPersistTaps="handled"
     >
       <View style={styles.background}>
-        <Image source={require("../assests/heart-pulse-inicio.png")} />
+        <Image source={require("../assets/heart-pulse-inicio.png")} />
         <Text style={styles.titulo}>Saúde Mania</Text>
 
         <Text style={styles.subTitulo}>A nossa mania é a sua saúde</Text>
         <TouchableOpacity
           style={styles.buttonLogin}
-          onPress={() => router.navigate("/login")}
+          onPress={() => router.push("/login")}
         >
           <Text style={styles.textButton}>Login</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.buttonLogin}
-          onPress={() => router.navigate("/cadastro")}
+          onPress={() => router.push("/cadastro")}
         >
           <Text style={styles.textButton}>Cadastro</Text>
         </TouchableOpacity>
