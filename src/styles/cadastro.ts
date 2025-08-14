@@ -52,7 +52,7 @@ export default StyleSheet.create({
 
   subtitulo: {
     fontSize: 22,
-    fontWeight: "bold", 
+    fontWeight: "bold",
     color: "#0D47AB",
     marginTop: 6,
     textAlign: "center",
@@ -67,7 +67,7 @@ export default StyleSheet.create({
   },
 
   inputCaixa: {
-    width: isSmallScreen ? "100%" : "100%", 
+    width: isSmallScreen ? "100%" : "100%",
     marginBottom: 16,
     marginHorizontal: isSmallScreen ? 0 : 4,
   },

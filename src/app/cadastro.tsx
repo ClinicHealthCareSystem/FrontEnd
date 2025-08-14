@@ -3,8 +3,15 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 
-import { Text,TextInput,TouchableOpacity,View,Image,ScrollView} from "react-native";
-import styles from "../../styles/cadastro";
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
+import styles from "../styles/cadastro";
 
 export default function Cadastro() {
   const {
@@ -36,7 +43,7 @@ export default function Cadastro() {
     <ScrollView contentContainerStyle={styles.background}>
       <View style={styles.caixa}>
         <Image
-          source={require("../../assests/heart-pulse (2).png")}
+          source={require("../assests/heart-pulse (2).png")}
           style={styles.logo}
         ></Image>
         <Text style={styles.titulo}>Saúde Mania</Text>
@@ -108,11 +115,17 @@ export default function Cadastro() {
           </View>
         </View>
         <View style={styles.buttons}>
-          <TouchableOpacity style={styles.buttonVoltar} onPress={() => router.navigate('/')}>
+          <TouchableOpacity
+            style={styles.buttonVoltar}
+            onPress={() => router.navigate("/")}
+          >
             <Text style={styles.buttonText}>Voltar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.buttonCadastrar} onPress={handleSubmit(handleSignUp)}>
+          <TouchableOpacity
+            style={styles.buttonCadastrar}
+            onPress={handleSubmit(handleSignUp)}
+          >
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
