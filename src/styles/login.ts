@@ -1,14 +1,13 @@
 import { Dimensions, StyleSheet } from "react-native";
-import cadastro from "./cadastro";
-//const {width, height} = Dimensions.get("window");
-//const isSmallScreen = width < 380;
+
 export default StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: "#ADD8E6",
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     paddingHorizontal: 20,
+    
   },
 
   tittle: {
@@ -18,7 +17,16 @@ export default StyleSheet.create({
     textAlign: "center",
     marginBottom: 80,
   },
+  subtittle:{
+      color: "#0D47AB",
+      fontSize: 20,
+      textAlign: "center",
+      
+      bottom: 40,
+      
 
+
+  },
   logo: {
     //flexDirection: "row",
     // justifyContent: "space-between",
@@ -31,11 +39,12 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
-    height: 40,
+    height: 55,
     backgroundColor: "white",
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 25,
+    
   },
 
   input: {
@@ -43,16 +52,20 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
+    
+    
   },
 
   esqueci: {
     alignSelf: "flex-end",
+    justifyContent: "flex-start",
     marginBottom: 10,
     bottom: 5,
     color: "#0D47AB",
     fontWeight: "bold",
     fontSize: 16,
     textDecorationLine: "underline",
+    
   },
 
   button: {
@@ -63,16 +76,27 @@ export default StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     marginBottom: 15,
+    
   },
 
   buttonText: {
     color: "white",
     fontSize: 18,
   },
+  cadastroCaixa:{
+    flexDirection: "row",
+    marginTop: 20,
+  },
+  text:{
+  color:"#0D47AB",
+  fontSize: 16,
+  },
 
   cadastro: {
     fontWeight: "bold",
     color: "#0D47AB",
-    fontSize: 18,
+    fontSize: 16,
+    left: 10,
+    // alignSelf: "center",
   },
 });
