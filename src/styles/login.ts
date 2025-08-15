@@ -6,7 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#ADD8E6",
     justifyContent: "center",
-    // alignItems: "center",
     paddingHorizontal: 20,
   },
 
@@ -24,14 +23,6 @@ export default StyleSheet.create({
     textAlign: "center",
 
     bottom: 40,
-  },
-
-  logo: {
-    //flexDirection: "row",
-    // justifyContent: "space-between",
-    // alignSelf: "flex-start",
-    // top: 20,
-    // left: 15,
   },
 
   inputCaixa: {
@@ -76,14 +67,14 @@ export default StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 18,
+    fontWeight: "bold",
   },
 
   cadastroCaixa: {
-    // flexDirection: "row",
     marginTop: 20,
     alignItems: "center",
-    // justifyContent: "center",
   },
+
   text: {
     color: "#0D47AB",
     fontSize: 16,
@@ -93,7 +84,5 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "#0D47AB",
     fontSize: 16,
-    // left: 10,
-    // alignSelf: "center",
   },
 });

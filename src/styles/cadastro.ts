@@ -14,22 +14,16 @@ export default StyleSheet.create({
     backgroundColor: "#ADD8E6",
     borderRadius: 12,
     padding: 20,
-    shadowColor: "black",
-    shadowOpacity: 0.8,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
     width: "100%",
     alignSelf: "center",
   },
 
-  
   titulo: {
     fontSize: 32,
     fontWeight: "bold",
     color: "#0D47AB",
     textAlign: "center",
     marginBottom: 30,
-    
   },
 
   inputCaixa: {
@@ -41,7 +35,6 @@ export default StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 15,
-    
   },
 
   label: {
@@ -49,26 +42,21 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "#0D47AB",
     marginBottom: 6,
-    
   },
 
   input: {
-  flex: 1,
-  height: "100%",
-  overflow: "hidden",
-  outlineWidth: 0,
+    flex: 1,
+    height: "100%",
+    overflow: "hidden",
+    outlineWidth: 0,
   },
 
   voltaLogin: {
-    // flexDirection: "row",
-    marginTop: 20,
-    //alignItems: "center",
-    // justifyContent: "center",
-    alignSelf: "flex-start"
+    alignSelf: "flex-end",
   },
 
   text: {
-   color: "#0D47AB",
+    color: "#0D47AB",
     fontSize: 18,
   },
 
@@ -76,22 +64,26 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "#0D47AB",
     fontSize: 18,
-    // left: 10,
-    // alignSelf: "center",
+    alignSelf: "flex-end",
   },
-  buttonText:{
-      color: "white",
-      fontSize: 18,
-      fontWeight: "bold"
+
+  buttonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
   },
-  
 
   buttonCadastrar: {
     backgroundColor: "#3284f1",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
-    alignSelf: "flex-end",
-    
+    margin: "auto",
+    justifyContent: "center",
+    width: "100%",
+    height: 50,
+    alignItems: "center",
+    marginBottom: 15,
+    marginTop: 15,
   },
 });

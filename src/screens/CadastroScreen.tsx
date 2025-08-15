@@ -41,89 +41,87 @@ export default function Cadastro() {
   }
   return (
     <ScrollView contentContainerStyle={styles.background}>
-      <View style={styles.caixa}>
-        <Text style={styles.titulo}>Cadastro</Text>
-        
+      <Text style={styles.titulo}>Cadastro</Text>
 
-        <Text style={styles.label}>Nome Completo</Text>
-          <View style={styles.inputCaixa}>
-            <Controller
-              control={control}
-              name="name"
-              render={({ field: { onChange, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text: string) => onChange(text)}
-                  value={value}
-                  placeholder="Digite seu nome"
-                />
-              )}
+      <Text style={styles.label}>Nome Completo</Text>
+      <View style={styles.inputCaixa}>
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={(text: string) => onChange(text)}
+              value={value}
+              placeholder="Digite seu nome"
             />
-          </View>
-          <Text style={styles.label}>CPF</Text>
-          <View style={styles.inputCaixa}>
-            <Controller
-              control={control}
-              name="password"
-              render={({ field: { onChange, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text: string) => onChange(text)}
-                  value={value}
-                  placeholder="Digite"
-                />
-              )}
+          )}
+        />
+      </View>
+      <Text style={styles.label}>CPF</Text>
+      <View style={styles.inputCaixa}>
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={(text: string) => onChange(text)}
+              value={value}
+              placeholder="Digite seu CPF"
             />
-          </View>
+          )}
+        />
+      </View>
 
-        <Text style={styles.label}>Celular</Text>
-          <View style={styles.inputCaixa}>
-          
-            <Controller
-              control={control}
-              name="CPF"
-              render={({ field: { onChange, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text: string) => onChange(text)}
-                  value={value}
-                  placeholder="(85)9 999-999"
-                />
-              )}
+      <Text style={styles.label}>Celular</Text>
+      <View style={styles.inputCaixa}>
+        <Controller
+          control={control}
+          name="CPF"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={(text: string) => onChange(text)}
+              value={value}
+              placeholder="(85) 9 99999-9999"
             />
-          </View>
-          <Text style={styles.label}>Crie uma Senha</Text>
-          <View style={styles.inputCaixa}>
-            <Controller
-              control={control}
-              name="email"
-              render={({ field: { onChange, value } }) => (
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text: string) => onChange(text)}
-                  value={value}
-                  placeholder="Mínimo 6 dígitos"
-                  
-                />
-              )}
+          )}
+        />
+      </View>
+      <Text style={styles.label}>Crie uma Senha</Text>
+      <View style={styles.inputCaixa}>
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              style={styles.input}
+              onChangeText={(text: string) => onChange(text)}
+              value={value}
+              placeholder="Mínimo 6 dígitos"
             />
-          </View>
-        
-        <View style={styles.voltaLogin}>
-          <Text style={styles.text}>Já tem uma conta?</Text>
-          <TouchableOpacity>
-            <Text style={styles.textVoltaLogin}
-            onPress={() => router.replace("/login")}>Login</Text>
-          </TouchableOpacity>
-          </View>
-          
-          <TouchableOpacity
-            style={styles.buttonCadastrar}
-            onPress={handleSubmit(handleSignUp)}
+          )}
+        />
+      </View>
+
+      <TouchableOpacity
+        style={styles.buttonCadastrar}
+        onPress={handleSubmit(handleSignUp)}
+      >
+        <Text style={styles.buttonText}>Cadastrar</Text>
+      </TouchableOpacity>
+
+      <View style={styles.voltaLogin}>
+        <Text style={styles.text}>Já tem uma conta?</Text>
+        <TouchableOpacity>
+          <Text
+            style={styles.textVoltaLogin}
+            onPress={() => router.replace("/login")}
           >
-            <Text style={styles.buttonText}>Cadastrar</Text>
-          </TouchableOpacity>
-        
+            Login
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
