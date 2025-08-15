@@ -17,6 +17,7 @@ export default StyleSheet.create({
     textAlign: "center",
     marginBottom: 80,
   },
+
   subtittle: {
     color: "#0D47AB",
     fontSize: 20,
@@ -24,6 +25,7 @@ export default StyleSheet.create({
 
     bottom: 40,
   },
+
   logo: {
     //flexDirection: "row",
     // justifyContent: "space-between",

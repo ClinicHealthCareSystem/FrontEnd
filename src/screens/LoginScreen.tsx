@@ -66,6 +66,7 @@ export default function Login() {
               onChangeText={(text: string) => onChange(text)}
               value={value}
               placeholder="Senha"
+              secureTextEntry = {true}
             />
           )}
         />
