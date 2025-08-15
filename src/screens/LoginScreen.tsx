@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Image,
 } from "react-native";
 import styles from "../styles/login";
 import { useRouter } from "expo-router";
@@ -51,6 +52,10 @@ export default function Login() {
       <Text style={styles.subtittle}>Bem-vindo(a) ao Saúde Mania</Text>
 
       <View style={styles.inputCaixa}>
+        <Image
+          style={styles.id_card}
+          source={require("../assets/id_card.png")}
+        />
         <TextInput
           style={styles.input}
           placeholder="CPF"
@@ -62,6 +67,10 @@ export default function Login() {
       </View>
 
       <View style={styles.inputCaixa}>
+        <Image
+          style={styles.lock}
+          source={require("../assets/lock.png")}
+        />
         <TextInput
           style={styles.input}
           placeholder="Senha"
@@ -71,6 +80,10 @@ export default function Login() {
           }
           secureTextEntry
           maxLength={6}
+        />
+        <Image
+          style={styles.visivility_on}
+          source={require("../assets/visibility_on.png")}
         />
       </View>
 

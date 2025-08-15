@@ -86,4 +86,29 @@ export default StyleSheet.create({
     marginBottom: 15,
     marginTop: 15,
   },
+
+  // assets css
+  account_circle: {
+    marginRight: 5,
+  },
+
+  id_card: {
+    marginRight: 5,
+  },
+
+  phone: {
+    marginRight: 5,
+  },
+
+  lock: {
+    marginRight: 5,
+  },
+
+  visibility_on: {
+    marginRight: 5,
+  },
+
+  visibility_of: {
+    marginRight: 5,
+  },
 });

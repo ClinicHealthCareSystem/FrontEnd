@@ -85,4 +85,18 @@ export default StyleSheet.create({
     color: "#0D47AB",
     fontSize: 16,
   },
+
+  // Assets css
+
+  id_card: {
+    marginRight: 5,
+  },
+
+  lock: {
+    marginRight: 5,
+  },
+
+  visivility_on: {
+    
+  }
 });

@@ -45,6 +45,10 @@ export default function Cadastro() {
 
       <Text style={styles.label}>Nome Completo</Text>
       <View style={styles.inputCaixa}>
+        <Image
+          style={styles.account_circle}
+          source={require("../assets/account_circle.png")}
+        />
         <Controller
           control={control}
           name="name"
@@ -60,6 +64,10 @@ export default function Cadastro() {
       </View>
       <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
+        <Image
+          style={styles.id_card}
+          source={require("../assets/id_card.png")}
+        />
         <Controller
           control={control}
           name="password"
@@ -76,6 +84,7 @@ export default function Cadastro() {
 
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
+        <Image style={styles.phone} source={require("../assets/phone.png")} />
         <Controller
           control={control}
           name="CPF"
@@ -84,13 +93,14 @@ export default function Cadastro() {
               style={styles.input}
               onChangeText={(text: string) => onChange(text)}
               value={value}
-              placeholder="(85) 9 99999-9999"
+              placeholder="(85) 9 9999-9999"
             />
           )}
         />
       </View>
       <Text style={styles.label}>Crie uma Senha</Text>
       <View style={styles.inputCaixa}>
+        <Image style={styles.lock} source={require("../assets/lock.png")} />
         <Controller
           control={control}
           name="email"
@@ -102,6 +112,10 @@ export default function Cadastro() {
               placeholder="Mínimo 6 dígitos"
             />
           )}
+        />
+        <Image
+          style={styles.visibility_on}
+          source={require("../assets/visibility_on.png")}
         />
       </View>
 
