@@ -15,6 +15,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const [passwordShow, setPasswordShow] = useState(false);
+
+  const passwordEyes = () => {
+    setPasswordShow(prev => !prev)
+  }
 
   const handleSignIn = async () => {
     setError("");
@@ -78,13 +83,15 @@ export default function Login() {
           onChangeText={(text) =>
             setPassword(text.replace(/[^A-Za-z0-9]/g, ""))
           }
-          secureTextEntry
+          secureTextEntry={!passwordShow}
           maxLength={6}
         />
-        <Image
-          style={styles.visivility_on}
-          source={require("../assets/visibility_on.png")}
-        />
+        <TouchableOpacity onPress={passwordEyes} >
+          <Image
+          
+          source={  passwordShow ? require("../assets/visibility_on.png") : require("../assets/visibility_off.png")} 
+          style={styles.visivility_on} />
+        </TouchableOpacity>
       </View>
 
       {error ? (
