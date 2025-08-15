@@ -42,7 +42,6 @@ export default function Login() {
       <Text style={styles.tittle}>Login</Text>
       <Text style={styles.subtittle}>Bem-vindo(a) ao Saúde Mania</Text>
       <View style={styles.inputCaixa}>
-      
         <Controller
           control={control}
           name="CPF"
@@ -82,17 +81,16 @@ export default function Login() {
         <Text style={styles.buttonText}>Acessar</Text>
       </TouchableOpacity>
       <View style={styles.cadastroCaixa}>
-      <Text style={styles.text}>Não tem uma conta ?</Text>
-      <TouchableOpacity>
-        <Text
-          style={styles.cadastro}
-          onPress={() => router.replace("/cadastro")}
-        >
-           Cadastre-se
-        </Text>      
-      </TouchableOpacity>
+        <Text style={styles.text}>Não tem uma conta?</Text>
+        <TouchableOpacity>
+          <Text
+            style={styles.cadastro}
+            onPress={() => router.replace("/cadastro")}
+          >
+            Cadastre-se
+          </Text>
+        </TouchableOpacity>
       </View>
-
     </ScrollView>
   );
 }

@@ -1,4 +1,5 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
   background: {
@@ -7,7 +8,6 @@ export default StyleSheet.create({
     justifyContent: "center",
     // alignItems: "center",
     paddingHorizontal: 20,
-    
   },
 
   tittle: {
@@ -17,15 +17,12 @@ export default StyleSheet.create({
     textAlign: "center",
     marginBottom: 80,
   },
-  subtittle:{
-      color: "#0D47AB",
-      fontSize: 20,
-      textAlign: "center",
-      
-      bottom: 40,
-      
+  subtittle: {
+    color: "#0D47AB",
+    fontSize: 20,
+    textAlign: "center",
 
-
+    bottom: 40,
   },
   logo: {
     //flexDirection: "row",
@@ -43,8 +40,7 @@ export default StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 8,
     paddingHorizontal: 10,
-    marginBottom: 25,
-    
+    marginBottom: 15,
   },
 
   input: {
@@ -52,20 +48,16 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
-    
-    
   },
 
   esqueci: {
     alignSelf: "flex-end",
     justifyContent: "flex-start",
     marginBottom: 10,
-    bottom: 5,
     color: "#0D47AB",
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: RFPercentage(2.5),
     textDecorationLine: "underline",
-    
   },
 
   button: {
@@ -76,27 +68,30 @@ export default StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     marginBottom: 15,
-    
+    marginTop: 15,
   },
 
   buttonText: {
     color: "white",
     fontSize: 18,
   },
-  cadastroCaixa:{
-    flexDirection: "row",
+
+  cadastroCaixa: {
+    // flexDirection: "row",
     marginTop: 20,
+    alignItems: "center",
+    // justifyContent: "center",
   },
-  text:{
-  color:"#0D47AB",
-  fontSize: 16,
+  text: {
+    color: "#0D47AB",
+    fontSize: 16,
   },
 
   cadastro: {
     fontWeight: "bold",
     color: "#0D47AB",
     fontSize: 16,
-    left: 10,
+    // left: 10,
     // alignSelf: "center",
   },
 });
