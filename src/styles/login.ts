@@ -58,7 +58,7 @@ export default StyleSheet.create({
     marginBottom: 10,
     color: "#0D47AB",
     fontWeight: "bold",
-    fontSize: RFPercentage(2.5),
+    fontSize: RFValue(14),
     textDecorationLine: "underline",
   },
 

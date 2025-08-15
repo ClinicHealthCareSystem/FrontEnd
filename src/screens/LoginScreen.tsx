@@ -81,6 +81,7 @@ export default function Login() {
       >
         <Text style={styles.buttonText}>Acessar</Text>
       </TouchableOpacity>
+      
       <View style={styles.cadastroCaixa}>
         <Text style={styles.text}>Não tem uma conta?</Text>
         <TouchableOpacity>

@@ -4,72 +4,44 @@ const isSmallScreen = width < 380;
 
 export default StyleSheet.create({
   background: {
-    flexGrow: 1,
+    flex: 1,
     justifyContent: "center",
     padding: 20,
     backgroundColor: "#ADD8E6",
   },
 
   caixa: {
-    backgroundColor: "white",
+    backgroundColor: "#ADD8E6",
     borderRadius: 12,
     padding: 20,
-    alignItems: "stretch",
     shadowColor: "black",
     shadowOpacity: 0.8,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
     width: "100%",
-    maxWidth: 760,
     alignSelf: "center",
   },
 
-  headerContainer: {
-    flexDirection: "column",
-    alignItems: "center",
-    marginBottom: 40,
-  },
-
-  logo: {
-    width: 44,
-    height: 44,
-    resizeMode: "contain",
-    marginTop: -15,
-    marginBottom: 8,
-  },
-
-  titleContainer: {
-    alignItems: "center",
-  },
-
+  
   titulo: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: "bold",
     color: "#0D47AB",
     textAlign: "center",
-    marginTop: 0,
-  },
-
-  subtitulo: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#0D47AB",
-    marginTop: 6,
-    textAlign: "center",
-  },
-
-  camposCaixa: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    flexWrap: "wrap",
-    marginTop: 20,
+    marginBottom: 30,
+    
   },
 
   inputCaixa: {
-    width: isSmallScreen ? "100%" : "100%",
-    marginBottom: 16,
-    marginHorizontal: isSmallScreen ? 0 : 4,
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    height: 55,
+    backgroundColor: "white",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    
   },
 
   label: {
@@ -77,44 +49,49 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "#0D47AB",
     marginBottom: 6,
+    
   },
 
   input: {
-    backgroundColor: "#ffffff",
-    borderColor: "grey",
-    color: "black",
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    fontSize: 16,
-    borderWidth: 1,
+  flex: 1,
+  height: "100%",
+  overflow: "hidden",
+  outlineWidth: 0,
   },
 
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    width: "100%",
+  voltaLogin: {
+    // flexDirection: "row",
     marginTop: 20,
+    //alignItems: "center",
+    // justifyContent: "center",
+    alignSelf: "flex-start"
   },
 
-  buttonText: {
-    color: "white",
+  text: {
+   color: "#0D47AB",
+    fontSize: 18,
+  },
+
+  textVoltaLogin: {
     fontWeight: "bold",
-    fontSize: 14,
+    color: "#0D47AB",
+    fontSize: 18,
+    // left: 10,
+    // alignSelf: "center",
   },
-
-  buttonVoltar: {
-    backgroundColor: "#3284f1",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    marginRight: 10,
+  buttonText:{
+      color: "white",
+      fontSize: 18,
+      fontWeight: "bold"
   },
+  
 
   buttonCadastrar: {
     backgroundColor: "#3284f1",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
+    alignSelf: "flex-end",
+    
   },
 });

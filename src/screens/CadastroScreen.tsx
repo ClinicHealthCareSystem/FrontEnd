@@ -42,16 +42,11 @@ export default function Cadastro() {
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <View style={styles.caixa}>
-        <Image
-          source={require("../assets/heart-pulse (2).png")}
-          style={styles.logo}
-        ></Image>
-        <Text style={styles.titulo}>Saúde Mania</Text>
-        <Text style={styles.subtitulo}>Cadastro</Text>
+        <Text style={styles.titulo}>Cadastro</Text>
+        
 
-        <View style={styles.camposCaixa}>
+        <Text style={styles.label}>Nome Completo</Text>
           <View style={styles.inputCaixa}>
-            <Text style={styles.label}>Nome Completo</Text>
             <Controller
               control={control}
               name="name"
@@ -65,9 +60,8 @@ export default function Cadastro() {
               )}
             />
           </View>
+          <Text style={styles.label}>CPF</Text>
           <View style={styles.inputCaixa}>
-            <Text style={styles.label}>Senha</Text>
-
             <Controller
               control={control}
               name="password"
@@ -76,15 +70,15 @@ export default function Cadastro() {
                   style={styles.input}
                   onChangeText={(text: string) => onChange(text)}
                   value={value}
-                  placeholder="Crie sua senha"
+                  placeholder="Digite"
                 />
               )}
             />
           </View>
-        </View>
-        <View style={styles.camposCaixa}>
+
+        <Text style={styles.label}>Celular</Text>
           <View style={styles.inputCaixa}>
-            <Text style={styles.label}>CPF</Text>
+          
             <Controller
               control={control}
               name="CPF"
@@ -93,13 +87,13 @@ export default function Cadastro() {
                   style={styles.input}
                   onChangeText={(text: string) => onChange(text)}
                   value={value}
-                  placeholder="Digite seu CPF"
+                  placeholder="(85)9 999-999"
                 />
               )}
             />
           </View>
+          <Text style={styles.label}>Crie uma Senha</Text>
           <View style={styles.inputCaixa}>
-            <Text style={styles.label}>Email</Text>
             <Controller
               control={control}
               name="email"
@@ -108,27 +102,28 @@ export default function Cadastro() {
                   style={styles.input}
                   onChangeText={(text: string) => onChange(text)}
                   value={value}
-                  placeholder="Digite seu Email"
+                  placeholder="Mínimo 6 dígitos"
+                  
                 />
               )}
             />
           </View>
-        </View>
-        <View style={styles.buttons}>
-          <TouchableOpacity
-            style={styles.buttonVoltar}
-            onPress={() => router.replace("/login")}
-          >
-            <Text style={styles.buttonText}>Voltar</Text>
+        
+        <View style={styles.voltaLogin}>
+          <Text style={styles.text}>Já tem uma conta?</Text>
+          <TouchableOpacity>
+            <Text style={styles.textVoltaLogin}
+            onPress={() => router.replace("/login")}>Login</Text>
           </TouchableOpacity>
-
+          </View>
+          
           <TouchableOpacity
             style={styles.buttonCadastrar}
             onPress={handleSubmit(handleSignUp)}
           >
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
-        </View>
+        
       </View>
     </ScrollView>
   );
