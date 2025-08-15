@@ -22,12 +22,14 @@ export default function Login() {
       setError("Esses campos são obrigatórios");
       return;
     }
-    if (!/^\d{1,11}$/.test(CPF)) {
-      setError("CPF inválido somente números, máx. 11 dígitos");
+    if (!/^\d{11,11}$/.test(CPF)) {
+      setError("CPF precisa ter 11 dígitos");
       return;
     }
-    if (!/^[A-Z a-z 0-9]{1,6}$/.test(password)) {
-      setError("Senha inválida máx. 6 caracteres, sem espaço ou especial");
+    if (!/^[A-Z a-z 0-9]{6,6}$/.test(password)) {
+      setError(
+        "Senha inválida, 6 caracteres necessários, sem espaço ou caracteres especial"
+      );
       return;
     }
     try {
