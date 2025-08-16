@@ -66,7 +66,6 @@ export default function Login() {
           placeholder="CPF"
           value={CPF}
           onChangeText={(text) => setCPF(text.replace(/[^0-9]/g, ""))}
-          keyboardType="numeric"
           maxLength={11}
         />
       </View>
@@ -98,7 +97,7 @@ export default function Login() {
         <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
       ) : null}
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => router.replace("/esqueceu")}>
         <Text style={styles.esqueci}>Esqueceu a senha?</Text>{" "}
       </TouchableOpacity>
 

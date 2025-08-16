@@ -36,6 +36,7 @@ export default function index() {
           style={styles.buttonLogin}
           onPress={() => router.push("/cadastro")}
         >
+          
           <Text style={styles.textButton}>Cadastro</Text>
         </TouchableOpacity>
       </View>

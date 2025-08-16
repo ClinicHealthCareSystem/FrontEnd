@@ -11,11 +11,8 @@ background:{
 alignItems: "center",
 },
 titulo:{
-//fontSize: width * 0.06,
 fontSize: 30,
 fontWeight: "bold",
-// justifyContent: "center",
-// alignItems: "center",
 color: "#0D47AB",
 marginBottom: 10,
 
