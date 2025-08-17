@@ -46,7 +46,7 @@ export default function Esqueceu() {
       </View>
       <View>
         <TouchableOpacity
-          style={styles.buttonCadastrar}
+          style={styles.sendPasswordButton}
           onPress={() => router.replace("/recuperar")}
           accessible={true}
           accessibilityLabel="Envia SMS para o telefone informado"

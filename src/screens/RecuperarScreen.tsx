@@ -45,10 +45,7 @@ export default function Recuperar() {
       </Text>
       <Text style={styles.label}>Digite o código</Text>
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.envelope}
-          source={require("../assets/envelope.png")}
-        />
+        <Image style={styles.sms} source={require("../assets/sms.png")} />
         <Controller
           control={control}
           name="number"

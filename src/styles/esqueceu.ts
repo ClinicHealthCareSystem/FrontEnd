@@ -11,19 +11,12 @@ export default StyleSheet.create({
     backgroundColor: "#ADD8E6",
   },
 
-  caixa: {
-    backgroundColor: "#ADD8E6",
-    borderRadius: 12,
-    padding: 20,
-    width: "100%",
-    alignSelf: "center",
-  },
-
   titulo: {
     fontSize: 32,
     fontWeight: "bold",
     color: "#0D47AB",
     textAlign: "center",
+    marginBottom: 80,
   },
 
   phone: {
@@ -34,8 +27,7 @@ export default StyleSheet.create({
     color: "#003186ff",
     fontSize: RFValue(16),
     textAlign: "center",
-    top: 5,
-    marginBottom: 15,
+    bottom: 40,
   },
 
   inputCaixa: {
@@ -53,7 +45,7 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#0D47AB",
-    marginBottom: 6,
+    bottom: 6,
   },
 
   input: {
@@ -68,10 +60,12 @@ export default StyleSheet.create({
   },
 
   text: {
+    top: 15,
     color: "#0D47AB",
     fontSize: 18,
     textAlign: "center",
     textDecorationLine: "underline",
+    fontWeight: "bold",
   },
 
   textVoltaLogin: {
@@ -80,7 +74,7 @@ export default StyleSheet.create({
     fontSize: 18,
     alignSelf: "flex-end",
   },
-  
+
   account_circle: {
     marginRight: 5,
   },
@@ -91,7 +85,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
 
-  buttonCadastrar: {
+  sendPasswordButton: {
     backgroundColor: "#3284f1",
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -101,7 +95,7 @@ export default StyleSheet.create({
     width: "100%",
     height: 50,
     alignItems: "center",
-    marginBottom: 15,
+    marginBottom: 30,
     marginTop: 15,
   },
 });

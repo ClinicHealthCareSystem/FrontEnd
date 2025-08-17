@@ -21,7 +21,6 @@ export default StyleSheet.create({
     color: "#0D47AB",
     fontSize: 20,
     textAlign: "center",
-
     bottom: 40,
   },
 

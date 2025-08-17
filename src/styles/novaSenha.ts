@@ -21,7 +21,6 @@ export default StyleSheet.create({
     color: "#0D47AB",
     fontSize: RFValue(16),
     textAlign: "center",
-
     bottom: 40,
   },
 
@@ -135,6 +134,7 @@ export default StyleSheet.create({
   voltaLogin: {
     alignSelf: "flex-end",
   },
+  
   textVoltaLogin: {
     fontWeight: "bold",
     color: "#0D47AB",

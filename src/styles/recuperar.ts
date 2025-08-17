@@ -16,14 +16,14 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "#0D47AB",
     textAlign: "center",
+    marginBottom: 80,
   },
 
   subtittle: {
     color: "#003186ff",
     fontSize: RFValue(16),
     textAlign: "center",
-    top: 5,
-    marginBottom: 40,
+    bottom: 40,
   },
 
   inputCaixa: {
@@ -57,10 +57,12 @@ export default StyleSheet.create({
   },
 
   text: {
+    top: 15,
     color: "#0D47AB",
     fontSize: 18,
     textAlign: "center",
     textDecorationLine: "underline",
+    fontWeight: "bold",
   },
 
   buttonText: {
@@ -79,8 +81,8 @@ export default StyleSheet.create({
     width: "100%",
     height: 50,
     alignItems: "center",
-    marginBottom: 15,
-    marginTop: 5,
+    marginBottom: 30,
+    marginTop: 15,
   },
 
   otpContainer: {
@@ -89,7 +91,9 @@ export default StyleSheet.create({
     width: "80%",
   },
 
-  envelope: {
+  // Assets css
+  
+  sms: {
     maxWidth: 25,
     maxHeight: 25,
   },
