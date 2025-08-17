@@ -128,8 +128,13 @@ export default function Cadastro() {
         />
       </View>
 
-      <TouchableOpacity onPress={abrirTermos}><Text style={styles.buttonAceitar}>Aceite os Termos</Text></TouchableOpacity> 
-          <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal>
+      <TouchableOpacity onPress={abrirTermos}>
+        <Text style={styles.buttonAceitar}>Aceite os Termos</Text>
+      </TouchableOpacity>
+      <Modal visible={modalVisible} animationType="fade" transparent={true}>
+        {" "}
+        <TermosServico />
+      </Modal>
 
       <TouchableOpacity
         style={styles.buttonCadastrar}
@@ -138,7 +143,7 @@ export default function Cadastro() {
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-          {/* <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal> */}
+      {/* <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal> */}
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
         {" "}
         <TermosServico />

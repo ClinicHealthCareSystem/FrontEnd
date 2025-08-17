@@ -92,7 +92,7 @@ export default StyleSheet.create({
   },
 
   // Assets css
-  
+
   sms: {
     maxWidth: 25,
     maxHeight: 25,

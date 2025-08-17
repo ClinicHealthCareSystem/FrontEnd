@@ -50,17 +50,12 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
 
-  termoButtonText:{
-alignItems: "center",
-justifyContent: "center",
-alignSelf: "center",
-textAlign: "center",
-fontWeight: "bold",
-color: "white",
-
-},
-
-},
-
-
-);
+  termoButtonText: {
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white",
+  },
+});
