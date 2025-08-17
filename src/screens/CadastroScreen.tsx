@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 
-
 import { TermosServico } from "../components/termos";
 import {
   Text,
@@ -11,19 +10,17 @@ import {
   TouchableOpacity,
   View,
   Image,
-  ScrollView, 
+  ScrollView,
   Modal,
 } from "react-native";
 import styles from "../styles/cadastro";
 
 export default function Cadastro() {
-const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-const abrirTermos = () =>{
- setModalVisible(true);
-};
-
-
+  const abrirTermos = () => {
+    setModalVisible(true);
+  };
 
   const {
     control,
@@ -50,6 +47,7 @@ const abrirTermos = () =>{
       console.log("Não foi possível criar o usuário" + error);
     }
   }
+
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Cadastro</Text>
@@ -129,7 +127,7 @@ const abrirTermos = () =>{
           source={require("../assets/visibility_on.png")}
         />
       </View>
-          
+
       <TouchableOpacity
         style={styles.buttonCadastrar}
         onPress={abrirTermos}
@@ -137,9 +135,11 @@ const abrirTermos = () =>{
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-          <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal>
+      <Modal visible={modalVisible} animationType="fade" transparent={true}>
+        {" "}
+        <TermosServico />
+      </Modal>
 
-          
       <View style={styles.voltaLogin}>
         <Text style={styles.text}>Já tem uma conta?</Text>
         <TouchableOpacity>
@@ -150,7 +150,6 @@ const abrirTermos = () =>{
             Login
           </Text>
         </TouchableOpacity>
-        
       </View>
     </ScrollView>
   );
