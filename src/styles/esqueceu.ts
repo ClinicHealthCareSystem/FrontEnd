@@ -25,17 +25,19 @@ export default StyleSheet.create({
     color: "#0D47AB",
     textAlign: "center",
   },
-  phone:{
 
+  phone: {
+    marginRight: 5,
   },
 
   subtittle: {
     color: "#003186ff",
     fontSize: RFValue(16),
     textAlign: "center",
-    top:5,
+    top: 5,
     marginBottom: 15,
-},
+  },
+
   inputCaixa: {
     flexDirection: "row",
     alignItems: "center",
@@ -78,10 +80,11 @@ export default StyleSheet.create({
     fontSize: 18,
     alignSelf: "flex-end",
   },
+  
   account_circle: {
     marginRight: 5,
   },
-  
+
   buttonText: {
     color: "white",
     fontSize: 18,
@@ -100,5 +103,5 @@ export default StyleSheet.create({
     alignItems: "center",
     marginBottom: 15,
     marginTop: 15,
-  }
+  },
 });

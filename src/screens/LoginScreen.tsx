@@ -18,8 +18,8 @@ export default function Login() {
   const [passwordShow, setPasswordShow] = useState(false);
 
   const passwordEyes = () => {
-    setPasswordShow(prev => !prev)
-  }
+    setPasswordShow((prev) => !prev);
+  };
 
   const handleSignIn = async () => {
     setError("");
@@ -71,10 +71,7 @@ export default function Login() {
       </View>
 
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.lock}
-          source={require("../assets/lock.png")}
-        />
+        <Image style={styles.lock} source={require("../assets/lock.png")} />
         <TextInput
           style={styles.input}
           placeholder="Senha"
@@ -85,11 +82,15 @@ export default function Login() {
           secureTextEntry={!passwordShow}
           maxLength={6}
         />
-        <TouchableOpacity onPress={passwordEyes} >
+        <TouchableOpacity onPress={passwordEyes}>
           <Image
-          
-          source={  passwordShow ? require("../assets/visibility_on.png") : require("../assets/visibility_off.png")} 
-          style={styles.visivility_on} />
+            source={
+              passwordShow
+                ? require("../assets/visibility_on.png")
+                : require("../assets/visibility_off.png")
+            }
+            style={styles.visivility_on}
+          />
         </TouchableOpacity>
       </View>
 

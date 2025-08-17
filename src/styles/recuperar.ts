@@ -10,6 +10,7 @@ export default StyleSheet.create({
     padding: 20,
     backgroundColor: "#ADD8E6",
   },
+
   titulo: {
     fontSize: 32,
     fontWeight: "bold",
@@ -21,9 +22,10 @@ export default StyleSheet.create({
     color: "#003186ff",
     fontSize: RFValue(16),
     textAlign: "center",
-    top:5,
+    top: 5,
     marginBottom: 40,
-},
+  },
+
   inputCaixa: {
     flexDirection: "row",
     alignItems: "center",
@@ -47,7 +49,7 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
-    paddingLeft:8,
+    paddingLeft: 8,
   },
 
   voltaLogin: {
@@ -80,13 +82,15 @@ export default StyleSheet.create({
     marginBottom: 15,
     marginTop: 5,
   },
-    otpContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        width: "80%",
+
+  otpContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "80%",
   },
-    envelope:{
-        maxWidth: 25,
-        maxHeight: 25,
-    }
+
+  envelope: {
+    maxWidth: 25,
+    maxHeight: 25,
+  },
 });

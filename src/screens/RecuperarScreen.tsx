@@ -15,7 +15,6 @@ import {
 
 import styles from "../styles/recuperar";
 
-
 export default function Recuperar() {
   const {
     control,
@@ -25,7 +24,7 @@ export default function Recuperar() {
   } = useForm({});
   const router = useRouter();
 
-  function Code(){
+  function Code() {
     const codeValue = getValues("number");
     console.log("codeValue:", codeValue);
     if (!codeValue) {
@@ -37,7 +36,13 @@ export default function Recuperar() {
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Recuperar senha</Text>
-      <Text style={styles.subtittle} accessible={true} accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir">Foi enviado um SMS para seu telefone. Digite o código para prosseguir</Text>
+      <Text
+        style={styles.subtittle}
+        accessible={true}
+        accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir"
+      >
+        Foi enviado um SMS para seu telefone. Digite o código para prosseguir
+      </Text>
       <Text style={styles.label}>Digite o código</Text>
       <View style={styles.inputCaixa}>
         <Image
@@ -59,22 +64,25 @@ export default function Recuperar() {
             />
           )}
         />
-        </View>
-        <View>
-          <TouchableOpacity
-                  style={styles.buttonCadastrar}
-                  onPress={Code}
-                  accessible={true}
-                  accessibilityLabel="Confirmar código de verificação"
-                >
-                  <Text style={styles.buttonText}>Enviar</Text>
-                </TouchableOpacity>
-        </View>
-                <Text style={styles.text} 
-                onPress={() => router.replace("/esqueceu")}
-                accessible={true}
-                accessibilityLabel="Voltar para tela de esqueceu a senha"
-                >Voltar</Text>
+      </View>
+      <View>
+        <TouchableOpacity
+          style={styles.buttonCadastrar}
+          onPress={Code}
+          accessible={true}
+          accessibilityLabel="Confirmar código de verificação"
+        >
+          <Text style={styles.buttonText}>Enviar</Text>
+        </TouchableOpacity>
+      </View>
+      <Text
+        style={styles.text}
+        onPress={() => router.replace("/esqueceu")}
+        accessible={true}
+        accessibilityLabel="Voltar para tela de esqueceu a senha"
+      >
+        Voltar
+      </Text>
     </ScrollView>
   );
 }

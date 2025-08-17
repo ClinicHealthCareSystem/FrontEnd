@@ -43,9 +43,10 @@ export default StyleSheet.create({
     outlineWidth: 0,
     paddingLeft: 5,
   },
-  input2:{
+
+  input2: {
     paddingLeft: 30,
-    width:"100%",
+    width: "100%",
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
@@ -95,15 +96,16 @@ export default StyleSheet.create({
   },
 
   visivility_on: {
-    left:300,
-    bottom:30,
-    zIndex:1,
+    left: 300,
+    bottom: 30,
+    zIndex: 1,
     position: "absolute",
   },
+
   visivility_of: {
-    left:300,
-    bottom:55,
-    zIndex:1,
+    left: 300,
+    bottom: 55,
+    zIndex: 1,
     position: "absolute",
   },
 
@@ -120,7 +122,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "#0D47AB",
     textAlign: "center",
-    marginBottom:50,
+    marginBottom: 50,
   },
 
   label: {
@@ -140,7 +142,6 @@ export default StyleSheet.create({
     alignSelf: "flex-end",
   },
 
-
   buttonCadastrar: {
     backgroundColor: "#3284f1",
     paddingVertical: 10,
@@ -155,60 +156,66 @@ export default StyleSheet.create({
     marginTop: 15,
   },
 
-
   container: {
-      alignItems: "center",
-      justifyContent: "center",
-      padding: 20,
-    },
-    otpContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        width: "80%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
   },
+
+  otpContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "80%",
+  },
+
   box: {
-      width: 45,
-      height: 50,
-      borderWidth: 1,
-      borderColor: "#ccc",
-      borderRadius: 8,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#fff",
-    },
-    digit: {
-        fontSize: 20,
-        fontWeight: "bold",
-    },
-    envelope:{
-        maxWidth: 25,
-        maxHeight: 25,
-    },
-    envelope2:{
-      maxWidth: 25,
-      maxHeight: 25,
-      position: "absolute",
-      zIndex:1,
-      top: 15,
-      left:10,
-    },
-    envelope3:{
-      maxWidth: 25,
-      maxHeight: 25,
-      position: "absolute",
-      zIndex:1,
-      top: 85,
-      left:10,
-    },
-    inputCaixa2:{
-      flexDirection: "row",
-      alignItems: "center",
-      width: "80%",
-      height: 55,
-      backgroundColor: "white",
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      marginBottom: 15,
-      paddingLeft: 40,
-    }
+    width: 45,
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
+
+  digit: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
+  envelope: {
+    maxWidth: 25,
+    maxHeight: 25,
+  },
+
+  envelope2: {
+    maxWidth: 25,
+    maxHeight: 25,
+    position: "absolute",
+    zIndex: 1,
+    top: 15,
+    left: 10,
+  },
+
+  envelope3: {
+    maxWidth: 25,
+    maxHeight: 25,
+    position: "absolute",
+    zIndex: 1,
+    top: 85,
+    left: 10,
+  },
+
+  inputCaixa2: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "80%",
+    height: 55,
+    backgroundColor: "white",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    paddingLeft: 40,
+  },
 });

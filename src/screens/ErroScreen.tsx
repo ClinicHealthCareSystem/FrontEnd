@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { router } from "expo-router";
 import styles from "../styles/erro";
 
-
 export default function ErroScreen() {
   return (
     <View style={styles.container}>
