@@ -128,12 +128,9 @@ export default function Cadastro() {
         />
       </View>
 
-<<<<<<< HEAD
       <TouchableOpacity onPress={abrirTermos}><Text style={styles.buttonAceitar}>Aceite os Termos</Text></TouchableOpacity> 
           <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal>
 
-=======
->>>>>>> 0bf382c1f28b593cc53727da488bb1bbea836e72
       <TouchableOpacity
         style={styles.buttonCadastrar}
         // onPress={abrirTermos}
@@ -141,14 +138,11 @@ export default function Cadastro() {
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-<<<<<<< HEAD
           {/* <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal> */}
-=======
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
         {" "}
         <TermosServico />
       </Modal>
->>>>>>> 0bf382c1f28b593cc53727da488bb1bbea836e72
 
       <View style={styles.voltaLogin}>
         <Text style={styles.text}>Já tem uma conta?</Text>

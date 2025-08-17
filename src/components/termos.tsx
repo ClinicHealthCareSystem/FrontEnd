@@ -38,7 +38,7 @@ export function TermosServico() {
           <TouchableOpacity style={styles.termoButton}>
             <Text
               style={styles.termoButtonText}
-              onPress={() => router.replace("/login")}
+              onPress={() => router.replace("/cadastro")}
             >
               Aceitar
             </Text>
