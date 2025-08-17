@@ -34,7 +34,9 @@ marginTop: 40,
 },
 termoText:{
 
-textAlign: "center"
+textAlign: "justify",
+paddingLeft: 10,
+paddingRight: 10,
 
 },
 areaButton:{

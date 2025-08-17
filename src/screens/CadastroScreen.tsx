@@ -129,15 +129,18 @@ const abrirTermos = () =>{
           source={require("../assets/visibility_on.png")}
         />
       </View>
-          
+
+      <TouchableOpacity onPress={abrirTermos}><Text style={styles.buttonAceitar}>Aceite os Termos</Text></TouchableOpacity> 
+          <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal>
+
       <TouchableOpacity
         style={styles.buttonCadastrar}
-        onPress={abrirTermos}
-        // onPress={handleSubmit(handleSignUp)}
+        // onPress={abrirTermos}
+        onPress={handleSubmit(handleSignUp)}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-          <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal>
+          {/* <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal> */}
 
           
       <View style={styles.voltaLogin}>
