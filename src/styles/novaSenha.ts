@@ -19,7 +19,7 @@ export default StyleSheet.create({
 
   subtittle: {
     color: "#0D47AB",
-    fontSize: 12,
+    fontSize: RFValue(16),
     textAlign: "center",
 
     bottom: 40,

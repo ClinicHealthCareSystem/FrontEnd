@@ -18,7 +18,7 @@ marginBottom: 10,
 
 },
 subTitulo:{
-fontSize: 14,
+fontSize: 20,
 color: "#0D47AB",
 marginBottom: 20,
 alignItems: "center",

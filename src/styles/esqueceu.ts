@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 const { width } = Dimensions.get("window");
 const isSmallScreen = width < 380;
 
@@ -30,7 +31,7 @@ export default StyleSheet.create({
 
   subtittle: {
     color: "#003186ff",
-    fontSize: 10,
+    fontSize: RFValue(16),
     textAlign: "center",
     top:5,
     marginBottom: 15,
