@@ -14,7 +14,6 @@ import {
 
 import styles from "../styles/novaSenha";
 
-
 export default function Novasenha() {
   const {
     control,
@@ -25,25 +24,29 @@ export default function Novasenha() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [passwordShow2, setPasswordShow2] = useState(false);
 
-  
-    const passwordEyes = () => {
-      setPasswordShow(prev => !prev)
-    }
-    const passwordEyes2 = () => {
-      setPasswordShow2(prev => !prev)
-    }
-  
+  const passwordEyes = () => {
+    setPasswordShow((prev) => !prev);
+  };
+  const passwordEyes2 = () => {
+    setPasswordShow2((prev) => !prev);
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Nova senha</Text>
-      <Text style={styles.subtittle} accessible={true} accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir">Foi enviado um SMS para seu telefone. Digite o código para prosseguir</Text>
+      <Text
+        style={styles.subtittle}
+        accessible={true}
+        accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir"
+      >
+        Foi enviado um SMS para seu telefone. Digite o código para prosseguir
+      </Text>
       <View style={styles.inputCaixa}>
         <Image
           style={styles.envelope}
           source={require("../assets/id_card.png")}
         />
-                <Controller
+        <Controller
           control={control}
           name="password"
           render={({ field: { onChange, value } }) => (
@@ -58,66 +61,76 @@ export default function Novasenha() {
             />
           )}
         />
-          </View>
-        <View>
-          <Image
+      </View>
+      <View>
+        <Image
           style={styles.envelope2}
           source={require("../assets/lock.png")}
-          />
-          <View>
+        />
+        <View>
           <TouchableOpacity
-                  style={styles.inputCaixa}
-                  accessible={true}
-                  accessibilityLabel="Envia SMS para o telefone informado"
-                >
-                  <TextInput style={styles.input2}
-                    placeholder="Digite sua nova senha"
-                    secureTextEntry={!passwordShow}
-                  />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={passwordEyes} >
-                    <Image
-                    
-                    source={  passwordShow ? require("../assets/visibility_on.png") : require("../assets/visibility_off.png")} 
-                    style={styles.visivility_on} />
-                  </TouchableOpacity>
-          
-           <Image
-          style={styles.envelope3}
-          source={require("../assets/lock.png")}
-          />
-          <View>
-                    <TouchableOpacity
-                            style={styles.inputCaixa}
-                            accessible={true}
-                            accessibilityLabel="Envia SMS para o telefone informado"
-
-                          >
-                            <TextInput style={styles.input2}                           
-                            placeholder="Digite sua nova senha"
-                            secureTextEntry={!passwordShow2}
-                            ></TextInput>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={passwordEyes2} >
-                              <Image
-                              
-                              source={  passwordShow2 ? require("../assets/visibility_on.png") : require("../assets/visibility_off.png")} 
-                              style={styles.visivility_on} />
-                            </TouchableOpacity>
-                  </View>
-          </View>
-          <TouchableOpacity
-            style={styles.buttonCadastrar}
-            onPress={() => router.replace("/login")}
-            
+            style={styles.inputCaixa}
             accessible={true}
-            accessibilityLabel="Voltar para a tela de login"
+            accessibilityLabel="Envia SMS para o telefone informado"
           >
-            <Text style={styles.buttonText}>Concluir</Text>
+            <TextInput
+              style={styles.input2}
+              placeholder="Digite sua nova senha"
+              secureTextEntry={!passwordShow}
+            />
           </TouchableOpacity>
-            <Text style={styles.text} onPress={() => router.replace("/recuperar")}>Voltar</Text>
+          <TouchableOpacity onPress={passwordEyes}>
+            <Image
+              source={
+                passwordShow
+                  ? require("../assets/visibility_on.png")
+                  : require("../assets/visibility_off.png")
+              }
+              style={styles.visivility_on}
+            />
+          </TouchableOpacity>
+
+          <Image
+            style={styles.envelope3}
+            source={require("../assets/lock.png")}
+          />
+          <View>
+            <TouchableOpacity
+              style={styles.inputCaixa}
+              accessible={true}
+              accessibilityLabel="Envia SMS para o telefone informado"
+            >
+              <TextInput
+                style={styles.input2}
+                placeholder="Digite sua nova senha"
+                secureTextEntry={!passwordShow2}
+              ></TextInput>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={passwordEyes2}>
+              <Image
+                source={
+                  passwordShow2
+                    ? require("../assets/visibility_on.png")
+                    : require("../assets/visibility_off.png")
+                }
+                style={styles.visivility_on}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
+        <TouchableOpacity
+          style={styles.buttonCadastrar}
+          onPress={() => router.replace("/login")}
+          accessible={true}
+          accessibilityLabel="Voltar para a tela de login"
+        >
+          <Text style={styles.buttonText}>Concluir</Text>
+        </TouchableOpacity>
+        <Text style={styles.text} onPress={() => router.replace("/recuperar")}>
+          Voltar
+        </Text>
+      </View>
     </ScrollView>
   );
 }

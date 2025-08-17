@@ -96,7 +96,5 @@ export default StyleSheet.create({
     marginRight: 5,
   },
 
-  visivility_on: {
-    
-  }
+  visivility_on: {},
 });
