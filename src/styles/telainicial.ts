@@ -30,26 +30,19 @@ export default StyleSheet.create({
     width: "80%",
     backgroundColor: "#3284f1",
     alignItems: "center",
+    justifyContent: "center",
     marginBottom: 15,
     borderRadius: 8,
     marginVertical: 10,
     paddingVertical: 5,
+    height: 40,
   },
 
-  buttonCadastro: {
-    width: "80%",
-    backgroundColor: "#3284f1",
-    alignItems: "center",
-    marginBottom: 15,
-    borderRadius: 8,
-    borderWidth: 1,
-    marginVertical: 10,
-    paddingVertical: 5,
-  },
 
   textButton: {
     color: "white",
     fontWeight: "bold",
     fontSize: 16,
+    
   },
 });
