@@ -3,17 +3,28 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 
+
+import { TermosServico } from "../components/termos";
 import {
   Text,
   TextInput,
   TouchableOpacity,
   View,
   Image,
-  ScrollView,
+  ScrollView, 
+  Modal,
 } from "react-native";
 import styles from "../styles/cadastro";
 
 export default function Cadastro() {
+const [modalVisible, setModalVisible] = useState(false);
+
+const abrirTermos = () =>{
+ setModalVisible(true);
+};
+
+
+
   const {
     control,
     handleSubmit,
@@ -118,14 +129,17 @@ export default function Cadastro() {
           source={require("../assets/visibility_on.png")}
         />
       </View>
-
+          
       <TouchableOpacity
         style={styles.buttonCadastrar}
-        onPress={handleSubmit(handleSignUp)}
+        onPress={abrirTermos}
+        // onPress={handleSubmit(handleSignUp)}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
+          <Modal visible={modalVisible} animationType="fade" transparent={true}> <TermosServico/></Modal>
 
+          
       <View style={styles.voltaLogin}>
         <Text style={styles.text}>Já tem uma conta?</Text>
         <TouchableOpacity>
@@ -136,6 +150,7 @@ export default function Cadastro() {
             Login
           </Text>
         </TouchableOpacity>
+        
       </View>
     </ScrollView>
   );
