@@ -37,6 +37,17 @@ export default function Cadastro() {
       console.log("Não foi possível criar o usuário: " + error);
     }
   }
+  const maskPhone = (text: string) => {
+    
+    let cleaned = text.replace(/\D/g, "");
+    if (cleaned.length > 11) cleaned = cleaned.substring(0, 11);
+    if (cleaned.length <= 2) return `(${cleaned}`;
+    if (cleaned.length <= 7)
+      return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2)}`;
+    return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2, 7)}-${cleaned.substring(7)}`;
+  };
+  
+  const unmaskPhone = (text: string) => text.replace(/\D/g, "");
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -54,7 +65,7 @@ export default function Cadastro() {
           rules={{
             required: "Nome é obrigatório",
             pattern: {
-              value: /^[A-Z a-z À-Ö Ø-ö ø-ÿ\s]{3,50}$/,
+              value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,50}$/,
               message:
                 "Digite um nome válido (apenas letras e espaços, 3 a 50 caracteres)",
             },
@@ -66,7 +77,7 @@ export default function Cadastro() {
                 "Informe nome e sobrenome",
             },
           }}
-          render={({field:{onChange,value},fieldState:{error} })=>(
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
               <TextInput
                 style={styles.input}
@@ -82,7 +93,7 @@ export default function Cadastro() {
         />
       </View>
 
-     <Text style={styles.label}>CPF</Text>
+      <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
         <Image
           style={styles.id_card}
@@ -98,7 +109,7 @@ export default function Cadastro() {
               message: "CPF deve conter apenas números e ter 11 dígitos",
             },
           }}
-          render={({ field:{onChange,value},fieldState:{error}})=>(
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
               <TextInput
                 style={styles.input}
@@ -110,15 +121,12 @@ export default function Cadastro() {
                 keyboardType="numeric"
                 maxLength={11}
               />
-              {error && <Text style={{color:"red"}}>{error.message}</Text>}
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
           )}
         />
       </View>
 
-      {
-      /* Fernando, aqui eu usei GPT porque não sabia como fazer essa validação */
-      }
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
         <Image style={styles.phone} source={require("../assets/phone.png")} />
@@ -127,39 +135,38 @@ export default function Cadastro() {
           name="phone"
           rules={{
             required: "Celular é obrigatório",
-            pattern: {
-              value: /^[0-9]{11}$/,
-              message: "Celular deve conter exatamente 11 números",
-            },
             validate: {
+              onlyNumbers: (value) =>
+                /^[0-9]+$/.test(unmaskPhone(value)) ||
+                "Digite apenas números",
+              exactLength: (value) =>
+                unmaskPhone(value).length === 11 ||
+                "Celular deve ter 11 dígitos (com DDD)",
               validDDD: (value) =>
-                parseInt(value.substring(0, 2)) >= 11 &&
-                parseInt(value.substring(0, 2)) <= 99 ||
+                parseInt(unmaskPhone(value).substring(0, 2)) >= 11 &&
+                parseInt(unmaskPhone(value).substring(0, 2)) <= 99 ||
                 "DDD inválido",
               startsWith9: (value) =>
-                value[2] === "9" || "O número deve começar com 9 após o DDD",
-              notRepeated: (value) =>
-                !/^(\d)\1{10}$/.test(value) || "Número inválido (repetido)",
+                unmaskPhone(value)[2] === "9" ||
+                "O número deve começar com 9 após o DDD",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
               <TextInput
                 style={styles.input}
-                onChangeText={(text: string) =>
-                  onChange(text.replace(/\D/g, "")) 
-                }
+                onChangeText={(text: string) => onChange(maskPhone(text))}
                 value={value}
-                placeholder="(DD) 9 XXXX-XXXX"
-                keyboardType="phone-pad"
-                maxLength={11}
+                placeholder="Digite seu celular com DDD"
+                keyboardType="numeric"
+                maxLength={15} 
               />
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
           )}
         />
       </View>
-      
+
       <Text style={styles.label}>Crie uma Senha</Text>
       <View style={styles.inputCaixa}>
         <Image style={styles.lock} source={require("../assets/lock.png")} />
@@ -174,11 +181,11 @@ export default function Cadastro() {
                 "Senha deve ter exatamente 6 caracteres, sem espaços e sem caracteres especiais",
             },
           }}
-          render={({ field:{onChange, value}, fieldState:{ error}})=>(
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
               <TextInput
                 style={styles.input}
-                onChangeText={(text:string)=>
+                onChangeText={(text: string) =>
                   onChange(text.replace(/[^A-Za-z0-9]/g, ""))
                 }
                 value={value}
@@ -186,7 +193,7 @@ export default function Cadastro() {
                 secureTextEntry
                 maxLength={6}
               />
-              {error && <Text style={{color:"red"}}>{error.message}</Text>}
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
           )}
         />
@@ -195,13 +202,17 @@ export default function Cadastro() {
           source={require("../assets/visibility_on.png")}
         />
       </View>
+
       <TouchableOpacity
         style={styles.buttonCadastrar}
-        onPress={handleSubmit(handleSignUp)}
+        onPress={handleSubmit((data) => {
+          data.phone = unmaskPhone(data.phone); 
+          handleSignUp(data);
+        })}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-      
+
       <View style={styles.voltaLogin}>
         <Text style={styles.text}>Já tem uma conta?</Text>
         <TouchableOpacity onPress={() => router.replace("/login")}>

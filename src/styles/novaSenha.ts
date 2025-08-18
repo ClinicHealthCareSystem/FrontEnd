@@ -134,7 +134,7 @@ export default StyleSheet.create({
   voltaLogin: {
     alignSelf: "flex-end",
   },
-  
+
   textVoltaLogin: {
     fontWeight: "bold",
     color: "#0D47AB",

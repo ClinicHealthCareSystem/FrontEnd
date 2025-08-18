@@ -87,6 +87,12 @@ export default StyleSheet.create({
     marginTop: 15,
   },
 
+  buttonAceitar: {
+    color: "#0D47AB",
+    textDecorationLine: "underline",
+    fontWeight: "bold",
+  },
+
   // assets css
   account_circle: {
     marginRight: 5,
