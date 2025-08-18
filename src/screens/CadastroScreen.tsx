@@ -37,6 +37,7 @@ export default function Cadastro() {
       console.log("Não foi possível criar o usuário: " + error);
     }
   }
+
   const maskPhone = (text: string) => {
     let cleaned = text.replace(/\D/g, "");
     if (cleaned.length > 11) cleaned = cleaned.substring(0, 11);
@@ -207,6 +208,7 @@ export default function Cadastro() {
         onPress={handleSubmit((data) => {
           data.phone = unmaskPhone(data.phone);
           handleSignUp(data);
+          router.replace("/login");
         })}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>

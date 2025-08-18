@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 
 import {
   Text,
@@ -16,6 +17,7 @@ import {
 import styles from "../styles/recuperar";
 
 export default function Recuperar() {
+  const { code } = useLocalSearchParams();
   const {
     control,
     handleSubmit,
@@ -27,8 +29,8 @@ export default function Recuperar() {
   function Code() {
     const codeValue = getValues("number");
     console.log("codeValue:", codeValue);
-    if (!codeValue) {
-      Alert.alert("Por favor, verifique o código enviado para o seu telefone.");
+    if (codeValue !== code) {
+      Alert.alert("Código inválido, tente novamente");
       return;
     }
     router.replace("/novasenha");
@@ -49,16 +51,27 @@ export default function Recuperar() {
         <Controller
           control={control}
           name="number"
-          defaultValue=""
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              onChangeText={(text: string) => onChange(text)}
-              value={value}
-              placeholder="Digite o código de autenticação"
-              accessible={true}
-              accessibilityLabel="Digitar código de verificação"
-            />
+          rules={{
+            required: "Código obrigatório",
+            pattern: {
+              value: /^[0-9]{4}$/,
+              message: "O código deve ter exatamente 4 dígitos numéricos",
+            },
+          }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => onChange(text.replace(/[^0-9]/g, ""))}
+                value={value}
+                placeholder="Digite o código de autenticação"
+                accessible={true}
+                accessibilityLabel="Digitar código de verificação"
+                keyboardType="numeric"
+                maxLength={4}
+              />
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+            </>
           )}
         />
       </View>

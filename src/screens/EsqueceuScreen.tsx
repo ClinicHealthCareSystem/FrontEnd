@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useRouter } from "expo-router";
+import { router, useRouter } from "expo-router";
 
 import {
   Text,
@@ -14,6 +14,38 @@ import {
 
 import styles from "../styles/esqueceu";
 
+async function handleVerificationCode(data: any) {
+  const phoneWithDDI = `55${data.phone}`;
+  const verificationCode = Math.floor(Math.random() * 9000) + 1000;
+  const message = `Seu número de verificação é: ${verificationCode}`;
+
+  const payload = {
+    phone: phoneWithDDI,
+    message: message,
+  };
+
+  try {
+    const response = await fetch(`http://localhost:3000/whatsapp/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const json = await response.json();
+    console.log(json);
+  } catch (error) {
+    console.log(
+      "Não foi possível enviar o código para o celular fornecido: " + error
+    );
+  }
+
+  router.push({
+    pathname: "/recuperar",
+    params: { code: verificationCode.toString() },
+  });
+}
+
 export default function Esqueceu() {
   const {
     control,
@@ -21,6 +53,22 @@ export default function Esqueceu() {
     formState: { errors },
   } = useForm({});
   const router = useRouter();
+
+  const maskPhone = (text: string) => {
+    let cleaned = text.replace(/\D/g, "");
+
+    if (cleaned.length > 10) cleaned = cleaned.substring(0, 10);
+
+    if (cleaned.length <= 2) return `(${cleaned}`;
+    if (cleaned.length <= 6)
+      return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2)}`;
+    return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
+      2,
+      6
+    )}-${cleaned.substring(6)}`;
+  };
+
+  const unmaskPhone = (text: string) => text.replace(/\D/g, "");
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -36,18 +84,45 @@ export default function Esqueceu() {
       <Text style={styles.label}>Telefone</Text>
       <View style={styles.inputCaixa}>
         <Image style={styles.phone} source={require("../assets/phone.png")} />
-        <TextInput
-          style={styles.input}
-          accessible={true}
-          accessibilityLabel="Digite seu telefone"
-          placeholder="(85) 9 9999-9999"
-          keyboardType="phone-pad"
+        <Controller
+          control={control}
+          name="phone"
+          rules={{
+            required: "Celular é obrigatório",
+            validate: {
+              onlyNumbers: (value) =>
+                /^[0-9]+$/.test(unmaskPhone(value)) || "Digite apenas números",
+              exactLength: (value) =>
+                unmaskPhone(value).length === 10 ||
+                "Celular deve ter 10 dígitos (com DDD)",
+              validDDD: (value) =>
+                (parseInt(unmaskPhone(value).substring(0, 2)) >= 11 &&
+                  parseInt(unmaskPhone(value).substring(0, 2)) <= 99) ||
+                "DDD inválido",
+            },
+          }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text: string) => onChange(maskPhone(text))}
+                value={value}
+                placeholder="Digite seu celular com DDD"
+                keyboardType="numeric"
+                maxLength={15}
+              />
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+            </>
+          )}
         />
       </View>
       <View>
         <TouchableOpacity
           style={styles.sendPasswordButton}
-          onPress={() => router.replace("/recuperar")}
+          onPress={handleSubmit((data) => {
+            data.phone = unmaskPhone(data.phone);
+            handleVerificationCode(data);
+          })}
           accessible={true}
           accessibilityLabel="Envia SMS para o telefone informado"
         >
