@@ -38,15 +38,17 @@ export default function Cadastro() {
     }
   }
   const maskPhone = (text: string) => {
-    
     let cleaned = text.replace(/\D/g, "");
     if (cleaned.length > 11) cleaned = cleaned.substring(0, 11);
     if (cleaned.length <= 2) return `(${cleaned}`;
     if (cleaned.length <= 7)
       return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2)}`;
-    return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2, 7)}-${cleaned.substring(7)}`;
+    return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
+      2,
+      7
+    )}-${cleaned.substring(7)}`;
   };
-  
+
   const unmaskPhone = (text: string) => text.replace(/\D/g, "");
 
   return (
@@ -66,8 +68,7 @@ export default function Cadastro() {
             required: "Nome é obrigatório",
             pattern: {
               value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,50}$/,
-              message:
-                "Digite um nome válido (apenas letras e espaços, 3 a 50 caracteres)",
+              message: "Digite um nome válido",
             },
             validate: {
               noDoubleSpaces: (value) =>
@@ -106,7 +107,7 @@ export default function Cadastro() {
             required: "CPF é obrigatório",
             pattern: {
               value: /^[0-9]{11}$/,
-              message: "CPF deve conter apenas números e ter 11 dígitos",
+              message: "CPF deve conter 11 dígitos",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -137,14 +138,13 @@ export default function Cadastro() {
             required: "Celular é obrigatório",
             validate: {
               onlyNumbers: (value) =>
-                /^[0-9]+$/.test(unmaskPhone(value)) ||
-                "Digite apenas números",
+                /^[0-9]+$/.test(unmaskPhone(value)) || "Digite apenas números",
               exactLength: (value) =>
                 unmaskPhone(value).length === 11 ||
                 "Celular deve ter 11 dígitos (com DDD)",
               validDDD: (value) =>
-                parseInt(unmaskPhone(value).substring(0, 2)) >= 11 &&
-                parseInt(unmaskPhone(value).substring(0, 2)) <= 99 ||
+                (parseInt(unmaskPhone(value).substring(0, 2)) >= 11 &&
+                  parseInt(unmaskPhone(value).substring(0, 2)) <= 99) ||
                 "DDD inválido",
               startsWith9: (value) =>
                 unmaskPhone(value)[2] === "9" ||
@@ -159,7 +159,7 @@ export default function Cadastro() {
                 value={value}
                 placeholder="Digite seu celular com DDD"
                 keyboardType="numeric"
-                maxLength={15} 
+                maxLength={15}
               />
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
@@ -177,8 +177,7 @@ export default function Cadastro() {
             required: "Senha é obrigatória",
             pattern: {
               value: /^[A-Za-z0-9]{6}$/,
-              message:
-                "Senha deve ter exatamente 6 caracteres, sem espaços e sem caracteres especiais",
+              message: "Senha deve ter exatamente 6 caracteres",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -189,7 +188,7 @@ export default function Cadastro() {
                   onChange(text.replace(/[^A-Za-z0-9]/g, ""))
                 }
                 value={value}
-                placeholder="Digite sua senha (6 caracteres)"
+                placeholder="Digite sua senha"
                 secureTextEntry
                 maxLength={6}
               />
@@ -206,7 +205,7 @@ export default function Cadastro() {
       <TouchableOpacity
         style={styles.buttonCadastrar}
         onPress={handleSubmit((data) => {
-          data.phone = unmaskPhone(data.phone); 
+          data.phone = unmaskPhone(data.phone);
           handleSignUp(data);
         })}
       >
