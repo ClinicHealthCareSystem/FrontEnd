@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 
@@ -31,14 +30,14 @@ export default function Cadastro() {
         },
         body: JSON.stringify(data),
       });
-      console.log(response);
       const json = await response.json();
       console.log(response.status);
       console.log(json);
     } catch (error) {
-      console.log("Não foi possível criar o usuário" + error);
+      console.log("Não foi possível criar o usuário: " + error);
     }
   }
+
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Cadastro</Text>
@@ -52,17 +51,38 @@ export default function Cadastro() {
         <Controller
           control={control}
           name="name"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              onChangeText={(text: string) => onChange(text)}
-              value={value}
-              placeholder="Digite seu nome"
-            />
+          rules={{
+            required: "Nome é obrigatório",
+            pattern: {
+              value: /^[A-Z a-z À-Ö Ø-ö ø-ÿ\s]{3,50}$/,
+              message:
+                "Digite um nome válido (apenas letras e espaços, 3 a 50 caracteres)",
+            },
+            validate: {
+              noDoubleSpaces: (value) =>
+                !/\s{2,}/.test(value) || "Evite espaços em excesso",
+              hasSurname: (value) =>
+                value.trim().split(" ").length > 1 ||
+                "Informe nome e sobrenome",
+            },
+          }}
+          render={({field:{onChange,value},fieldState:{error} })=>(
+            <>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text: string) =>
+                  onChange(text.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, ""))
+                }
+                value={value}
+                placeholder="Digite seu nome completo"
+              />
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+            </>
           )}
         />
       </View>
-      <Text style={styles.label}>CPF</Text>
+
+     <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
         <Image
           style={styles.id_card}
@@ -70,47 +90,104 @@ export default function Cadastro() {
         />
         <Controller
           control={control}
-          name="password"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              onChangeText={(text: string) => onChange(text)}
-              value={value}
-              placeholder="Digite seu CPF"
-            />
+          name="cpf"
+          rules={{
+            required: "CPF é obrigatório",
+            pattern: {
+              value: /^[0-9]{11}$/,
+              message: "CPF deve conter apenas números e ter 11 dígitos",
+            },
+          }}
+          render={({ field:{onChange,value},fieldState:{error}})=>(
+            <>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text: string) =>
+                  onChange(text.replace(/\D/g, ""))
+                }
+                value={value}
+                placeholder="Digite seu CPF"
+                keyboardType="numeric"
+                maxLength={11}
+              />
+              {error && <Text style={{color:"red"}}>{error.message}</Text>}
+            </>
           )}
         />
       </View>
 
+      {
+      /* Fernando, aqui eu usei GPT porque não sabia como fazer essa validação */
+      }
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
         <Image style={styles.phone} source={require("../assets/phone.png")} />
         <Controller
           control={control}
-          name="CPF"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              onChangeText={(text: string) => onChange(text)}
-              value={value}
-              placeholder="(85) 9 9999-9999"
-            />
+          name="phone"
+          rules={{
+            required: "Celular é obrigatório",
+            pattern: {
+              value: /^[0-9]{11}$/,
+              message: "Celular deve conter exatamente 11 números",
+            },
+            validate: {
+              validDDD: (value) =>
+                parseInt(value.substring(0, 2)) >= 11 &&
+                parseInt(value.substring(0, 2)) <= 99 ||
+                "DDD inválido",
+              startsWith9: (value) =>
+                value[2] === "9" || "O número deve começar com 9 após o DDD",
+              notRepeated: (value) =>
+                !/^(\d)\1{10}$/.test(value) || "Número inválido (repetido)",
+            },
+          }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text: string) =>
+                  onChange(text.replace(/\D/g, "")) 
+                }
+                value={value}
+                placeholder="(DD) 9 XXXX-XXXX"
+                keyboardType="phone-pad"
+                maxLength={11}
+              />
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+            </>
           )}
         />
       </View>
+      
       <Text style={styles.label}>Crie uma Senha</Text>
       <View style={styles.inputCaixa}>
         <Image style={styles.lock} source={require("../assets/lock.png")} />
         <Controller
           control={control}
-          name="email"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              style={styles.input}
-              onChangeText={(text: string) => onChange(text)}
-              value={value}
-              placeholder="Mínimo 6 dígitos"
-            />
+          name="password"
+          rules={{
+            required: "Senha é obrigatória",
+            pattern: {
+              value: /^[A-Za-z0-9]{6}$/,
+              message:
+                "Senha deve ter exatamente 6 caracteres, sem espaços e sem caracteres especiais",
+            },
+          }}
+          render={({ field:{onChange, value}, fieldState:{ error}})=>(
+            <>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text:string)=>
+                  onChange(text.replace(/[^A-Za-z0-9]/g, ""))
+                }
+                value={value}
+                placeholder="Digite sua senha (6 caracteres)"
+                secureTextEntry
+                maxLength={6}
+              />
+              {error && <Text style={{color:"red"}}>{error.message}</Text>}
+            </>
           )}
         />
         <Image
@@ -118,23 +195,17 @@ export default function Cadastro() {
           source={require("../assets/visibility_on.png")}
         />
       </View>
-
       <TouchableOpacity
         style={styles.buttonCadastrar}
         onPress={handleSubmit(handleSignUp)}
       >
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
-
+      
       <View style={styles.voltaLogin}>
         <Text style={styles.text}>Já tem uma conta?</Text>
-        <TouchableOpacity>
-          <Text
-            style={styles.textVoltaLogin}
-            onPress={() => router.replace("/login")}
-          >
-            Login
-          </Text>
+        <TouchableOpacity onPress={() => router.replace("/login")}>
+          <Text style={styles.textVoltaLogin}>Login</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
