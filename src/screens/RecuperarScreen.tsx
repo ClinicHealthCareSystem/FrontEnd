@@ -17,7 +17,7 @@ import {
 import styles from "../styles/recuperar";
 
 export default function Recuperar() {
-  const { code } = useLocalSearchParams();
+  const { phone } = useLocalSearchParams();
   const {
     control,
     handleSubmit,
@@ -29,7 +29,7 @@ export default function Recuperar() {
   function Code() {
     const codeValue = getValues("number");
     console.log("codeValue:", codeValue);
-    if (codeValue !== code) {
+    if (codeValue !== phone) {
       Alert.alert("Código inválido, tente novamente");
       return;
     }
@@ -43,7 +43,7 @@ export default function Recuperar() {
         accessible={true}
         accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir"
       >
-        Foi enviado um SMS para seu telefone. Digite o código para prosseguir
+        Foi enviado um código para seu Watsapp. Digite o código para prosseguir
       </Text>
       <Text style={styles.label}>Digite o código</Text>
       <View style={styles.inputCaixa}>
@@ -54,8 +54,8 @@ export default function Recuperar() {
           rules={{
             required: "Código obrigatório",
             pattern: {
-              value: /^[0-9]{4}$/,
-              message: "O código deve ter exatamente 4 dígitos numéricos",
+              value: /^[0-9]{6}$/,
+              message: "O código deve ter exatamente 6 dígitos numéricos",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -68,7 +68,7 @@ export default function Recuperar() {
                 accessible={true}
                 accessibilityLabel="Digitar código de verificação"
                 keyboardType="numeric"
-                maxLength={4}
+                maxLength={6}
               />
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
