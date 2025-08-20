@@ -26,28 +26,23 @@ async function handleVerificationCode(data: any) {
         body: JSON.stringify({ phone: data.phone }),
       }
     );
-    const json = await response.json();
-    console.log(json);
 
-    if (json.success) {
-      // NÃO passa o código como parâmetro!
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+
+    if (response.ok) {
+      console.log("Código enviado com sucesso!");
       router.push({
         pathname: "/recuperar",
-        params: { phone: data.phone }, // Apenas o telefone
+        params: { phone: data.phone },
       });
     } else {
       console.log("Não foi possível enviar o código para o celular fornecido");
     }
   } catch (error) {
-    console.log(
-      "Não foi possível enviar o código para o celular fornecido: " + error
-    );
+    console.log(error);
   }
-
-  router.push({
-    pathname: "/recuperar",
-    // params: { code: verificationCode.toString() },
-  });
 }
 
 export default function Esqueceu() {

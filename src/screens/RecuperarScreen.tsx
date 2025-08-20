@@ -26,14 +26,47 @@ export default function Recuperar() {
   } = useForm({});
   const router = useRouter();
 
-  function Code() {
+  async function validateCode() {
     const codeValue = getValues("number");
-    console.log("codeValue:", codeValue);
-    if (codeValue !== phone) {
-      Alert.alert("Código inválido, tente novamente");
+
+    if (!codeValue || codeValue.length !== 6) {
+      Alert.alert("Erro: ", "Digite um código válido");
       return;
     }
-    router.replace("/novasenha");
+
+    const payload = {
+      phone: phone,
+      code: codeValue,
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/whatsapp/verifyCodeAuthenticator`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+
+      if (response.ok) {
+        console.log("Código válido!");
+        router.push({
+          pathname: "/novasenha",
+        });
+      } else {
+        console.log("Código inválido");
+      }
+    } catch (error) {
+      console.log("Erro na verificação do código", error);
+      Alert.alert("Erro", "Não foi possível verificar o código");
+    }
   }
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -78,7 +111,7 @@ export default function Recuperar() {
       <View>
         <TouchableOpacity
           style={styles.buttonCadastrar}
-          onPress={Code}
+          onPress={validateCode}
           accessible={true}
           accessibilityLabel="Confirmar código de verificação"
         >
