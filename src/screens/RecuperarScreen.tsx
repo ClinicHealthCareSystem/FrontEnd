@@ -51,8 +51,16 @@ export default function Recuperar() {
         }
       );
 
+      const result = await response.json();
+
       if (!response.ok) {
         throw new Error(`Erro HTTP: ${response.status}`);
+      }
+
+      if (!result.success) {
+        console.log("Código inválido!");
+        Alert.alert("Erro", result.message);
+        return;
       }
 
       if (response.ok) {
