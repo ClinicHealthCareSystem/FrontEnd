@@ -111,10 +111,10 @@ export default StyleSheet.create({
   },
 
   visibility_on: {
-    marginRight: 5,
+    
   },
 
   visibility_of: {
-    marginRight: 5,
+    
   },
 });

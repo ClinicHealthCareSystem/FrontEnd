@@ -1,7 +1,8 @@
-import React from "react";
+
 import { useState } from "react";
+import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { TermosServico } from "../components/termos";
 
 import {
@@ -17,11 +18,24 @@ import styles from "../styles/cadastro";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
+  const { aceitar } = useLocalSearchParams<{aceitar?: string}>()
+  const [aceitarTermos, setAceitarTermos] = useState(false);
+   useEffect(() => {
+    if (aceitar === "true") {
+      setAceitarTermos(true);
+    }
+  }, [aceitar]);
+
 
    const abrirTermos = () => {
     setModalVisible(true);
   };
-  
+
+  const [passwordShow, setPasswordShow] = useState(false);
+  const passwordEyes = () =>{
+    setPasswordShow((prev)=>  !prev);
+  }
+
   const {
     control,
     handleSubmit,
@@ -199,17 +213,23 @@ export default function Cadastro() {
                 }
                 value={value}
                 placeholder="Digite sua senha"
-                secureTextEntry
+                secureTextEntry={!passwordShow}
                 maxLength={6}
               />
+              <TouchableOpacity onPress={passwordEyes}>
+        <Image
+          source={
+              passwordShow ? require("../assets/visibility_on.png") : require("../assets/visibility_off.png")
+          }
+          style={styles.visibility_on}
+        />
+        </TouchableOpacity>
+              
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
           )}
         />
-        <Image
-          style={styles.visibility_on}
-          source={require("../assets/visibility_on.png")}
-        />
+        
       </View>
       <TouchableOpacity onPress={abrirTermos}>
         <Text style={styles.buttonAceitar}>Aceite os Termos</Text>
@@ -220,14 +240,14 @@ export default function Cadastro() {
       </Modal>
 
       <TouchableOpacity
-        style={styles.buttonCadastrar}
+        style={styles.buttonCadastrar} disabled={!aceitarTermos}
         onPress={handleSubmit((data) => {
           data.phone = unmaskPhone(data.phone);
           handleSignUp(data);
           router.replace("/login");
         })}
       >
-        <Text style={styles.buttonText}>Cadastrar</Text>
+        <Text style={styles.buttonText}>{aceitarTermos ? "Cadastrar" : "Cadastrar"}</Text>
       </TouchableOpacity>
         
       <View style={styles.voltaLogin}>

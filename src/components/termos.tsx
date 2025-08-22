@@ -1,14 +1,11 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+
+
 import styles from "../styles/termos";
 import { useRouter } from "expo-router";
+
 export function TermosServico() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
+  
   const router = useRouter();
 
   return (
@@ -38,7 +35,8 @@ export function TermosServico() {
           <TouchableOpacity style={styles.termoButton}>
             <Text
               style={styles.termoButtonText}
-              onPress={() => router.replace("/cadastro")}
+              onPress={() =>router.replace({ pathname: "/cadastro", params: {aceitar: "true"}})}
+              
             >
               Aceitar
             </Text>
