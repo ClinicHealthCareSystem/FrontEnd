@@ -94,18 +94,22 @@ export default StyleSheet.create({
     marginRight: 5,
   },
 
-  visivility_on: {
-    left: 300,
-    bottom: 30,
-    zIndex: 1,
-    position: "absolute",
+  visibility_on: {
+    // left: 300,
+    // bottom: 30,
+    // zIndex: 1,
+    // position: "absolute",
+    position: 'relative',
+    right: 0,
   },
 
-  visivility_of: {
-    left: 300,
-    bottom: 55,
-    zIndex: 1,
-    position: "absolute",
+  visibility_of: {
+    // left: 300,
+    // bottom: 55,
+    // zIndex: 1,
+    // position: "absolute",
+    position: 'relative',
+    right: 0,
   },
 
   caixa: {
@@ -142,7 +146,7 @@ export default StyleSheet.create({
     alignSelf: "flex-end",
   },
 
-  buttonCadastrar: {
+  buttonConcluir: {
     backgroundColor: "#3284f1",
     paddingVertical: 10,
     paddingHorizontal: 20,
