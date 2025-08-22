@@ -19,10 +19,13 @@ export default function Novasenha() {
     control,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({});
   const router = useRouter();
   const [passwordShow, setPasswordShow] = useState(false);
   const [passwordShow2, setPasswordShow2] = useState(false);
+
+  const password = watch("password");
 
   const passwordEyes = () => {
     setPasswordShow((prev) => !prev);
@@ -34,12 +37,14 @@ export default function Novasenha() {
   async function handleUpdateUser(data: any) {
     console.log(data);
     try {
+      const { confirmPassword, ...userData } = data;
+
       const response = await fetch(`http://localhost:3000/user/updateUser`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(userData),
       });
 
       const json = await response.json();
@@ -117,29 +122,26 @@ export default function Novasenha() {
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
-              <TouchableOpacity>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={(text: string) =>
-                    onChange(text.replace(/[^A-Za-z0-9]/g, ""))
-                  }
-                  value={value}
-                  placeholder="Digite sua senha"
-                  secureTextEntry={!passwordShow}
-                  maxLength={6}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={passwordEyes}>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text: string) =>
+                  onChange(text.replace(/[^A-Za-z0-9]/g, ""))
+                }
+                value={value}
+                placeholder="Digite sua senha"
+                secureTextEntry={!passwordShow}
+                maxLength={6}
+              />
+              <TouchableOpacity onPress={passwordEyes} style={styles.buttonEye}>
                 <Image
                   source={
                     passwordShow
                       ? require("../assets/visibility_on.png")
                       : require("../assets/visibility_off.png")
                   }
-                  style={styles.visibility_on}
+                  style={styles.IconEye}
                 />
               </TouchableOpacity>
-
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
           )}
@@ -148,26 +150,45 @@ export default function Novasenha() {
 
       <View style={styles.inputCaixa}>
         <Image style={styles.lock} source={require("../assets/lock.png")} />
-
-        <TouchableOpacity>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite sua senha novamente"
-            secureTextEntry={!passwordShow2}
-            maxLength={6}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={passwordEyes2}>
-          <Image
-            source={
-              passwordShow2
-                ? require("../assets/visibility_on.png")
-                : require("../assets/visibility_off.png")
-            }
-            style={styles.visibility_on}
-          />
-        </TouchableOpacity>
+        <Controller
+          control={control}
+          name="confirmPassword"
+          rules={{
+            required: "Confirmação de senha é obrigatória",
+            validate: (value) =>
+              value === password || "As senhas não são iguais",
+          }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <>
+              <TextInput
+                style={styles.input}
+                onChangeText={(text: string) =>
+                  onChange(text.replace(/[^A-Za-z0-9]/g, ""))
+                }
+                value={value}
+                placeholder="Digite sua senha novamente"
+                secureTextEntry={!passwordShow2}
+                maxLength={6}
+              />
+              <TouchableOpacity
+                onPress={passwordEyes2}
+                style={styles.buttonEye}
+              >
+                <Image
+                  source={
+                    passwordShow2
+                      ? require("../assets/visibility_on.png")
+                      : require("../assets/visibility_off.png")
+                  }
+                  style={styles.IconEye}
+                />
+              </TouchableOpacity>
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+            </>
+          )}
+        />
       </View>
+
       <TouchableOpacity
         style={styles.buttonConcluir}
         onPress={handleSubmit((data) => {

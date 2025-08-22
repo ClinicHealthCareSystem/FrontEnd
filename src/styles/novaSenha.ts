@@ -33,6 +33,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 15,
+    position: "relative",
   },
 
   input: {
@@ -41,6 +42,7 @@ export default StyleSheet.create({
     overflow: "hidden",
     outlineWidth: 0,
     paddingLeft: 5,
+    paddingRight: 45,
   },
 
   input2: {
@@ -49,6 +51,20 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
+  },
+
+  buttonEye: {
+    position: "absolute",
+    right: 10,
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 30,
+  },
+
+  IconEye: {
+    width: 20,
+    height: 20,
   },
 
   button: {
@@ -92,24 +108,6 @@ export default StyleSheet.create({
 
   lock: {
     marginRight: 5,
-  },
-
-  visibility_on: {
-    // left: 300,
-    // bottom: 30,
-    // zIndex: 1,
-    // position: "absolute",
-    position: 'relative',
-    right: 0,
-  },
-
-  visibility_of: {
-    // left: 300,
-    // bottom: 55,
-    // zIndex: 1,
-    // position: "absolute",
-    position: 'relative',
-    right: 0,
   },
 
   caixa: {
