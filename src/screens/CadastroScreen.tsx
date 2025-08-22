@@ -17,13 +17,9 @@ import styles from "../styles/cadastro";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
-  const { aceitar } = useLocalSearchParams<{ aceitar?: string }>();
+  
   const [aceitarTermos, setAceitarTermos] = useState(false);
-  useEffect(() => {
-    if (aceitar === "true") {
-      setAceitarTermos(true);
-    }
-  }, [aceitar]);
+  
 
   const abrirTermos = () => {
     setModalVisible(true);
