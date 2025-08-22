@@ -236,7 +236,7 @@ export default function Cadastro() {
       </TouchableOpacity>
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
         {" "}
-        <TermosServico />
+        <TermosServico onClose={() => setModalVisible(false)} onAccept={() => {setAceitarTermos(true); setModalVisible(false);}}  />
       </Modal>
 
       <TouchableOpacity

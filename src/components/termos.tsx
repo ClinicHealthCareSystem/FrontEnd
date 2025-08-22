@@ -4,9 +4,19 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import styles from "../styles/termos";
 import { useRouter } from "expo-router";
 
-export function TermosServico() {
+export const TermosServico = ({
+ onClose,
+ onAccept,
+}: {
+    onClose: () => void;
+    onAccept: () => void;
+  }) =>  {
   
   const router = useRouter();
+
+  
+
+  
 
   return (
     <View style={styles.background}>
@@ -32,12 +42,10 @@ export function TermosServico() {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.termoButton}>
+          <TouchableOpacity style={styles.termoButton} onPress={onAccept}>
             <Text
-              style={styles.termoButtonText}
-              onPress={() =>router.replace({ pathname: "/cadastro", params: {aceitar: "true"}})}
-              
-            >
+              style={styles.termoButtonText}>
+    
               Aceitar
             </Text>
           </TouchableOpacity>
@@ -45,4 +53,4 @@ export function TermosServico() {
       </View>
     </View>
   );
-}
+};
