@@ -33,6 +33,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 15,
+    position: "relative",
   },
 
   input: {
@@ -41,6 +42,7 @@ export default StyleSheet.create({
     overflow: "hidden",
     outlineWidth: 0,
     paddingLeft: 5,
+    paddingRight: 45,
   },
 
   input2: {
@@ -49,6 +51,20 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
+  },
+
+  buttonEye: {
+    position: "absolute",
+    right: 10,
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 30,
+  },
+
+  IconEye: {
+    width: 20,
+    height: 20,
   },
 
   button: {
@@ -94,20 +110,6 @@ export default StyleSheet.create({
     marginRight: 5,
   },
 
-  visivility_on: {
-    left: 300,
-    bottom: 30,
-    zIndex: 1,
-    position: "absolute",
-  },
-
-  visivility_of: {
-    left: 300,
-    bottom: 55,
-    zIndex: 1,
-    position: "absolute",
-  },
-
   caixa: {
     backgroundColor: "#ADD8E6",
     borderRadius: 12,
@@ -142,7 +144,7 @@ export default StyleSheet.create({
     alignSelf: "flex-end",
   },
 
-  buttonCadastrar: {
+  buttonConcluir: {
     backgroundColor: "#3284f1",
     paddingVertical: 10,
     paddingHorizontal: 20,

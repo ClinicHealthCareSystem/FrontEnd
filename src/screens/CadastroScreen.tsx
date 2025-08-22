@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -11,30 +10,29 @@ import {
   TouchableOpacity,
   View,
   Image,
-  ScrollView, Modal,
+  ScrollView,
+  Modal,
 } from "react-native";
 import styles from "../styles/cadastro";
 
-
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
-  const { aceitar } = useLocalSearchParams<{aceitar?: string}>()
+  const { aceitar } = useLocalSearchParams<{ aceitar?: string }>();
   const [aceitarTermos, setAceitarTermos] = useState(false);
-   useEffect(() => {
+  useEffect(() => {
     if (aceitar === "true") {
       setAceitarTermos(true);
     }
   }, [aceitar]);
 
-
-   const abrirTermos = () => {
+  const abrirTermos = () => {
     setModalVisible(true);
   };
 
   const [passwordShow, setPasswordShow] = useState(false);
-  const passwordEyes = () =>{
-    setPasswordShow((prev)=>  !prev);
-  }
+  const passwordEyes = () => {
+    setPasswordShow((prev) => !prev);
+  };
 
   const {
     control,
@@ -126,7 +124,7 @@ export default function Cadastro() {
         />
         <Controller
           control={control}
-          name="cpf"
+          name="CPF"
           rules={{
             required: "CPF é obrigatório",
             pattern: {
@@ -217,19 +215,20 @@ export default function Cadastro() {
                 maxLength={6}
               />
               <TouchableOpacity onPress={passwordEyes}>
-        <Image
-          source={
-              passwordShow ? require("../assets/visibility_on.png") : require("../assets/visibility_off.png")
-          }
-          style={styles.visibility_on}
-        />
-        </TouchableOpacity>
-              
+                <Image
+                  source={
+                    passwordShow
+                      ? require("../assets/visibility_on.png")
+                      : require("../assets/visibility_off.png")
+                  }
+                  style={styles.visibility_on}
+                />
+              </TouchableOpacity>
+
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
           )}
         />
-        
       </View>
       <TouchableOpacity onPress={abrirTermos}>
         <Text style={styles.buttonAceitar}>Aceite os Termos</Text>
@@ -240,16 +239,19 @@ export default function Cadastro() {
       </Modal>
 
       <TouchableOpacity
-        style={styles.buttonCadastrar} disabled={!aceitarTermos}
+        style={styles.buttonCadastrar}
+        disabled={!aceitarTermos}
         onPress={handleSubmit((data) => {
           data.phone = unmaskPhone(data.phone);
           handleSignUp(data);
           router.replace("/login");
         })}
       >
-        <Text style={styles.buttonText}>{aceitarTermos ? "Cadastrar" : "Cadastrar"}</Text>
+        <Text style={styles.buttonText}>
+          {aceitarTermos ? "Cadastrar" : "Cadastrar"}
+        </Text>
       </TouchableOpacity>
-        
+
       <View style={styles.voltaLogin}>
         <Text style={styles.text}>Já tem uma conta?</Text>
         <TouchableOpacity onPress={() => router.replace("/login")}>

@@ -1,22 +1,15 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-
-
 import styles from "../styles/termos";
 import { useRouter } from "expo-router";
 
 export const TermosServico = ({
- onClose,
- onAccept,
+  onClose,
+  onAccept,
 }: {
-    onClose: () => void;
-    onAccept: () => void;
-  }) =>  {
-  
+  onClose: () => void;
+  onAccept: () => void;
+}) => {
   const router = useRouter();
-
-  
-
-  
 
   return (
     <View style={styles.background}>
@@ -43,11 +36,7 @@ export const TermosServico = ({
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.termoButton} onPress={onAccept}>
-            <Text
-              style={styles.termoButtonText}>
-    
-              Aceitar
-            </Text>
+            <Text style={styles.termoButtonText}>Aceitar</Text>
           </TouchableOpacity>
         </View>
       </View>
