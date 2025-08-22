@@ -124,7 +124,7 @@ export default function Cadastro() {
         />
         <Controller
           control={control}
-          name="cpf"
+          name="CPF"
           rules={{
             required: "CPF é obrigatório",
             pattern: {

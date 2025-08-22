@@ -31,6 +31,32 @@ export default function Novasenha() {
     setPasswordShow2((prev) => !prev);
   };
 
+  async function handleUpdateUser(data: any) {
+    console.log(data);
+    try {
+      const response = await fetch(`http://localhost:3000/user/updateUser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const json = await response.json();
+      console.log(json);
+      console.log(response.status);
+      if (!response.ok) {
+        throw new Error(`ERROR HTTP: ${response.status}`);
+      } else {
+        console.log("Dados do usuário atualizado com sucesso");
+        router.replace("/login");
+      }
+    } catch (error) {
+      console.log("Não foi possível atualizar os dados do usuário: " + error);
+      throw new Error("Não foi possível atulizar seus dados: " + error);
+    }
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Nova senha</Text>
@@ -121,7 +147,9 @@ export default function Novasenha() {
         </View>
         <TouchableOpacity
           style={styles.buttonCadastrar}
-          onPress={() => router.replace("/login")}
+          onPress={handleSubmit((data) => {
+            handleUpdateUser(data);
+          })}
           accessible={true}
           accessibilityLabel="Voltar para a tela de login"
         >
