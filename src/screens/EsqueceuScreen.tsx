@@ -15,35 +15,34 @@ import {
 import styles from "../styles/esqueceu";
 
 async function handleVerificationCode(data: any) {
-  const phoneWithDDI = `55${data.phone}`;
-  const verificationCode = Math.floor(Math.random() * 9000) + 1000;
-  const message = `Seu número de verificação é: ${verificationCode}`;
-
-  const payload = {
-    phone: phoneWithDDI,
-    message: message,
-  };
-
   try {
-    const response = await fetch(`http://localhost:3000/whatsapp/sendMessage`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    const json = await response.json();
-    console.log(json);
-  } catch (error) {
-    console.log(
-      "Não foi possível enviar o código para o celular fornecido: " + error
+    const response = await fetch(
+      `http://localhost:3000/whatsapp/sendVerificationCode`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: data.phone }),
+      }
     );
-  }
 
-  router.push({
-    pathname: "/recuperar",
-    params: { code: verificationCode.toString() },
-  });
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+
+    if (response.ok) {
+      console.log("Código enviado com sucesso!");
+      router.push({
+        pathname: "/recuperar",
+        params: { phone: data.phone },
+      });
+    } else {
+      console.log("Não foi possível enviar o código para o celular fornecido");
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default function Esqueceu() {

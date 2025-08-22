@@ -39,7 +39,7 @@ export default function Login() {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:3000/user/signIn`, {
+      const response = await fetch(`http://localhost:3000/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ CPF, password }),

@@ -127,7 +127,7 @@ export default function Novasenha() {
         >
           <Text style={styles.buttonText}>Concluir</Text>
         </TouchableOpacity>
-        <Text style={styles.text} onPress={() => router.replace("/recuperar")}>
+        <Text style={styles.text} onPress={() => router.replace("/login")}>
           Voltar
         </Text>
       </View>

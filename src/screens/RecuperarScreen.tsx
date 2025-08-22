@@ -17,7 +17,7 @@ import {
 import styles from "../styles/recuperar";
 
 export default function Recuperar() {
-  const { code } = useLocalSearchParams();
+  const { phone } = useLocalSearchParams();
   const {
     control,
     handleSubmit,
@@ -26,14 +26,55 @@ export default function Recuperar() {
   } = useForm({});
   const router = useRouter();
 
-  function Code() {
+  async function validateCode() {
     const codeValue = getValues("number");
-    console.log("codeValue:", codeValue);
-    if (codeValue !== code) {
-      Alert.alert("Código inválido, tente novamente");
+
+    if (!codeValue || codeValue.length !== 6) {
+      Alert.alert("Erro: ", "Digite um código válido");
       return;
     }
-    router.replace("/novasenha");
+
+    const payload = {
+      phone: phone,
+      code: codeValue,
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/whatsapp/verifyCodeAuthenticator`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+
+      if (!result.success) {
+        console.log("Código inválido!");
+        Alert.alert("Erro", result.message);
+        return;
+      }
+
+      if (response.ok) {
+        console.log("Código válido!");
+        router.push({
+          pathname: "/novasenha",
+        });
+      } else {
+        console.log("Código inválido");
+      }
+    } catch (error) {
+      console.log("Erro na verificação do código", error);
+      Alert.alert("Erro", "Não foi possível verificar o código");
+    }
   }
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -43,7 +84,7 @@ export default function Recuperar() {
         accessible={true}
         accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir"
       >
-        Foi enviado um SMS para seu telefone. Digite o código para prosseguir
+        Foi enviado um código para seu Watsapp. Digite o código para prosseguir
       </Text>
       <Text style={styles.label}>Digite o código</Text>
       <View style={styles.inputCaixa}>
@@ -54,8 +95,8 @@ export default function Recuperar() {
           rules={{
             required: "Código obrigatório",
             pattern: {
-              value: /^[0-9]{4}$/,
-              message: "O código deve ter exatamente 4 dígitos numéricos",
+              value: /^[0-9]{6}$/,
+              message: "O código deve ter exatamente 6 dígitos numéricos",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -68,7 +109,7 @@ export default function Recuperar() {
                 accessible={true}
                 accessibilityLabel="Digitar código de verificação"
                 keyboardType="numeric"
-                maxLength={4}
+                maxLength={6}
               />
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
@@ -78,7 +119,7 @@ export default function Recuperar() {
       <View>
         <TouchableOpacity
           style={styles.buttonCadastrar}
-          onPress={Code}
+          onPress={validateCode}
           accessible={true}
           accessibilityLabel="Confirmar código de verificação"
         >
