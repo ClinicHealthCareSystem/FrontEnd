@@ -1,11 +1,8 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-
-
 import styles from "../styles/termos";
 import { useRouter } from "expo-router";
 
 export function TermosServico() {
-  
   const router = useRouter();
 
   return (
@@ -35,8 +32,12 @@ export function TermosServico() {
           <TouchableOpacity style={styles.termoButton}>
             <Text
               style={styles.termoButtonText}
-              onPress={() =>router.replace({ pathname: "/cadastro", params: {aceitar: "true"}})}
-              
+              onPress={() =>
+                router.replace({
+                  pathname: "/cadastro",
+                  params: { aceitar: "true" },
+                })
+              }
             >
               Aceitar
             </Text>
