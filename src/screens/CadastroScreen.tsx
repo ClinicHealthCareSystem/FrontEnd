@@ -240,7 +240,7 @@ export default function Cadastro() {
         onPress={handleSubmit((data) => {
           data.phone = unmaskPhone(data.phone);
           handleSignUp(data);
-          router.replace("/login");
+          router.replace("/menu");
         })}
       >
         <Text style={styles.buttonText}>
