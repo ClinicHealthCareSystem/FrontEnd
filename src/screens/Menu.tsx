@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity, View, Image, ScrollView } from "react-native";
+import { Text, TouchableOpacity, View, Image, ScrollView, TextInput } from "react-native";
 import styles from "../styles/menu";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -57,6 +57,7 @@ export default function Menu() {
       <View style={styles.background}>
         <View style={styles.barraAlta}>
           <Text style={styles.tittle}>Saúde Mania</Text>
+          <TextInput style={styles.search_bar} placeholder="O que você está procurando?"></TextInput>
         </View>
       </View>
 
@@ -78,16 +79,16 @@ export default function Menu() {
       </ScrollView>
       <View style={styles.teste}>
             <TouchableOpacity style={styles.testeButton}>
-              <Ionicons name="home" size={30} color="#3284f1" />
+              <Ionicons name="home" size={30} color="#fff" />
               <Text style={styles.textTeste}>Home</Text>
               
             </TouchableOpacity>
             <TouchableOpacity style={styles.testeButton}>
-              <Ionicons name="person" size={30} color="#3284f1" />
+              <Ionicons name="person" size={30} color="#fff" />
               <Text style={styles.textTeste}>Perfil</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.testeButton}>
-              <Ionicons name="settings" size={30} color="#3284f1" />
+              <Ionicons name="settings" size={30} color="#fff" />
               <Text style={styles.textTeste}>Config</Text>
             </TouchableOpacity>
 

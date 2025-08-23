@@ -8,11 +8,10 @@ export default StyleSheet.create({
   },
 
   barraAlta: {
-    backgroundColor: "#ADD8E6",
-    height: 100,
+    backgroundColor: "#3284f1",
+    height: 200,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
-    justifyContent: "center",
     alignItems: "center",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -20,11 +19,22 @@ export default StyleSheet.create({
   },
   tittle: {
     fontSize: 30,
+    marginTop: 20,
     fontWeight: "bold",
-    color: "#3284f1",
+    color: "#FFF",
+  },
+  search_bar:{
+    backgroundColor: "white",
+    width: 350,
+    height: 40,
+    borderRadius: 8,
+    marginTop: 20,
+    paddingHorizontal: 10,
+    fontSize: 16,
+    color: "#797979ff",
   },
   scrollCards: {
-    backgroundColor: "#ADD8E6",
+    backgroundColor: "#FFF",
   },
   cards: {
     backgroundColor: "",
@@ -47,9 +57,9 @@ export default StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 4,
-    borderWidth: 1,
+    shadowOpacity: 0.7,
+    shadowRadius: 8,
+    borderWidth: 0,
     borderColor: "white",
   },
   textCards: {
@@ -67,26 +77,24 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: 50,
-    backgroundColor: "white",
-    borderTopWidth: 1,
-    borderTopColor: "black",
+    height: 60,
     padding: 20,
     borderRadius: 2,
-    
-
-
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    backgroundColor: "#3284f1",
 
   },
   testeButton:{
         flex: 1,
         alignItems: "center",
+        color: "#FFF",
         // flexDirection: "row",
         // justifyContent: "space-between",
   },
 
   textTeste:{
-    color: "#3284f1",
+    color: "#FFF",
 
     
 
