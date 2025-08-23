@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   background: {
     flex: 1,
+    backgroundColor: "#ADD8E6",
+
   },
 
   barraAlta: {
@@ -60,5 +62,33 @@ export default StyleSheet.create({
     fontSize: 10,
     color: "white",
     textAlign: "center",
+  },
+  teste:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 50,
+    backgroundColor: "white",
+    borderTopWidth: 1,
+    borderTopColor: "black",
+    padding: 20,
+    borderRadius: 2,
+    
+
+
+
+  },
+  testeButton:{
+        flex: 1,
+        alignItems: "center",
+        // flexDirection: "row",
+        // justifyContent: "space-between",
+  },
+
+  textTeste:{
+    color: "#3284f1",
+
+    
+
   },
 });
