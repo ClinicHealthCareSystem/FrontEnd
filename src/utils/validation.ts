@@ -29,9 +29,18 @@ export const validateName = (name: string) => {
 export const maskPhone = (text: string) => {
   let cleaned = text.replace(/\D/g, "");
   if (cleaned.length > 11) cleaned = cleaned.substring(0, 11);
-  if (cleaned.length <= 2) return `(${cleaned}`;
-  if (cleaned.length <= 7)
+  if (cleaned.length <= 2) {
+    return `(${cleaned}`;
+  }
+  if (cleaned.length <= 6) {
     return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2)}`;
+  }
+  if (cleaned.length <= 10) {
+    return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
+      2,
+      6
+    )}-${cleaned.substring(6)}`;
+  }
   return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
     2,
     7
@@ -46,8 +55,8 @@ export const validatePhone = (phone: string) => {
   if (!/^[0-9]+$/.test(value)) {
     return "Digite apenas números";
   }
-  if (value.length !== 11) {
-    return "Celular deve ter 11 dígitos (com DDD)";
+  if (value.length !== 10 && value.length !== 11) {
+    return "Telefone deve ter 10 ou 11 dígitos (com DDD)";
   }
   const ddd = parseInt(value.substring(0, 2));
   if (ddd < 11 || ddd > 99) {

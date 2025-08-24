@@ -13,37 +13,10 @@ import {
 } from "react-native";
 
 import styles from "../styles/esqueceu";
+import { useSendCode } from "../hooks/useSendCode";
+import { validatePhone, maskPhone, unmaskPhone } from "../utils/validation";
 
-async function handleVerificationCode(data: any) {
-  try {
-    const response = await fetch(
-      `http://localhost:3000/whatsapp/sendVerificationCode`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ phone: data.phone }),
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`Erro HTTP: ${response.status}`);
-    }
-
-    if (response.ok) {
-      console.log("Código enviado com sucesso!");
-      router.push({
-        pathname: "/recuperar",
-        params: { phone: data.phone },
-      });
-    } else {
-      console.log("Não foi possível enviar o código para o celular fornecido");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
+const { error, handleVerificationCode } = useSendCode();
 
 export default function Esqueceu() {
   const {
@@ -52,22 +25,6 @@ export default function Esqueceu() {
     formState: { errors },
   } = useForm({});
   const router = useRouter();
-
-  const maskPhone = (text: string) => {
-    let cleaned = text.replace(/\D/g, "");
-
-    if (cleaned.length > 10) cleaned = cleaned.substring(0, 10);
-
-    if (cleaned.length <= 2) return `(${cleaned}`;
-    if (cleaned.length <= 6)
-      return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2)}`;
-    return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
-      2,
-      6
-    )}-${cleaned.substring(6)}`;
-  };
-
-  const unmaskPhone = (text: string) => text.replace(/\D/g, "");
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -87,18 +44,7 @@ export default function Esqueceu() {
           control={control}
           name="phone"
           rules={{
-            required: "Celular é obrigatório",
-            validate: {
-              onlyNumbers: (value) =>
-                /^[0-9]+$/.test(unmaskPhone(value)) || "Digite apenas números",
-              exactLength: (value) =>
-                unmaskPhone(value).length === 10 ||
-                "Celular deve ter 10 dígitos (com DDD)",
-              validDDD: (value) =>
-                (parseInt(unmaskPhone(value).substring(0, 2)) >= 11 &&
-                  parseInt(unmaskPhone(value).substring(0, 2)) <= 99) ||
-                "DDD inválido",
-            },
+            validate: (value) => validatePhone(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
@@ -120,7 +66,7 @@ export default function Esqueceu() {
           style={styles.sendPasswordButton}
           onPress={handleSubmit((data) => {
             data.phone = unmaskPhone(data.phone);
-            handleVerificationCode(data);
+            handleVerificationCode(data.phone);
           })}
           accessible={true}
           accessibilityLabel="Envia SMS para o telefone informado"
