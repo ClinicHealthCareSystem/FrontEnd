@@ -14,10 +14,10 @@ import {
   Modal,
 } from "react-native";
 import styles from "../styles/cadastro";
+import { useSignUp } from "../hooks/useSignUp";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
-
   const [aceitarTermos, setAceitarTermos] = useState(false);
 
   const abrirTermos = () => {
@@ -36,33 +36,7 @@ export default function Cadastro() {
   } = useForm({});
   const router = useRouter();
 
-  const [error, setError] = useState("");
-
-  async function handleSignUp(data: any) {
-    const senha = data.password;
-
-    const senhaValida = /^[A-Za-z0-9]{8,12}$/;
-
-    if (!senhaValida.test(senha)) {
-      setError("Senha inválida: mínimo 8 caracteres");
-      return;
-    }
-
-    try {
-      const response = await fetch(`http://localhost:3000/user/signUp`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const json = await response.json();
-      console.log(response.status);
-      console.log(json);
-    } catch (error) {
-      console.log("Não foi possível criar o usuário: " + error);
-    }
-  }
+  const { error, handleSignUp } = useSignUp();
 
   const maskPhone = (text: string) => {
     let cleaned = text.replace(/\D/g, "");
@@ -255,8 +229,7 @@ export default function Cadastro() {
         disabled={!aceitarTermos}
         onPress={handleSubmit((data) => {
           data.phone = unmaskPhone(data.phone);
-          handleSignUp(data);
-          router.replace("/login");
+          handleSignUp(data.name, data.CPF, data.phone, data.password);
         })}
       >
         <Text style={styles.buttonText}>

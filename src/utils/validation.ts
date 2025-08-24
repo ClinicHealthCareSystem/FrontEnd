@@ -11,3 +11,4 @@ export const validatePassword = (password: string) => {
     return "Senha deve conter apenas letras e números";
   return "";
 };
+
