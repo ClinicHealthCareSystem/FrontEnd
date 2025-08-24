@@ -39,13 +39,16 @@ export default function Novasenha() {
     try {
       const { confirmPassword, ...userData } = data;
 
-      const response = await fetch(`http://localhost:3000/user/updatePassword`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        `http://localhost:3000/user/updatePassword`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
 
       const json = await response.json();
       console.log(json);
@@ -116,8 +119,8 @@ export default function Novasenha() {
           rules={{
             required: "Senha é obrigatória",
             pattern: {
-              value: /^[A-Za-z0-9]{6}$/,
-              message: "Senha deve ter exatamente 6 caracteres",
+              value: /^[A-Za-z0-9]{8,}$/,
+              message: "Senha deve ter no mínimo 8 caracteres",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -130,7 +133,6 @@ export default function Novasenha() {
                 value={value}
                 placeholder="Digite sua senha"
                 secureTextEntry={!passwordShow}
-                maxLength={6}
               />
               <TouchableOpacity onPress={passwordEyes} style={styles.buttonEye}>
                 <Image
@@ -168,7 +170,6 @@ export default function Novasenha() {
                 value={value}
                 placeholder="Digite sua senha novamente"
                 secureTextEntry={!passwordShow2}
-                maxLength={6}
               />
               <TouchableOpacity
                 onPress={passwordEyes2}

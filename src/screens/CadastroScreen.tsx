@@ -17,9 +17,8 @@ import styles from "../styles/cadastro";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
-  
+
   const [aceitarTermos, setAceitarTermos] = useState(false);
-  
 
   const abrirTermos = () => {
     setModalVisible(true);
@@ -37,8 +36,21 @@ export default function Cadastro() {
   } = useForm({});
   const router = useRouter();
 
+  const [error, setError] = useState("");
+
   async function handleSignUp(data: any) {
-    console.log(data);
+    const senha = data.password;
+
+    // regex: apenas letras e números, mínimo 8 caracteres
+    const senhaValida = /^[A-Za-z0-9]{8,}$/;
+
+    if (!senhaValida.test(senha)) {
+      setError(
+        "Senha inválida: mínimo 8 caracteres, apenas letras e números (sem espaços ou símbolos)"
+      );
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:3000/user/signUp`, {
         method: "POST",
@@ -194,8 +206,9 @@ export default function Cadastro() {
           rules={{
             required: "Senha é obrigatória",
             pattern: {
-              value: /^[A-Za-z0-9]{6}$/,
-              message: "Senha deve ter exatamente 6 caracteres",
+              value: /^[A-Za-z0-9]{8,}$/,
+              message:
+                "Senha inválida: mínimo 8 caracteres",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -208,8 +221,10 @@ export default function Cadastro() {
                 value={value}
                 placeholder="Digite sua senha"
                 secureTextEntry={!passwordShow}
-                maxLength={6}
               />
+
+              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+
               <TouchableOpacity onPress={passwordEyes}>
                 <Image
                   source={
@@ -220,8 +235,6 @@ export default function Cadastro() {
                   style={styles.visibility_on}
                 />
               </TouchableOpacity>
-
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>
           )}
         />
@@ -231,7 +244,13 @@ export default function Cadastro() {
       </TouchableOpacity>
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
         {" "}
-        <TermosServico onClose={() => setModalVisible(false)} onAccept={() => {setAceitarTermos(true); setModalVisible(false);}}  />
+        <TermosServico
+          onClose={() => setModalVisible(false)}
+          onAccept={() => {
+            setAceitarTermos(true);
+            setModalVisible(false);
+          }}
+        />
       </Modal>
 
       <TouchableOpacity
@@ -240,7 +259,7 @@ export default function Cadastro() {
         onPress={handleSubmit((data) => {
           data.phone = unmaskPhone(data.phone);
           handleSignUp(data);
-          router.replace("/menu");
+          router.replace("/login");
         })}
       >
         <Text style={styles.buttonText}>

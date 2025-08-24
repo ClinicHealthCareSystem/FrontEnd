@@ -10,6 +10,10 @@ import {
 import styles from "../styles/login";
 import { useRouter } from "expo-router";
 
+import * as SecureStore from "expo-secure-store";
+
+// import { setItemAsync } from "expo-secure-store";
+
 export default function Login() {
   const [CPF, setCPF] = useState("");
   const [password, setPassword] = useState("");
@@ -28,26 +32,53 @@ export default function Login() {
       setError("Esses campos são obrigatórios");
       return;
     }
+
     if (!/^\d{11,11}$/.test(CPF)) {
       setError("CPF precisa ter 11 dígitos");
       return;
     }
-    if (!/^[A-Z a-z 0-9]{6,6}$/.test(password)) {
-      setError(
-        "Senha inválida, 6 caracteres necessários, sem espaço ou caracteres especial"
-      );
+
+    if (password.length < 8 && !/^[A-Z a-z 0-9]{8,}$/.test(password)) {
+      setError("Senha inválida, mínumo 8 caracteres necessários");
       return;
     }
+
     try {
       const response = await fetch(`http://localhost:3000/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ CPF, password }),
       });
+
       const json = await response.json();
       console.log(response.status, json);
+
+      if (response.ok) {
+        const token = json.access_token;
+
+        if (token) {
+          try {
+            if (typeof window !== "undefined" && window.localStorage) {
+              localStorage.setItem("token", token);
+              console.log("Token salvo no localStorage");
+            } else {
+              await SecureStore.setItemAsync("token", token);
+              console.log("Token salvo no SecureStore");
+            }
+
+            router.replace("/menu");
+          } catch (storageError) {
+            console.error("Erro ao armazenar:", storageError);
+          }
+        } else {
+          setError("Token não recebido do servidor");
+        }
+      } else {
+        setError(json.message || "Falha ao autenticar");
+      }
     } catch (err) {
       console.log("Erro ao logar: " + err);
+      setError("Erro no servidor, tente novamente mais tarde");
     }
   };
 
@@ -80,8 +111,12 @@ export default function Login() {
             setPassword(text.replace(/[^A-Za-z0-9]/g, ""))
           }
           secureTextEntry={!passwordShow}
-          maxLength={6}
         />
+        {password.length > 0 && password.length < 8 && (
+          <Text style={{ color: "red" }}>
+            A senha deve ter pelo menos 8 caracteres
+          </Text>
+        )}
         <TouchableOpacity onPress={passwordEyes}>
           <Image
             source={
