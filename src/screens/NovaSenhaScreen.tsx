@@ -119,7 +119,7 @@ export default function Novasenha() {
           rules={{
             required: "Senha é obrigatória",
             pattern: {
-              value: /^[A-Za-z0-9]{8,}$/,
+              value: /^[A-Za-z0-9]{8,12}$/,
               message: "Senha deve ter no mínimo 8 caracteres",
             },
           }}
@@ -133,6 +133,7 @@ export default function Novasenha() {
                 value={value}
                 placeholder="Digite sua senha"
                 secureTextEntry={!passwordShow}
+                maxLength={12}
               />
               <TouchableOpacity onPress={passwordEyes} style={styles.buttonEye}>
                 <Image
@@ -170,6 +171,7 @@ export default function Novasenha() {
                 value={value}
                 placeholder="Digite sua senha novamente"
                 secureTextEntry={!passwordShow2}
+                maxLength={12}
               />
               <TouchableOpacity
                 onPress={passwordEyes2}

@@ -41,13 +41,10 @@ export default function Cadastro() {
   async function handleSignUp(data: any) {
     const senha = data.password;
 
-    // regex: apenas letras e números, mínimo 8 caracteres
-    const senhaValida = /^[A-Za-z0-9]{8,}$/;
+    const senhaValida = /^[A-Za-z0-9]{8,12}$/;
 
     if (!senhaValida.test(senha)) {
-      setError(
-        "Senha inválida: mínimo 8 caracteres, apenas letras e números (sem espaços ou símbolos)"
-      );
+      setError("Senha inválida: mínimo 8 caracteres");
       return;
     }
 
@@ -207,8 +204,7 @@ export default function Cadastro() {
             required: "Senha é obrigatória",
             pattern: {
               value: /^[A-Za-z0-9]{8,}$/,
-              message:
-                "Senha inválida: mínimo 8 caracteres",
+              message: "Senha inválida: mínimo 8 caracteres",
             },
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -221,6 +217,7 @@ export default function Cadastro() {
                 value={value}
                 placeholder="Digite sua senha"
                 secureTextEntry={!passwordShow}
+                maxLength={12}
               />
 
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}

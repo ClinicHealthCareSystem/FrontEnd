@@ -38,8 +38,8 @@ export default function Login() {
       return;
     }
 
-    if (password.length < 8 && !/^[A-Z a-z 0-9]{8,}$/.test(password)) {
-      setError("Senha inválida, mínumo 8 caracteres necessários");
+    if (password.length < 8 && !/^[A-Z a-z 0-9]{8,12}$/.test(password)) {
+      setError("Senha inválida, mínimo 8 caracteres necessários");
       return;
     }
 
@@ -111,6 +111,7 @@ export default function Login() {
             setPassword(text.replace(/[^A-Za-z0-9]/g, ""))
           }
           secureTextEntry={!passwordShow}
+          maxLength={12}
         />
         {password.length > 0 && password.length < 8 && (
           <Text style={{ color: "red" }}>
