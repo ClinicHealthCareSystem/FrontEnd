@@ -14,7 +14,7 @@ import {
 
 import styles from "../styles/esqueceu";
 import { useSendCode } from "../hooks/useSendCode";
-import { validatePhone, maskPhone, unmaskPhone } from "../utils/validation";
+import { validatePhone, maskPhone, unmaskPhone } from "../utils/userValidations";
 
 const { error, handleVerificationCode } = useSendCode();
 

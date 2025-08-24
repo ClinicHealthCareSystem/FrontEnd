@@ -22,7 +22,7 @@ import {
   validatePassword,
   validatePhone,
   maskPhone,
-} from "../utils/validation";
+} from "../utils/userValidations";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);

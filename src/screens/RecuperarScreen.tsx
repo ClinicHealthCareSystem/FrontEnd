@@ -15,67 +15,20 @@ import {
 } from "react-native";
 
 import styles from "../styles/recuperar";
+import { useVerifyCode } from "../hooks/useVerifyCode";
+import { verifyCode } from "../utils/authValidations";
 
 export default function Recuperar() {
   const { phone } = useLocalSearchParams();
   const {
     control,
-    handleSubmit,
     formState: { errors },
     getValues,
   } = useForm({});
   const router = useRouter();
 
-  async function validateCode() {
-    const codeValue = getValues("number");
+  const { error, validateCode } = useVerifyCode();
 
-    if (!codeValue || codeValue.length !== 6) {
-      Alert.alert("Erro: ", "Digite um código válido");
-      return;
-    }
-
-    const payload = {
-      phone: phone,
-      code: codeValue,
-    };
-
-    try {
-      const response = await fetch(
-        `http://localhost:3000/whatsapp/verifyCodeAuthenticator`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
-
-      if (!result.success) {
-        console.log("Código inválido!");
-        Alert.alert("Erro", result.message);
-        return;
-      }
-
-      if (response.ok) {
-        console.log("Código válido!");
-        router.push({
-          pathname: "/novasenha",
-        });
-      } else {
-        console.log("Código inválido");
-      }
-    } catch (error) {
-      console.log("Erro na verificação do código", error);
-      Alert.alert("Erro", "Não foi possível verificar o código");
-    }
-  }
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Recuperar senha</Text>
@@ -93,11 +46,7 @@ export default function Recuperar() {
           control={control}
           name="number"
           rules={{
-            required: "Código obrigatório",
-            pattern: {
-              value: /^[0-9]{6}$/,
-              message: "O código deve ter exatamente 6 dígitos numéricos",
-            },
+            validate: (value) => verifyCode(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
@@ -119,7 +68,10 @@ export default function Recuperar() {
       <View>
         <TouchableOpacity
           style={styles.buttonCadastrar}
-          onPress={validateCode}
+          onPress={() => {
+            const codeValue = getValues("number");
+            validateCode(codeValue, phone as string);
+          }}
           accessible={true}
           accessibilityLabel="Confirmar código de verificação"
         >

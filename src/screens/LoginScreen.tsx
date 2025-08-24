@@ -10,7 +10,7 @@ import {
 import styles from "../styles/login";
 import { useRouter } from "expo-router";
 import login from "../hooks/useLogin";
-import { validateCPF, validatePassword } from "../utils/validation";
+import { validateCPF, validatePassword } from "../utils/userValidations";
 
 export default function Login() {
   const router = useRouter();
