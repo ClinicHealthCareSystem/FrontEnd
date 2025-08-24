@@ -9,76 +9,26 @@ import {
 } from "react-native";
 import styles from "../styles/login";
 import { useRouter } from "expo-router";
-
-import * as SecureStore from "expo-secure-store";
-
-// import { setItemAsync } from "expo-secure-store";
+import login from "../hooks/useLogin";
+import { validateCPF, validatePassword } from "../utils/validation";
 
 export default function Login() {
+  const router = useRouter();
   const [CPF, setCPF] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const router = useRouter();
   const [passwordShow, setPasswordShow] = useState(false);
+  const { error, handleSignIn } = login(router);
 
   const passwordEyes = () => {
     setPasswordShow((prev) => !prev);
   };
 
-  const handleSignIn = async () => {
-    setError("");
+  const cpfError = validateCPF(CPF);
+  const passwordError = validatePassword(password);
 
-    if (!CPF || !password) {
-      setError("Esses campos são obrigatórios");
-      return;
-    }
-
-    if (!/^\d{11,11}$/.test(CPF)) {
-      setError("CPF precisa ter 11 dígitos");
-      return;
-    }
-
-    if (password.length < 8 && !/^[A-Z a-z 0-9]{8,12}$/.test(password)) {
-      setError("Senha inválida, mínimo 8 caracteres necessários");
-      return;
-    }
-
-    try {
-      const response = await fetch(`http://localhost:3000/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ CPF, password }),
-      });
-
-      const json = await response.json();
-      console.log(response.status, json);
-
-      if (response.ok) {
-        const token = json.access_token;
-
-        if (token) {
-          try {
-            if (typeof window !== "undefined" && window.localStorage) {
-              localStorage.setItem("token", token);
-              console.log("Token salvo no localStorage");
-            } else {
-              await SecureStore.setItemAsync("token", token);
-              console.log("Token salvo no SecureStore");
-            }
-
-            router.replace("/menu");
-          } catch (storageError) {
-            console.error("Erro ao armazenar:", storageError);
-          }
-        } else {
-          setError("Token não recebido do servidor");
-        }
-      } else {
-        setError(json.message || "Falha ao autenticar");
-      }
-    } catch (err) {
-      console.log("Erro ao logar: " + err);
-      setError("Erro no servidor, tente novamente mais tarde");
+  const handleSubmit = () => {
+    if (!cpfError && !passwordError) {
+      handleSignIn(CPF, password);
     }
   };
 
@@ -138,7 +88,7 @@ export default function Login() {
         <Text style={styles.esqueci}>Esqueceu a senha?</Text>{" "}
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Acessar</Text>
       </TouchableOpacity>
       <View style={styles.cadastroCaixa}>
