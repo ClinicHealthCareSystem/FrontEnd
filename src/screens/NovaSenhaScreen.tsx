@@ -39,7 +39,7 @@ export default function Novasenha() {
     try {
       const { confirmPassword, ...userData } = data;
 
-      const response = await fetch(`http://localhost:3000/user/updateUser`, {
+      const response = await fetch(`http://localhost:3000/user/updatePassword`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
