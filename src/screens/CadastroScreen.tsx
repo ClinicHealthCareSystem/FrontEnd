@@ -15,6 +15,14 @@ import {
 } from "react-native";
 import styles from "../styles/cadastro";
 import { useSignUp } from "../hooks/useSignUp";
+import {
+  unmaskPhone,
+  validateCPF,
+  validateName,
+  validatePassword,
+  validatePhone,
+  maskPhone,
+} from "../utils/validation";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -38,20 +46,6 @@ export default function Cadastro() {
 
   const { error, handleSignUp } = useSignUp();
 
-  const maskPhone = (text: string) => {
-    let cleaned = text.replace(/\D/g, "");
-    if (cleaned.length > 11) cleaned = cleaned.substring(0, 11);
-    if (cleaned.length <= 2) return `(${cleaned}`;
-    if (cleaned.length <= 7)
-      return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2)}`;
-    return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
-      2,
-      7
-    )}-${cleaned.substring(7)}`;
-  };
-
-  const unmaskPhone = (text: string) => text.replace(/\D/g, "");
-
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Cadastro</Text>
@@ -66,18 +60,7 @@ export default function Cadastro() {
           control={control}
           name="name"
           rules={{
-            required: "Nome é obrigatório",
-            pattern: {
-              value: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,50}$/,
-              message: "Digite um nome válido",
-            },
-            validate: {
-              noDoubleSpaces: (value) =>
-                !/\s{2,}/.test(value) || "Evite espaços em excesso",
-              hasSurname: (value) =>
-                value.trim().split(" ").length > 1 ||
-                "Informe nome e sobrenome",
-            },
+            validate: (value) => validateName(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
@@ -105,11 +88,7 @@ export default function Cadastro() {
           control={control}
           name="CPF"
           rules={{
-            required: "CPF é obrigatório",
-            pattern: {
-              value: /^[0-9]{11}$/,
-              message: "CPF deve conter 11 dígitos",
-            },
+            validate: (value) => validateCPF(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
@@ -136,21 +115,7 @@ export default function Cadastro() {
           control={control}
           name="phone"
           rules={{
-            required: "Celular é obrigatório",
-            validate: {
-              onlyNumbers: (value) =>
-                /^[0-9]+$/.test(unmaskPhone(value)) || "Digite apenas números",
-              exactLength: (value) =>
-                unmaskPhone(value).length === 11 ||
-                "Celular deve ter 11 dígitos (com DDD)",
-              validDDD: (value) =>
-                (parseInt(unmaskPhone(value).substring(0, 2)) >= 11 &&
-                  parseInt(unmaskPhone(value).substring(0, 2)) <= 99) ||
-                "DDD inválido",
-              startsWith9: (value) =>
-                unmaskPhone(value)[2] === "9" ||
-                "O número deve começar com 9 após o DDD",
-            },
+            validate: (value) => validatePhone(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
@@ -175,11 +140,7 @@ export default function Cadastro() {
           control={control}
           name="password"
           rules={{
-            required: "Senha é obrigatória",
-            pattern: {
-              value: /^[A-Za-z0-9]{8,}$/,
-              message: "Senha inválida: mínimo 8 caracteres",
-            },
+            validate: (value) => validatePassword(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
