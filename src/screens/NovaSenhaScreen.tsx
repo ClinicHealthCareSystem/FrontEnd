@@ -13,6 +13,8 @@ import {
 } from "react-native";
 
 import styles from "../styles/novaSenha";
+import { validateCPF, validatePassword } from "../utils/userValidations";
+import { useUpdateUser } from "../hooks/useUpdateUser";
 
 export default function Novasenha() {
   const {
@@ -30,43 +32,12 @@ export default function Novasenha() {
   const passwordEyes = () => {
     setPasswordShow((prev) => !prev);
   };
+
   const passwordEyes2 = () => {
     setPasswordShow2((prev) => !prev);
   };
 
-  async function handleUpdateUser(data: any) {
-    console.log(data);
-    try {
-      const { confirmPassword, ...userData } = data;
-
-      const response = await fetch(
-        `http://localhost:3000/user/updatePassword`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        }
-      );
-
-      const json = await response.json();
-      console.log(json);
-      console.log(response.status);
-
-      if (!response.ok) {
-        throw new Error(`ERROR HTTP: ${response.status}`);
-      }
-
-      if (response.ok) {
-        console.log("Dados do usuário atualizado com sucesso");
-        router.replace("/login");
-      }
-    } catch (error) {
-      console.log("Não foi possível atualizar os dados do usuário: " + error);
-      throw new Error("Não foi possível atulizar seus dados: " + error);
-    }
-  }
+  const { error, handleUpdateUser } = useUpdateUser();
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -87,11 +58,7 @@ export default function Novasenha() {
           control={control}
           name="CPF"
           rules={{
-            required: "CPF é obrigatório",
-            pattern: {
-              value: /^[0-9]{11}$/,
-              message: "CPF deve conter 11 dígitos",
-            },
+            validate: (value) => validateCPF(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
@@ -117,11 +84,7 @@ export default function Novasenha() {
           control={control}
           name="password"
           rules={{
-            required: "Senha é obrigatória",
-            pattern: {
-              value: /^[A-Za-z0-9]{8,12}$/,
-              message: "Senha deve ter no mínimo 8 caracteres",
-            },
+            validate: (value) => validatePassword(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
@@ -145,7 +108,7 @@ export default function Novasenha() {
                   style={styles.IconEye}
                 />
               </TouchableOpacity>
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+              {error && <Text style={{ color: "red", marginRight: 10 }}>{error.message}</Text>}
             </>
           )}
         />
@@ -186,7 +149,7 @@ export default function Novasenha() {
                   style={styles.IconEye}
                 />
               </TouchableOpacity>
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
+              {error && <Text style={{ color: "red", marginRight: 10 }}>{error.message}</Text>}
             </>
           )}
         />

@@ -6,7 +6,7 @@ export const validateCPF = (cpf: string) => {
 
 export const validatePassword = (password: string) => {
   if (!password) return "Senha é obrigatória";
-  if (password.length < 8) return "A senha deve ter pelo menos 8 caracteres";
+  if (password.length < 8) return "A senha deve ter 8 caracteres";
   if (!/^[A-Za-z0-9]+$/.test(password))
     return "Senha deve conter apenas letras e números";
   return "";
