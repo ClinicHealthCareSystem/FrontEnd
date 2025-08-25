@@ -72,22 +72,22 @@ const AgendarConsultaRoutePage = () => {
   return (
     <SafeAreaProvider style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView>
-          <View style={styles.headerView}>
-            <View style={styles.headerContent}>
-              <View style={{ flex: 1 }} />
-              <Text style={styles.headerTitle}>Saúde Mania</Text>
-              <TouchableOpacity style={styles.headerNotificationContainer}>
-                <Ionicons
-                  style={styles.headerNotifications}
-                  name="notifications"
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.headerInfo}>
-              <Text style={styles.headerInfoText}>Faça seu Agendamento</Text>
-            </View>
+        <View style={styles.headerView}>
+          <View style={styles.headerContent}>
+            <View style={{ flex: 1 }} />
+            <Text style={styles.headerTitle}>Saúde Mania</Text>
+            <TouchableOpacity style={styles.headerNotificationContainer}>
+              <Ionicons
+                style={styles.headerNotifications}
+                name="notifications"
+              />
+            </TouchableOpacity>
           </View>
+          <View style={styles.headerInfo}>
+            <Text style={styles.headerInfoText}>Faça seu Agendamento</Text>
+          </View>
+        </View>
+        <ScrollView>
           <View style={styles.bodyView}>
             <Text style={styles.formLabel}>Serviço:</Text>
             <View style={styles.formInput}>
@@ -260,21 +260,21 @@ const AgendarConsultaRoutePage = () => {
               <Text style={styles.scheduleButtonText}>Próximo</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.footerView}>
-            <TouchableOpacity style={styles.footerButton}>
-              <Ionicons name="home" size={30} color="#fff" />
-              <Text style={styles.footerText}>Home</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.footerButton}>
-              <Ionicons name="person" size={30} color="#fff" />
-              <Text style={styles.footerText}>Perfil</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.footerButton}>
-              <Ionicons name="settings" size={30} color="#fff" />
-              <Text style={styles.footerText}>Config</Text>
-            </TouchableOpacity>
-          </View>
         </ScrollView>
+        <View style={styles.footerView}>
+          <TouchableOpacity style={styles.footerButton}>
+            <Ionicons name="home" size={30} color="#fff" />
+            <Text style={styles.footerText}>Home</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.footerButton}>
+            <Ionicons name="person" size={30} color="#fff" />
+            <Text style={styles.footerText}>Perfil</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.footerButton}>
+            <Ionicons name="settings" size={30} color="#fff" />
+            <Text style={styles.footerText}>Config</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );

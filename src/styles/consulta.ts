@@ -13,6 +13,8 @@ export default StyleSheet.create({
     paddingBottom: 25,
     borderBottomLeftRadius: 18,
     borderBottomRightRadius: 18,
+    paddingHorizontal: 15,
+    elevation: 6,
   },
 
   headerContent: {
