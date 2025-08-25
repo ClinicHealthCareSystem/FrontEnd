@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity, View, Image, ScrollView, TextInput } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
+  TextInput,
+} from "react-native";
 import styles from "../styles/menu";
 
 import { Ionicons } from "@expo/vector-icons";
@@ -58,12 +65,25 @@ export default function Menu() {
         <View style={styles.caixaTopo}>
           <Text style={styles.tittle}>Saúde Mania</Text>
           <TouchableOpacity>
-          <Ionicons name="notifications" size={20} color= "white"  style={{left: 150, bottom: 25}}/>
+            <Ionicons
+              name="notifications"
+              size={20}
+              color="white"
+              style={{ left: 150, bottom: 25 }}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.caixaPesquisa}>
-        <Ionicons name="search" size={20} color= "#3284f1"  style={{top: 37}}/>
-        <TextInput style={styles.search_bar} placeholder="  O que você está procurando?"/>
+          <Ionicons
+            name="search"
+            size={20}
+            color="#3284f1"
+            style={{ top: 37, width: 20, marginLeft: 5 }}
+          />
+          <TextInput
+            style={styles.search_bar}
+            placeholder="O que você está procurando?"
+          />
         </View>
       </View>
 
@@ -77,25 +97,24 @@ export default function Menu() {
             </TouchableOpacity>
           ))}
         </View>
-
       </ScrollView>
 
       <View style={styles.tabNavegation}>
         <TouchableOpacity style={styles.tabButton}>
-          <Ionicons name="home" size={30} color= "#fff" />
+          <Ionicons name="home" size={30} color="#fff" />
           <Text style={styles.tabText}>Home</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.tabButton}>
-          <Ionicons name="person" size={30} color= "#fff" />
+          <Ionicons name="person" size={30} color="#fff" />
           <Text style={styles.tabText}>Perfil</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.tabButton}>
-          <Ionicons name="settings" size={30} color= "#fff" />
+          <Ionicons name="settings" size={30} color="#fff" />
           <Text style={styles.tabText}>Config</Text>
         </TouchableOpacity>
-        </View>
+      </View>
     </View>
   );
 }
