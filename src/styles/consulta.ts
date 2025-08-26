@@ -153,28 +153,5 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
 
-  // footer
-  footerView: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 65,
-    borderRadius: 2,
-    borderTopLeftRadius: 18,
-    borderTopRightRadius: 18,
-    backgroundColor: "#3284f1",
-    elevation: 8,
-    borderTopWidth: 1,
-    borderColor: "white",
-  },
-
-  footerButton: {
-    flex: 1,
-    alignItems: "center",
-    color: "#FFF",
-  },
-
-  footerText: {
-    color: "#FFF",
-  },
+  
 });

@@ -7,39 +7,7 @@ export default StyleSheet.create({
     backgroundColor: "#ADD8E6",
   },
 
-  barraAlta: {
-    backgroundColor: "#3284f1",
-    paddingBottom: 25,
-    paddingHorizontal: 15,
-    borderBottomLeftRadius: 18,
-    borderBottomRightRadius: 18,
-    elevation: 6,
-  },
-
-  caixaTopo: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 25,
-  },
-
-  tittle: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: "white",
-  },
-
-  caixaPesquisa: {},
-  search_bar: {
-    backgroundColor: "white",
-    height: 40,
-    borderRadius: 12,
-    marginTop: 5,
-    paddingHorizontal: 12,
-    paddingLeft: 30,
-    fontSize: 16,
-    color: "#797979ff",
-    outlineWidth: 0,
-  },
+  
 
   scrollCards: {
     marginTop: 10,
@@ -69,7 +37,7 @@ export default StyleSheet.create({
   },
 
   textCards: {
-    fontSize: 16,
+    fontSize: RFValue(18),
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
@@ -82,27 +50,5 @@ export default StyleSheet.create({
     textAlign: "center",
   },
 
-  tabNavegation: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 65,
-    borderRadius: 2,
-    borderTopLeftRadius: 18,
-    borderTopRightRadius: 18,
-    backgroundColor: "#3284f1",
-    elevation: 8,
-    borderTopWidth: 1,
-    borderColor: "white",
-  },
 
-  tabButton: {
-    flex: 1,
-    alignItems: "center",
-    color: "#FFF",
-  },
-
-  tabText: {
-    color: "#FFF",
-  },
 });

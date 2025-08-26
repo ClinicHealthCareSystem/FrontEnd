@@ -15,6 +15,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 import { useScheduling } from "../hooks/useScheduling";
 import styles from "../styles/consulta";
+import TabsNavegation from "../components/tabsNavegation";
 
 const AgendarConsultaRoutePage = () => {
   const {
@@ -70,7 +71,7 @@ const AgendarConsultaRoutePage = () => {
     t.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 
   return (
-    <SafeAreaProvider style={styles.background}>
+    <View style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.headerView}>
           <View style={styles.headerContent}>
@@ -261,22 +262,9 @@ const AgendarConsultaRoutePage = () => {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        <View style={styles.footerView}>
-          <TouchableOpacity style={styles.footerButton}>
-            <Ionicons name="home" size={30} color="#fff" />
-            <Text style={styles.footerText}>Home</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.footerButton}>
-            <Ionicons name="person" size={30} color="#fff" />
-            <Text style={styles.footerText}>Perfil</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.footerButton}>
-            <Ionicons name="settings" size={30} color="#fff" />
-            <Text style={styles.footerText}>Config</Text>
-          </TouchableOpacity>
-        </View>
+       <TabsNavegation/>
       </SafeAreaView>
-    </SafeAreaProvider>
+    </View>
   );
 };
 
