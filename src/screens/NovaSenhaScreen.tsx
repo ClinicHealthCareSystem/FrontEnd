@@ -108,7 +108,11 @@ export default function Novasenha() {
                   style={styles.IconEye}
                 />
               </TouchableOpacity>
-              {error && <Text style={{ color: "red", marginRight: 10 }}>{error.message}</Text>}
+              {error && (
+                <Text style={{ color: "red", marginRight: 10 }}>
+                  {error.message}
+                </Text>
+              )}
             </>
           )}
         />
@@ -149,7 +153,11 @@ export default function Novasenha() {
                   style={styles.IconEye}
                 />
               </TouchableOpacity>
-              {error && <Text style={{ color: "red", marginRight: 10 }}>{error.message}</Text>}
+              {error && (
+                <Text style={{ color: "red", marginRight: 10 }}>
+                  {error.message}
+                </Text>
+              )}
             </>
           )}
         />

@@ -262,7 +262,7 @@ const AgendarConsultaRoutePage = () => {
             </TouchableOpacity>
           </View>
         </ScrollView>
-       <TabsNavegation/>
+        <TabsNavegation />
       </SafeAreaView>
     </View>
   );

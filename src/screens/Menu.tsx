@@ -12,7 +12,7 @@ import styles from "../styles/menu";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, router, Tabs } from "expo-router";
 import { useRouter } from "expo-router";
-import TabsNavegation  from "../components/tabsNavegation";
+import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
 
 type Botao = {
@@ -63,8 +63,7 @@ export default function Menu() {
   ];
   return (
     <View style={styles.background}>
-     
-      <HeaderHome mostrarBusca={true}/>
+      <HeaderHome mostrarBusca={true} />
 
       <ScrollView style={styles.scrollCards}>
         <View style={styles.cards}>
@@ -77,10 +76,8 @@ export default function Menu() {
           ))}
         </View>
       </ScrollView>
-      
-      <TabsNavegation/>
 
-     
+      <TabsNavegation />
     </View>
   );
 }
