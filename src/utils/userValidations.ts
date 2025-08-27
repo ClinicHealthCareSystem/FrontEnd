@@ -1,19 +1,16 @@
-export const isValidCPF = (cpf: string): boolean => {
+export const isValidCPF = (cpf: string): string => {
   if (!cpf) {
-    console.log("Escreva um CPF");
-    return false;
+    return "Informe um CPF";
   }
   
   const digits = cpf.replace(/\D/g, "");
 
   if (digits.length !== 11) {
-    console.log(`CPF inválido, tem ${digits.length} dígitos`);
-    return false;
+    return "CPF deve conter onze (11) dígitos";
   }
 
   if (/^(\d)\1{10}$/.test(digits)) {
-    console.log("CPF inválido");
-    return false;
+    return "CPF inválido";
   }
 
   const calcCheckDigit = (base: string, factor: number): number => {
@@ -26,13 +23,12 @@ export const isValidCPF = (cpf: string): boolean => {
   };
 
   const firstCheck = calcCheckDigit(digits.substring(0, 9), 10);
-  if (firstCheck !== parseInt(digits.charAt(9))) return false;
+  if (firstCheck !== parseInt(digits.charAt(9))) return "CPF inválido";
 
   const secondCheck = calcCheckDigit(digits.substring(0, 10), 11);
-  if (secondCheck !== parseInt(digits.charAt(10))) return false;
+  if (secondCheck !== parseInt(digits.charAt(10))) return "CPF inválido";
 
-  console.log("CPF válido");
-  return true;
+  return "Sucesso";
 };
 
 export const unmaskCPF = (value: string) => value.replace(/\D/g, "");
