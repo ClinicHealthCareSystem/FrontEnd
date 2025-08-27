@@ -14,8 +14,10 @@ import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 import { useScheduling } from "../hooks/useScheduling";
-import styles from "../styles/consulta";
 import TabsNavegation from "../components/tabsNavegation";
+import HeaderHome from "../components/headerHome";
+
+import styles from "../stylesComponents/headerHome";
 
 const AgendarConsultaRoutePage = () => {
   const {
@@ -73,21 +75,11 @@ const AgendarConsultaRoutePage = () => {
   return (
     <View style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.headerView}>
-          <View style={styles.headerContent}>
-            <View style={{ flex: 1 }} />
-            <Text style={styles.headerTitle}>Saúde Mania</Text>
-            <TouchableOpacity style={styles.headerNotificationContainer}>
-              <Ionicons
-                style={styles.headerNotifications}
-                name="notifications"
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.headerInfo}>
-            <Text style={styles.headerInfoText}>Faça seu Agendamento</Text>
-          </View>
-        </View>
+        <HeaderHome
+          titulo="Saúde Mania"
+          mostrarBusca={false}
+          subTitulo="Faça seu agendamento"
+        />
         <ScrollView>
           <View style={styles.bodyView}>
             <Text style={styles.formLabel}>Serviço:</Text>

@@ -10,8 +10,7 @@ import {
 
 import { Ionicons } from "@expo/vector-icons";
 import { Link, router, Tabs } from "expo-router";
-import { useRouter } from "expo-router";
-import headerHome from "../stylesComponents/headerHome";
+import styles from "../stylesComponents/headerHome";
 
 export default function HeaderHome({
   titulo = "Saúde Mania",
@@ -19,31 +18,39 @@ export default function HeaderHome({
   mostrarBusca = true,
 }) {
   return (
-    <View style={headerHome.barraAlta}>
-      <View style={headerHome.caixaTopo}>
-        <Text style={headerHome.tittle}>{titulo}</Text>
-        <TouchableOpacity>
+    <View style={styles.headerView}>
+      <View style={styles.headerContent}>
+        <View style={{ flex: 1 }} />
+        <Text style={styles.headerTitle}>{titulo}</Text>
+        <TouchableOpacity style={styles.headerNotificationContainer}>
           <Ionicons
             name="notifications"
             size={20}
             color="white"
-            style={{ left: 150, bottom: 25 }}
+            style={styles.headerNotifications}
           />
         </TouchableOpacity>
       </View>
-      {mostrarBusca && (
+
+      {mostrarBusca ? (
         <View>
           <Ionicons
             name="search"
             size={20}
             color="#3284f1"
-            style={{ top: 37, width: 20, marginLeft: 5 }}
+            style={{ top: 32, width: 20, marginLeft: 5 }}
           />
           <TextInput
-            style={headerHome.search_bar}
+            style={styles.search_bar}
             placeholder="O que você está procurando?"
           />
         </View>
+      ) : (
+        subTitulo && (
+          <View style={styles.headerInfo}>
+            <Text style={styles.headerInfoText}>{subTitulo}</Text>
+          </View>
+        )
       )}
     </View>
   );
