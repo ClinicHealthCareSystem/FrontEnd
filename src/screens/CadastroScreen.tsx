@@ -17,7 +17,9 @@ import styles from "../styles/cadastro";
 import { useSignUp } from "../hooks/useSignUp";
 import {
   unmaskPhone,
-  validateCPF,
+  isValidCPF,
+  unmaskCPF,
+  maskCPF,
   validateName,
   validatePassword,
   validatePhone,
@@ -88,19 +90,19 @@ export default function Cadastro() {
           control={control}
           name="CPF"
           rules={{
-            validate: (value) => validateCPF(value) || true,
+            validate: (value) => isValidCPF(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>
               <TextInput
                 style={styles.input}
                 onChangeText={(text: string) =>
-                  onChange(text.replace(/\D/g, ""))
+                  onChange(maskCPF(text))
                 }
                 value={value}
                 placeholder="Digite seu CPF"
                 keyboardType="numeric"
-                maxLength={11}
+                maxLength={14}
               />
               {error && <Text style={{ color: "red" }}>{error.message}</Text>}
             </>

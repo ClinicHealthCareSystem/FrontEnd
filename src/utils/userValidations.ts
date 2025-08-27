@@ -1,7 +1,52 @@
-export const validateCPF = (cpf: string) => {
-  if (!cpf) return "CPF é obrigatório";
-  if (!/^\d{11}$/.test(cpf)) return "CPF deve ter 11 números";
-  return "";
+export const isValidCPF = (cpf: string): boolean => {
+  if (!cpf) {
+    console.log("Escreva um CPF");
+    return false;
+  }
+  
+  const digits = cpf.replace(/\D/g, "");
+
+  if (digits.length !== 11) {
+    console.log(`CPF inválido, tem ${digits.length} dígitos`);
+    return false;
+  }
+
+  if (/^(\d)\1{10}$/.test(digits)) {
+    console.log("CPF inválido");
+    return false;
+  }
+
+  const calcCheckDigit = (base: string, factor: number): number => {
+    let sum = 0;
+    for (let i = 0; i < base.length; i++) {
+      sum += parseInt(base.charAt(i)) * factor--;
+    }
+    let result = (sum * 10) % 11;
+    return result === 10 ? 0 : result;
+  };
+
+  const firstCheck = calcCheckDigit(digits.substring(0, 9), 10);
+  if (firstCheck !== parseInt(digits.charAt(9))) return false;
+
+  const secondCheck = calcCheckDigit(digits.substring(0, 10), 11);
+  if (secondCheck !== parseInt(digits.charAt(10))) return false;
+
+  console.log("CPF válido");
+  return true;
+};
+
+export const unmaskCPF = (value: string) => value.replace(/\D/g, "");
+
+export const maskCPF = (value: string) => {
+  const digits = unmaskCPF(value).substring(0, 11);
+
+  let masked = "";
+  if (digits.length > 0) masked += digits.substring(0, 3);
+  if (digits.length >= 4) masked += "." + digits.substring(3, 6);
+  if (digits.length >= 7) masked += "." + digits.substring(6, 9);
+  if (digits.length >= 10) masked += "-" + digits.substring(9, 11);
+
+  return masked;
 };
 
 export const validatePassword = (password: string) => {
