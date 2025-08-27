@@ -12,6 +12,8 @@ import styles from "../styles/menu";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, router, Tabs } from "expo-router";
 import { useRouter } from "expo-router";
+import TabsNavegation from "../components/tabsNavegation";
+import HeaderHome from "../components/headerHome";
 
 type Botao = {
   id: number;
@@ -61,31 +63,7 @@ export default function Menu() {
   ];
   return (
     <View style={styles.background}>
-      <View style={styles.barraAlta}>
-        <View style={styles.caixaTopo}>
-          <Text style={styles.tittle}>Saúde Mania</Text>
-          <TouchableOpacity>
-            <Ionicons
-              name="notifications"
-              size={20}
-              color="white"
-              style={{ left: 150, bottom: 25 }}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.caixaPesquisa}>
-          <Ionicons
-            name="search"
-            size={20}
-            color="#3284f1"
-            style={{ top: 37, width: 20, marginLeft: 5 }}
-          />
-          <TextInput
-            style={styles.search_bar}
-            placeholder="O que você está procurando?"
-          />
-        </View>
-      </View>
+      <HeaderHome mostrarBusca={true} />
 
       <ScrollView style={styles.scrollCards}>
         <View style={styles.cards}>
@@ -99,22 +77,7 @@ export default function Menu() {
         </View>
       </ScrollView>
 
-      <View style={styles.tabNavegation}>
-        <TouchableOpacity style={styles.tabButton}>
-          <Ionicons name="home" size={30} color="#fff" />
-          <Text style={styles.tabText}>Home</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.tabButton}>
-          <Ionicons name="person" size={30} color="#fff" />
-          <Text style={styles.tabText}>Perfil</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.tabButton}>
-          <Ionicons name="settings" size={30} color="#fff" />
-          <Text style={styles.tabText}>Config</Text>
-        </TouchableOpacity>
-      </View>
+      <TabsNavegation />
     </View>
   );
 }
