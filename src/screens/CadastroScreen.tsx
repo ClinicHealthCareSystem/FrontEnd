@@ -116,7 +116,7 @@ export default function Cadastro() {
       </View>
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="call-outline" size={30} style={styles.lock} />
+        <Ionicons name="call-outline" size={30} style={styles.phone} />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setPhone(maskPhone(text))}
