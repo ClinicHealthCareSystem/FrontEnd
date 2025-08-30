@@ -116,7 +116,7 @@ export default function Cadastro() {
       </View>
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
-        <Image style={styles.phone} source={require("../assets/phone.png")} />
+        <Ionicons name="call-outline" size={30} style={styles.lock} />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setPhone(maskPhone(text))}
