@@ -40,7 +40,7 @@ export const maskCPF = (value?: string) => {
 };
 
 export const validatePassword = (password?: string) => {
-  if (!password) return "Senha é obrigatória";
+  if (!password) return "Informe uma senha";
   if (password.length < 8) return "A senha deve ter 8 caracteres";
   if (!/^[A-Za-z0-9]+$/.test(password))
     return "Senha deve conter apenas letras e números";
@@ -48,7 +48,7 @@ export const validatePassword = (password?: string) => {
 };
 
 export const validateName = (name?: string) => {
-  if (!name) return "Nome é obrigatório";
+  if (!name) return "Informe um nome";
   if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,50}$/.test(name)) {
     return "Digite um nome válido";
   }
@@ -87,7 +87,7 @@ export const maskPhone = (text?: string) => {
 
 export const validatePhone = (phone?: string) => {
   const value = unmaskPhone(phone);
-  if (!value) return "Celular é obrigatório";
+  if (!value) return "Informe um celular";
   if (!/^[0-9]+$/.test(value)) return "Digite apenas números";
   if (value.length !== 10 && value.length !== 11)
     return "Telefone deve ter 10 ou 11 dígitos (com DDD)";

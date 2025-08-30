@@ -79,9 +79,13 @@ export default function Login() {
         ) : null}
         <TouchableOpacity onPress={passwordEyes}>
           {passwordShow ? (
-            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened}/>
+            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
           ) : (
-            <Ionicons name="eye-off-outline" size={30} style={styles.eyeClosed}/>
+            <Ionicons
+              name="eye-off-outline"
+              size={30}
+              style={styles.eyeClosed}
+            />
           )}
         </TouchableOpacity>
       </View>

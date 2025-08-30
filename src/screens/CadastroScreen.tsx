@@ -23,6 +23,7 @@ import {
   validatePhone,
   maskPhone,
 } from "../utils/userValidations";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -83,10 +84,7 @@ export default function Cadastro() {
 
       <Text style={styles.label}>Nome Completo</Text>
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.account_circle}
-          source={require("../assets/account_circle.png")}
-        />
+        <Ionicons name="person-outline" size={30} style={styles.id_card} />
         <TextInput
           style={styles.input}
           onChangeText={(text) =>
@@ -102,10 +100,7 @@ export default function Cadastro() {
       </View>
       <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.id_card}
-          source={require("../assets/id_card.png")}
-        />
+        <Ionicons name="id-card-outline" size={30} style={styles.id_card} />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setCPF(maskCPF(text))}
@@ -126,7 +121,7 @@ export default function Cadastro() {
           style={styles.input}
           onChangeText={(text) => setPhone(maskPhone(text))}
           value={phone}
-          placeholder="Digite seu celular com DDD"
+          placeholder="Digite seu celular"
           keyboardType="numeric"
           maxLength={15}
           onBlur={() => setTouched((prev) => ({ ...prev, phone: true }))}
@@ -138,7 +133,7 @@ export default function Cadastro() {
 
       <Text style={styles.label}>Crie uma Senha</Text>
       <View style={styles.inputCaixa}>
-        <Image style={styles.lock} source={require("../assets/lock.png")} />
+        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
         <TextInput
           style={styles.input}
           onChangeText={(text) =>
@@ -154,14 +149,15 @@ export default function Cadastro() {
           <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
         ) : null}
         <TouchableOpacity onPress={passwordEyes}>
-          <Image
-            source={
-              passwordShow
-                ? require("../assets/visibility_on.png")
-                : require("../assets/visibility_off.png")
-            }
-            style={styles.visibility_on}
-          />
+          {passwordShow ? (
+            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+          ) : (
+            <Ionicons
+              name="eye-off-outline"
+              size={30}
+              style={styles.eyeClosed}
+            />
+          )}
         </TouchableOpacity>
       </View>
 
