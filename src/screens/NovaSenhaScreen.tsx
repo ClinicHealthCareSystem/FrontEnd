@@ -1,181 +1,158 @@
-import React from "react";
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useRouter } from "expo-router";
-
+import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Image,
   ScrollView,
 } from "react-native";
 
 import styles from "../styles/novaSenha";
-import { isValidCPF, validatePassword } from "../utils/userValidations";
+import {
+  isValidCPF,
+  validatePassword,
+  maskCPF,
+  unmaskCPF,
+} from "../utils/userValidations";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 
 export default function Novasenha() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm({});
+  const { handleSubmit } = useForm({});
   const router = useRouter();
   const [passwordShow, setPasswordShow] = useState(false);
   const [passwordShow2, setPasswordShow2] = useState(false);
 
-  const password = watch("password");
+  const [CPF, setCPF] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const passwordEyes = () => {
-    setPasswordShow((prev) => !prev);
-  };
-
-  const passwordEyes2 = () => {
-    setPasswordShow2((prev) => !prev);
-  };
+  const [touched, setTouched] = useState({
+    cpf: false,
+    password: false,
+    confirmPassword: false,
+  });
 
   const { error, handleUpdateUser } = useUpdateUser();
+
+  const cpfError = isValidCPF(unmaskCPF(CPF));
+  const passwordError = validatePassword(password);
+  const confirmPasswordError =
+    confirmPassword && confirmPassword !== password
+      ? "As senhas não são iguais"
+      : "";
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
       <Text style={styles.titulo}>Nova senha</Text>
-      <Text
-        style={styles.subtittle}
-        accessible={true}
-        accessibilityLabel="Digite seu CPF e sua nova senha para atualizar seus dados"
-      >
+      <Text style={styles.subtittle}>
         Digite seu CPF e sua nova senha para atualizar seus dados
       </Text>
+
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.id_card}
-          source={require("../assets/id_card.png")}
+        <Ionicons name="id-card-outline" size={30} style={styles.id_card} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setCPF(maskCPF(text))}
+          value={CPF}
+          placeholder="Digite seu CPF"
+          keyboardType="numeric"
+          maxLength={14}
+          onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
         />
-        <Controller
-          control={control}
-          name="CPF"
-          rules={{
-            validate: (value) => isValidCPF(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) =>
-                  onChange(text.replace(/\D/g, ""))
-                }
-                value={value}
-                placeholder="Digite seu CPF"
-                keyboardType="numeric"
-                maxLength={11}
-              />
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
-            </>
-          )}
-        />
+        {touched.cpf && cpfError ? (
+          <Text style={{ color: "red", marginBottom: 5 }}>{cpfError}</Text>
+        ) : null}
       </View>
 
       <View style={styles.inputCaixa}>
-        <Image style={styles.lock} source={require("../assets/lock.png")} />
-        <Controller
-          control={control}
-          name="password"
-          rules={{
-            validate: (value) => validatePassword(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) =>
-                  onChange(text.replace(/[^A-Za-z0-9]/g, ""))
-                }
-                value={value}
-                placeholder="Digite sua senha"
-                secureTextEntry={!passwordShow}
-                maxLength={12}
-              />
-              <TouchableOpacity onPress={passwordEyes} style={styles.buttonEye}>
-                <Image
-                  source={
-                    passwordShow
-                      ? require("../assets/visibility_on.png")
-                      : require("../assets/visibility_off.png")
-                  }
-                  style={styles.IconEye}
-                />
-              </TouchableOpacity>
-              {error && (
-                <Text style={{ color: "red", marginRight: 10 }}>
-                  {error.message}
-                </Text>
-              )}
-            </>
-          )}
+        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) =>
+            setPassword(text.replace(/[^A-Za-z0-9]/g, ""))
+          }
+          value={password}
+          placeholder="Digite sua senha"
+          secureTextEntry={!passwordShow}
+          maxLength={12}
+          onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
         />
+        <TouchableOpacity
+          onPress={() => setPasswordShow((prev) => !prev)}
+          style={styles.buttonEye}
+        >
+          {passwordShow ? (
+            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+          ) : (
+            <Ionicons
+              name="eye-off-outline"
+              size={30}
+              style={styles.eyeClosed}
+            />
+          )}
+        </TouchableOpacity>
+        {touched.password && passwordError ? (
+          <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
+        ) : null}
       </View>
 
       <View style={styles.inputCaixa}>
-        <Image style={styles.lock} source={require("../assets/lock.png")} />
-        <Controller
-          control={control}
-          name="confirmPassword"
-          rules={{
-            required: "Confirmação de senha é obrigatória",
-            validate: (value) =>
-              value === password || "As senhas não são iguais",
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) =>
-                  onChange(text.replace(/[^A-Za-z0-9]/g, ""))
-                }
-                value={value}
-                placeholder="Digite sua senha novamente"
-                secureTextEntry={!passwordShow2}
-                maxLength={12}
-              />
-              <TouchableOpacity
-                onPress={passwordEyes2}
-                style={styles.buttonEye}
-              >
-                <Image
-                  source={
-                    passwordShow2
-                      ? require("../assets/visibility_on.png")
-                      : require("../assets/visibility_off.png")
-                  }
-                  style={styles.IconEye}
-                />
-              </TouchableOpacity>
-              {error && (
-                <Text style={{ color: "red", marginRight: 10 }}>
-                  {error.message}
-                </Text>
-              )}
-            </>
-          )}
+        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) =>
+            setConfirmPassword(text.replace(/[^A-Za-z0-9]/g, ""))
+          }
+          value={confirmPassword}
+          placeholder="Digite novamente"
+          secureTextEntry={!passwordShow2}
+          maxLength={12}
+          onBlur={() =>
+            setTouched((prev) => ({ ...prev, confirmPassword: true }))
+          }
         />
+        <TouchableOpacity
+          onPress={() => setPasswordShow2((prev) => !prev)}
+          style={styles.buttonEye}
+        >
+          {passwordShow2 ? (
+            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+          ) : (
+            <Ionicons
+              name="eye-off-outline"
+              size={30}
+              style={styles.eyeClosed}
+            />
+          )}
+        </TouchableOpacity>
+        {touched.password && passwordError ? (
+          <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
+        ) : null}
       </View>
 
       <TouchableOpacity
         style={styles.buttonConcluir}
-        onPress={handleSubmit((data) => {
-          handleUpdateUser(data);
+        onPress={handleSubmit(() => {
+          setTouched({ cpf: true, password: true, confirmPassword: true });
+
+          if (!cpfError && !passwordError && !confirmPasswordError) {
+            handleUpdateUser({ CPF: unmaskCPF(CPF), password });
+          }
         })}
-        accessible={true}
-        accessibilityLabel="Voltar para a tela de login"
       >
         <Text style={styles.buttonText}>Concluir</Text>
       </TouchableOpacity>
+
       <Text style={styles.text} onPress={() => router.replace("/login")}>
         Voltar
       </Text>
+
+      {error ? (
+        <Text style={{ color: "red", marginTop: 10 }}>{error}</Text>
+      ) : null}
     </ScrollView>
   );
 }

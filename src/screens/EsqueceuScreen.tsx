@@ -19,6 +19,7 @@ import {
   maskPhone,
   unmaskPhone,
 } from "../utils/userValidations";
+import { Ionicons } from "@expo/vector-icons";
 
 const { error, handleVerificationCode } = useSendCode();
 
@@ -43,7 +44,7 @@ export default function Esqueceu() {
       </Text>
       <Text style={styles.label}>Telefone</Text>
       <View style={styles.inputCaixa}>
-        <Image style={styles.phone} source={require("../assets/phone.png")} />
+        <Ionicons name="call-outline" size={30} style={styles.phone} />
         <Controller
           control={control}
           name="phone"
@@ -56,7 +57,7 @@ export default function Esqueceu() {
                 style={styles.input}
                 onChangeText={(text: string) => onChange(maskPhone(text))}
                 value={value}
-                placeholder="Digite seu celular com DDD"
+                placeholder="Digite seu celular"
                 keyboardType="numeric"
                 maxLength={15}
               />

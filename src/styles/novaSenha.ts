@@ -40,6 +40,7 @@ export default StyleSheet.create({
     flex: 1,
     height: "100%",
     overflow: "hidden",
+    width: "100%",
     outlineWidth: 0,
     paddingLeft: 5,
     paddingRight: 45,
@@ -62,9 +63,14 @@ export default StyleSheet.create({
     width: 30,
   },
 
-  IconEye: {
-    width: 20,
-    height: 20,
+  eyeOpened: {
+    marginLeft: 10,
+    marginRight: 10,
+  },
+
+  eyeClosed: {
+    marginLeft: 10,
+    marginRight: 10,
   },
 
   button: {
