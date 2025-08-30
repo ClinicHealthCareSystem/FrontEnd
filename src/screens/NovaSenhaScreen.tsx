@@ -13,7 +13,7 @@ import {
 } from "react-native";
 
 import styles from "../styles/novaSenha";
-import { validateCPF, validatePassword } from "../utils/userValidations";
+import { isValidCPF, validatePassword } from "../utils/userValidations";
 import { useUpdateUser } from "../hooks/useUpdateUser";
 
 export default function Novasenha() {
@@ -58,7 +58,7 @@ export default function Novasenha() {
           control={control}
           name="CPF"
           rules={{
-            validate: (value) => validateCPF(value) || true,
+            validate: (value) => isValidCPF(value) || true,
           }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <>

@@ -15,6 +15,7 @@ import {
   validatePassword,
   maskCPF,
 } from "../utils/userValidations";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Login() {
   const router = useRouter();
@@ -47,10 +48,7 @@ export default function Login() {
       <Text style={styles.subtittle}>Bem-vindo(a) ao Saúde Mania</Text>
 
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.id_card}
-          source={require("../assets/id_card.png")}
-        />
+        <Ionicons name="person-outline" size={30} style={styles.id_card} />
         <TextInput
           style={styles.input}
           placeholder="CPF"
@@ -66,7 +64,7 @@ export default function Login() {
       </View>
 
       <View style={styles.inputCaixa}>
-        <Image style={styles.lock} source={require("../assets/lock.png")} />
+        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
         <TextInput
           style={styles.input}
           placeholder="Senha"
@@ -80,14 +78,11 @@ export default function Login() {
           <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
         ) : null}
         <TouchableOpacity onPress={passwordEyes}>
-          <Image
-            source={
-              passwordShow
-                ? require("../assets/visibility_on.png")
-                : require("../assets/visibility_off.png")
-            }
-            style={styles.visivility_on}
-          />
+          {passwordShow ? (
+            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened}/>
+          ) : (
+            <Ionicons name="eye-off-outline" size={30} style={styles.eyeClosed}/>
+          )}
         </TouchableOpacity>
       </View>
 
