@@ -1,24 +1,18 @@
-export const isValidCPF = (cpf: string): string => {
-  if (!cpf) {
-    return "Informe um CPF";
-  }
-  
+export const isValidCPF = (cpf?: string): string => {
+  if (!cpf) return "Informe um CPF";
+
   const digits = cpf.replace(/\D/g, "");
 
-  if (digits.length !== 11) {
-    return "CPF deve conter onze (11) dígitos";
-  }
+  if (digits.length !== 11) return "CPF deve conter onze (11) dígitos";
 
-  if (/^(\d)\1{10}$/.test(digits)) {
-    return "CPF inválido";
-  }
+  if (/^(\d)\1{10}$/.test(digits)) return "CPF inválido";
 
   const calcCheckDigit = (base: string, factor: number): number => {
     let sum = 0;
     for (let i = 0; i < base.length; i++) {
       sum += parseInt(base.charAt(i)) * factor--;
     }
-    let result = (sum * 10) % 11;
+    const result = (sum * 10) % 11;
     return result === 10 ? 0 : result;
   };
 
@@ -28,24 +22,24 @@ export const isValidCPF = (cpf: string): string => {
   const secondCheck = calcCheckDigit(digits.substring(0, 10), 11);
   if (secondCheck !== parseInt(digits.charAt(10))) return "CPF inválido";
 
-  return "Sucesso";
+  return "";
 };
 
-export const unmaskCPF = (value: string) => value.replace(/\D/g, "");
+export const unmaskCPF = (value?: string) =>
+  value ? value.replace(/\D/g, "") : "";
 
-export const maskCPF = (value: string) => {
+export const maskCPF = (value?: string) => {
   const digits = unmaskCPF(value).substring(0, 11);
 
-  let masked = "";
-  if (digits.length > 0) masked += digits.substring(0, 3);
-  if (digits.length >= 4) masked += "." + digits.substring(3, 6);
-  if (digits.length >= 7) masked += "." + digits.substring(6, 9);
-  if (digits.length >= 10) masked += "-" + digits.substring(9, 11);
+  if (!digits) return "";
 
-  return masked;
+  return digits
+    .replace(/^(\d{3})(\d)/, "$1.$2")
+    .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+    .replace(/\.(\d{3})(\d{1,2})$/, ".$1-$2");
 };
 
-export const validatePassword = (password: string) => {
+export const validatePassword = (password?: string) => {
   if (!password) return "Senha é obrigatória";
   if (password.length < 8) return "A senha deve ter 8 caracteres";
   if (!/^[A-Za-z0-9]+$/.test(password))
@@ -53,7 +47,7 @@ export const validatePassword = (password: string) => {
   return "";
 };
 
-export const validateName = (name: string) => {
+export const validateName = (name?: string) => {
   if (!name) return "Nome é obrigatório";
   if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,50}$/.test(name)) {
     return "Digite um nome válido";
@@ -67,44 +61,39 @@ export const validateName = (name: string) => {
   return "";
 };
 
-export const maskPhone = (text: string) => {
-  let cleaned = text.replace(/\D/g, "");
+export const unmaskPhone = (text?: string) =>
+  text ? text.replace(/\D/g, "") : "";
+
+export const maskPhone = (text?: string) => {
+  let cleaned = unmaskPhone(text);
+  if (!cleaned) return "";
+
   if (cleaned.length > 11) cleaned = cleaned.substring(0, 11);
-  if (cleaned.length <= 2) {
-    return `(${cleaned}`;
-  }
-  if (cleaned.length <= 6) {
+
+  if (cleaned.length <= 2) return `(${cleaned}`;
+  if (cleaned.length <= 6)
     return `(${cleaned.substring(0, 2)}) ${cleaned.substring(2)}`;
-  }
-  if (cleaned.length <= 10) {
+  if (cleaned.length <= 10)
     return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
       2,
       6
     )}-${cleaned.substring(6)}`;
-  }
+
   return `(${cleaned.substring(0, 2)}) ${cleaned.substring(
     2,
     7
   )}-${cleaned.substring(7)}`;
 };
 
-export const unmaskPhone = (text: string) => text.replace(/\D/g, "");
-
-export const validatePhone = (phone: string) => {
+export const validatePhone = (phone?: string) => {
   const value = unmaskPhone(phone);
   if (!value) return "Celular é obrigatório";
-  if (!/^[0-9]+$/.test(value)) {
-    return "Digite apenas números";
-  }
-  if (value.length !== 10 && value.length !== 11) {
+  if (!/^[0-9]+$/.test(value)) return "Digite apenas números";
+  if (value.length !== 10 && value.length !== 11)
     return "Telefone deve ter 10 ou 11 dígitos (com DDD)";
-  }
   const ddd = parseInt(value.substring(0, 2));
-  if (ddd < 11 || ddd > 99) {
-    return "DDD inválido";
-  }
-  if (value[2] !== "9") {
+  if (ddd < 11 || ddd > 99) return "DDD inválido";
+  if (value.length === 11 && value[2] !== "9")
     return "O número deve começar com 9 após o DDD";
-  }
   return "";
 };
