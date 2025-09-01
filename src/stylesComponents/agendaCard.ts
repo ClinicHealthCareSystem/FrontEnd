@@ -41,20 +41,6 @@ export default StyleSheet.create({
     left: 15,
   },
 
-  EnviarDocs: {
-    borderRadius: 12,
-    backgroundColor: "#add8e6",
-    color: "#3284f1",
-    alignSelf: "center",
-    padding: 5,
-    width: "70%",
-    marginTop: 10,
-    marginBottom: 10,
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: RFValue(15),
-  },
-
   EditarAgendamentos: {
     borderRadius: 12,
     backgroundColor: "#add8e6",
@@ -62,6 +48,7 @@ export default StyleSheet.create({
     alignSelf: "center",
     padding: 5,
     width: "70%",
+    marginTop: 10,
     marginBottom: 10,
     textAlign: "center",
     fontWeight: "bold",

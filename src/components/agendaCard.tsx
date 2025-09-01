@@ -14,9 +14,6 @@ export default function AgendaCard() {
       <Text style={styles.Paciente}>Nome do paciente</Text>
       <Text style={styles.PacienteName}>Chaves</Text>
       <TouchableOpacity>
-        <Text style={styles.EnviarDocs}>Enviar Documentos</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
         <Text style={styles.EditarAgendamentos}>Editar Agendamento</Text>
       </TouchableOpacity>
       <TouchableOpacity>
