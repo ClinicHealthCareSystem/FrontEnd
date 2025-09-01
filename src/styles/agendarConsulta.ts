@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+
 export default StyleSheet.create({
-      background: {
+  background: {
     backgroundColor: "#ADD8E6",
     flex: 1,
   },
+  
   bodyView: {
     marginTop: 15,
     borderColor: "white",

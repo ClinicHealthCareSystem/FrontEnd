@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
@@ -17,10 +17,9 @@ import { useScheduling } from "../hooks/useScheduling";
 import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
 
-
 import styles from "../styles/agendarConsulta";
 
-const AgendarConsultaRoutePage = () => {
+const AgendarConsultaScreen = () => {
   const {
     control,
     handleSubmit,
@@ -261,4 +260,4 @@ const AgendarConsultaRoutePage = () => {
   );
 };
 
-export default AgendarConsultaRoutePage;
+export default AgendarConsultaScreen;
