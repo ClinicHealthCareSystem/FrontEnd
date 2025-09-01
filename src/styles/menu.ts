@@ -21,7 +21,8 @@ export default StyleSheet.create({
   },
 
   buttonCards: {
-    backgroundColor: "#3284f1",
+    
+    backgroundColor: "#0D47AB", 
     borderRadius: 8,
     marginBottom: 16,
     width: "47%",

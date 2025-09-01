@@ -8,7 +8,7 @@
     borderRadius: 2,
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
-    backgroundColor: "#3284f1",
+    backgroundColor: "#0D47AB",
     elevation: 8,
     borderTopWidth: 1,
     borderColor: "white",
