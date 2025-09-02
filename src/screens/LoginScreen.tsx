@@ -10,20 +10,30 @@ import {
 import styles from "../styles/login";
 import { useRouter } from "expo-router";
 import login from "../hooks/useLogin";
-import { validateCPF, validatePassword } from "../utils/userValidations";
+import {
+  isValidCPF,
+  validatePassword,
+  maskCPF,
+} from "../utils/userValidations";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Login() {
   const router = useRouter();
   const [CPF, setCPF] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShow, setPasswordShow] = useState(false);
+  const [touched, setTouched] = useState<{ cpf: boolean; password: boolean }>({
+    cpf: false,
+    password: false,
+  });
+
   const { error, handleSignIn } = login(router);
 
   const passwordEyes = () => {
     setPasswordShow((prev) => !prev);
   };
 
-  const cpfError = validateCPF(CPF);
+  const cpfError = isValidCPF(CPF);
   const passwordError = validatePassword(password);
 
   const handleSubmit = () => {
@@ -38,45 +48,45 @@ export default function Login() {
       <Text style={styles.subtittle}>Bem-vindo(a) ao Saúde Mania</Text>
 
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.id_card}
-          source={require("../assets/id_card.png")}
-        />
+        <Ionicons name="person-outline" size={30} style={styles.id_card} />
         <TextInput
           style={styles.input}
           placeholder="CPF"
-          value={CPF}
-          onChangeText={(text) => setCPF(text.replace(/[^0-9]/g, ""))}
-          maxLength={11}
+          keyboardType="numeric"
+          value={maskCPF(CPF)}
+          onChangeText={(text) => setCPF(text)}
+          maxLength={14}
+          onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
         />
+        {touched.cpf && cpfError ? (
+          <Text style={{ color: "red", marginBottom: 5 }}>{cpfError}</Text>
+        ) : null}
       </View>
 
       <View style={styles.inputCaixa}>
-        <Image style={styles.lock} source={require("../assets/lock.png")} />
+        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
         <TextInput
           style={styles.input}
           placeholder="Senha"
           value={password}
-          onChangeText={(text) =>
-            setPassword(text.replace(/[^A-Za-z0-9]/g, ""))
-          }
+          onChangeText={(text) => setPassword(text)}
           secureTextEntry={!passwordShow}
           maxLength={12}
+          onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
         />
-        {password.length > 0 && password.length < 8 && (
-          <Text style={{ color: "red" }}>
-            A senha deve ter pelo menos 8 caracteres
-          </Text>
-        )}
+        {touched.password && passwordError ? (
+          <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
+        ) : null}
         <TouchableOpacity onPress={passwordEyes}>
-          <Image
-            source={
-              passwordShow
-                ? require("../assets/visibility_on.png")
-                : require("../assets/visibility_off.png")
-            }
-            style={styles.visivility_on}
-          />
+          {passwordShow ? (
+            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+          ) : (
+            <Ionicons
+              name="eye-off-outline"
+              size={30}
+              style={styles.eyeClosed}
+            />
+          )}
         </TouchableOpacity>
       </View>
 
@@ -85,12 +95,13 @@ export default function Login() {
       ) : null}
 
       <TouchableOpacity onPress={() => router.replace("/esqueceu")}>
-        <Text style={styles.esqueci}>Esqueceu a senha?</Text>{" "}
+        <Text style={styles.esqueci}>Esqueceu a senha?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Acessar</Text>
       </TouchableOpacity>
+
       <View style={styles.cadastroCaixa}>
         <Text style={styles.text}>Não tem uma conta?</Text>
         <TouchableOpacity onPress={() => router.replace("/cadastro")}>
