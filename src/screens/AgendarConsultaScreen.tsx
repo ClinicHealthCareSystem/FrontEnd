@@ -17,7 +17,8 @@ import { useScheduling } from "../hooks/useScheduling";
 import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
 
-import styles from "../stylesComponents/headerHome";
+
+import styles from "../styles/agendarConsulta";
 
 const AgendarConsultaRoutePage = () => {
   const {
