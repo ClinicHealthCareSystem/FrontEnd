@@ -1,12 +1,11 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, TouchableOpacity, View, Text} from "react-native";
+import { FlatList, TouchableOpacity, View, Text, Animated} from "react-native";
 import HeaderHome from "../components/headerHome";
 import TabsNavegation from "../components/tabsNavegation";
 import HistoricoStyle from "../styles/HistoricoStyle";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type HistoricoTipo = 'RECEITA' | 'EXAME' | 'CONSULTA';
-//ainda não falei com o fernando sobre como vai ser a estrutura de um exame em sí, mas creio que assim ja da pra começar, qualquer coisa eu altero :)
 type HistoricoItem = {
     id: string;
     tipo: HistoricoTipo;
@@ -26,6 +25,7 @@ type ItemPropsEx = {
     onPress: () => void;
     backgroundColor: string;
     textColor: string;
+    isExpanded: boolean;
 }
 
 function formatarData(data: string){
@@ -51,25 +51,46 @@ const DATA_EXAMPLE: ItemDataEx[]  = [
     }
 ];
 
-const Item = ({item, onPress, backgroundColor, textColor}: ItemPropsEx) => (
+const Item = ({item, onPress, backgroundColor, textColor, isExpanded}: ItemPropsEx) => {
+    const animatedHeight = useRef(new Animated.Value(60)).current;
+    useEffect(() => {
+    Animated.timing(animatedHeight, {
+      toValue: isExpanded ? 150 : 60,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }, [isExpanded]);
+  return (
   <TouchableOpacity onPress={onPress} style={[HistoricoStyle.item, {backgroundColor}]}>
-    <Text style={[HistoricoStyle.title, {color: textColor}]}>{item.title}</Text>
+    <Animated.View style={{height:animatedHeight}}>
+        <Text style={[HistoricoStyle.title, {color: textColor}]}>{item.title}</Text>
+        {isExpanded && <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             Sunt quibusdam eligendi, incidunt consequatur assumenda, vel doloribus
+              quae temporibus delectus facilis illum ducimus sint. Quaerat, alias natus modi cumque totam rerum?</Text>
+            
+        }        
+    </Animated.View>
   </TouchableOpacity>
-);
+  );
+};
 
 export default function HistoricoRelatorio(){
     const [selectedId, setSelectedId] = useState<String>();
+    
 
     const renderItem = ({item} : {item: ItemDataEx}) => {
-        const backgroundColor = item.id === selectedId  ? '#5a96a5ff': '#0ec3faff';
-        const color = item.id === selectedId ? 'white' : 'black'
+        const backgroundColor = item.id === selectedId  ? '#0e7ffa': '#0ec3faff';
+        const color = item.id === selectedId ? 'white' : 'black';
+        const isExpanded = item.id === selectedId;
+
 
         return(
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
+                onPress={() => setSelectedId(prev => prev === item.id ? undefined : item.id)}
                 backgroundColor={backgroundColor}
                 textColor={color}
+                isExpanded={isExpanded}
             />
         );
     }
