@@ -69,17 +69,12 @@ export default function Menu() {
       <ScrollView style={styles.scrollCards}>
         <View style={styles.cards}>
           {card.map((card) => (
-            <MenuCard 
+            <MenuCard
               key={card.id}
               title={card.title}
               descricao={card.descricao}
               icon={card.icon}
             />
-            // <TouchableOpacity key={item.id} style={styles.buttonCards}>
-            //   <Ionicons name={item.icon} size={40} color={"white"} />
-            //   <Text style={styles.textCards}>{item.title}</Text>
-            //   <Text style={styles.descricaoCards}>{item.descricao}</Text>
-            // </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
