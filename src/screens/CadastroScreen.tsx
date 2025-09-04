@@ -102,7 +102,9 @@ export default function Cadastro() {
         />
       </View>
       {touched.name && nameError ? (
-        <Text style={{ color: "red", marginBottom: 5 }}>{nameError}</Text>
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {nameError}
+        </Text>
       ) : null}
 
       <Text style={styles.label}>CPF</Text>
@@ -119,7 +121,9 @@ export default function Cadastro() {
         />
       </View>
       {touched.cpf && cpfError ? (
-        <Text style={{ color: "red", marginBottom: 5 }}>{cpfError}</Text>
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {cpfError}
+        </Text>
       ) : null}
 
       <Text style={styles.label}>Celular</Text>
@@ -136,7 +140,9 @@ export default function Cadastro() {
         />
       </View>
       {touched.phone && phoneError ? (
-        <Text style={{ color: "red", marginBottom: 5 }}>{phoneError}</Text>
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {phoneError}
+        </Text>
       ) : null}
 
       <Text style={styles.label}>Crie uma Senha</Text>
@@ -166,7 +172,9 @@ export default function Cadastro() {
         </TouchableOpacity>
       </View>
       {touched.password && passwordError ? (
-        <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {passwordError}
+        </Text>
       ) : null}
 
       <TouchableOpacity onPress={abrirTermos}>
