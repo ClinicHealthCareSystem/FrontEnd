@@ -35,26 +35,20 @@ export function useVerifyCode() {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
+        setError("Erro ao validar o código");
+        return { success: false, message: "Erro ao validar o código" };
       }
 
       if (!result.success) {
-        console.log("Código inválido!");
-        console.log("Erro", result.message);
-        return;
+        setError(result.message || "Código inválido");
+        return { success: false, message: result.message };
       }
 
-      if (response.ok) {
-        console.log("Código válido!");
-        router.push({
-          pathname: "/novasenha",
-        });
-      } else {
-        console.log("Código inválido");
-      }
+      router.push({ pathname: "/novasenha" });
+      return { success: true, message: "Código válido" };
     } catch (error) {
-      console.log("Erro na verificação do código", error);
-      console.log("Erro", "Não foi possível verificar o código");
+      setError("Não foi possível verificar o código");
+      return { success: false, message: "Não foi possível verificar o código" };
     }
   };
 
