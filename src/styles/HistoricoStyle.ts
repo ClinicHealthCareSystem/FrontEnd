@@ -20,6 +20,9 @@ export default StyleSheet.create({
   item: {
     padding: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    marginHorizontal: 18,
+    borderRadius: 8,
+    backgroundColor: "#0D47AB",
+    
   }
 })

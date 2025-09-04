@@ -37,23 +37,23 @@ function formatarData(data: string){
 const DATA_EXAMPLE: ItemDataEx[]  = [
     {
         id: '1',
-        title: 'Card 1',
+        title: 'Hemograma Completo',
     },
 
     {
         id: '2',
-        title: 'Card 2',
+        title: 'Raio-X',
     },
 
     {
         id: '3',
-        title: 'Card 3'
+        title: 'Ultrassonografia'
     }
 ];
 
 const Item = ({item, onPress, backgroundColor, textColor}: ItemPropsEx) => (
-  <TouchableOpacity onPress={onPress} style={[HistoricoStyle.item, {backgroundColor}]}>
-    <Text style={[HistoricoStyle.title, {color: textColor}]}>{item.title}</Text>
+  <TouchableOpacity onPress={onPress} style={[HistoricoStyle.item, {backgroundColor: "#0D47AB"}]}>
+    <Text style={[HistoricoStyle.title, {color: textColor= "white"}]}>{item.title}</Text>
   </TouchableOpacity>
 );
 
@@ -82,6 +82,7 @@ export default function HistoricoRelatorio(){
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     extraData={selectedId}
+                    
                 />
             </View>
         <TabsNavegation/>
