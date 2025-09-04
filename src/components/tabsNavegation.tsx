@@ -7,7 +7,7 @@ import { useRouter } from "expo-router";
 import tabNavegation from "../stylesComponents/tabNavegation";
 
 const goBack = () => {
-  router.push("/menu");
+  router.replace("/menu");
 }
 
 export default function TabsNavegation() {
