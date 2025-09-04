@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from "react";
 import {
-  Text,
-  TouchableOpacity,
   View,
-  Image,
   ScrollView,
-  TextInput,
 } from "react-native";
 import styles from "../styles/menu";
 
 import { Ionicons } from "@expo/vector-icons";
-import { Link, router, Tabs } from "expo-router";
-import { useRouter } from "expo-router";
 import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
 import MenuCard from "../components/menuCards";
@@ -27,39 +20,33 @@ export default function Menu() {
   const card: Botao[] = [
     {
       id: 1,
-      title: "CONSULTAS",
-      descricao: "Marque sua consulta",
-      icon: "medkit-outline",
+      title: "AGENDAMENTO",
+      descricao: "Realize seu agendamento",
+      icon: "today-outline",
     },
     {
       id: 2,
-      title: "EXAMES",
-      descricao: "Marque seu Enxame",
-      icon: "flask-outline",
-    },
-    {
-      id: 3,
-      title: "HISTÓRICO",
-      descricao: "Veja seus Histórico",
-      icon: "time-outline",
-    },
-    {
-      id: 4,
-      title: "MEDICAMENTOS",
-      descricao: "Qual Medicamento receitado",
-      icon: "bandage-outline",
-    },
-    {
-      id: 5,
       title: "RESULTADOS",
       descricao: "Veja os Resultados Clinicos",
       icon: "document-text-outline",
     },
     {
-      id: 6,
+      id: 3,
+      title: "MEDICAMENTOS",
+      descricao: "Qual Medicamento receitado",
+      icon: "bandage-outline",
+    },
+    {
+      id: 4,
       title: "PLANOS",
       descricao: "Atualize seu plano",
       icon: "heart-circle-outline",
+    },
+    {
+      id: 5,
+      title: "CHATBOT",
+      descricao: "Entre em contato",
+      icon: "chatbubbles-outline",
     },
   ];
   return (
