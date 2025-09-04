@@ -14,11 +14,17 @@ type CardTypes = {
   title: string;
   descricao: string;
   icon: keyof typeof Ionicons.glyphMap;
+  onPress?: () => void;
 };
 
-export default function MenuCard({ icon, title, descricao }: CardTypes) {
+export default function MenuCard({
+  icon,
+  title,
+  descricao,
+  onPress,
+}: CardTypes) {
   return (
-    <TouchableOpacity style={styles.buttonCards}>
+    <TouchableOpacity style={styles.buttonCards} onPress={onPress}>
       <Ionicons name={icon} size={40} color={"white"} />
       <Text style={styles.textCards}>{title}</Text>
       <Text style={styles.descricaoCards}>{descricao}</Text>

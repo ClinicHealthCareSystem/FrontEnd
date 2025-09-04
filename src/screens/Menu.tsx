@@ -1,22 +1,23 @@
-import {
-  View,
-  ScrollView,
-} from "react-native";
+import { View, ScrollView, TouchableOpacity } from "react-native";
 import styles from "../styles/menu";
 
 import { Ionicons } from "@expo/vector-icons";
 import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
 import MenuCard from "../components/menuCards";
+import { router, useRouter } from "expo-router";
 
 type Botao = {
   id: number;
   title: string;
   descricao: string;
   icon: keyof typeof Ionicons.glyphMap;
+  onPress?: () => void;
 };
 
 export default function Menu() {
+  const router = useRouter();
+
   const card: Botao[] = [
     {
       id: 1,
@@ -49,23 +50,42 @@ export default function Menu() {
       icon: "chatbubbles-outline",
     },
   ];
+
+  const handleNavigation = (title: string) => {
+    switch (title) {
+      case "AGENDAMENTO":
+        router.push("/agendar");
+        break;
+      case "RESULTADOS":
+        router.push("/resultados");
+        break;
+      case "MEDICAMENTOS":
+        router.push("/medicamentos");
+        break;
+      case "PLANOS":
+        router.push("/planos");
+        break;
+      case "CHATBOT":
+        router.push("/chatbot");
+        break;
+    }
+  };
+
   return (
     <View style={styles.background}>
       <HeaderHome mostrarBusca={true} />
-
       <ScrollView style={styles.scrollCards}>
         <View style={styles.cards}>
-          {card.map((card) => (
+          {card.map((item) => (
             <MenuCard
-              key={card.id}
-              title={card.title}
-              descricao={card.descricao}
-              icon={card.icon}
+              title={item.title}
+              descricao={item.descricao}
+              icon={item.icon}
+              onPress={() => handleNavigation(item.title)}
             />
           ))}
         </View>
       </ScrollView>
-
       <TabsNavegation />
     </View>
   );
