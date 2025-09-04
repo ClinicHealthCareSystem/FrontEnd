@@ -5,7 +5,6 @@ const isSmallScreen = width < 380;
 export default StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "center",
     padding: 20,
     backgroundColor: "#ADD8E6",
   },

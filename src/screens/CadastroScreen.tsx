@@ -8,7 +8,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image,
   ScrollView,
   Modal,
 } from "react-native";
@@ -22,6 +21,7 @@ import {
   validatePassword,
   validatePhone,
   maskPhone,
+  unmaskCPF,
 } from "../utils/userValidations";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -53,10 +53,10 @@ export default function Cadastro() {
     setPasswordShow((prev) => !prev);
   };
 
-  const nameError = validateName(name);
-  const cpfError = isValidCPF(CPF);
-  const phoneError = validatePhone(phone);
-  const passwordError = validatePassword(password);
+  const nameError = touched.name ? validateName(name) : "";
+  const cpfError = touched.cpf ? isValidCPF(CPF) : "";
+  const phoneError = touched.phone ? validatePhone(phone) : "";
+  const passwordError = touched.password ? validatePassword(password) : "";
 
   const handleSubmit = () => {
     setTouched({
@@ -66,20 +66,26 @@ export default function Cadastro() {
       password: true,
     });
 
+    const currentNameError = validateName(name);
+    const currentCpfError = isValidCPF(CPF);
+    const currentPhoneError = validatePhone(phone);
+    const currentPasswordError = validatePassword(password);
+
     if (
-      !nameError &&
-      !cpfError &&
-      !phoneError &&
-      !passwordError &&
+      !currentNameError &&
+      !currentCpfError &&
+      !currentPhoneError &&
+      !currentPasswordError &&
       aceitarTermos
     ) {
+      const unmaskedCPF = unmaskCPF(CPF);
       const unmaskedPhone = unmaskPhone(phone);
-      handleSignUp(name, CPF, unmaskedPhone, password);
+      handleSignUp(name.trim(), unmaskedCPF, unmaskedPhone, password);
     }
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.background}>
+    <ScrollView style={styles.background}>
       <Text style={styles.titulo}>Cadastro</Text>
 
       <Text style={styles.label}>Nome Completo</Text>
@@ -94,10 +100,11 @@ export default function Cadastro() {
           placeholder="Digite seu nome"
           onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
         />
-        {touched.name && nameError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{nameError}</Text>
-        ) : null}
       </View>
+      {touched.name && nameError ? (
+        <Text style={{ color: "red", marginBottom: 5 }}>{nameError}</Text>
+      ) : null}
+
       <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
         <Ionicons name="id-card-outline" size={30} style={styles.id_card} />
@@ -110,10 +117,11 @@ export default function Cadastro() {
           maxLength={14}
           onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
         />
-        {touched.cpf && cpfError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{cpfError}</Text>
-        ) : null}
       </View>
+      {touched.cpf && cpfError ? (
+        <Text style={{ color: "red", marginBottom: 5 }}>{cpfError}</Text>
+      ) : null}
+
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
         <Ionicons name="call-outline" size={30} style={styles.phone} />
@@ -126,10 +134,10 @@ export default function Cadastro() {
           maxLength={15}
           onBlur={() => setTouched((prev) => ({ ...prev, phone: true }))}
         />
-        {touched.phone && phoneError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{phoneError}</Text>
-        ) : null}
       </View>
+      {touched.phone && phoneError ? (
+        <Text style={{ color: "red", marginBottom: 5 }}>{phoneError}</Text>
+      ) : null}
 
       <Text style={styles.label}>Crie uma Senha</Text>
       <View style={styles.inputCaixa}>
@@ -142,12 +150,9 @@ export default function Cadastro() {
           value={password}
           placeholder="Digite sua senha"
           secureTextEntry={!passwordShow}
-          maxLength={12}
+          maxLength={8}
           onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
         />
-        {touched.password && passwordError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
-        ) : null}
         <TouchableOpacity onPress={passwordEyes}>
           {passwordShow ? (
             <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
@@ -160,6 +165,9 @@ export default function Cadastro() {
           )}
         </TouchableOpacity>
       </View>
+      {touched.password && passwordError ? (
+        <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
+      ) : null}
 
       <TouchableOpacity onPress={abrirTermos}>
         <Text style={styles.buttonAceitar}>Aceite os Termos</Text>
