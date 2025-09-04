@@ -47,6 +47,15 @@ export const validatePassword = (password?: string) => {
   return "";
 };
 
+export const validateConfirmPassword = (
+  password?: string,
+  confirmPassword?: string
+) => {
+  if (!confirmPassword) return "Confirme a senha";
+  if (password !== confirmPassword) return "As senhas não são iguais";
+  return "";
+};
+
 export const validateName = (name?: string) => {
   if (!name) return "Informe um nome";
   if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]{3,50}$/.test(name)) {
