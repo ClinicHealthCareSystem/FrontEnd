@@ -3,12 +3,22 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
   CardContainer: {
-    backgroundColor: "#3284f1",
+    // backgroundColor: "#3284f1",
+    // borderRadius: 12,
+    // width: "80%",
+    // margin: "auto",
+    // top: 15,
+    // padding: 5,
+    backgroundColor: "#0D47AB",
     borderRadius: 12,
-    width: "80%",
-    margin: "auto",
-    top: 15,
-    padding: 5,
+    padding: 10,
+    marginHorizontal: 20,
+    marginTop: 30,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.7,
+    shadowRadius: 8,
+    elevation: 5,
+
   },
 
   DateHour: {
@@ -43,8 +53,8 @@ export default StyleSheet.create({
 
   EditarAgendamentos: {
     borderRadius: 12,
-    backgroundColor: "#add8e6",
-    color: "#3284f1",
+    backgroundColor: "#3284f1",
+    color: "white",
     alignSelf: "center",
     padding: 5,
     width: "70%",
@@ -58,11 +68,32 @@ export default StyleSheet.create({
   Cancelar: {
     borderRadius: 12,
     fontWeight: "bold",
-    color: "#add8e6",
-    alignSelf: "center",
+    backgroundColor: "#3284f1",
+    color: "white",
+    // alignSelf: "center",
     padding: 5,
     width: "70%",
     textAlign: "center",
     fontSize: RFValue(15),
+  },
+  caixaButtonOption:{
+    flexDirection: "row",
+
+  },
+  buttonEdit:{
+    borderRadius: 8,
+    height: 50,
+    width: 100,
+    justifyContent: "center",
+    
+
+
+  },
+  buttonCancel:{
+    borderRadius: 8,
+    height: 50,
+    width: 100,
+    left: 120,
+    justifyContent: "center",
   },
 });
