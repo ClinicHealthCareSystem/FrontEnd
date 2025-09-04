@@ -1,6 +1,6 @@
-  import {  StyleSheet } from "react-native";
-  export default StyleSheet.create({
-    tabNavegation: {
+import { StyleSheet } from "react-native";
+export default StyleSheet.create({
+  tabNavegation: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

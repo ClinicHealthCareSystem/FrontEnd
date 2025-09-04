@@ -14,6 +14,7 @@ import { Link, router, Tabs } from "expo-router";
 import { useRouter } from "expo-router";
 import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
+import MenuCard from "../components/menuCards";
 
 type Botao = {
   id: number;
@@ -67,12 +68,18 @@ export default function Menu() {
 
       <ScrollView style={styles.scrollCards}>
         <View style={styles.cards}>
-          {card.map((item) => (
-            <TouchableOpacity key={item.id} style={styles.buttonCards}>
-              <Ionicons name={item.icon} size={40} color={"white"} />
-              <Text style={styles.textCards}>{item.title}</Text>
-              <Text style={styles.descricaoCards}>{item.descricao}</Text>
-            </TouchableOpacity>
+          {card.map((card) => (
+            <MenuCard 
+              key={card.id}
+              title={card.title}
+              descricao={card.descricao}
+              icon={card.icon}
+            />
+            // <TouchableOpacity key={item.id} style={styles.buttonCards}>
+            //   <Ionicons name={item.icon} size={40} color={"white"} />
+            //   <Text style={styles.textCards}>{item.title}</Text>
+            //   <Text style={styles.descricaoCards}>{item.descricao}</Text>
+            // </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
