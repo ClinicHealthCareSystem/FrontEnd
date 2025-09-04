@@ -4,6 +4,7 @@ import HeaderHome from "../components/headerHome";
 import TabsNavegation from "../components/tabsNavegation";
 import HistoricoStyle from "../styles/HistoricoStyle";
 import { useEffect, useRef, useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 type HistoricoTipo = 'RECEITA' | 'EXAME' | 'CONSULTA';
 type HistoricoItem = {
@@ -37,7 +38,7 @@ function formatarData(data: string){
 const DATA_EXAMPLE: ItemDataEx[]  = [
     {
         id: '1',
-        title: 'Hemograma Completo',
+        title: 'Hemograma',
     },
 
     {
@@ -61,14 +62,18 @@ const Item = ({item, onPress, backgroundColor, textColor, isExpanded}: ItemProps
     }).start();
   }, [isExpanded]);
   return (
-  <TouchableOpacity onPress={onPress} style={[HistoricoStyle.item, {backgroundColor}]}>
+  <TouchableOpacity onPress={onPress} style={[HistoricoStyle.item, {backgroundColor: "#0D47AB"}]}>
     <Animated.View style={{height:animatedHeight}}>
-        <Text style={[HistoricoStyle.title, {color: textColor}]}>{item.title}</Text>
-        {isExpanded && <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-             Sunt quibusdam eligendi, incidunt consequatur assumenda, vel doloribus
-              quae temporibus delectus facilis illum ducimus sint. Quaerat, alias natus modi cumque totam rerum?</Text>
+        <Text style={[HistoricoStyle.title, {color: textColor= "white"}]}>{item.title}</Text>
+        {isExpanded && <Text>
+            <Ionicons name="calendar" size={18} color={"white"} />
+            Data da Consulta</Text>
             
-        }        
+        }    
+
+        {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             Sunt quibusdam eligendi, incidunt consequatur assumenda, vel doloribus
+              quae temporibus delectus facilis illum ducimus sint. Quaerat, alias natus modi cumque totam rerum?     */}
     </Animated.View>
   </TouchableOpacity>
   );
