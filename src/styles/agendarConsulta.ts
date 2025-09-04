@@ -6,7 +6,7 @@ export default StyleSheet.create({
     backgroundColor: "#ADD8E6",
     flex: 1,
   },
-  
+
   bodyView: {
     marginTop: 15,
     borderColor: "white",
@@ -35,6 +35,7 @@ export default StyleSheet.create({
     fontSize: RFValue(20),
     marginRight: 5,
     marginLeft: 5,
+    color: "#0D47AB",
   },
 
   setDate: {

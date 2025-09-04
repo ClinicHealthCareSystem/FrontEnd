@@ -5,7 +5,7 @@ export default StyleSheet.create({
  
   // header
   headerView: {
-    backgroundColor: "#3284f1",
+    backgroundColor: "#0D47AB",
     paddingBottom: 25,
     borderBottomLeftRadius: 18,
     borderBottomRightRadius: 18,
