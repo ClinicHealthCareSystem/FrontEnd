@@ -15,7 +15,8 @@ export default function Planos(){
           <View style={planos.cardCaixa}>
             <View style={planos.card}>
               <Text style={planos.titlecard}>plano A</Text>
-              <Text style={planos.descricaocard}>descricao</Text>
+              <Text style={planos.descricaocard}>Consultas médicas ilimitadas, pronto atendimento online e
+descontos em exames laboratoriais.</Text>
               <TouchableOpacity style={planos.buttoncard}>
                 <Text style={planos.buttoncardtext}>assinar</Text>
               </TouchableOpacity>
@@ -27,7 +28,8 @@ export default function Planos(){
           <View style={planos.cardCaixa}>
             <View style={planos.card}>
               <Text style={planos.titlecard}>plano B</Text>
-              <Text style={planos.descricaocard}>descricao</Text>
+              <Text style={planos.descricaocard}>Inclui todos os benefícios do Plano A, mais cobertura odontológica
+                básica e check-up anual gratuito.</Text>
               <TouchableOpacity style={planos.buttoncard}>
                 <Text style={planos.buttoncardtext}>assinar</Text>
               </TouchableOpacity>
@@ -39,7 +41,8 @@ export default function Planos(){
           <View style={planos.cardCaixa}>
             <View style={planos.card}>
               <Text style={planos.titlecard}>plano C</Text>
-              <Text style={planos.descricaocard}>descricao</Text>
+              <Text style={planos.descricaocard}>Plano completo: consultas, exames, odontologia avançada, 
+                psicologia e fisioterapia com cobertura estendida.</Text>
               <TouchableOpacity style={planos.buttoncard}>
                 <Text style={planos.buttoncardtext}>assinar</Text>
               </TouchableOpacity>
