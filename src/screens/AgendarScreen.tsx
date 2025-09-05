@@ -11,7 +11,7 @@ export default function AgendarScreen() {
     <View style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
         <HeaderHome
-          titulo="Saúde Mania"
+          titulo="Agendamentos"
           mostrarBusca={false}
           subTitulo="Veja seus agendamento"
         />
