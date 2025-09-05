@@ -4,6 +4,7 @@ import {
   import TabsNavegation from "../components/tabsNavegation";
 import { Ionicons } from "@expo/vector-icons";
   import styles from "../styles/perfil";
+  import TabsButtonPerfil from "../components/TabButtonsPerfil";
 
   export default function Perfil(){
     return(
@@ -13,7 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
                     <View style={styles.cardPerfil}>
                     <View style={styles.avatarCaixa}>
 
-                        <Ionicons name="person-circle" style={styles.avatar} size={100} color={"#0D47AB"} />
+                        <Ionicons name="person-circle" style={styles.avatar} size={100} color={"white"} />
                         </View>
                     
                         <Text style={styles.nome}>José</Text>
@@ -27,15 +28,28 @@ import { Ionicons } from "@expo/vector-icons";
                             <View  style={styles.idSatus}>
                                 <Text style={styles.idStatusText}>Registro: #2020612</Text>
                             </View>
-
                             </View>
+
+                            
                     
                 </View>
+                 <View style={styles.tabsCaixa}>
+                            <TabsButtonPerfil textTittleButton="Pessoal"/>
+                            <TabsButtonPerfil textTittleButton="Saúde"/>
+                            <TabsButtonPerfil textTittleButton="Apoio"/>
+                  </View>
+
+                  <View>
+                    <Text></Text>
+                    <Text></Text>
+                    <Text></Text>
+                  </View>
                 
                 
                     
 
                 </ScrollView>
+                <TabsNavegation/>
 
             </View>
     );

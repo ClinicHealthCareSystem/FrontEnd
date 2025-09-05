@@ -6,7 +6,7 @@ export default StyleSheet.create({
         
     },
     cardPerfil:{
-        backgroundColor: "white",
+        backgroundColor: "#0D47AB",
         borderRadius:  12,
         shadowColor: "black",
         shadowOffset: {width: 0, height: 2},
@@ -25,7 +25,7 @@ export default StyleSheet.create({
         height: 100,
         width: 100,
         borderRadius: 50,
-        backgroundColor: "white",
+        backgroundColor: "#0D47AB",
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 12,
@@ -43,14 +43,14 @@ export default StyleSheet.create({
 
     },
     nome:{
-        color: "#0D47AB",
+        color: "white",
         fontSize: 20,
         fontWeight: "bold",
 
 
     },
     info:{
-    color: "#0D47AB",
+    color: "white",
     fontSize: 18,
     marginBottom: 8,
 
@@ -71,7 +71,7 @@ export default StyleSheet.create({
        fontWeight: "bold",
     },
     idSatus:{
-        backgroundColor: "grey",
+        backgroundColor: "white",
         borderRadius: 8,
         paddingHorizontal: 10,
         paddingVertical: 4,
@@ -80,11 +80,30 @@ export default StyleSheet.create({
 
     },
     idStatusText:{
-        color: "black",
+        color: "#0D47AB",
         fontWeight: "bold",
         
 
     },
+    tabsCaixa:{
+    flexDirection: "row",
+    justifyContent: "space-around",
+    // alignItems: "center",
+    // alignSelf: "center",
+    marginHorizontal: 20,
+    marginVertical: 20,
+    backgroundColor: "#0D47AB",
+    width: "90%",
+    padding: 8,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.7,
+    shadowRadius: 8,
+    elevation: 5,
+    borderRadius: 8,
+    
+
+
+ },
 
 
 }
