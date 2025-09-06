@@ -5,6 +5,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
   import styles from "../styles/perfil";
   import TabsButtonPerfil from "../components/TabButtonsPerfil";
+  import CardInfoPerfil from "../components/cardInfo";
 
   export default function Perfil(){
     return(
@@ -39,11 +40,7 @@ import { Ionicons } from "@expo/vector-icons";
                             <TabsButtonPerfil textTittleButton="Apoio"/>
                   </View>
 
-                  <View>
-                    <Text></Text>
-                    <Text></Text>
-                    <Text></Text>
-                  </View>
+                  <CardInfoPerfil/>
                 
                 
                     

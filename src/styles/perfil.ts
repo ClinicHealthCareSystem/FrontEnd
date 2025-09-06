@@ -88,8 +88,8 @@ export default StyleSheet.create({
     tabsCaixa:{
     flexDirection: "row",
     justifyContent: "space-around",
-    // alignItems: "center",
-    // alignSelf: "center",
+    
+    alignSelf: "center",
     marginHorizontal: 20,
     marginVertical: 20,
     backgroundColor: "#0D47AB",
@@ -103,6 +103,55 @@ export default StyleSheet.create({
     
 
 
+ },
+
+
+
+
+ cardInfo:{
+    backgroundColor: "#0D47AB",
+    padding: 12,
+    borderRadius: 8,
+    elevation: 5,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.7,
+    shadowRadius: 8,
+    width: "90%",
+    alignSelf: "center",
+ },
+ tittleInfo:{
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+    color: "white",
+    textAlign: "center",
+
+    
+ },
+ textInfo:{
+    backgroundColor: "white",
+    borderRadius: 8, 
+    padding: 10,
+    width: "80%",
+    borderWidth: 1,
+
+    borderColor: "black",
+    marginTop: 15,
+    marginBottom: 15,
+    alignSelf: "center",
+ },
+ labelInfo:{
+    fontSize: 16,
+    color: "white",
+    marginHorizontal: 30,
+    fontWeight: "600",
+
+ },
+inputInfo:{
+    color: "#0D47AB",
+    fontWeight: "700",
+    outlineWidth: 0,
+    
  },
 
 
