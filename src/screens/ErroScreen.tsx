@@ -12,7 +12,7 @@ export default function ErroScreen() {
 
       <Pressable
         style={styles.button}
-        onPress={() => router.replace("/")} // volta para página inicial
+        onPress={() => router.replace("/")} 
       >
         <Text style={styles.buttonText}>Ir para Página Inicial</Text>
       </Pressable>
