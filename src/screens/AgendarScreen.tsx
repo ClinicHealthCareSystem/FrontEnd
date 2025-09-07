@@ -13,7 +13,7 @@ export default function AgendarScreen() {
         <HeaderHome
           titulo="Agendamentos"
           mostrarBusca={false}
-          subTitulo="Veja seus agendamento"
+          subTitulo="Veja seus agendamentos"
         />
         <ScrollView style={styles.body}>
           <AgendaCard />

@@ -3,116 +3,81 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
   CardContainer: {
-    flex: 1,
-    backgroundColor: "#0D47AB",
-    borderRadius: 12,
-    padding: 10,
-    marginHorizontal: 20,
-    marginTop: 30,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.7,
-    shadowRadius: 8,
-    elevation: 5,
+     backgroundColor: "#0D47AB",
+      borderRadius:  12,
+      shadowColor: "black",
+      shadowOffset: {width: 0, height: 2},
+      shadowOpacity: 0.7,
+      shadowRadius: 8,
+      elevation: 5,
+      padding: 16,
+      marginTop: 30,
+      marginHorizontal: 20,
   },
 
   DateHour: {
-    fontSize: RFValue(15),
+    fontSize: RFValue(16),
     color: "white",
-    left: 15,
+    textAlign: "center",
     fontWeight: "bold",
+    marginBottom: 15,
+  },
+  infoCardView:{
+    borderBottomWidth: 1,
+    borderBottomColor: "#dfdbdbff",
+    paddingBottom: 6,
+    marginBottom: 12,
   },
 
-  Profissional: {
-    fontSize: RFValue(15),
-    color: "#add8e6",
-    left: 15,
-  },
-
-  ProfissionalName: {
-    fontSize: RFValue(15),
+  labelCardView: {
+    fontSize: RFValue(14),
     color: "white",
-    left: 15,
+    fontWeight: "400",
+    marginBottom: 5,
+    
+    
   },
 
-  Paciente: {
-    fontSize: RFValue(15),
-    color: "#add8e6",
-    left: 15,
-  },
-
-  PacienteName: {
-    fontSize: RFValue(15),
+  textCardView: {
+    fontSize: RFValue(16),
     color: "white",
-    left: 15,
+    fontWeight: "bold",
+    marginTop: 5,
   },
 
-  TipoConsulta: {
-    fontSize: RFValue(15),
-    color: "#add8e6",
-    left: 15,
-  },
-
-  Tipo: {
-    fontSize: RFValue(15),
-    color: "white",
-    left: 15,
-  },
-
-  LocalConsulta: {
-    fontSize: RFValue(15),
-    color: "#add8e6",
-    left: 15,
-  },
-
-  Local: {
-    fontSize: RFValue(15),
-    color: "white",
-    left: 15,
-    marginBottom: 10,
-  },
+  
 
   caixaButtonOption: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop:16,
   },
 
-  buttonEdit: {
-    borderRadius: 8,
-    height: 50,
-    width: 100,
-    justifyContent: "center",
-  },
-
-  EditarAgendamentos: {
+  buttonCardEdit: {
+    flex:1,
     borderRadius: 12,
-    backgroundColor: "#3284f1",
-    color: "white",
-    alignSelf: "center",
-    padding: 5,
-    marginTop: 10,
-    marginBottom: 10,
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: RFValue(15),
-  },
+    alignItems: "center",
+    paddingVertical: 12,
+    marginRight: 8,
+    backgroundColor: "#3284f1"
+    
+    
 
-  buttonCancel: {
-    borderRadius: 8,
-    height: 50,
-    width: 100,
-    justifyContent: "center",
   },
-
-  Cancelar: {
+  buttonCardCancel:{
+    flex:1,
     borderRadius: 12,
-    backgroundColor: "#3284f1",
-    color: "white",
-    alignSelf: "center",
-    padding: 5,
-    marginTop: 10,
-    marginBottom: 10,
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: RFValue(15),
+    alignItems: "center",
+    marginLeft: 8,
+    paddingVertical:12,
+    
+    
+  },
+
+  buttonTextCardView: {
+   fontSize: RFValue(18),
+   fontWeight: "bold",
+   color: "white",
+
   },
 });
