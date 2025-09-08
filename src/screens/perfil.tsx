@@ -6,8 +6,10 @@ import { Ionicons } from "@expo/vector-icons";
   import styles from "../styles/perfil";
   import TabsButtonPerfil from "../components/TabButtonsPerfil";
   import CardInfoPerfil from "../components/cardInfo";
+import { useState } from "react";
 
   export default function Perfil(){
+    const [activeTab, setActiveTab] = useState<"pessoal" | "saude" | "apoio">("pessoal");
     return(
             <View style={styles.background}>
                 <HeaderHome mostrarBusca={false} titulo = "Meu Perfil"/>
@@ -35,12 +37,12 @@ import { Ionicons } from "@expo/vector-icons";
                     
                 </View>
                  <View style={styles.tabsCaixa}>
-                            <TabsButtonPerfil textTittleButton="Pessoal"/>
-                            <TabsButtonPerfil textTittleButton="Saúde"/>
-                            <TabsButtonPerfil textTittleButton="Apoio"/>
+                            <TabsButtonPerfil textTittleButton="Pessoal" onPress={() => setActiveTab("pessoal")} active={activeTab === "pessoal"}/>
+                            <TabsButtonPerfil textTittleButton="Saúde" onPress={() => setActiveTab("saude")} active={activeTab === "saude"}/>
+                            <TabsButtonPerfil textTittleButton="Apoio" onPress={() => setActiveTab("apoio")} active={activeTab == "apoio"}/>
                   </View>
 
-                  <CardInfoPerfil/>
+                  <CardInfoPerfil activeTab={activeTab}/>
                 
                 
                     
