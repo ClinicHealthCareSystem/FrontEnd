@@ -37,23 +37,17 @@ export default function Perfil() {
             </View>
           </View>
         </View>
-        <View style={styles.tabsCaixa}>
+        
           <TabsButtonPerfil
-            textTittleButton="Pessoal"
-            onPress={() => setActiveTab("pessoal")}
-            active={activeTab === "pessoal"}
+            tabs={[
+              {label: "Pessoal", value: "pessoal"},
+              {label: "Saúde", value: "saude"},
+              {label: "Apoio", value: "apoio"},
+            ]}
+            activeTab={activeTab}
+            onPress={(value) => setActiveTab(value as "pessoal" | "saude" | "apoio")}
           />
-          <TabsButtonPerfil
-            textTittleButton="Saúde"
-            onPress={() => setActiveTab("saude")}
-            active={activeTab === "saude"}
-          />
-          <TabsButtonPerfil
-            textTittleButton="Apoio"
-            onPress={() => setActiveTab("apoio")}
-            active={activeTab == "apoio"}
-          />
-        </View>
+          
 
         <CardInfoPerfil activeTab={activeTab} />
       </ScrollView>

@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../stylesComponents/MedicamentoCard";
+import TabsButtonPerfil from "./TabButtonsPerfil";
 
 export default function MedicamentoCard({
   tittleRemedio = "",
@@ -10,16 +11,26 @@ export default function MedicamentoCard({
   hora1 = "",
   hora2 = "",
 }) {
+  const [activeTab, setActiveTab] = useState<"pessoal" | "saude" | "apoio">(
+      "pessoal"
+    );
   const [liked, setLiked] = useState(false);
 
   return (
+
+        
+    
     <View style={styles.CardContainer}>
+      
       <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
       <View style={styles.infoCardView}>
         <Text style={styles.textCardView}>{vezesdia}</Text>
       </View>
+      
 
       <View style={styles.infoCardView}>
+
+                 
         <Text style={styles.textCardView}>
           <MaterialCommunityIcons
             name="clock-outline"

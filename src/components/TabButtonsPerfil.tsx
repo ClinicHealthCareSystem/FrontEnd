@@ -1,17 +1,28 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { View,Text, TouchableOpacity } from "react-native";
 import tabButtonPerfil from "../stylesComponents/tabButtonPerfil";
 
-type Props = {
-  textTittleButton: string;
-  onPress: () => void;
-  active: boolean;
+type Tab ={
+label: string;
+value: string;
 };
 
-export default function TabsButtonPerfil({ textTittleButton, onPress }: Props) {
+
+type Props = {
+  tabs: Tab[];
+  activeTab: string;
+  onPress: (value: string) => void;
+};
+
+export default function TabsButtonPerfil({ tabs,  onPress }: Props) {
   return (
-    <TouchableOpacity style={tabButtonPerfil.tabButtonPerfil} onPress={onPress}>
-      <Text style={tabButtonPerfil.tabTextPerfil}>{textTittleButton}</Text>
-    </TouchableOpacity>
+    <View style={tabButtonPerfil.tabsCaixa}>
+      {tabs.map((tab) => (
+        <TouchableOpacity key={tab.value} style={ tabButtonPerfil.tabButtonPerfil}
+          onPress={() => onPress(tab.value)}>
+          <Text style={[tabButtonPerfil.tabTextPerfil,]}>{tab.label}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
   );
 }
