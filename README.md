@@ -6,10 +6,10 @@
 
 # Instalar as Dependências do Projeto:
 
-    - npm install
+    - yarn install
 
 # Rodar o Projeto:
 
-    - npx expo start
+    - yarn start
 
 # Escanei o QRCode com o expo go
