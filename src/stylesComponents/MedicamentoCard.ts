@@ -15,76 +15,37 @@ export default StyleSheet.create({
       marginHorizontal: 20,
   },
 
-  DateHour: {
-    fontSize: RFValue(16),
+  titleRemedio: {
+    fontSize: RFValue(26),
     color: "white",
     textAlign: "center",
     fontWeight: "bold",
     marginBottom: 15,
   },
   infoCardView:{
-    borderBottomWidth: 1,
-    borderBottomColor: "#dfdbdbff",
+    
     paddingBottom: 6,
     marginBottom: 12,
-  },
+    backgroundColor: "#083b94ff",
+    borderRadius: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
 
-  labelCardView: {
-    fontSize: RFValue(14),
-    color: "white",
-    fontWeight: "400",
-    marginBottom: 5,
-    
-    
   },
-  textAll:{
-    color:"#ffffffff",
-    textDecorationLine:"underline",
-    fontSize:RFValue(16),
-    marginTop:10,
-    textAlign:"center",
-  },
-
   textCardView: {
     fontSize: RFValue(16),
     color: "white",
     fontWeight: "bold",
     marginTop: 5,
-  },
-
-  
-
-  caixaButtonOption: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop:16,
-  },
-
-  buttonCardEdit: {
-    flex:1,
-    borderRadius: 12,
-    alignItems: "center",
-    paddingVertical: 12,
-    marginRight: 8,
-    backgroundColor: "#3284f1"
-    
-    
+    textAlign: "center"
 
   },
-  buttonCardCancel:{
-    flex:1,
-    borderRadius: 12,
-    alignItems: "center",
-    marginLeft: 8,
-    paddingVertical:12,
-    
-    
-  },
+  checkButton:{
+      
 
-  buttonTextCardView: {
-   fontSize: RFValue(18),
-   fontWeight: "bold",
-   color: "white",
 
   },
+
+ 
 });

@@ -21,9 +21,7 @@ const Checkbox = () => {
           )}
         </View>
       </TouchableOpacity>
-      <Text style={{ marginLeft: 10 }}>
-        {checked ? 'Caixa marcada' : 'Caixa não marcada'}
-      </Text>
+      
     </View>
   );
 };
