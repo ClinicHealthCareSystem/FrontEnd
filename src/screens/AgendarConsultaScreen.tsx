@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
@@ -17,10 +17,9 @@ import { useScheduling } from "../hooks/useScheduling";
 import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
 
-
 import styles from "../styles/agendarConsulta";
 
-const AgendarConsultaRoutePage = () => {
+const AgendarConsultaScreen = () => {
   const {
     control,
     handleSubmit,
@@ -101,9 +100,9 @@ const AgendarConsultaRoutePage = () => {
                       style={styles.formPicker}
                     >
                       <Picker.Item label="Selecione um serviço" value={null} />
-                      <Picker.Item label="Serviço 1" value="Serviço 1" />
-                      <Picker.Item label="Serviço 2" value="Serviço 2" />
-                      <Picker.Item label="Serviço 3" value="Serviço 3" />
+                      <Picker.Item label="Clinica Geral" value="Serviço 1" />
+                      <Picker.Item label="Pediatra" value="Serviço 2" />
+                      <Picker.Item label="Geriatria" value="Serviço 3" />
                     </Picker>
                     {error && (
                       <Text style={{ color: "red" }}>{error.message}</Text>
@@ -161,6 +160,35 @@ const AgendarConsultaRoutePage = () => {
                       <Picker.Item label="Selecione um tipo" value={null} />
                       <Picker.Item label="Presencial" value="Presencial" />
                       <Picker.Item label="Remoto" value="Remoto" />
+                    </Picker>
+                    {error && (
+                      <Text style={{ color: "red" }}>{error.message}</Text>
+                    )}
+                  </View>
+                )}
+              />
+            </View>
+            <Text style={styles.formLabel}>Convêncio:</Text>
+            <View style={styles.formInput}>
+              <Ionicons name="medkit" style={styles.formIcon} />
+              <Controller
+                control={control}
+                name="servico"
+                rules={{ required: "Selecione um convênio" }}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <View style={{ flex: 1 }}>
+                    <Picker
+                      selectedValue={value}
+                      onValueChange={onChange}
+                      style={styles.formPicker}
+                    >
+                      <Picker.Item label="Selecione um Convênio" value={null} />
+                      <Picker.Item label="Convênio" value="Convênio 1" />
+                      <Picker.Item label="Convênio" value="Convênio 2" />
+                      <Picker.Item label="Convênio" value="Convênio 3" />
                     </Picker>
                     {error && (
                       <Text style={{ color: "red" }}>{error.message}</Text>
@@ -261,4 +289,4 @@ const AgendarConsultaRoutePage = () => {
   );
 };
 
-export default AgendarConsultaRoutePage;
+export default AgendarConsultaScreen;

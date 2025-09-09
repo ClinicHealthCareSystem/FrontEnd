@@ -14,6 +14,7 @@ import styles from "../styles/novaSenha";
 import {
   isValidCPF,
   validatePassword,
+  validateConfirmPassword,
   maskCPF,
   unmaskCPF,
 } from "../utils/userValidations";
@@ -37,12 +38,34 @@ export default function Novasenha() {
 
   const { error, handleUpdateUser } = useUpdateUser();
 
-  const cpfError = isValidCPF(unmaskCPF(CPF));
-  const passwordError = validatePassword(password);
-  const confirmPasswordError =
-    confirmPassword && confirmPassword !== password
-      ? "As senhas não são iguais"
-      : "";
+  const cpfError = touched.cpf ? isValidCPF(unmaskCPF(CPF)) : "";
+  const passwordError = touched.password ? validatePassword(password) : "";
+  const confirmPasswordError = touched.confirmPassword
+    ? validateConfirmPassword(password, confirmPassword)
+    : "";
+
+  const handleFormSubmit = () => {
+    setTouched({
+      cpf: true,
+      password: true,
+      confirmPassword: true,
+    });
+
+    const currentCpfError = isValidCPF(unmaskCPF(CPF));
+    const currentPasswordError = validatePassword(password);
+    const currentConfirmPasswordError = validateConfirmPassword(
+      password,
+      confirmPassword
+    );
+
+    if (
+      !currentCpfError &&
+      !currentPasswordError &&
+      !currentConfirmPasswordError
+    ) {
+      handleUpdateUser({ CPF: unmaskCPF(CPF), password });
+    }
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -51,6 +74,7 @@ export default function Novasenha() {
         Digite seu CPF e sua nova senha para atualizar seus dados
       </Text>
 
+      <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
         <Ionicons name="id-card-outline" size={30} style={styles.id_card} />
         <TextInput
@@ -62,11 +86,12 @@ export default function Novasenha() {
           maxLength={14}
           onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
         />
-        {touched.cpf && cpfError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{cpfError}</Text>
-        ) : null}
       </View>
+      {touched.cpf && cpfError ? (
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>{cpfError}</Text>
+      ) : null}
 
+      <Text style={styles.label}>Nova Senha</Text>
       <View style={styles.inputCaixa}>
         <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
         <TextInput
@@ -94,11 +119,12 @@ export default function Novasenha() {
             />
           )}
         </TouchableOpacity>
-        {touched.password && passwordError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
-        ) : null}
       </View>
+      {touched.password && passwordError ? (
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>{passwordError}</Text>
+      ) : null}
 
+      <Text style={styles.label}>Confirmar Senha</Text>
       <View style={styles.inputCaixa}>
         <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
         <TextInput
@@ -128,20 +154,16 @@ export default function Novasenha() {
             />
           )}
         </TouchableOpacity>
-        {touched.password && passwordError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
-        ) : null}
       </View>
+      {touched.confirmPassword && confirmPasswordError ? (
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {confirmPasswordError}
+        </Text>
+      ) : null}
 
       <TouchableOpacity
         style={styles.buttonConcluir}
-        onPress={handleSubmit(() => {
-          setTouched({ cpf: true, password: true, confirmPassword: true });
-
-          if (!cpfError && !passwordError && !confirmPasswordError) {
-            handleUpdateUser({ CPF: unmaskCPF(CPF), password });
-          }
-        })}
+        onPress={handleSubmit(handleFormSubmit)}
       >
         <Text style={styles.buttonText}>Concluir</Text>
       </TouchableOpacity>

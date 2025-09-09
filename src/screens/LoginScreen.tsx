@@ -5,12 +5,12 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
-  Image,
 } from "react-native";
 import styles from "../styles/login";
 import { useRouter } from "expo-router";
 import login from "../hooks/useLogin";
 import {
+  unmaskCPF,
   isValidCPF,
   validatePassword,
   maskCPF,
@@ -33,12 +33,17 @@ export default function Login() {
     setPasswordShow((prev) => !prev);
   };
 
-  const cpfError = isValidCPF(CPF);
-  const passwordError = validatePassword(password);
+  const cpfError = touched.cpf ? isValidCPF(CPF) : "";
+  const passwordError = touched.password ? validatePassword(password) : "";
 
   const handleSubmit = () => {
-    if (!cpfError && !passwordError) {
-      handleSignIn(CPF, password);
+    const currentCpfError = isValidCPF(CPF);
+    const currentPasswordError = validatePassword(password);
+
+    if (!currentCpfError && !currentPasswordError) {
+      const unmaskedCPF = unmaskCPF(CPF);
+
+      handleSignIn(unmaskedCPF, password);
     }
   };
 
@@ -58,10 +63,12 @@ export default function Login() {
           maxLength={14}
           onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
         />
-        {touched.cpf && cpfError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{cpfError}</Text>
-        ) : null}
       </View>
+      {touched.cpf && cpfError ? (
+        <Text style={{ color: "red", marginTop: -10, marginBottom: 20 }}>
+          {cpfError}
+        </Text>
+      ) : null}
 
       <View style={styles.inputCaixa}>
         <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
@@ -71,12 +78,9 @@ export default function Login() {
           value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={!passwordShow}
-          maxLength={12}
+          maxLength={8}
           onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
         />
-        {touched.password && passwordError ? (
-          <Text style={{ color: "red", marginBottom: 5 }}>{passwordError}</Text>
-        ) : null}
         <TouchableOpacity onPress={passwordEyes}>
           {passwordShow ? (
             <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
@@ -89,6 +93,11 @@ export default function Login() {
           )}
         </TouchableOpacity>
       </View>
+      {touched.password && passwordError ? (
+        <Text style={{ color: "red", marginBottom: 5, marginTop: -10 }}>
+          {passwordError}
+        </Text>
+      ) : null}
 
       {error ? (
         <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
