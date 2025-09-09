@@ -1,7 +1,5 @@
-import { Dimensions, StyleSheet } from "react-native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-const { width } = Dimensions.get("window");
-const isSmallScreen = width < 380;
+import { StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
   background: {

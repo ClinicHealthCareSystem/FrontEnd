@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
- 
   // header
   headerView: {
     backgroundColor: "#0D47AB",
@@ -56,6 +55,4 @@ export default StyleSheet.create({
     color: "white",
     fontSize: RFValue(15),
   },
-
-  
 });

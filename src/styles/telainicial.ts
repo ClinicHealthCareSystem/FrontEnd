@@ -1,5 +1,4 @@
-import { Button, Dimensions, StyleSheet } from "react-native";
-const { width } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   scrollbackground: {
@@ -38,11 +37,9 @@ export default StyleSheet.create({
     height: 40,
   },
 
-
   textButton: {
     color: "white",
     fontWeight: "bold",
     fontSize: 16,
-    
   },
 });

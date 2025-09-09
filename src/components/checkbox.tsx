@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from "react";
+import { View, TouchableOpacity } from "react-native";
 const Checkbox = () => {
   const [checked, setChecked] = useState(false);
   const alternarMarcacao = () => {
-    setChecked(!checked);  
+    setChecked(!checked);
   };
 
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', padding: 20 }}>
+    <View style={{ flexDirection: "row", alignItems: "center", padding: 20 }}>
       <TouchableOpacity onPress={alternarMarcacao}>
         <View>
           {checked && (
             <View
-              style={{ 
+              style={{
                 width: 18,
                 height: 18,
-                backgroundColor: 'white',
+                backgroundColor: "white",
               }}
             />
           )}
         </View>
       </TouchableOpacity>
-      
     </View>
   );
 };

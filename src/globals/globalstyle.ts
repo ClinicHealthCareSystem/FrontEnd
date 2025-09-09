@@ -1,12 +1,9 @@
-import styled from "styled-components/native"; //instalei uma biblioteca chamada styled-components para criar um css global e poder reutilizar depois
+import styled from "styled-components/native";
 
 export const Background = styled.View`
-    flex: 1;
-    backgroundColor: #ADD8E6;
-    justifyContent: center;
-    paddingHorizontal: 20;
+  flex: 1;
+  backgroundcolor: #add8e6;
+  justifycontent: center;
+  paddinghorizontal: 20;
 `;
-export const Tittle = styled.Text`
-
-
-`;
+export const Tittle = styled.Text``;

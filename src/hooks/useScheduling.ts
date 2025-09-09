@@ -8,7 +8,6 @@ export function useScheduling() {
   const handleScheduling = async (data: any) => {
     setError("");
     console.log("Envio dos dados de atendimento atendimento");
-    // Fernando: Vou fazer o backend e depois volto aqui
   };
 
   return { error, handleScheduling };

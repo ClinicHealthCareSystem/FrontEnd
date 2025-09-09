@@ -1,13 +1,11 @@
 import { StyleSheet } from "react-native";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: "#ADD8E6",
   },
-
-  
 
   scrollCards: {
     marginTop: 10,
@@ -49,6 +47,4 @@ export default StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
-
-
 });

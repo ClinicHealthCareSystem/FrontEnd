@@ -1,6 +1,5 @@
-import { Dimensions, StyleSheet } from "react-native";
-const { width } = Dimensions.get("window");
-const isSmallScreen = width < 380;
+import { StyleSheet } from "react-native";
+
 export default StyleSheet.create({
   container: {
     flex: 1,

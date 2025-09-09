@@ -3,16 +3,16 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
   CardContainer: {
-     backgroundColor: "#0D47AB",
-      borderRadius:  12,
-      shadowColor: "black",
-      shadowOffset: {width: 0, height: 2},
-      shadowOpacity: 0.7,
-      shadowRadius: 8,
-      elevation: 5,
-      padding: 16,
-      marginTop: 30,
-      marginHorizontal: 20,
+    backgroundColor: "#0D47AB",
+    borderRadius: 12,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.7,
+    shadowRadius: 8,
+    elevation: 5,
+    padding: 16,
+    marginTop: 30,
+    marginHorizontal: 20,
   },
 
   DateHour: {
@@ -22,7 +22,8 @@ export default StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 15,
   },
-  infoCardView:{
+
+  infoCardView: {
     borderBottomWidth: 1,
     borderBottomColor: "#dfdbdbff",
     paddingBottom: 6,
@@ -34,8 +35,6 @@ export default StyleSheet.create({
     color: "white",
     fontWeight: "400",
     marginBottom: 5,
-    
-    
   },
 
   textCardView: {
@@ -45,39 +44,32 @@ export default StyleSheet.create({
     marginTop: 5,
   },
 
-  
-
   caixaButtonOption: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop:16,
+    marginTop: 16,
   },
 
   buttonCardEdit: {
-    flex:1,
+    flex: 1,
     borderRadius: 12,
     alignItems: "center",
     paddingVertical: 12,
     marginRight: 8,
-    backgroundColor: "#3284f1"
-    
-    
-
+    backgroundColor: "#3284f1",
   },
-  buttonCardCancel:{
-    flex:1,
+  
+  buttonCardCancel: {
+    flex: 1,
     borderRadius: 12,
     alignItems: "center",
     marginLeft: 8,
-    paddingVertical:12,
-    
-    
+    paddingVertical: 12,
   },
 
   buttonTextCardView: {
-   fontSize: RFValue(18),
-   fontWeight: "bold",
-   color: "white",
-
+    fontSize: RFValue(18),
+    fontWeight: "bold",
+    color: "white",
   },
 });

@@ -88,7 +88,9 @@ export default function Novasenha() {
         />
       </View>
       {touched.cpf && cpfError ? (
-        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>{cpfError}</Text>
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {cpfError}
+        </Text>
       ) : null}
 
       <Text style={styles.label}>Nova Senha</Text>
@@ -121,7 +123,9 @@ export default function Novasenha() {
         </TouchableOpacity>
       </View>
       {touched.password && passwordError ? (
-        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>{passwordError}</Text>
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {passwordError}
+        </Text>
       ) : null}
 
       <Text style={styles.label}>Confirmar Senha</Text>

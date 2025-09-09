@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
-import {
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  ScrollView,
-  TextInput,
-} from "react-native";
+import React from "react";
+import { Text, TouchableOpacity, View, TextInput } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-import { Link, router, Tabs } from "expo-router";
 import styles from "../stylesComponents/headerHome";
 
 export default function HeaderHome({

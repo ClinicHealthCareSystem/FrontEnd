@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { router } from "expo-router";
 import styles from "../styles/erro";
 
@@ -10,10 +10,7 @@ export default function ErroScreen() {
         A rota que você tentou acessar não existe.
       </Text>
 
-      <Pressable
-        style={styles.button}
-        onPress={() => router.replace("/")} 
-      >
+      <Pressable style={styles.button} onPress={() => router.replace("/")}>
         <Text style={styles.buttonText}>Ir para Página Inicial</Text>
       </Pressable>
     </View>

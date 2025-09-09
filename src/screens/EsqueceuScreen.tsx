@@ -66,9 +66,7 @@ export default function Esqueceu() {
       </View>
 
       {phoneError ? (
-        <Text style={{ color: "red", marginBottom: 10 }}>
-          {phoneError}
-        </Text>
+        <Text style={{ color: "red", marginBottom: 10 }}>{phoneError}</Text>
       ) : null}
 
       {error ? (

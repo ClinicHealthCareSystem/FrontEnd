@@ -1,24 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
-import { Link, router, Tabs } from "expo-router";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import tabNavegation from "../stylesComponents/tabNavegation";
 
 const goBack = () => {
   router.replace("/menu");
-}
+};
+
+const profile = () => {
+  router.push("/perfil");
+};
 
 export default function TabsNavegation() {
   return (
     <View style={tabNavegation.tabNavegation}>
-      <TouchableOpacity style={tabNavegation.tabButton} onPress={() => goBack()}>
+      <TouchableOpacity
+        style={tabNavegation.tabButton}
+        onPress={() => goBack()}
+      >
         <Ionicons name="home" size={30} color="#fff" />
         <Text style={tabNavegation.tabText}>Home</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={tabNavegation.tabButton}>
+      <TouchableOpacity
+        style={tabNavegation.tabButton}
+        onPress={() => profile()}
+      >
         <Ionicons name="person" size={30} color="#fff" />
         <Text style={tabNavegation.tabText}>Perfil</Text>
       </TouchableOpacity>

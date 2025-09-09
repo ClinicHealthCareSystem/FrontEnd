@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
