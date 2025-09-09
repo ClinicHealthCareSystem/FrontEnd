@@ -1,7 +1,6 @@
 import { useState } from "react";
-import React, { useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import React from "react";
+import { useRouter } from "expo-router";
 import { TermosServico } from "../components/termos";
 
 import {
@@ -9,7 +8,6 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image,
   ScrollView,
   Modal,
 } from "react-native";
@@ -18,166 +16,172 @@ import { useSignUp } from "../hooks/useSignUp";
 import {
   unmaskPhone,
   isValidCPF,
-  unmaskCPF,
   maskCPF,
   validateName,
   validatePassword,
   validatePhone,
   maskPhone,
+  unmaskCPF,
 } from "../utils/userValidations";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Cadastro() {
   const [modalVisible, setModalVisible] = useState(false);
   const [aceitarTermos, setAceitarTermos] = useState(false);
+  const [passwordShow, setPasswordShow] = useState(false);
+
+  const [name, setName] = useState("");
+  const [CPF, setCPF] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [touched, setTouched] = useState({
+    name: false,
+    cpf: false,
+    phone: false,
+    password: false,
+  });
+
+  const router = useRouter();
+  const { error, handleSignUp } = useSignUp();
 
   const abrirTermos = () => {
     setModalVisible(true);
   };
 
-  const [passwordShow, setPasswordShow] = useState(false);
   const passwordEyes = () => {
     setPasswordShow((prev) => !prev);
   };
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
-  const router = useRouter();
+  const nameError = touched.name ? validateName(name) : "";
+  const cpfError = touched.cpf ? isValidCPF(CPF) : "";
+  const phoneError = touched.phone ? validatePhone(phone) : "";
+  const passwordError = touched.password ? validatePassword(password) : "";
 
-  const { error, handleSignUp } = useSignUp();
+  const handleSubmit = () => {
+    setTouched({
+      name: true,
+      cpf: true,
+      phone: true,
+      password: true,
+    });
+
+    const currentNameError = validateName(name);
+    const currentCpfError = isValidCPF(CPF);
+    const currentPhoneError = validatePhone(phone);
+    const currentPasswordError = validatePassword(password);
+
+    if (
+      !currentNameError &&
+      !currentCpfError &&
+      !currentPhoneError &&
+      !currentPasswordError &&
+      aceitarTermos
+    ) {
+      const unmaskedCPF = unmaskCPF(CPF);
+      const unmaskedPhone = unmaskPhone(phone);
+      handleSignUp(name.trim(), unmaskedCPF, unmaskedPhone, password);
+    }
+  };
 
   return (
-    <ScrollView contentContainerStyle={styles.background}>
+    <ScrollView style={styles.background}>
       <Text style={styles.titulo}>Cadastro</Text>
 
       <Text style={styles.label}>Nome Completo</Text>
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.account_circle}
-          source={require("../assets/account_circle.png")}
-        />
-        <Controller
-          control={control}
-          name="name"
-          rules={{
-            validate: (value) => validateName(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) =>
-                  onChange(text.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, ""))
-                }
-                value={value}
-                placeholder="Digite seu nome completo"
-              />
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
-            </>
-          )}
+        <Ionicons name="person-outline" size={30} style={styles.id_card} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) =>
+            setName(text.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, ""))
+          }
+          value={name}
+          placeholder="Digite seu nome"
+          onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
         />
       </View>
+      {touched.name && nameError ? (
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {nameError}
+        </Text>
+      ) : null}
 
       <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
-        <Image
-          style={styles.id_card}
-          source={require("../assets/id_card.png")}
-        />
-        <Controller
-          control={control}
-          name="CPF"
-          rules={{
-            validate: (value) => isValidCPF(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) =>
-                  onChange(maskCPF(text))
-                }
-                value={value}
-                placeholder="Digite seu CPF"
-                keyboardType="numeric"
-                maxLength={14}
-              />
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
-            </>
-          )}
+        <Ionicons name="id-card-outline" size={30} style={styles.id_card} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setCPF(maskCPF(text))}
+          value={CPF}
+          placeholder="Digite seu CPF"
+          keyboardType="numeric"
+          maxLength={14}
+          onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
         />
       </View>
+      {touched.cpf && cpfError ? (
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {cpfError}
+        </Text>
+      ) : null}
 
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
-        <Image style={styles.phone} source={require("../assets/phone.png")} />
-        <Controller
-          control={control}
-          name="phone"
-          rules={{
-            validate: (value) => validatePhone(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) => onChange(maskPhone(text))}
-                value={value}
-                placeholder="Digite seu celular com DDD"
-                keyboardType="numeric"
-                maxLength={15}
-              />
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
-            </>
-          )}
+        <Ionicons name="call-outline" size={30} style={styles.phone} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setPhone(maskPhone(text))}
+          value={phone}
+          placeholder="Digite seu celular"
+          keyboardType="numeric"
+          maxLength={15}
+          onBlur={() => setTouched((prev) => ({ ...prev, phone: true }))}
         />
       </View>
+      {touched.phone && phoneError ? (
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {phoneError}
+        </Text>
+      ) : null}
 
       <Text style={styles.label}>Crie uma Senha</Text>
       <View style={styles.inputCaixa}>
-        <Image style={styles.lock} source={require("../assets/lock.png")} />
-        <Controller
-          control={control}
-          name="password"
-          rules={{
-            validate: (value) => validatePassword(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) =>
-                  onChange(text.replace(/[^A-Za-z0-9]/g, ""))
-                }
-                value={value}
-                placeholder="Digite sua senha"
-                secureTextEntry={!passwordShow}
-                maxLength={12}
-              />
-
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
-
-              <TouchableOpacity onPress={passwordEyes}>
-                <Image
-                  source={
-                    passwordShow
-                      ? require("../assets/visibility_on.png")
-                      : require("../assets/visibility_off.png")
-                  }
-                  style={styles.visibility_on}
-                />
-              </TouchableOpacity>
-            </>
-          )}
+        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) =>
+            setPassword(text.replace(/[^A-Za-z0-9]/g, ""))
+          }
+          value={password}
+          placeholder="Digite sua senha"
+          secureTextEntry={!passwordShow}
+          maxLength={8}
+          onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
         />
+        <TouchableOpacity onPress={passwordEyes}>
+          {passwordShow ? (
+            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+          ) : (
+            <Ionicons
+              name="eye-off-outline"
+              size={30}
+              style={styles.eyeClosed}
+            />
+          )}
+        </TouchableOpacity>
       </View>
+      {touched.password && passwordError ? (
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
+          {passwordError}
+        </Text>
+      ) : null}
+
       <TouchableOpacity onPress={abrirTermos}>
         <Text style={styles.buttonAceitar}>Aceite os Termos</Text>
       </TouchableOpacity>
+
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
-        {" "}
         <TermosServico
           onClose={() => setModalVisible(false)}
           onAccept={() => {
@@ -187,18 +191,24 @@ export default function Cadastro() {
         />
       </Modal>
 
-      <TouchableOpacity
-        style={styles.buttonCadastrar}
-        disabled={!aceitarTermos}
-        onPress={handleSubmit((data) => {
-          data.phone = unmaskPhone(data.phone);
-          handleSignUp(data.name, data.CPF, data.phone, data.password);
-        })}
-      >
-        <Text style={styles.buttonText}>
-          {aceitarTermos ? "Cadastrar" : "Cadastrar"}
+      {!aceitarTermos &&
+      (touched.name || touched.cpf || touched.phone || touched.password) ? (
+        <Text style={{ color: "red", marginBottom: 5 }}>
+          É necessário aceitar os termos de serviço
         </Text>
+      ) : null}
+
+      <TouchableOpacity
+        style={[styles.buttonCadastrar, !aceitarTermos && { opacity: 0.6 }]}
+        disabled={!aceitarTermos}
+        onPress={handleSubmit}
+      >
+        <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
+
+      {error ? (
+        <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
+      ) : null}
 
       <View style={styles.voltaLogin}>
         <Text style={styles.text}>Já tem uma conta?</Text>

@@ -40,6 +40,15 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
+    width: "100%",
+  },
+
+  eyeOpened: {
+    marginLeft: 10,
+  },
+
+  eyeClosed: {
+    marginLeft: 10,
   },
 
   esqueci: {
@@ -94,6 +103,4 @@ export default StyleSheet.create({
   lock: {
     marginRight: 5,
   },
-
-  visivility_on: {},
 });

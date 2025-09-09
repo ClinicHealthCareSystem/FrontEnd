@@ -1,6 +1,6 @@
-  import {  StyleSheet } from "react-native";
-  export default StyleSheet.create({
-    tabNavegation: {
+import { StyleSheet } from "react-native";
+export default StyleSheet.create({
+  tabNavegation: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -8,7 +8,7 @@
     borderRadius: 2,
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
-    backgroundColor: "#3284f1",
+    backgroundColor: "#0D47AB",
     elevation: 8,
     borderTopWidth: 1,
     borderColor: "white",

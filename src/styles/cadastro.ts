@@ -5,7 +5,6 @@ const isSmallScreen = width < 380;
 export default StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "center",
     padding: 20,
     backgroundColor: "#ADD8E6",
   },
@@ -49,6 +48,7 @@ export default StyleSheet.create({
     height: "100%",
     overflow: "hidden",
     outlineWidth: 0,
+    width: "100%",
   },
 
   voltaLogin: {
@@ -110,11 +110,11 @@ export default StyleSheet.create({
     marginRight: 5,
   },
 
-  visibility_on: {
-    
+  eyeOpened: {
+    marginLeft: 10,
   },
 
-  visibility_of: {
-    
+  eyeClosed: {
+    marginLeft: 10,
   },
 });

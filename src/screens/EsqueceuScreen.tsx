@@ -1,14 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { router, useRouter } from "expo-router";
+import React, { useState } from "react";
+import { useRouter } from "expo-router";
 
 import {
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Image,
   ScrollView,
 } from "react-native";
 
@@ -19,16 +16,28 @@ import {
   maskPhone,
   unmaskPhone,
 } from "../utils/userValidations";
-
-const { error, handleVerificationCode } = useSendCode();
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Esqueceu() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
   const router = useRouter();
+  const [phone, setPhone] = useState("");
+  const [touched, setTouched] = useState(false);
+
+  const { error, handleVerificationCode } = useSendCode();
+
+  const phoneError = touched ? validatePhone(phone) : "";
+
+  const isFormValid = !validatePhone(phone);
+
+  const handleSubmit = () => {
+    const currentPhoneError = validatePhone(phone);
+
+    if (!currentPhoneError) {
+      const unmaskedPhone = unmaskPhone(phone);
+
+      handleVerificationCode(unmaskedPhone);
+    }
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -41,46 +50,44 @@ export default function Esqueceu() {
         Coloque seu telefone para que possamos enviar um SMS para realizar a
         verificação
       </Text>
+
       <Text style={styles.label}>Telefone</Text>
       <View style={styles.inputCaixa}>
-        <Image style={styles.phone} source={require("../assets/phone.png")} />
-        <Controller
-          control={control}
-          name="phone"
-          rules={{
-            validate: (value) => validatePhone(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text: string) => onChange(maskPhone(text))}
-                value={value}
-                placeholder="Digite seu celular com DDD"
-                keyboardType="numeric"
-                maxLength={15}
-              />
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
-            </>
-          )}
+        <Ionicons name="call-outline" size={30} style={styles.phone} />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setPhone(maskPhone(text))}
+          value={phone}
+          placeholder="Digite seu celular"
+          keyboardType="numeric"
+          maxLength={15}
+          onBlur={() => setTouched(true)}
         />
       </View>
-      <View>
-        <TouchableOpacity
-          style={styles.sendPasswordButton}
-          onPress={handleSubmit((data) => {
-            data.phone = unmaskPhone(data.phone);
-            handleVerificationCode(data.phone);
-          })}
-          accessible={true}
-          accessibilityLabel="Envia SMS para o telefone informado"
-        >
-          <Text style={styles.buttonText}>Enviar</Text>
-        </TouchableOpacity>
-        <Text style={styles.text} onPress={() => router.replace("/login")}>
-          Voltar
+
+      {phoneError ? (
+        <Text style={{ color: "red", marginBottom: 10 }}>
+          {phoneError}
         </Text>
-      </View>
+      ) : null}
+
+      {error ? (
+        <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
+      ) : null}
+
+      <TouchableOpacity
+        style={[styles.sendPasswordButton, !isFormValid && { opacity: 0.6 }]}
+        disabled={!isFormValid}
+        onPress={handleSubmit}
+        accessible={true}
+        accessibilityLabel="Envia SMS para o telefone informado"
+      >
+        <Text style={styles.buttonText}>Enviar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.replace("/login")}>
+        <Text style={styles.text}>Voltar</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }

@@ -1,17 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useRouter } from "expo-router";
-import { useLocalSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 import {
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Image,
   ScrollView,
-  Alert,
 } from "react-native";
 
 import styles from "../styles/recuperar";
@@ -20,14 +17,28 @@ import { verifyCode } from "../utils/authValidations";
 
 export default function Recuperar() {
   const { phone } = useLocalSearchParams();
-  const {
-    control,
-    formState: { errors },
-    getValues,
-  } = useForm({});
   const router = useRouter();
 
   const { error, validateCode } = useVerifyCode();
+
+  const [code, setCode] = useState("");
+  const [touched, setTouched] = useState(false);
+
+  const codeError = touched ? verifyCode(code) : "";
+  const isFormValid = !verifyCode(code);
+
+  const handleSubmit = async () => {
+    const currentCodeError = verifyCode(code);
+    if (!currentCodeError) {
+      validateCode(code, phone as string);
+    }
+
+    const result = await validateCode(code, phone as string);
+
+    if (result && !result.success) {
+      console.log("Erro: ", result.message);
+    }
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.background}>
@@ -41,43 +52,42 @@ export default function Recuperar() {
       </Text>
       <Text style={styles.label}>Digite o código</Text>
       <View style={styles.inputCaixa}>
-        <Image style={styles.sms} source={require("../assets/sms.png")} />
-        <Controller
-          control={control}
-          name="number"
-          rules={{
-            validate: (value) => verifyCode(value) || true,
-          }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <>
-              <TextInput
-                style={styles.input}
-                onChangeText={(text) => onChange(text.replace(/[^0-9]/g, ""))}
-                value={value}
-                placeholder="Digite o código de autenticação"
-                accessible={true}
-                accessibilityLabel="Digitar código de verificação"
-                keyboardType="numeric"
-                maxLength={6}
-              />
-              {error && <Text style={{ color: "red" }}>{error.message}</Text>}
-            </>
-          )}
+        <Ionicons
+          name="chatbox-ellipses-outline"
+          size={30}
+          style={styles.sms}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setCode(text.replace(/[^0-9]/g, ""))}
+          value={code}
+          placeholder="Digite o código de autenticação"
+          accessible={true}
+          accessibilityLabel="Digitar código de verificação"
+          keyboardType="numeric"
+          maxLength={6}
+          onBlur={() => setTouched(true)}
         />
       </View>
-      <View>
-        <TouchableOpacity
-          style={styles.buttonCadastrar}
-          onPress={() => {
-            const codeValue = getValues("number");
-            validateCode(codeValue, phone as string);
-          }}
-          accessible={true}
-          accessibilityLabel="Confirmar código de verificação"
-        >
-          <Text style={styles.buttonText}>Enviar</Text>
-        </TouchableOpacity>
-      </View>
+
+      {codeError ? (
+        <Text style={{ color: "red", marginBottom: 10 }}>{codeError}</Text>
+      ) : null}
+
+      {error ? (
+        <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
+      ) : null}
+
+      <TouchableOpacity
+        style={[styles.buttonCadastrar, !isFormValid && { opacity: 0.6 }]}
+        disabled={!isFormValid}
+        onPress={handleSubmit}
+        accessible={true}
+        accessibilityLabel="Confirmar código de verificação"
+      >
+        <Text style={styles.buttonText}>Enviar</Text>
+      </TouchableOpacity>
+
       <Text
         style={styles.text}
         onPress={() => router.replace("/esqueceu")}
