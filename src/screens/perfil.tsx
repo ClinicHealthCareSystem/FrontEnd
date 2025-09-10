@@ -8,8 +8,8 @@ import CardInfoPerfil from "../components/cardInfo";
 import { useState } from "react";
 
 export default function Perfil() {
-  const [activeTab, setActiveTab] = useState<"pessoal" | "saude" | "apoio">(
-    "pessoal"
+  const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(
+    "opcao1"
   );
   return (
     <View style={styles.background}>
@@ -40,12 +40,12 @@ export default function Perfil() {
         
           <TabsButtonPerfil
             tabs={[
-              {label: "Pessoal", value: "pessoal"},
-              {label: "Saúde", value: "saude"},
-              {label: "Apoio", value: "apoio"},
+              {label: "Pessoal", value: "opcao1"},
+              {label: "Saúde", value: "opcao2"},
+              {label: "Apoio", value: "opcao3"},
             ]}
             activeTab={activeTab}
-            onPress={(value) => setActiveTab(value as "pessoal" | "saude" | "apoio")}
+            onPress={(value) => setActiveTab(value as "opcao1" | "opcao2" | "opcao3")}
           />
           
 

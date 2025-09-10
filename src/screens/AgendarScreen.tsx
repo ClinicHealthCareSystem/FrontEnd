@@ -9,8 +9,8 @@ import TabsButtonPerfil from "../components/TabButtonsPerfil";
 import styles from "../styles/agendar";
 
 export default function AgendarScreen() {
-  const [activeTab, setActiveTab] = useState<"pessoal" | "saude" | "apoio">(
-      "pessoal"
+  const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(
+      "opcao1"
     );
   return (
     <View style={styles.background}>
@@ -23,14 +23,14 @@ export default function AgendarScreen() {
         <ScrollView style={styles.body}>
           <TabsButtonPerfil
                       tabs={[
-                        {label: "Consultas", value: "pessoal"},
-                        {label: "Exames", value: "saude"},
-                        {label: "Agendar", value: "apoio"},
+                        {label: "Consultas", value: "opcao1"},
+                        {label: "Exames", value: "opcao2"},
+                        {label: "Agendar", value: "opcao3"},
                       ]}
                       activeTab={activeTab}
-                      onPress={(value) => setActiveTab(value as "pessoal" | "saude" | "apoio")}
+                      onPress={(value) => setActiveTab(value as "opcao1" | "opcao2" | "opcao3")}
                     />
-          <AgendaCard />
+          <AgendaCard activeTab={activeTab}/>
           
         </ScrollView>
         <TabsNavegation />

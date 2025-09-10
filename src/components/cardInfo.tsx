@@ -2,12 +2,12 @@ import { Text, View, TextInput } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import styles from "../styles/perfil";
 type Props = {
-  activeTab: "pessoal" | "saude" | "apoio";
+  activeTab: "opcao1" | "opcao2" | "opcao3";
 };
 export default function CardInfoPerfil({ activeTab }: Props) {
   return (
     <View style={styles.cardInfo}>
-      {activeTab === "pessoal" && (
+      {activeTab === "opcao1" && (
         <>
           <Text style={styles.tittleInfo}>Informações</Text>
           <Text style={styles.labelInfo}>Nome:</Text>
@@ -57,7 +57,7 @@ export default function CardInfoPerfil({ activeTab }: Props) {
         </>
       )}
 
-      {activeTab === "saude" && (
+      {activeTab === "opcao2" && (
         <>
           <Text style={styles.tittleInfo}>Informações de saúde</Text>
 

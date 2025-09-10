@@ -11,8 +11,8 @@ export default function MedicamentoCard({
   hora1 = "",
   hora2 = "",
 }) {
-  const [activeTab, setActiveTab] = useState<"pessoal" | "saude" | "apoio">(
-      "pessoal"
+  const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(
+      "opcao1"
     );
   const [liked, setLiked] = useState(false);
 
