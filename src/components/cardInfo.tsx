@@ -1,95 +1,107 @@
 import { Text, View, TextInput } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+
 import styles from "../styles/perfil";
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
 };
 export default function CardInfoPerfil({ activeTab }: Props) {
   return (
-    <View style={styles.cardInfo}>
-      {activeTab === "opcao1" && (
-        <>
-          <Text style={styles.tittleInfo}>Informações</Text>
+     <View>
+    {activeTab === "opcao1" && (
+        <View style={styles.cardInfo}>
+          <Text style={styles.tittleInfo}>Informações Pessoais</Text>
+
           <Text style={styles.labelInfo}>Nome:</Text>
           <View style={styles.textInfo}>
-            <TextInput
-              style={styles.inputInfo}
-              editable={false}
-              placeholder="José"
-            />
+            <TextInput style={styles.inputInfo} editable={false} placeholder="José" />
           </View>
 
           <Text style={styles.labelInfo}>Email:</Text>
           <View style={styles.textInfo}>
-            <TextInput
-              style={styles.inputInfo}
-              editable={false}
-              placeholder="Jose@gmail.com"
-            />
+            <TextInput style={styles.inputInfo} editable={false} placeholder="Jose@gmail.com" />
           </View>
 
           <Text style={styles.labelInfo}>Telefone:</Text>
           <View style={styles.textInfo}>
-            <TextInput
-              style={styles.inputInfo}
-              editable={false}
-              placeholder="(85) 9 9999-9999"
-            />
+            <TextInput style={styles.inputInfo} editable={false} placeholder="(85) 9 9999-9999" />
           </View>
 
           <Text style={styles.labelInfo}>Data de Nascimento:</Text>
           <View style={styles.textInfo}>
-            <TextInput
-              style={styles.inputInfo}
-              editable={false}
-              placeholder="01/01/2001"
-            />
+            <TextInput style={styles.inputInfo} editable={false} placeholder="01/01/2001" />
           </View>
 
           <Text style={styles.labelInfo}>Endereço:</Text>
           <View style={styles.textInfo}>
-            <TextInput
-              style={styles.inputInfo}
-              editable={false}
-              placeholder="Rua A 10"
-            />
+            <TextInput style={styles.inputInfo} editable={false} placeholder="Rua A 10" />
           </View>
-        </>
+        </View>
       )}
 
       {activeTab === "opcao2" && (
-        <>
-          <Text style={styles.tittleInfo}>Informações de saúde</Text>
+        <View>
+          <View style={styles.cardInfo}>
+            <Text style={styles.tittleInfo}>Informações de Saúde</Text>
 
-          <Picker>
-            <Picker.Item label="Possui diabetes?" value={null} />
-            <Picker.Item label="Serviço 1" value="Serviço 1" />
-            <Picker.Item label="Serviço 2" value="Serviço 2" />
-            <Picker.Item label="Serviço 3" value="Serviço 3" />
-          </Picker>
+            <View style={styles.textInfoSaude}>
+              <Text style={styles.labelInfoSaude}>Tipo sanguíneo</Text>
+              <Text style={styles.labelInfoSaude}>O+</Text>
+            </View>
 
-          <Picker>
-            <Picker.Item label="Possui Doenças Veneras" value={null} />
-            <Picker.Item label="Serviço 1" value="Serviço 1" />
-            <Picker.Item label="Serviço 2" value="Serviço 2" />
-            <Picker.Item label="Serviço 3" value="Serviço 3" />
-          </Picker>
+            <View style={styles.textInfoSaude}>
+              <Text style={styles.labelInfoSaude}>Altura</Text>
+              <Text style={styles.labelInfoSaude}>1,80m</Text>
+            </View>
 
-          <Picker>
-            <Picker.Item label="Possui doença cronicas" value={null} />
-            <Picker.Item label="Serviço 1" value="Serviço 1" />
-            <Picker.Item label="Serviço 2" value="Serviço 2" />
-            <Picker.Item label="Serviço 3" value="Serviço 3" />
-          </Picker>
+            <View style={styles.textInfoSaude}>
+              <Text style={styles.labelInfoSaude}>Peso</Text>
+              <Text style={styles.labelInfoSaude}>85,5Kg</Text>
+            </View>
 
-          <Picker>
-            <Picker.Item label="Selecione um serviço" value={null} />
-            <Picker.Item label="Serviço 1" value="Serviço 1" />
-            <Picker.Item label="Serviço 2" value="Serviço 2" />
-            <Picker.Item label="Serviço 3" value="Serviço 3" />
-          </Picker>
-        </>
+            <View style={styles.textInfoSaude}>
+              <Text style={styles.labelInfoSaude}>IMC</Text>
+              <Text style={styles.labelInfoSaude}>20,70</Text>
+            </View>
+          </View>
+
+          <View style={styles.cardInfo}>
+            <Text style={styles.tittleInfo}>Condições de Saúde</Text>
+            <View style={styles.textInfoSaudeCond}>
+              <View style={styles.textInfoSaudeCondCaixa}>
+                <Text style={styles.labelInfoSaudeCond}>Diabetes</Text>
+              </View>
+              <View style={styles.textInfoSaudeCondCaixa}>
+                <Text style={styles.labelInfoSaudeCond}>Hipertensão</Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.cardInfo}>
+            <Text style={styles.tittleInfo}>Alergias</Text>
+            <View style={styles.textInfoSaudeCond}>
+              <View style={styles.textInfoSaudeCondCaixa}>
+                <Text style={styles.labelInfoSaudeCond}>Penicilina</Text>
+              </View>
+            </View>
+          </View>
+        </View>
       )}
-    </View>
+    
+
+    {activeTab === "opcao3" && ( 
+      <View style={styles.cardInfo}>
+      <Text style={styles.tittleInfo}>Contatos de emergencia</Text>
+            <View style={styles.textInfoSaudeContato}>           
+              <Text style={styles.labelInfoSaudeContato}>Contato Principal</Text>
+              <Text style={styles.labelInfoSaudeContato}>Contato: (85) 9 999999</Text>
+            </View>
+          </View>
+          
+     )} 
+     </View>    
+    
+
+     
+    
   );
 }

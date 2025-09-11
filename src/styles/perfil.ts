@@ -139,4 +139,76 @@ export default StyleSheet.create({
     fontWeight: "700",
     outlineWidth: 0,
   },
+
+  textInfoSaude:{
+    backgroundColor: "#083b94ff",
+    borderRadius: 8,
+    padding: 6,
+    width: "80%",
+    borderWidth: 1,
+    borderColor: "#ADD8E6",
+    marginTop: 15,
+    marginBottom: 15,
+    alignSelf: "center",
+
+  },
+
+  labelInfoSaude:{
+    fontSize: 16,
+    color: "white",
+    marginHorizontal: 30,
+    fontWeight: "600",
+
+  },
+  textInfoSaudeCond:{
+     backgroundColor: "#0D47AB",
+    padding: 6,
+    width: "90%",
+    borderColor: "#ADD8E6",
+    marginTop: 15,
+    marginBottom: 15,
+    alignSelf: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+
+  },
+  labelInfoSaudeCond:{
+     fontSize: 16,
+    color: "white",
+    
+    fontWeight: "600",
+    textAlign: "center",
+
+
+  },
+  textInfoSaudeCondCaixa:{
+  backgroundColor: "#083b94ff",
+  borderRadius: 8,
+  paddingVertical: 8,
+  paddingHorizontal: 16,
+  borderWidth: 1,
+  borderColor: "#ADD8E6",
+  margin: 6,             
+  alignItems: "center",
+
+  },
+  textInfoSaudeContato:{
+    backgroundColor: "white",
+    padding: 6,
+    width: "90%",
+    borderColor: "#ADD8E6",
+    borderRadius: 8,
+    marginTop: 15,
+    marginBottom: 15,
+    textAlign: "justify",
+  },
+  labelInfoSaudeContato:{
+    fontSize: 16,
+    color: "#083b94ff",
+    fontWeight: "600",
+    textAlign: "justify",
+  },
+  
+
 });
