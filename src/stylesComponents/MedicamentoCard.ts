@@ -35,9 +35,11 @@ export default StyleSheet.create({
 
   textCardView: {
     fontSize: RFValue(16),
+    marginLeft: 10,
     color: "white",
     fontWeight: "bold",
     marginTop: 5,
     textAlign: "center",
+    padding: 5,
   },
 });

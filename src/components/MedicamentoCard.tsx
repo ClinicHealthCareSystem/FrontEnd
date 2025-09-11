@@ -12,30 +12,25 @@ export default function MedicamentoCard({
   hora2 = "",
 }) {
   const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(
-      "opcao1"
-    );
+    "opcao1"
+  );
   const [liked, setLiked] = useState(false);
+  const [liked2, setLiked2] = useState(false);
 
   return (
-
-        
-    
     <View style={styles.CardContainer}>
-      
       <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
       <View style={styles.infoCardView}>
         <Text style={styles.textCardView}>{vezesdia}</Text>
       </View>
-      
 
       <View style={styles.infoCardView}>
-
-                 
         <Text style={styles.textCardView}>
           <MaterialCommunityIcons
             name="clock-outline"
             size={16}
             color={"white"}
+            style={{ marginRight: 5 }}
           />
           {hora1}
         </Text>
@@ -44,6 +39,7 @@ export default function MedicamentoCard({
             name={liked ? "checkbox" : "checkbox-outline"}
             size={30}
             color={liked ? "green" : "white"}
+            style={{ marginRight: 10, marginTop: 5 }}
           />
         </TouchableOpacity>
       </View>
@@ -57,11 +53,12 @@ export default function MedicamentoCard({
           />{" "}
           {hora2}
         </Text>
-        <TouchableOpacity onPress={() => setLiked(!liked)}>
+        <TouchableOpacity onPress={() => setLiked2(!liked2)}>
           <Ionicons
-            name={liked ? "checkbox" : "checkbox-outline"}
+            name={liked2 ? "checkbox" : "checkbox-outline"}
             size={30}
-            color={liked ? "green" : "white"}
+            color={liked2 ? "green" : "white"}
+            style={{ marginRight: 10, marginTop: 5 }}
           />
         </TouchableOpacity>
       </View>

@@ -10,8 +10,8 @@ import styles from "../styles/agendar";
 
 export default function AgendarScreen() {
   const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(
-      "opcao1"
-    );
+    "opcao1"
+  );
   return (
     <View style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -22,16 +22,17 @@ export default function AgendarScreen() {
         />
         <ScrollView style={styles.body}>
           <TabsButtonPerfil
-                      tabs={[
-                        {label: "Consultas", value: "opcao1"},
-                        {label: "Exames", value: "opcao2"},
-                        {label: "Agendar", value: "opcao3"},
-                      ]}
-                      activeTab={activeTab}
-                      onPress={(value) => setActiveTab(value as "opcao1" | "opcao2" | "opcao3")}
-                    />
-          <AgendaCard activeTab={activeTab}/>
-          
+            tabs={[
+              { label: "Consultas", value: "opcao1" },
+              { label: "Exames", value: "opcao2" },
+              { label: "Agendar", value: "opcao3" },
+            ]}
+            activeTab={activeTab}
+            onPress={(value) =>
+              setActiveTab(value as "opcao1" | "opcao2" | "opcao3")
+            }
+          />
+          <AgendaCard activeTab={activeTab} />
         </ScrollView>
         <TabsNavegation />
       </SafeAreaView>
