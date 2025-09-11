@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import styles from "../stylesComponents/agendaCard";
 
 import marcacaoButtons from "../stylesComponents/marcacaoButtons";
+import { router } from "expo-router";
 
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
@@ -88,13 +89,13 @@ export default function AgendaCard({activeTab}: Props) {
       </View>
 
       <View style={marcacaoButtons.caixaMarcacao}>
-        <TouchableOpacity style={marcacaoButtons.buttonMarcacao}>
+        <TouchableOpacity style={marcacaoButtons.buttonMarcacao} onPress={() => router.push("/agendarConsulta")}>
           <Text style={marcacaoButtons.textButtonMarcacao}>Consulta</Text>
         </TouchableOpacity>
       </View>
 
       <View style={marcacaoButtons.caixaMarcacao}>
-        <TouchableOpacity style={marcacaoButtons.buttonMarcacao}>
+        <TouchableOpacity style={marcacaoButtons.buttonMarcacao} onPress={() => router.push("/exames")}>
           <Text style={marcacaoButtons.textButtonMarcacao}>Exame</Text>
         </TouchableOpacity>
       </View>
