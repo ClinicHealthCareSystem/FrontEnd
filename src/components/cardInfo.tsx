@@ -1,4 +1,6 @@
-import { Text, View, TextInput } from "react-native";
+import { Text, View, TextInput,TouchableOpacity } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import styles from "../styles/perfil";
 type Props = {
@@ -9,7 +11,12 @@ export default function CardInfoPerfil({ activeTab }: Props) {
      <View>
     {activeTab === "opcao1" && (
         <View style={styles.cardInfo}>
+          <View style={styles.cardInfoTittle}>
           <Text style={styles.tittleInfo}>Informações Pessoais</Text>
+          <TouchableOpacity>
+          <MaterialCommunityIcons name="account-edit" size={30} color={"white"}/>
+          </TouchableOpacity>
+          </View>
 
           <Text style={styles.labelInfo}>Nome:</Text>
           <View style={styles.textInfo}>
@@ -95,6 +102,9 @@ export default function CardInfoPerfil({ activeTab }: Props) {
               <Text style={styles.labelInfoSaudeContato}>Contato Principal</Text>
               <Text style={styles.labelInfoSaudeContato}>Contato: (85) 9 999999</Text>
             </View>
+            <TouchableOpacity style={styles.buttonAddPhone}>
+              <Text style={styles.buttonAddPhoneText}>Adicionar novo contato<MaterialCommunityIcons name="phone-plus" size={18} color={"white"}/></Text>
+            </TouchableOpacity>
           </View>
           
      )} 

@@ -106,6 +106,12 @@ export default StyleSheet.create({
     width: "90%",
     alignSelf: "center",
   },
+  cardInfoTittle:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    
+    
+  },
 
   tittleInfo: {
     fontSize: 24,
@@ -113,6 +119,7 @@ export default StyleSheet.create({
     marginBottom: 8,
     color: "white",
     textAlign: "center",
+    
   },
 
   textInfo: {
@@ -196,18 +203,34 @@ export default StyleSheet.create({
   textInfoSaudeContato:{
     backgroundColor: "white",
     padding: 6,
-    width: "90%",
-    borderColor: "#ADD8E6",
+    width: "100%",
     borderRadius: 8,
     marginTop: 15,
     marginBottom: 15,
-    textAlign: "justify",
+    
   },
   labelInfoSaudeContato:{
     fontSize: 16,
-    color: "#083b94ff",
-    fontWeight: "600",
+    color: "#0D47AB",
+    fontWeight: "bold",
     textAlign: "justify",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  buttonAddPhone:{
+      backgroundColor:  "#083b94ff",
+      borderRadius: 8,
+      padding: 12,
+      
+            
+  },
+  buttonAddPhoneText:{
+    textAlign: "center",
+    color: "white",
+    fontSize: 18,
+    fontWeight: "600",
+    
+
   },
   
 
