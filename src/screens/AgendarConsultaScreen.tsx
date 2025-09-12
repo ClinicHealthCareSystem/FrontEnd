@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   Platform,
+  Modal,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -12,6 +13,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import {Concluido} from "../components/concluido";
 
 import { useScheduling } from "../hooks/useScheduling";
 import TabsNavegation from "../components/tabsNavegation";
@@ -29,6 +31,8 @@ const AgendarConsultaScreen = () => {
 
   const router = useRouter();
   const { handleScheduling } = useScheduling();
+   const [modalVisible, setModalVisible] = useState(false);
+    const [aceitarTermos, setAceitarTermos] = useState(false);
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -281,6 +285,13 @@ const AgendarConsultaScreen = () => {
             >
               <Text style={styles.scheduleButtonText}>Próximo</Text>
             </TouchableOpacity>
+            <Modal visible={modalVisible} animationType="fade" transparent={true}>
+                  <Concluido
+            onAccept={() => {
+            setAceitarTermos(true);
+            setModalVisible(false);
+          }}/>
+            </Modal>
           </View>
         </ScrollView>
         <TabsNavegation />
