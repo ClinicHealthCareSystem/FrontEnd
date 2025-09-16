@@ -33,12 +33,16 @@ export default StyleSheet.create({
     textAlign: "justify",
     paddingLeft: 10,
     paddingRight: 10,
+    color: "#0D47AB",
+    fontWeight: "bold",
+    fontSize: 28,
   },
 
   areaButton: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems:"center",
     width: "80%",
+
   },
 
   termoButton: {
@@ -48,6 +52,7 @@ export default StyleSheet.create({
     height: 30,
     borderRadius: 8,
     justifyContent: "center",
+    alignContent: "center",
   },
 
   termoButtonText: {
@@ -57,5 +62,6 @@ export default StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     color: "white",
+    
   },
 });

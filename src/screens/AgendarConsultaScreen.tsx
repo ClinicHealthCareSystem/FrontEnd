@@ -280,18 +280,20 @@ const AgendarConsultaScreen = () => {
               />
             </View>
             <TouchableOpacity
-              style={styles.scheduleButton}
-              onPress={handleSubmit((data) => handleScheduling(data))}
-            >
-              <Text style={styles.scheduleButtonText}>Próximo</Text>
-            </TouchableOpacity>
+                  style={styles.scheduleButton}
+                  onPress={handleSubmit(() => setModalVisible(true))}
+                  >
+  <Text style={styles.scheduleButtonText}>Próximo</Text>
+</TouchableOpacity>
             <Modal visible={modalVisible} animationType="fade" transparent={true}>
-                  <Concluido
-            onAccept={() => {
-            setAceitarTermos(true);
-            setModalVisible(false);
-          }}/>
-            </Modal>
+  <Concluido
+    onAccept={handleSubmit((data) => {
+      handleScheduling(data);   // aqui confirma o agendamento
+      setAceitarTermos(true);
+      setModalVisible(false);   // fecha o modal
+    })}
+  />
+</Modal>
           </View>
         </ScrollView>
         <TabsNavegation />

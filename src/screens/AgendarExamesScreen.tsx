@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   Platform,
+  Modal,
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,7 +14,8 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-
+import {Concluido} from "../components/concluido";
+import { useScheduling } from "../hooks/useScheduling";
 import TabsNavegation from "../components/tabsNavegation";
 import HeaderHome from "../components/headerHome";
 import styles from "../styles/exames";
@@ -27,6 +29,9 @@ export default function Exames() {
   } = useForm({});
 
   const router = useRouter();
+  const { handleScheduling } = useScheduling();
+     const [modalVisible, setModalVisible] = useState(false);
+      const [aceitarTermos, setAceitarTermos] = useState(false);
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -150,28 +155,33 @@ export default function Exames() {
             <View style={styles.formInput}>
               <Ionicons name="medkit" style={styles.formIcon} />
               <Controller
-                control={control}
-                name="convenio"
-                rules={{ required: "Selecione um convênio" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <View style={{ flex: 1 }}>
-                    <Picker style={styles.formPicker}>
-                      <Picker.Item label="Selecione um convênio" value={null} />
-                      <Picker.Item label="Amil" />
-                      <Picker.Item label="SulAmérica" />
-                      <Picker.Item label="Unimed" />
-                      <Picker.Item label="Hapvida" />
-                      <Picker.Item label="Bradesco Saúde" />
-                    </Picker>
-                    {error && (
-                      <Text style={{ color: "red" }}>{error.message}</Text>
-                    )}
-                  </View>
-                )}
-              />
+                      control={control}
+                      name="convenio"
+                      rules={{ required: "Selecione um convênio" }}
+                      render={({
+                        field: { onChange, value },
+                        fieldState: { error },
+                      }) => (
+                        <View style={{ flex: 1 }}>
+                          <Picker
+                            selectedValue={value}
+                            onValueChange={onChange}
+                            style={styles.formPicker}
+                          >
+                            <Picker.Item label="Selecione um convênio" value={null} />
+                            <Picker.Item label="Amil" value="Amil" />
+                            <Picker.Item label="SulAmérica" value="SulAmérica" />
+                            <Picker.Item label="Unimed" value="Unimed" />
+                            <Picker.Item label="Hapvida" value="Hapvida" />
+                            <Picker.Item label="Bradesco Saúde" value="Bradesco Saúde" />
+                          </Picker>
+                          {error && (
+                            <Text style={{ color: "red" }}>{error.message}</Text>
+                          )}
+                        </View>
+                      )}
+                    />
+
             </View>
             <Text style={styles.formLabel}>Data:</Text>
             <View style={styles.formInput}>
@@ -254,13 +264,20 @@ export default function Exames() {
             </View>
 
             <TouchableOpacity
-              style={styles.scheduleButton}
-              onPress={handleSubmit((data) => handleExameScheduling(data))}
-            >
-              <Text style={styles.scheduleButtonText}>
-                Confirmar seu Agendamento
-              </Text>
+                              style={styles.scheduleButton}
+                              onPress={handleSubmit(() => setModalVisible(true))}
+                              >
+              <Text style={styles.scheduleButtonText}>Próximo</Text>
             </TouchableOpacity>
+                        <Modal visible={modalVisible} animationType="fade" transparent={true}>
+              <Concluido
+                onAccept={handleSubmit((data) => {
+                  handleScheduling(data);   // aqui confirma o agendamento
+                  setAceitarTermos(true);
+                  setModalVisible(false);   // fecha o modal
+                })}
+              />
+            </Modal>
           </View>
         </ScrollView>
         <TabsNavegation />

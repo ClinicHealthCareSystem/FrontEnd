@@ -15,9 +15,10 @@ export const Concluido = ({
       <View style={styles.caixa}>
         <View style={styles.scrollTermo}>
           <Text style={styles.termoText}>
-            <MaterialCommunityIcons name="check" size={28} color={"#0D47AB"}/>
             Consulta Marcada
+            
           </Text>
+          <MaterialCommunityIcons name="check" size={28} color={"#0D47AB"} />
         </View>
         <View style={styles.areaButton}>
           <TouchableOpacity style={styles.termoButton} onPress={onAccept}>
