@@ -83,6 +83,7 @@ const AgendarConsultaScreen = () => {
           titulo="Saúde Mania"
           mostrarBusca={false}
           subTitulo="Faça seu agendamento"
+          mostrarVoltar= {true}
         />
         <ScrollView>
           <View style={styles.bodyView}>

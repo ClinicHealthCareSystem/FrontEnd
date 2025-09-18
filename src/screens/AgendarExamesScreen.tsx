@@ -79,7 +79,9 @@ export default function Exames() {
         <HeaderHome
           titulo="Saúde Mania"
           mostrarBusca={false}
+          mostrarVoltar={true}
           subTitulo="Agende seu exame com a melhor do Brasil"
+
         />
         <ScrollView>
           <View style={styles.bodyView}>

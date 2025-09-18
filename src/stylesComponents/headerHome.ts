@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 export default StyleSheet.create({
-  // header
   headerView: {
     backgroundColor: "#0D47AB",
     paddingBottom: 25,
@@ -15,18 +14,31 @@ export default StyleSheet.create({
   headerContent: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between", 
     marginTop: 25,
+    position: "relative",
+  },
+
+  headerBackButton: {
+    width: 40,
+    justifyContent: "center",
+    alignItems: "flex-start",
   },
 
   headerTitle: {
     fontSize: RFValue(28),
     fontWeight: "bold",
     color: "white",
+    
+    left: 0,
+    right: 0,
+    textAlign: "center",
   },
 
-  headerNotificationContainer: {
-    flex: 1,
+  headerRight: {
+    width: 40,
     alignItems: "flex-end",
+    justifyContent: "center",
   },
 
   search_bar: {
@@ -37,13 +49,6 @@ export default StyleSheet.create({
     fontSize: 16,
     color: "#797979ff",
     outlineWidth: 0,
-  },
-
-  headerNotifications: {
-    color: "white",
-    fontSize: RFValue(23),
-    right: 45,
-    top: 2,
   },
 
   headerInfo: {

@@ -107,20 +107,28 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
   cardInfoTittle:{
-    flexDirection: "row",
-    justifyContent: "space-between",
+   justifyContent: "center",
+  alignItems: "center",
+  position: "relative",
+  marginBottom: 8,
     
     
+  },
+  editButton:{
+position: "absolute",
+  right: 0,   
+  top: "50%", 
+  transform: [{ translateY: -15 }], 
+  padding: 4,
   },
 
-  tittleInfo: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 8,
-    color: "white",
-    textAlign: "center",
-    
-  },
+ tittleInfo: {
+  fontSize: 24,
+  fontWeight: "bold",
+  marginBottom: 8,
+  color: "white",
+  textAlign: "center",
+},
 
   textInfo: {
     backgroundColor: "white",

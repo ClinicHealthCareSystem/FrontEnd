@@ -1,46 +1,48 @@
 import { Text, View, TextInput,TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-
+import { useState } from "react";
 import styles from "../styles/perfil";
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
 };
 export default function CardInfoPerfil({ activeTab }: Props) {
+  const [isEditing, setIsEditing] = useState(false);
   return (
      <View>
     {activeTab === "opcao1" && (
         <View style={styles.cardInfo}>
           <View style={styles.cardInfoTittle}>
           <Text style={styles.tittleInfo}>Informações Pessoais</Text>
-          <TouchableOpacity>
-          <MaterialCommunityIcons name="account-edit" size={30} color={"white"}/>
+          <TouchableOpacity style={styles.editButton}
+          onPress={() => setIsEditing(!isEditing)}>
+          <MaterialCommunityIcons name={isEditing ? "check" : "account-edit"} size={30} color={"white"}/>
           </TouchableOpacity>
           </View>
 
           <Text style={styles.labelInfo}>Nome:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={false} placeholder="José" />
+            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="José" />
           </View>
 
           <Text style={styles.labelInfo}>Email:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={false} placeholder="Jose@gmail.com" />
+            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="Jose@gmail.com" />
           </View>
 
           <Text style={styles.labelInfo}>Telefone:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={false} placeholder="(85) 9 9999-9999" />
+            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="(85) 9 9999-9999" />
           </View>
 
           <Text style={styles.labelInfo}>Data de Nascimento:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={false} placeholder="01/01/2001" />
+            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="01/01/2001" />
           </View>
 
           <Text style={styles.labelInfo}>Endereço:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={false} placeholder="Rua A 10" />
+            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="Rua A 10" />
           </View>
         </View>
       )}
