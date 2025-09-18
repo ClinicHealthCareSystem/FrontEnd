@@ -16,10 +16,20 @@ export default function MedicamentoCard({
   );
   const [liked, setLiked] = useState(false);
   const [liked2, setLiked2] = useState(false);
+  const [notify, setNotify] = useState(true); 
 
   return (
     <View style={styles.CardContainer}>
+      <View style={styles.headerCardMedicamentoTittle}>
       <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
+      <TouchableOpacity onPress={() => setNotify(!notify)}>
+          <Ionicons
+            name={notify ? "notifications" : "notifications-off"}
+            size={24}
+            color={notify ? "white" : "gray"}
+          />
+        </TouchableOpacity>
+        </View>
       <View style={styles.infoCardView}>
         <Text style={styles.textCardView}>{vezesdia}</Text>
       </View>

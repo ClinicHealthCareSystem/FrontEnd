@@ -14,6 +14,13 @@ export default StyleSheet.create({
     marginTop: 30,
     marginHorizontal: 20,
   },
+  headerCardMedicamentoTittle:{
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: 8,
+
+  },
 
   titleRemedio: {
     fontSize: RFValue(26),

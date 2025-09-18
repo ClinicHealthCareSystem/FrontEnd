@@ -288,9 +288,9 @@ const AgendarConsultaScreen = () => {
             <Modal visible={modalVisible} animationType="fade" transparent={true}>
   <Concluido
     onAccept={handleSubmit((data) => {
-      handleScheduling(data);   // aqui confirma o agendamento
+      handleScheduling(data);   
       setAceitarTermos(true);
-      setModalVisible(false);   // fecha o modal
+      setModalVisible(false);  
     })}
   />
 </Modal>
