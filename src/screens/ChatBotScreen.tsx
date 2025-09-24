@@ -11,14 +11,27 @@ import TabsNavegation from "../components/tabsNavegation";
 import globalStyle from "../global/globalStyles";
 import styles from "../styles/chatBot";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { useRef, useState, useEffect } from "react";
 
 export default function ChatBotScreen() {
   const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<string[]>([]);
+  const scrollViewRef = useRef<ScrollView>(null);
 
   const handleSendMessage = () => {
+    if (message.trim() === "") return;
+
+    setMessages((prev) => [...prev, message]);
+    setMessage("");
     console.log(message);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      scrollViewRef.current?.scrollToEnd({ animated: true });
+    }, 100);
+  }, [messages]);
 
   return (
     <View style={globalStyle.background}>
@@ -29,33 +42,56 @@ export default function ChatBotScreen() {
           subTitulo="Saúde Mania BOT"
           mostrarVoltar={true}
         />
-        <ScrollView style={{ flex: 1, width: "100%" }}>
-          <View>
-            <View style={styles.chatBox}>
-              <View style={{ flexDirection: "row" }}>
-                <TextInput
-                  style={styles.chatBoxInput}
-                  placeholder="Digite aqui sua mensagem..."
-                  onChangeText={setMessage}
-                  value={message}
-                />
-                <Ionicons
-                  name="arrow-forward-outline"
-                  size={30}
-                  color={"white"}
-                />
+
+        <View style={{ flex: 1 }}>
+          <ScrollView
+            ref={scrollViewRef}
+            style={{ flex: 1 }}
+            contentContainerStyle={{
+              flexGrow: 1,
+              justifyContent: messages.length === 0 ? "center" : "flex-end",
+              paddingHorizontal: 16,
+              paddingVertical: 10,
+            }}
+            showsVerticalScrollIndicator={false}
+          >
+            {messages.length === 0 && (
+              <View style={{ alignItems: "center", justifyContent: "center" }}>
+                <MaterialCommunityIcons name="robot" size={100} color="white" />
               </View>
-            </View>
-            <View>
-              <TouchableOpacity
-                onPress={handleSendMessage}
-                style={[styles.chatBoxButton, globalStyle.button]}
-              >
-                <Text style={globalStyle.buttonText}>Enviar</Text>
-              </TouchableOpacity>
-            </View>
+            )}
+
+            {messages.map((msg, index) => (
+              <View key={index} style={styles.mensagem}>
+                <Text style={{ fontSize: 16 }}>{msg}</Text>
+              </View>
+            ))}
+          </ScrollView>
+
+          <View style={styles.inputBox}>
+            <TextInput
+              style={styles.chatBoxInput}
+              placeholder="Digite aqui sua mensagem..."
+              onChangeText={setMessage}
+              value={message}
+              multiline={false}
+              returnKeyType="send"
+              onSubmitEditing={handleSendMessage}
+            />
+
+            <TouchableOpacity
+              onPress={handleSendMessage}
+              style={[styles.chatBoxButton, globalStyle.button]}
+            >
+              <Ionicons
+                name="arrow-forward-outline"
+                style={{ color: "white", fontWeight: "bold" }}
+                size={18}
+              />
+            </TouchableOpacity>
           </View>
-        </ScrollView>
+        </View>
+
         <TabsNavegation />
       </SafeAreaView>
     </View>
