@@ -13,18 +13,22 @@ import styles from "../styles/chatBot";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRef, useState, useEffect } from "react";
+import bot from "../hooks/useBot";
 
 export default function ChatBotScreen() {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
   const scrollViewRef = useRef<ScrollView>(null);
 
+  const { error, handleChatBot } = bot(message);
+
   const handleSendMessage = () => {
     if (message.trim() === "") return;
 
     setMessages((prev) => [...prev, message]);
     setMessage("");
-    console.log(message);
+
+    handleChatBot(message);
   };
 
   useEffect(() => {
