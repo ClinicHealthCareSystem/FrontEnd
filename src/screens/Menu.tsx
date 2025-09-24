@@ -66,7 +66,7 @@ export default function Menu() {
         router.push("/planos");
         break;
       case "CHATBOT":
-        router.push("/chatbot");
+        router.push("/chatBot");
         break;
     }
   };

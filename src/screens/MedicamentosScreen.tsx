@@ -6,10 +6,8 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import { useRouter } from "expo-router";
 
 import styles from "../styles/medicamentos";
-import { Background } from "../globals/globalstyle";
 import Checkbox from "../components/checkbox";
 import MedicamentoCard from "../components/MedicamentoCard";
 

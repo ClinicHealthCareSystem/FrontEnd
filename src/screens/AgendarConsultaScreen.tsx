@@ -13,7 +13,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import {Concluido} from "../components/concluido";
+import { Concluido } from "../components/concluido";
 
 import { useScheduling } from "../hooks/useScheduling";
 import TabsNavegation from "../components/tabsNavegation";
@@ -31,8 +31,8 @@ const AgendarConsultaScreen = () => {
 
   const router = useRouter();
   const { handleScheduling } = useScheduling();
-   const [modalVisible, setModalVisible] = useState(false);
-    const [aceitarTermos, setAceitarTermos] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [aceitarTermos, setAceitarTermos] = useState(false);
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -83,7 +83,7 @@ const AgendarConsultaScreen = () => {
           titulo="Saúde Mania"
           mostrarBusca={false}
           subTitulo="Faça seu agendamento"
-          mostrarVoltar= {true}
+          mostrarVoltar={true}
         />
         <ScrollView>
           <View style={styles.bodyView}>
@@ -281,20 +281,24 @@ const AgendarConsultaScreen = () => {
               />
             </View>
             <TouchableOpacity
-                  style={styles.scheduleButton}
-                  onPress={handleSubmit(() => setModalVisible(true))}
-                  >
-  <Text style={styles.scheduleButtonText}>Próximo</Text>
-</TouchableOpacity>
-            <Modal visible={modalVisible} animationType="fade" transparent={true}>
-  <Concluido
-    onAccept={handleSubmit((data) => {
-      handleScheduling(data);   
-      setAceitarTermos(true);
-      setModalVisible(false);  
-    })}
-  />
-</Modal>
+              style={styles.scheduleButton}
+              onPress={handleSubmit(() => setModalVisible(true))}
+            >
+              <Text style={styles.scheduleButtonText}>Próximo</Text>
+            </TouchableOpacity>
+            <Modal
+              visible={modalVisible}
+              animationType="fade"
+              transparent={true}
+            >
+              <Concluido
+                onAccept={handleSubmit((data) => {
+                  handleScheduling(data);
+                  setAceitarTermos(true);
+                  setModalVisible(false);
+                })}
+              />
+            </Modal>
           </View>
         </ScrollView>
         <TabsNavegation />
