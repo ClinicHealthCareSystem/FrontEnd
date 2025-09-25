@@ -12,12 +12,13 @@ import globalStyle from "../global/globalStyles";
 import styles from "../styles/chatBot";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect} from "react";
 import bot from "../hooks/useBot";
 
 export default function ChatBotScreen() {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
+  const [hasUserTyped, setHasUserTyped] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
 
   const { error, handleChatBot } = bot(message);
@@ -27,9 +28,16 @@ export default function ChatBotScreen() {
 
     setMessages((prev) => [...prev, message]);
     setMessage("");
+    setHasUserTyped(true);
 
     handleChatBot(message);
   };
+
+    useEffect(() => {
+    setMessages(["Oi, sou seu ajudante digital. Digite seu CPF"]);
+
+  }, []);
+   
 
   useEffect(() => {
     setTimeout(() => {
@@ -41,10 +49,8 @@ export default function ChatBotScreen() {
     <View style={globalStyle.background}>
       <SafeAreaView style={{ flex: 1 }}>
         <HeaderHome
-          titulo="Saúde Mania"
+          titulo="Saúde Mania  BOT"
           mostrarBusca={false}
-          subTitulo="Saúde Mania BOT"
-          mostrarVoltar={true}
         />
 
         <View style={{ flex: 1 }}>
@@ -59,8 +65,11 @@ export default function ChatBotScreen() {
             }}
             showsVerticalScrollIndicator={false}
           >
-            {messages.length === 0 && (
-              <View style={{ alignItems: "center", justifyContent: "center" }}>
+            
+            
+            {!hasUserTyped && (
+
+              <View style={{ alignItems: "center", marginBottom: 20 }}>
                 <MaterialCommunityIcons name="robot" size={100} color="white" />
               </View>
             )}
