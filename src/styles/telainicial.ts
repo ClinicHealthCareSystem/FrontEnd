@@ -36,7 +36,7 @@ export default StyleSheet.create({
     paddingVertical: 5,
     height: 40,
   },
-
+  
   textButton: {
     color: "white",
     fontWeight: "bold",
