@@ -32,15 +32,60 @@ export default function ChatBotScreen() {
     if (message.trim() === "") return;
 
     setMessages((prev) => [...prev, { sender: "user", text: message }]);
+    const userMessage = message.trim();
     setMessage("");
     setHasUserTyped(true);
 
-    handleChatBot(message);
+    // handleChatBot(message);
+
+    let chatBot = "";
+
+    switch (userMessage){
+      case "1":
+        chatBot = ` 1. Marcar nova consulta  
+        2. Consultar histórico de consultas`;
+        break;
+
+      case "2":
+        chatBot  = `1. Agendar exame
+        2. Ver resultados anterios `;
+        break;
+
+      case "3":
+        chatBot = `Aqui estão seus agendamentos`;
+        break;
+
+      case "4":
+        chatBot =  `Digite sua dúvida`;
+        break;
+
+      case "1.1":
+        chatBot = `Informe a especialidade médica desejada`
+        break;
+      case "2.1":
+        chatBot = `Informe o tipo de exame`
+        break;
+
+      default:
+        chatBot = "Opção inválida. Por favor, escolha uma das opções validas"
+
+      
+     }
+     setMessages((prev) => [...prev, { sender: "bot", text: chatBot }]);
+
+     handleChatBot(message)
   };
+
+
 
   useEffect(() => {
     setMessages([
-      { sender: "bot", text: "Oi, sou seu ajudante digital. Digite seu CPF" },
+      { sender: "bot", text: `
+        Olá, Sou seu assistente de saúde. Escolha uma das opções:
+             1. Consulta Médica
+             2. Exames
+             3. Visualizar Agendamentos
+             4. Dúvidas`},
     ]);
   }, []);
 
