@@ -17,13 +17,16 @@ export default function bot(message: string) {
       const json = await response.json();
       console.log(response.status, json);
 
-      if (response.ok) {
+      if (response.ok && json.reply) {
+        return json.reply
       } else {
         setError("Erro ao receber mensagem");
+        return "Erro ao processar sua solicitação";
       }
     } catch (err) {
       console.log("Erro ao enviar mensagem: " + err);
       setError("Erro no servidor, tente novamente mais tarde");
+      return "Erro ao processar sua solicitação";
     }
   };
 

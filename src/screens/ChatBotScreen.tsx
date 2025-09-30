@@ -20,6 +20,10 @@ type ChatMessage = {
   text: string;
 };
 
+// conecta back
+
+
+
 export default function ChatBotScreen() {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -28,7 +32,7 @@ export default function ChatBotScreen() {
 
   const { error, handleChatBot } = bot(message);
 
-  const handleSendMessage = () => {
+  const handleSendMessage =  async () => {
     if (message.trim() === "") return;
 
     setMessages((prev) => [...prev, { sender: "user", text: message }]);
@@ -46,9 +50,18 @@ export default function ChatBotScreen() {
         2. Consultar histórico de consultas`;
         break;
 
+      case "1.1":
+        chatBot = await handleChatBot(`Informe a especialidade médica desejada`);
+        break;
+
       case "2":
         chatBot  = `1. Agendar exame
         2. Ver resultados anterios `;
+        break;
+
+
+      case "2.1":
+        chatBot = await handleChatBot( `Informe o tipo de exame`);
         break;
 
       case "3":
@@ -59,12 +72,7 @@ export default function ChatBotScreen() {
         chatBot =  `Digite sua dúvida`;
         break;
 
-      case "1.1":
-        chatBot = `Informe a especialidade médica desejada`
-        break;
-      case "2.1":
-        chatBot = `Informe o tipo de exame`
-        break;
+      
 
       default:
         chatBot = "Opção inválida. Por favor, escolha uma das opções validas"
@@ -82,10 +90,10 @@ export default function ChatBotScreen() {
     setMessages([
       { sender: "bot", text: `
         Olá, Sou seu assistente de saúde. Escolha uma das opções:
-             1. Consulta Médica
-             2. Exames
-             3. Visualizar Agendamentos
-             4. Dúvidas`},
+        1. Consulta Médica
+        2. Exames
+        3. Visualizar Agendamentos
+        4. Dúvidas`},
     ]);
   }, []);
 
