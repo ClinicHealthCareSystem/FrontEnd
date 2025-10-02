@@ -1,6 +1,8 @@
 import React from "react";
 import { View,Text, TouchableOpacity } from "react-native";
 import tabButtonPerfil from "../stylesComponents/tabButtonPerfil";
+import { FadeIn, FadeOut } from 'react-native-reanimated';
+import Reanimated from "react-native-reanimated";
 
 type Tab ={
 label: string;
@@ -16,13 +18,13 @@ type Props = {
 
 export default function TabsButtonPerfil({ tabs,  onPress }: Props) {
   return (
-    <View style={tabButtonPerfil.tabsCaixa}>
+    <Reanimated.View style={tabButtonPerfil.tabsCaixa} entering={FadeIn.duration(700)} exiting={FadeOut.duration(500)}>
       {tabs.map((tab) => (
         <TouchableOpacity key={tab.value} style={ tabButtonPerfil.tabButtonPerfil}
           onPress={() => onPress(tab.value)}>
           <Text style={[tabButtonPerfil.tabTextPerfil,]}>{tab.label}</Text>
         </TouchableOpacity>
       ))}
-    </View>
+    </Reanimated.View>
   );
 }

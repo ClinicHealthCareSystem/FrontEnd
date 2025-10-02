@@ -1254,6 +1254,18 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@lottiefiles/dotlottie-react@^0.17.3":
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.17.3.tgz#5c04eac617b869cef0a4ea9fb3a58098aac3def2"
+  integrity sha512-4PeJxXgnjg9JT5V8Qd/+0x9zC0K4iUNEXbucaiQoxTyx/rITYAvzP5JNYD0rhTMyn6edvtdBG6DPm0WOnEiatg==
+  dependencies:
+    "@lottiefiles/dotlottie-web" "0.53.1"
+
+"@lottiefiles/dotlottie-web@0.53.1":
+  version "0.53.1"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.53.1.tgz#e769d2cd9bef0a39211779c3b86b1c295e0aa130"
+  integrity sha512-UDm4ANdeO+Vq47c6idU7x4kQAX2AohF6ynRvmsGnT2GRXYpTa7p4VZYmesvhWqahEWUD7qZq6hPy2CXna8wt9g==
+
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
@@ -3317,6 +3329,11 @@ loose-envify@^1.0.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-react-native@^7.3.4:
+  version "7.3.4"
+  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-7.3.4.tgz#774bc028e2b93dd88cd87ab84ac51a1c3e015cad"
+  integrity sha512-XUh7eGFb7ID8JRdU6U4N4cYQeYmjtdQRvd8ZXJ6xrdSsn5gZD0c79ITOREPcwJg4YupBFHgyV1GXdAHQP+KYUQ==
 
 lru-cache@^10.0.1, lru-cache@^10.2.0:
   version "10.4.3"

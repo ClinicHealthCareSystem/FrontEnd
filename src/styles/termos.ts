@@ -30,12 +30,12 @@ export default StyleSheet.create({
   },
 
   termoText: {
-    textAlign: "justify",
+    textAlign: "center",
     paddingLeft: 10,
     paddingRight: 10,
     color: "#0D47AB",
     fontWeight: "bold",
-    fontSize: 28,
+    fontSize: 25,
   },
 
   areaButton: {

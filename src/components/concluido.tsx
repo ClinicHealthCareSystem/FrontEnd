@@ -1,8 +1,7 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import styles from "../styles/termos";
 import { useRouter } from "expo-router";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-
+import CheckAnimation from "../animations/checkAnimation";
 export const Concluido = ({
   onAccept,
 }: {
@@ -15,10 +14,9 @@ export const Concluido = ({
       <View style={styles.caixa}>
         <View style={styles.scrollTermo}>
           <Text style={styles.termoText}>
-            Consulta Marcada
-            
+            Consulta Marcada com Sucesso!
           </Text>
-          <MaterialCommunityIcons name="check" size={28} color={"#0D47AB"} />
+          <CheckAnimation />
         </View>
         <View style={styles.areaButton}>
           <TouchableOpacity style={styles.termoButton} onPress={onAccept}>

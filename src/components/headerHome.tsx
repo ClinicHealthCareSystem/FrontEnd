@@ -3,6 +3,8 @@ import { Text, TouchableOpacity, View, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import styles from "../stylesComponents/headerHome";
+import {FadeIn, FadeOut} from 'react-native-reanimated';
+import Reanimated from "react-native-reanimated";
 
 export default function HeaderHome({
   titulo = "Saúde Mania",
@@ -13,9 +15,8 @@ export default function HeaderHome({
   const router = useRouter();
 
   return (
-    <View style={styles.headerView}>
+    <Reanimated.View style={styles.headerView} entering={FadeIn.duration(800)} exiting={FadeOut.duration(500)}>
       <View style={styles.headerContent}>
-        
         {mostrarVoltar ? (
           <TouchableOpacity
             onPress={() => router.back()}
@@ -57,6 +58,6 @@ export default function HeaderHome({
           </View>
         )
       )}
-    </View>
+    </Reanimated.View>
   );
 }
