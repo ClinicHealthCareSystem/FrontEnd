@@ -20,8 +20,6 @@ type ChatMessage = {
   text: string;
 };
 
-// conecta back
-
 export default function ChatBotScreen() {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -38,45 +36,9 @@ export default function ChatBotScreen() {
     setMessage("");
     setHasUserTyped(true);
 
-    // handleChatBot(message);
+    const botResponse = await handleChatBot(userMessage);
 
-    let chatBot = "";
-
-    switch (userMessage) {
-      case "1":
-        chatBot = ` 1. Marcar nova consulta  
-        2. Consultar histórico de consultas`;
-        break;
-
-      case "1.1":
-        chatBot = await handleChatBot(
-          `Informe a especialidade médica desejada`
-        );
-        break;
-
-      case "2":
-        chatBot = `1. Agendar exame
-        2. Ver resultados anterios `;
-        break;
-
-      case "2.1":
-        chatBot = await handleChatBot(`Informe o tipo de exame`);
-        break;
-
-      case "3":
-        chatBot = `Aqui estão seus agendamentos`;
-        break;
-
-      case "4":
-        chatBot = `Digite sua dúvida`;
-        break;
-
-      default:
-        chatBot = "Opção inválida. Por favor, escolha uma das opções validas";
-    }
-    setMessages((prev) => [...prev, { sender: "bot", text: chatBot }]);
-
-    handleChatBot(message);
+    setMessages((prev) => [...prev, { sender: "bot", text: botResponse }]);
   };
 
   useEffect(() => {
