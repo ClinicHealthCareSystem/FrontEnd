@@ -36,6 +36,7 @@ export default StyleSheet.create({
   },
 
   headerRight: {
+    display: "flex",
     width: 40,
     alignItems: "flex-end",
     justifyContent: "center",

@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import styles from "../stylesComponents/headerHome";
 import {FadeIn, FadeOut} from 'react-native-reanimated';
 import Reanimated from "react-native-reanimated";
+import Bell from "../components/bell";
 
 export default function HeaderHome({
   titulo = "Saúde Mania",
@@ -32,9 +33,7 @@ export default function HeaderHome({
         <Text style={styles.headerTitle}>{titulo}</Text>
 
         
-        <TouchableOpacity style={styles.headerRight}>
-          <Ionicons name="notifications" size={24} color="white" />
-        </TouchableOpacity>
+        <Bell />
       </View>
 
       
