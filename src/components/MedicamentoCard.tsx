@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../stylesComponents/MedicamentoCard";
 import TabsButtonPerfil from "./TabButtonsPerfil";
 
-import { BounceIn, BounceOut } from 'react-native-reanimated';
+import { FadeIn, FadeOut } from 'react-native-reanimated';
 import Reanimated from "react-native-reanimated";
 
 export default function MedicamentoCard({
@@ -22,7 +22,7 @@ export default function MedicamentoCard({
   const [notify, setNotify] = useState(true); 
 
   return (
-    <Reanimated.View style={styles.CardContainer} entering={BounceIn.duration(700)} exiting={BounceOut.duration(500)}>
+    <Reanimated.View style={styles.CardContainer} entering={FadeIn.duration(700)} exiting={FadeOut.duration(500)}>
       <View style={styles.headerCardMedicamentoTittle}>
       <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
       <TouchableOpacity onPress={() => setNotify(!notify)}>
