@@ -18,7 +18,16 @@ export default StyleSheet.create({
   tabButton: {
     flex: 1,
     alignItems: "center",
+    justifyContent: 'center',
     color: "#FFF",
+  },
+
+  tabInner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 14,
   },
 
   tabText: {

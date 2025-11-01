@@ -4,14 +4,18 @@ import styles from "../stylesComponents/agendaCard";
 
 import marcacaoButtons from "../stylesComponents/marcacaoButtons";
 import { router } from "expo-router";
-
+import { FadeIn, FadeOut } from 'react-native-reanimated';
+import Reanimated from "react-native-reanimated";
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
 };
 
 export default function AgendaCard({ activeTab }: Props) {
   return (
-    <View>
+    <Reanimated.View
+      entering={FadeIn.duration(700)}
+      exiting={FadeOut.duration(100)}
+    >
       {activeTab === "opcao1" && (
         <View style={styles.CardContainer}>
           <Text style={styles.DateHour}>01/09/2025 (Segunda-Feira) 13:50</Text>
@@ -109,6 +113,6 @@ export default function AgendaCard({ activeTab }: Props) {
           </View>
         </View>
       )}
-    </View>
+    </Reanimated.View>
   );
 }

@@ -34,6 +34,20 @@ export default StyleSheet.create({
     borderColor: "white",
   },
 
+    cardButton: {
+      width: '100%',
+      height: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: RFValue(8),
+    },
+
+    iconContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: RFValue(4),
+    },
+
   textCards: {
     fontSize: RFValue(18),
     color: "white",

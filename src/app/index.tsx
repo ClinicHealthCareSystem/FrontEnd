@@ -11,23 +11,50 @@ import {
 } from "react-native";
 import styles from "../styles/telainicial";
 import { useRouter } from "expo-router";
-
+import Reanimated, { Easing, FadeIn, Keyframe, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
 export default function index() {
   const router = useRouter();
+  const scale = useSharedValue(1);
+
+  useEffect(() => {
+    scale.value = withRepeat(
+      withTiming(1.3, {
+        duration: 1000,
+        easing: Easing.inOut(Easing.ease),
+      }),
+      -1,
+      true
+    );
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
   return (
     <ScrollView
       contentContainerStyle={styles.scrollbackground}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
     >
-      <View style={styles.background}>
-        <Image source={require("../assets/heart-pulse-inicio.png")} />
+      <Reanimated.View style={styles.background}
+        entering={FadeIn.duration(1000)}
+        
+      >
+        <Reanimated.Image
+          source={require("../assets/heart-pulse-inicio.png")}
+          style={[
+            { width: 120, height: 120, resizeMode: "contain" },
+            animatedStyle,
+          ]}
+        />
+        
         <Text style={styles.titulo}>Saúde Mania</Text>
 
         <Text style={styles.subTitulo}>A nossa mania é a sua saúde</Text>
-        <TouchableOpacity
+        <TouchableOpacity 
           style={styles.buttonLogin}
-          onPress={() => router.push("/login")}
+          onPress={() => router.push("/login")}         
         >
           <Text style={styles.textButton}>Login</Text>
         </TouchableOpacity>
@@ -38,7 +65,7 @@ export default function index() {
         >
           <Text style={styles.textButton}>Cadastro</Text>
         </TouchableOpacity>
-      </View>
+      </Reanimated.View>
     </ScrollView>
   );
 }

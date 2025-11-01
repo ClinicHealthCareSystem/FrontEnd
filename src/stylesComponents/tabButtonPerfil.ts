@@ -27,4 +27,12 @@ export default StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+
+  tabButtonActive: {
+    backgroundColor: '#ffffff',
+  },
+
+  tabTextActive: {
+    color: '#0D47AB',
+  },
 });
