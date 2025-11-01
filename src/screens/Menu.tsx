@@ -57,7 +57,7 @@ export default function Menu() {
         router.push("/agendar");
         break;
       case "RESULTADOS":
-        router.push("/resultados");
+        router.push("/historicoRote");
         break;
       case "MEDICAMENTOS":
         router.push("/medicamentos");
