@@ -15,44 +15,52 @@ export default StyleSheet.create({
     width: "90%",
     paddingTop: 24,
     paddingBottom: 24,
-    borderRadius: 8,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 8,
   },
 
   tittle: {
     color: "black",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 15,
   },
 
   scrollTermo: {
-    marginBottom: 40,
-    marginTop: 40,
+    marginBottom: 30,
+    marginTop: 20,
+    maxHeight: 300,
   },
 
   termoText: {
-    textAlign: "center",
-    paddingLeft: 10,
-    paddingRight: 10,
-    color: "#0D47AB",
-    fontWeight: "bold",
-    fontSize: 25,
+    textAlign: "justify",
+    paddingLeft: 15,
+    paddingRight: 15,
+    color: "black",
+    fontSize: 16,
+    lineHeight: 24,
   },
 
   areaButton: {
-    justifyContent: "center",
-    alignItems:"center",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
     width: "80%",
-
+    marginTop: 10,
   },
 
   termoButton: {
-    width: "30%",
+    width: "45%",
     backgroundColor: "#3284f1",
     alignItems: "center",
-    height: 30,
-    borderRadius: 8,
+    height: 40,
+    borderRadius: 10,
     justifyContent: "center",
-    alignContent: "center",
   },
 
   termoButtonText: {
@@ -62,6 +70,6 @@ export default StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     color: "white",
-    
+    fontSize: 16,
   },
 });
