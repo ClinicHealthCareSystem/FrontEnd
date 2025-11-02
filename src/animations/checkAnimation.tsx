@@ -11,6 +11,7 @@ export default function CheckAnimation() {
                 style={{width: 150, height: 150}}
                 resizeMode='cover'
              />
+             
         </View>
     )
 };

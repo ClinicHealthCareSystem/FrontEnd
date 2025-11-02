@@ -44,11 +44,10 @@ export default function index() {
         <Reanimated.Image
           source={require("../assets/heart-pulse-inicio.png")}
           style={[
-            { width: 120, height: 120, resizeMode: "contain" },
-            animatedStyle,
-          ]}
-        />
-        
+              { width: 120, height: 120 },
+                animatedStyle,
+                ]}resizeMode="contain"/>
+                
         <Text style={styles.titulo}>Saúde Mania</Text>
 
         <Text style={styles.subTitulo}>A nossa mania é a sua saúde</Text>
