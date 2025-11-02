@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import TabsNavegation from "../components/tabsNavegation";
-import HeaderHome from "../components/headerHome";
-import planos from "../styles/planos";
+import TabsNavegation from "../../components/tabsNavegation";
+import HeaderHome from "../../components/headerHome";
+import planos from "../../styles/MenuStyles/planos";
 
 export default function Planos() {
   return (

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import tabNavegation from "../stylesComponents/tabNavegation";
+import tabNavegation from "../styles/stylesComponents/tabNavegation";
 
 const goBack = () => {
   router.replace("/menu");

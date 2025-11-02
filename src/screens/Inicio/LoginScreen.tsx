@@ -6,15 +6,15 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import styles from "../styles/login";
+import styles from "../../styles/InicioStyles/login";
 import { useRouter } from "expo-router";
-import login from "../hooks/useLogin";
+import login from "../../hooks/useLogin";
 import {
   unmaskCPF,
   isValidCPF,
   validatePassword,
   maskCPF,
-} from "../utils/userValidations";
+} from "../../utils/userValidations";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Login() {

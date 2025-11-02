@@ -13,13 +13,13 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Concluido } from "../components/concluido";
+import { Concluido } from "../../components/concluido";
 
-import { useScheduling } from "../hooks/useScheduling";
-import TabsNavegation from "../components/tabsNavegation";
-import HeaderHome from "../components/headerHome";
+import { useScheduling } from "../../hooks/useScheduling";
+import TabsNavegation from "../../components/tabsNavegation";
+import HeaderHome from "../../components/headerHome";
 
-import styles from "../styles/agendarConsulta";
+import styles from "../../styles/MenuStyles/agendarConsulta";
 
 const AgendarConsultaScreen = () => {
   const {

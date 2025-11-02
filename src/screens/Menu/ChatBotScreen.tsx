@@ -6,14 +6,14 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import HeaderHome from "../components/headerHome";
-import TabsNavegation from "../components/tabsNavegation";
-import globalStyle from "../global/globalStyles";
-import styles from "../styles/chatBot";
+import HeaderHome from "../../components/headerHome";
+import TabsNavegation from "../../components/tabsNavegation";
+import globalStyle from "../../global/globalStyles";
+import styles from "../../styles/MenuStyles/chatBot";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRef, useState, useEffect } from "react";
-import bot from "../hooks/useBot";
+import bot from "../../hooks/useBot";
 
 type ChatMessage = {
   sender: "bot" | "user";

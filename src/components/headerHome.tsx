@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity, View, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import styles from "../stylesComponents/headerHome";
+import styles from "../styles/stylesComponents/headerHome";
 import {FadeIn, FadeOut} from 'react-native-reanimated';
 import Reanimated from "react-native-reanimated";
 import Bell from "../components/bell";

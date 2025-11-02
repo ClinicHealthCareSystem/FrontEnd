@@ -9,13 +9,13 @@ import {
   ScrollView,
 } from "react-native";
 
-import styles from "../styles/esqueceu";
-import { useSendCode } from "../hooks/useSendCode";
+import styles from "../../styles/InicioStyles/esqueceu";
+import { useSendCode } from "../../hooks/useSendCode";
 import {
   validatePhone,
   maskPhone,
   unmaskPhone,
-} from "../utils/userValidations";
+} from "../../utils/userValidations";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Esqueceu() {

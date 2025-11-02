@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "../stylesComponents/MedicamentoCard";
+import styles from "../styles/stylesComponents/MedicamentoCard";
 import TabsButtonPerfil from "./TabButtonsPerfil";
 
 import { FadeIn, FadeOut } from 'react-native-reanimated';

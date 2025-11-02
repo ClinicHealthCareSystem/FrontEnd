@@ -7,14 +7,14 @@ import {
   ScrollView,
 } from "react-native";
 
-import styles from "../styles/medicamentos";
-import Checkbox from "../components/checkbox";
-import MedicamentoCard from "../components/MedicamentoCard";
+import styles from "../../styles/MenuStyles/medicamentos";
+import Checkbox from "../../components/checkbox";
+import MedicamentoCard from "../../components/MedicamentoCard";
 
-import MedicamentoCardTodos from "../components/MedicamentoCardTodos";
-import TabsNavegation from "../components/tabsNavegation";
-import HeaderHome from "../components/headerHome";
-import TabsButtonPerfil from "../components/TabButtonsPerfil"
+import MedicamentoCardTodos from "../../components/MedicamentoCardTodos";
+import TabsNavegation from "../../components/tabsNavegation";
+import HeaderHome from "../../components/headerHome";
+import TabsButtonPerfil from "../../components/TabButtonsPerfil"
 export default function MedicamentosScreen() {
   const [activeTab, setActiveTab] = useState<"pessoal" | "saude" | "apoio">(
       "pessoal"

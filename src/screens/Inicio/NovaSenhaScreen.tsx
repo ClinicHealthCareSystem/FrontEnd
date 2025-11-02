@@ -10,15 +10,15 @@ import {
   ScrollView,
 } from "react-native";
 
-import styles from "../styles/novaSenha";
+import styles from "../../styles/InicioStyles/novaSenha";
 import {
   isValidCPF,
   validatePassword,
   validateConfirmPassword,
   maskCPF,
   unmaskCPF,
-} from "../utils/userValidations";
-import { useUpdateUser } from "../hooks/useUpdateUser";
+} from "../../utils/userValidations";
+import { useUpdateUser } from "../../hooks/useUpdateUser";
 
 export default function Novasenha() {
   const { handleSubmit } = useForm({});

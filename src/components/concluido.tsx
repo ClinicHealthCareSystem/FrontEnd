@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import styles from "../styles/termos";
+import styles from "../styles/stylesComponents/termos";
 import { useRouter } from "expo-router";
 import CheckAnimation from "../animations/checkAnimation";
 export const Concluido = ({

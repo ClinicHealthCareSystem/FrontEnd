@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "../styles/menu";
+import styles from "../styles/MenuStyles/menu";
 
 import  { BounceInUp,FadeOut } from 'react-native-reanimated';
 import Reanimated from "react-native-reanimated";

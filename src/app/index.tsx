@@ -9,7 +9,7 @@ import {
   Keyboard,
   Platform,
 } from "react-native";
-import styles from "../styles/telainicial";
+import styles from "../styles/InicioStyles/telainicial";
 import { useRouter } from "expo-router";
 import Reanimated, { Easing, FadeIn, Keyframe, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
 export default function index() {

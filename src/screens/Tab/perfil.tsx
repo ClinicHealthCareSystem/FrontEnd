@@ -1,10 +1,10 @@
 import { Text, View, ScrollView } from "react-native";
-import HeaderHome from "../components/headerHome";
-import TabsNavegation from "../components/tabsNavegation";
+import HeaderHome from "../../components/headerHome";
+import TabsNavegation from "../../components/tabsNavegation";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "../styles/perfil";
-import TabsButtonPerfil from "../components/TabButtonsPerfil";
-import CardInfoPerfil from "../components/cardInfo";
+import styles from "../../styles/TabStyles/perfil";
+import TabsButtonPerfil from "../../components/TabButtonsPerfil";
+import CardInfoPerfil from "../../components/cardInfo";
 import { useState } from "react";
 
 export default function Perfil() {

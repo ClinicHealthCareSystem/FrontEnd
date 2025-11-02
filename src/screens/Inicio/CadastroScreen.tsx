@@ -1,7 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import { useRouter } from "expo-router";
-import { TermosServico } from "../components/termos";
+import { TermosServico } from "../../components/termos";
 
 import {
   Text,
@@ -11,8 +11,10 @@ import {
   ScrollView,
   Modal,
 } from "react-native";
-import styles from "../styles/cadastro";
-import { useSignUp } from "../hooks/useSignUp";
+
+import styles from "../../styles/InicioStyles/cadastro";
+
+import { useSignUp } from "../../hooks/useSignUp";
 import {
   unmaskPhone,
   isValidCPF,
@@ -22,7 +24,7 @@ import {
   validatePhone,
   maskPhone,
   unmaskCPF,
-} from "../utils/userValidations";
+} from "../../utils/userValidations";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Cadastro() {

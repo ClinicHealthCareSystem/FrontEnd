@@ -2,7 +2,7 @@ import { Text, View, TextInput,TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 
-import styles from "../styles/perfil";
+import styles from "../styles/TabStyles/perfil";
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
 };

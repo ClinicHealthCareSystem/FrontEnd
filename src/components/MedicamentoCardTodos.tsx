@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import styles from "../stylesComponents/MedicamentosCardTodos";
+import styles from "../styles/stylesComponents/MedicamentosCardTodos";
 
 export default function MedicamentoCardTodos({
   tittleRemedio = "",

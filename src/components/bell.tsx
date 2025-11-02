@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, Modal, Pressable, Touchable } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
-import styles from '../stylesComponents/bell';
+import styles from '../styles/stylesComponents/bell';
 
 export default function Bell() {
   const [sideBarVisible, setSideBarVisible] = useState(false);

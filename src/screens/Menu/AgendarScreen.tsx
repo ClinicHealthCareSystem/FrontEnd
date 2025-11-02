@@ -1,12 +1,12 @@
 import { ScrollView, View, TouchableOpacity, Text } from "react-native";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import HeaderHome from "../components/headerHome";
-import TabsNavegation from "../components/tabsNavegation";
-import AgendaCard from "../components/agendaCard";
-import TabsButtonPerfil from "../components/TabButtonsPerfil";
+import HeaderHome from "../../components/headerHome";
+import TabsNavegation from "../../components/tabsNavegation";
+import AgendaCard from "../../components/agendaCard";
+import TabsButtonPerfil from "../../components/TabButtonsPerfil";
 
-import styles from "../styles/agendar";
+import styles from "../../styles/MenuStyles/agendar";
 
 export default function AgendarScreen() {
   const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(

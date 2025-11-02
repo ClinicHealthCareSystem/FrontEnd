@@ -1,8 +1,8 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList, TouchableOpacity, View, Text, Animated} from "react-native";
-import HeaderHome from "../components/headerHome";
-import TabsNavegation from "../components/tabsNavegation";
-import HistoricoStyle from "../styles/HistoricoStyle";
+import HeaderHome from "../../components/headerHome";
+import TabsNavegation from "../../components/tabsNavegation";
+import HistoricoStyle from "../../styles/MenuStyles/HistoricoStyle";
 import { useEffect, useRef, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 

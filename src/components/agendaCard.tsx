@@ -1,8 +1,8 @@
 import { Text, View, TouchableOpacity } from "react-native";
 
-import styles from "../stylesComponents/agendaCard";
+import styles from "../styles/stylesComponents/agendaCard";
 
-import marcacaoButtons from "../stylesComponents/marcacaoButtons";
+import marcacaoButtons from "../styles/stylesComponents/marcacaoButtons";
 import { router } from "expo-router";
 import { FadeIn, FadeOut } from 'react-native-reanimated';
 import Reanimated from "react-native-reanimated";

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import tabButtonPerfil from "../stylesComponents/tabButtonPerfil";
+import tabButtonPerfil from "../styles/stylesComponents/tabButtonPerfil";
 import { FadeIn, FadeOut } from 'react-native-reanimated';
 import Reanimated, {
   useSharedValue,

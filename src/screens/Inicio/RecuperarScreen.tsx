@@ -10,9 +10,9 @@ import {
   ScrollView,
 } from "react-native";
 
-import styles from "../styles/recuperar";
-import { useVerifyCode } from "../hooks/useVerifyCode";
-import { verifyCode } from "../utils/authValidations";
+import styles from "../../styles/InicioStyles/recuperar";
+import { useVerifyCode } from "../../hooks/useVerifyCode";
+import { verifyCode } from "../../utils/authValidations";
 
 export default function Recuperar() {
   const { phone } = useLocalSearchParams();
