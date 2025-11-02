@@ -54,6 +54,7 @@ export default function Recuperar() {
         <Ionicons
           name="chatbox-ellipses-outline"
           size={30}
+          color="#0D47AB"
           style={styles.sms}
         />
         <TextInput
@@ -61,6 +62,7 @@ export default function Recuperar() {
           onChangeText={(text) => setCode(text.replace(/[^0-9]/g, ""))}
           value={code}
           placeholder="Digite o código de autenticação"
+          placeholderTextColor="#0D47AB"
           accessible={true}
           accessibilityLabel="Digitar código de verificação"
           keyboardType="numeric"

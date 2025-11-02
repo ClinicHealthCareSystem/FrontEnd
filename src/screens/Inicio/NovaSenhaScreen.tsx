@@ -76,7 +76,7 @@ export default function Novasenha() {
 
       <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="id-card-outline" size={30} style={styles.id_card} />
+        <Ionicons name="id-card-outline" size={30} color="#0D47AB" style={styles.id_card} />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setCPF(maskCPF(text))}
@@ -95,7 +95,7 @@ export default function Novasenha() {
 
       <Text style={styles.label}>Nova Senha</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
+        <Ionicons name="lock-closed-outline" size={30} color="#0D47AB"  style={styles.lock} />
         <TextInput
           style={styles.input}
           onChangeText={(text) =>
@@ -103,6 +103,7 @@ export default function Novasenha() {
           }
           value={password}
           placeholder="Digite sua senha"
+          placeholderTextColor="#0D47AB"
           secureTextEntry={!passwordShow}
           maxLength={12}
           onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
@@ -112,11 +113,12 @@ export default function Novasenha() {
           style={styles.buttonEye}
         >
           {passwordShow ? (
-            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+            <Ionicons name="eye-outline" size={30} color="#0D47AB" style={styles.eyeOpened} />
           ) : (
             <Ionicons
               name="eye-off-outline"
               size={30}
+              color="#0D47AB"
               style={styles.eyeClosed}
             />
           )}
@@ -138,6 +140,7 @@ export default function Novasenha() {
           }
           value={confirmPassword}
           placeholder="Digite novamente"
+          placeholderTextColor="#0D47AB"
           secureTextEntry={!passwordShow2}
           maxLength={12}
           onBlur={() =>

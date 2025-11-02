@@ -53,12 +53,13 @@ export default function Esqueceu() {
 
       <Text style={styles.label}>Telefone</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="call-outline" size={30} style={styles.phone} />
+        <Ionicons name="call-outline" size={30}  color="#0D47AB" style={styles.phone} />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setPhone(maskPhone(text))}
           value={phone}
           placeholder="Digite seu celular"
+          placeholderTextColor="#0D47AB"
           keyboardType="numeric"
           maxLength={15}
           onBlur={() => setTouched(true)}

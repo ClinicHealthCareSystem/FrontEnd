@@ -6,6 +6,7 @@ import {
   View,
   ScrollView,
 } from "react-native";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import styles from "../../styles/InicioStyles/login";
 import { useRouter } from "expo-router";
 import login from "../../hooks/useLogin";
@@ -53,11 +54,12 @@ export default function Login() {
       <Text style={styles.subtittle}>Bem-vindo(a) ao Saúde Mania</Text>
 
       <View style={styles.inputCaixa}>
-        <Ionicons name="person-outline" size={30} style={styles.id_card} />
+        <MaterialCommunityIcons name="badge-account-horizontal-outline" size={30} color="#0D47AB"  style={styles.id_card} />
         <TextInput
           style={styles.input}
           placeholder="CPF"
           keyboardType="numeric"
+          placeholderTextColor="#0D47AB"
           value={maskCPF(CPF)}
           onChangeText={(text) => setCPF(text)}
           maxLength={14}
@@ -71,10 +73,11 @@ export default function Login() {
       ) : null}
 
       <View style={styles.inputCaixa}>
-        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
+        <Ionicons name="lock-closed-outline" size={30}  color="#0D47AB" style={styles.lock} />
         <TextInput
           style={styles.input}
           placeholder="Senha"
+          placeholderTextColor="#0D47AB"
           value={password}
           onChangeText={(text) => setPassword(text)}
           secureTextEntry={!passwordShow}
@@ -83,11 +86,12 @@ export default function Login() {
         />
         <TouchableOpacity onPress={passwordEyes}>
           {passwordShow ? (
-            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+            <Ionicons name="eye-outline" size={30} color="#0D47AB" style={styles.eyeOpened} />
           ) : (
             <Ionicons
               name="eye-off-outline"
               size={30}
+              color="#0D47AB"
               style={styles.eyeClosed}
             />
           )}
