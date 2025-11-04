@@ -15,7 +15,7 @@
     "@react-native-picker/picker": "2.11.1",
     "@rneui/base": "github:react-native-elements/react-native-elements#base",
     "@rneui/themed": "^4.0.0-rc.8",
-    "expo": "54.0.21",
+    "expo": "54.0.22",
     "expo-constants": "~18.0.10",
     "expo-linking": "~8.0.8",
     "expo-router": "~6.0.14",
