@@ -5,16 +5,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   Text,
-} from 'react-native';
-import React, { useState } from 'react';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import styles from '../../styles/TabStyles/config';
+} from "react-native";
+import React, { useState } from "react";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import styles from "../../styles/TabStyles/config";
 export default function Config() {
   const [FontSize, SetFontsize] = useState(false);
-    const [DarkMode, SetDarkMode] = useState(false);
-      const [SilenceNotific, SetSilenceNotific] = useState(false);
-
-
+  const [DarkMode, SetDarkMode] = useState(false);
+  const [SilenceNotific, SetSilenceNotific] = useState(false);
 
   return (
     <View style={styles.background}>
@@ -24,8 +22,8 @@ export default function Config() {
           <Switch
             value={FontSize}
             onValueChange={SetFontsize}
-            thumbColor={FontSize ? '#0D47AB' : 'white'}
-            trackColor={{ false: '#ccc', true: '#0D47AB' }}
+            thumbColor={FontSize ? "#0D47AB" : "white"}
+            trackColor={{ false: "#ccc", true: "#0D47AB" }}
           />
         </View>
 
@@ -34,8 +32,8 @@ export default function Config() {
           <Switch
             value={DarkMode}
             onValueChange={SetDarkMode}
-            thumbColor={DarkMode ? '#0D47AB' : 'white'}
-            trackColor={{ false: '#ccc', true: '#0D47AB' }}
+            thumbColor={DarkMode ? "#0D47AB" : "white"}
+            trackColor={{ false: "#ccc", true: "#0D47AB" }}
           />
         </View>
 
@@ -44,20 +42,17 @@ export default function Config() {
           <Switch
             value={SilenceNotific}
             onValueChange={SetSilenceNotific}
-            thumbColor={SilenceNotific ? '#0D47AB' : 'white'}
-            trackColor={{ false: '#ccc', true: '#0D47AB' }}
+            thumbColor={SilenceNotific ? "#0D47AB" : "white"}
+            trackColor={{ false: "#ccc", true: "#0D47AB" }}
           />
         </View>
 
         <View style={styles.caixa2}>
           <Text style={styles.textoSair}>Sair</Text>
           <TouchableOpacity>
-          <MaterialIcons name="logout" size={20}  color = "red"/>
-
+            <MaterialIcons name="logout" size={20} color="red" />
           </TouchableOpacity>
         </View>
-
-
       </ScrollView>
     </View>
   );
