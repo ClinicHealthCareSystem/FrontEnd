@@ -18,7 +18,7 @@ export function useProfile() {
         setLoading(true);
         setError(null);
 
-        const token = await AsyncStorage.getItem("@token");
+        const token = await AsyncStorage.getItem("token");
         if (!token) {
           throw new Error("Token not found");
         }
