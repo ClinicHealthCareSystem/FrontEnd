@@ -4,7 +4,7 @@ export default StyleSheet.create({
 
   safe: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ADD8E6',
   },
 
   body: {
@@ -35,6 +35,7 @@ export default StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 4,
+    textDecorationLine: 'underline',
   },
 
   label: {

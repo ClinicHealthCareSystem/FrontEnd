@@ -18,8 +18,8 @@ type ItemDataEx = {
     medico: string;
     unidade: string;
     status: 'DISPONIVEL' | 'PENDENTE';
-    resumo: string;
-    parametros: ItemResult[];
+    resumo?: string;
+    parametros?: ItemResult[];
 };
 
 type ItemPropsEx = {
@@ -53,10 +53,6 @@ const DATA_EXAMPLE: ItemDataEx[] = [
         medico: 'Dra. Marina Costa · Pneumologia',
         unidade: 'Hospital Vida · Bloco B',
         status: 'PENDENTE',
-        resumo: 'Imagem com discreto aumento de trama broncovascular. Sugere-se correlação clínica.',
-        parametros: [
-            { nome: 'Laudo', valor: 'Alterações leves', referencia: 'Ver laudo completo' },
-        ],
     },
     {
         id: '3',
@@ -65,11 +61,6 @@ const DATA_EXAMPLE: ItemDataEx[] = [
         medico: 'Dr. Carlos Nunes · Gastroenterologia',
         unidade: 'Clínica Imagem+',
         status: 'PENDENTE',
-        resumo: 'Exame sem alterações significativas. Repetição apenas se solicitado.',
-        parametros: [
-            { nome: 'Fígado', valor: 'Tamanho e contorno preservados', referencia: 'Normal' },
-            { nome: 'Vesícula', valor: 'Sem cálculos', referencia: 'Normal' },
-        ],
     },
 ];
 const Item = ({ item, onPress, textColor, isExpanded }: ItemPropsEx) => {
@@ -160,14 +151,16 @@ const ExpandedContent = ({ item }: { item: ItemDataEx }) => {
 
             <View style={HistoricoStyle.divider} />
 
-            <View style={HistoricoStyle.section}>
-                <Text style={HistoricoStyle.sectionTitle}>Resumo do resultado</Text>
-                <Text style={[HistoricoStyle.value, { fontSize: 12, marginTop: 2 }]}>
-                    {item.resumo}
-                </Text>
-            </View>
+            {item.parametros && item.parametros.length > 0 &&(
+                <View style={HistoricoStyle.section}>
+                    <Text style={HistoricoStyle.sectionTitle}>Resumo do resultado</Text>
+                    <Text style={[HistoricoStyle.value, { fontSize: 12, marginTop: 2 }]}>
+                        {item.resumo}
+                    </Text>
+                </View>
+            )}
 
-            {item.parametros.length > 0 && (
+            {item.parametros && item.parametros.length > 0 && (
                 <View style={[HistoricoStyle.section, { marginTop: 10 }]}>
                     {item.parametros.map((p, index) => (
                         <View key={index} style={HistoricoStyle.resultRow}>
@@ -180,8 +173,8 @@ const ExpandedContent = ({ item }: { item: ItemDataEx }) => {
                     ))}
                 </View>
             )}
-
-            <View style={HistoricoStyle.actionsRow}>
+            {item.status === 'DISPONIVEL' && (
+                <View style={HistoricoStyle.actionsRow}>
                 <TouchableOpacity style={HistoricoStyle.actionButton}>
                     <Ionicons name="document-text-outline" size={16} color="#0D47AB" />
                     <Text style={HistoricoStyle.actionText}>Ver PDF</Text>
@@ -192,6 +185,7 @@ const ExpandedContent = ({ item }: { item: ItemDataEx }) => {
                     <Text style={HistoricoStyle.actionText}>Compartilhar</Text>
                 </TouchableOpacity>
             </View>
+            )}
         </View>
     );
 };
