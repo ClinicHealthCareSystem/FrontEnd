@@ -13,6 +13,10 @@ const profile = () => {
   router.push("/perfil");
 };
 
+const config = () => {
+  router.push("/config");
+};
+
 export default function TabsNavegation() {
   return (
     <View style={tabNavegation.tabNavegation}>
@@ -32,7 +36,7 @@ export default function TabsNavegation() {
         <Text style={tabNavegation.tabText}>Perfil</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={tabNavegation.tabButton}>
+      <TouchableOpacity style={tabNavegation.tabButton} onPress={() => config()} >
         <Ionicons name="settings" size={26} color="#fff" />
         <Text style={tabNavegation.tabText}>Config</Text>
       </TouchableOpacity>
