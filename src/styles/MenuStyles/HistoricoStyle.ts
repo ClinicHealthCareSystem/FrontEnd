@@ -24,5 +24,82 @@ export default StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "#0D47AB",
     
-  }
+  },
+
+  section: {
+    marginTop: 4,
+  },
+
+  sectionTitle: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+
+  label: {
+    color: '#BFD7FF',
+    fontSize: 11,
+  },
+
+  value: {
+    color: '#FFFFFF',
+    fontSize: 13,
+    fontWeight: '500',
+  },
+
+  ref: {
+    color: '#E0ECFF',
+    fontSize: 10,
+  },
+
+  divider: {
+    height: 1,
+    backgroundColor: '#2C6BD3',
+    marginVertical: 10,
+    opacity: 0.7,
+  },
+
+  statusBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 999,
+    backgroundColor: '#E0F7EC',
+  },
+
+  statusText: {
+    color: '#0F9D58',
+    fontSize: 11,
+    fontWeight: '600',
+  },
+
+  resultRow: {
+    flexDirection: 'row',
+    marginTop: 6,
+    columnGap: 8,
+  },
+
+  actionsRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginTop: 12,
+    columnGap: 8,
+  },
+
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: '#FFFFFF',
+  },
+
+  actionText: {
+    marginLeft: 6,
+    color: '#0D47AB',
+    fontSize: 12,
+    fontWeight: '600',
+  },
+
 })

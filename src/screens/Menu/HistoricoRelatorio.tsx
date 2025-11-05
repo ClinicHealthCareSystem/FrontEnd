@@ -1,24 +1,25 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, TouchableOpacity, View, Text, Animated} from "react-native";
+import { FlatList, TouchableOpacity, View, Text, Animated, LayoutChangeEvent } from "react-native";
 import HeaderHome from "../../components/headerHome";
 import TabsNavegation from "../../components/tabsNavegation";
 import HistoricoStyle from "../../styles/MenuStyles/HistoricoStyle";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-type HistoricoTipo = 'RECEITA' | 'EXAME' | 'CONSULTA';
-type HistoricoItem = {
-    id: string;
-    tipo: HistoricoTipo;
-    titulo: string;
-    data: string;
-    medico: string;
-    status?: 'DISPONIVEL' | 'EXPIRADO' | 'PENDENTE';
-    arquivoURL?: string;
+type ItemResult = {
+    nome: string;
+    valor: string;
+    referencia: string;
 }
 type ItemDataEx = {
     id: string;
     title: string;
+    dataConsulta: string;
+    medico: string;
+    unidade: string;
+    status: 'DISPONIVEL' | 'PENDENTE';
+    resumo: string;
+    parametros: ItemResult[];
 };
 
 type ItemPropsEx = {
@@ -29,67 +30,183 @@ type ItemPropsEx = {
     isExpanded: boolean;
 }
 
-function formatarData(data: string){
-    const d = new Date(data);
-    return d.toLocaleDateString('pt-BR', {day: '2-digit', month: 'short', year: 'numeric'});
 
-}
-
-const DATA_EXAMPLE: ItemDataEx[]  = [
+const DATA_EXAMPLE: ItemDataEx[] = [
     {
         id: '1',
         title: 'Hemograma',
+        dataConsulta: '2025-01-10T08:30:00',
+        medico: 'Dr. João Silva · Hematologia',
+        unidade: 'Clínica Central · Sala 203',
+        status: 'DISPONIVEL',
+        resumo: 'Exame dentro da faixa de referência, sem alterações relevantes.',
+        parametros: [
+            { nome: 'Hemoglobina', valor: '13,5 g/dL', referencia: '12,0 – 15,5' },
+            { nome: 'Leucócitos', valor: '6.800 /mm³', referencia: '4.000 – 10.000' },
+            { nome: 'Plaquetas', valor: '250.000 /mm³', referencia: '150.000 – 400.000' },
+        ],
     },
-
     {
         id: '2',
-        title: 'Raio-X',
+        title: 'Raio-X de Tórax',
+        dataConsulta: '2025-01-05T15:10:00',
+        medico: 'Dra. Marina Costa · Pneumologia',
+        unidade: 'Hospital Vida · Bloco B',
+        status: 'PENDENTE',
+        resumo: 'Imagem com discreto aumento de trama broncovascular. Sugere-se correlação clínica.',
+        parametros: [
+            { nome: 'Laudo', valor: 'Alterações leves', referencia: 'Ver laudo completo' },
+        ],
     },
-
     {
         id: '3',
-        title: 'Ultrassonografia'
-    }
+        title: 'Ultrassonografia Abdominal',
+        dataConsulta: '2024-12-20T10:00:00',
+        medico: 'Dr. Carlos Nunes · Gastroenterologia',
+        unidade: 'Clínica Imagem+',
+        status: 'PENDENTE',
+        resumo: 'Exame sem alterações significativas. Repetição apenas se solicitado.',
+        parametros: [
+            { nome: 'Fígado', valor: 'Tamanho e contorno preservados', referencia: 'Normal' },
+            { nome: 'Vesícula', valor: 'Sem cálculos', referencia: 'Normal' },
+        ],
+    },
 ];
+const Item = ({ item, onPress, textColor, isExpanded }: ItemPropsEx) => {
+    const animatedHeight = useRef(new Animated.Value(0)).current;
+    const measuredHeightRef = useRef(0);
 
-const Item = ({item, onPress, backgroundColor, textColor, isExpanded}: ItemPropsEx) => {
-    const animatedHeight = useRef(new Animated.Value(60)).current;
     useEffect(() => {
-    Animated.timing(animatedHeight, {
-      toValue: isExpanded ? 150 : 60,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-  }, [isExpanded]);
-  return (
-  <TouchableOpacity onPress={onPress} style={[HistoricoStyle.item, {backgroundColor: "#0D47AB"}]}>
-    <Animated.View style={{height:animatedHeight}}>
-        <Text style={[HistoricoStyle.title, {color: textColor= "white"}]}>{item.title}</Text>
-        {isExpanded && <Text>
-            <Ionicons name="calendar" size={18} color={"white"} />
-            Data da Consulta</Text>
-            
-        }    
+        Animated.timing(animatedHeight, {
+            toValue: isExpanded ? measuredHeightRef.current : 0,
+            duration: 250,
+            useNativeDriver: false,
+        }).start();
+    }, [isExpanded]);
 
-        {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
-             Sunt quibusdam eligendi, incidunt consequatur assumenda, vel doloribus
-              quae temporibus delectus facilis illum ducimus sint. Quaerat, alias natus modi cumque totam rerum?     */}
-    </Animated.View>
-  </TouchableOpacity>
-  );
+    const onMeasure = (e: LayoutChangeEvent) => {
+        const h = e.nativeEvent.layout.height;
+        if (h && h !== measuredHeightRef.current) {
+            measuredHeightRef.current = h;
+            if (isExpanded) animatedHeight.setValue(h);
+        }
+    };
+
+    return (
+        <TouchableOpacity
+            onPress={onPress}
+            activeOpacity={0.85}
+            style={[HistoricoStyle.item, { backgroundColor: "#0D47AB", overflow: 'hidden' }]}
+        >
+            <View style={{ padding: 12 }}>
+                <Text style={[HistoricoStyle.title, { color: '#FFFF', fontSize: 20 }]}>
+                    {item.title}
+                </Text>
+
+                <View
+                    style={{ position: 'absolute', opacity: 0, left: 12, right: 12 }}
+                    pointerEvents="none"
+                    onLayout={onMeasure}
+                >
+                    <ExpandedContent item={item} />
+                </View>
+
+                <Animated.View style={{ height: animatedHeight, overflow: 'hidden' }}>
+                    <ExpandedContent item={item} />
+                </Animated.View>
+            </View>
+        </TouchableOpacity>
+    );
 };
 
-export default function HistoricoRelatorio(){
-    const [selectedId, setSelectedId] = useState<String>();
-    
+const ExpandedContent = ({ item }: { item: ItemDataEx }) => {
 
-    const renderItem = ({item} : {item: ItemDataEx}) => {
-        const backgroundColor = item.id === selectedId  ? '#0e7ffa': '#0ec3faff';
-        const color = item.id === selectedId ? 'white' : 'black';
+    const getStatusConfig = () => {
+        switch (item.status) {
+            case 'DISPONIVEL':
+                return { label: 'Disponível', bg: '#E0F7EC', color: '#0F9D58' };
+            case 'PENDENTE':
+                return { label: 'Em análise', bg: '#FFF4E0', color: '#fa7a02ff' };
+        }
+    };
+
+    const status = getStatusConfig();
+
+    return (
+        <View style={{ paddingTop: 12 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                    <Ionicons name="calendar" size={18} color="#FFFFFF" />
+                    <Text style={{ color: '#FFFFFF', marginLeft: 8, fontSize: 13 }}>
+                        {item.dataConsulta}
+                    </Text>
+                </View>
+
+                <View style={[HistoricoStyle.statusBadge, { backgroundColor: status.bg }]}>
+                    <Text style={[HistoricoStyle.statusText, { color: status.color }]}>
+                        {status.label}
+                    </Text>
+                </View>
+            </View>
+
+            <View style={HistoricoStyle.section}>
+                <Text style={HistoricoStyle.sectionTitle}>Dados da consulta</Text>
+                <Text style={HistoricoStyle.label}>Médico</Text>
+                <Text style={HistoricoStyle.value}>{item.medico}</Text>
+
+                <Text style={[HistoricoStyle.label, { marginTop: 6 }]}>Unidade</Text>
+                <Text style={HistoricoStyle.value}>{item.unidade}</Text>
+            </View>
+
+            <View style={HistoricoStyle.divider} />
+
+            <View style={HistoricoStyle.section}>
+                <Text style={HistoricoStyle.sectionTitle}>Resumo do resultado</Text>
+                <Text style={[HistoricoStyle.value, { fontSize: 12, marginTop: 2 }]}>
+                    {item.resumo}
+                </Text>
+            </View>
+
+            {item.parametros.length > 0 && (
+                <View style={[HistoricoStyle.section, { marginTop: 10 }]}>
+                    {item.parametros.map((p, index) => (
+                        <View key={index} style={HistoricoStyle.resultRow}>
+                            <View style={{ flex: 1 }}>
+                                <Text style={HistoricoStyle.label}>{p.nome}</Text>
+                                <Text style={HistoricoStyle.value}>{p.valor}</Text>
+                                <Text style={HistoricoStyle.ref}>Ref: {p.referencia}</Text>
+                            </View>
+                        </View>
+                    ))}
+                </View>
+            )}
+
+            <View style={HistoricoStyle.actionsRow}>
+                <TouchableOpacity style={HistoricoStyle.actionButton}>
+                    <Ionicons name="document-text-outline" size={16} color="#0D47AB" />
+                    <Text style={HistoricoStyle.actionText}>Ver PDF</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={HistoricoStyle.actionButton}>
+                    <Ionicons name="share-social-outline" size={16} color="#0D47AB" />
+                    <Text style={HistoricoStyle.actionText}>Compartilhar</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    );
+};
+
+export default function HistoricoRelatorio() {
+    const [selectedId, setSelectedId] = useState<String>();
+
+
+    const renderItem = ({ item }: { item: ItemDataEx }) => {
+        const backgroundColor = item.id === selectedId ? '#0e7ffa' : '#0ec3faff';
+        const color = 'white';
         const isExpanded = item.id === selectedId;
 
 
-        return(
+        return (
             <Item
                 item={item}
                 onPress={() => setSelectedId(prev => prev === item.id ? undefined : item.id)}
@@ -99,18 +216,19 @@ export default function HistoricoRelatorio(){
             />
         );
     }
-    return(
-    <SafeAreaView style={HistoricoStyle.safe}>
-        <HeaderHome titulo="Histórico"/>
+    return (
+        <SafeAreaView style={HistoricoStyle.safe}>
+            <HeaderHome titulo="Resultados" />
             <View style={HistoricoStyle.body}>
                 <FlatList
                     data={DATA_EXAMPLE}
                     renderItem={renderItem}
                     keyExtractor={item => item.id}
                     extraData={selectedId}
-                    
+                    scrollEnabled={true}
+                    contentContainerStyle={{ paddingVertical: 8, paddingBottom: 120 }}
                 />
             </View>
-        <TabsNavegation/>
-    </SafeAreaView>);
+            <TabsNavegation />
+        </SafeAreaView>);
 }
