@@ -36,14 +36,20 @@ export default function Perfil() {
 
               <Text style={styles.nome}>{profile?.name}</Text>
               <Text style={styles.info}>
+                Desde:{" "}
                 {profile?.created_at
-                  ? new Date(profile.created_at).toLocaleString()
+                  ? new Date(profile.created_at).toLocaleDateString("pt-BR")
                   : ""}
               </Text>
 
               <View style={styles.statusAvatar}>
                 <View style={styles.planoStatus}>
-                  <Text style={styles.planoStatusText}>Plano Básico</Text>
+                  <Text style={styles.planoStatusText}>{profile?.plan}</Text>
+                </View>
+                <View style={styles.idSatus}>
+                  <Text style={styles.idStatusText}>
+                    Registro: {profile?.registration}
+                  </Text>
                 </View>
               </View>
             </>
@@ -62,7 +68,7 @@ export default function Perfil() {
           }
         />
 
-        <CardInfoPerfil activeTab={activeTab} />
+        <CardInfoPerfil activeTab={activeTab} profile={profile} />
       </ScrollView>
       <TabsNavegation />
     </View>

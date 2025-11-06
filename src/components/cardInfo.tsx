@@ -1,48 +1,105 @@
-import { Text, View, TextInput,TouchableOpacity } from "react-native";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
-
 import styles from "../styles/TabStyles/perfil";
+import { maskCPF, maskPhone } from "../utils/userValidations";
+
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
+  profile: {
+    name: string;
+    CPF: string;
+    email: string;
+    phone: string;
+    age: number;
+    address: string;
+    blood: string;
+    height: string;
+    weight: string;
+    IMC: string;
+    phoneHelp: string;
+  } | null;
 };
-export default function CardInfoPerfil({ activeTab }: Props) {
+
+export default function CardInfoPerfil({ activeTab, profile }: Props) {
   const [isEditing, setIsEditing] = useState(false);
+
   return (
-     <View>
-    {activeTab === "opcao1" && (
+    <View>
+      {activeTab === "opcao1" && (
         <View style={styles.cardInfo}>
           <View style={styles.cardInfoTittle}>
-          <Text style={styles.tittleInfo}>Informações Pessoais</Text>
-          <TouchableOpacity style={styles.editButton}
-          onPress={() => setIsEditing(!isEditing)}>
-          <MaterialCommunityIcons name={isEditing ? "check" : "account-edit"} size={30} color={"white"}/>
-          </TouchableOpacity>
+            <Text style={styles.tittleInfo}>Informações Pessoais</Text>
+            <TouchableOpacity
+              style={styles.editButton}
+              onPress={() => setIsEditing(!isEditing)}
+            >
+              <MaterialCommunityIcons
+                name={isEditing ? "check" : "account-edit"}
+                size={30}
+                color={"white"}
+              />
+            </TouchableOpacity>
           </View>
 
           <Text style={styles.labelInfo}>Nome:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="José" />
+            <TextInput
+              style={styles.inputInfo}
+              editable={isEditing}
+              value={profile?.name || ""}
+              placeholder="Nome"
+            />
+          </View>
+
+          <Text style={styles.labelInfo}>CPF:</Text>
+          <View style={styles.textInfo}>
+            <TextInput
+              style={styles.inputInfo}
+              editable={isEditing}
+              value={maskCPF(profile?.CPF) || ""}
+              placeholder="CPF"
+            />
           </View>
 
           <Text style={styles.labelInfo}>Email:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="Jose@gmail.com" />
+            <TextInput
+              style={styles.inputInfo}
+              editable={isEditing}
+              value={profile?.email || ""}
+              placeholder="Email"
+            />
           </View>
 
           <Text style={styles.labelInfo}>Telefone:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="(85) 9 9999-9999" />
+            <TextInput
+              style={styles.inputInfo}
+              editable={isEditing}
+              value={maskPhone(profile?.phone) || ""}
+              placeholder="Telefone"
+            />
           </View>
 
-          <Text style={styles.labelInfo}>Data de Nascimento:</Text>
+          <Text style={styles.labelInfo}>Idade:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="01/01/2001" />
+            <TextInput
+              style={styles.inputInfo}
+              editable={isEditing}
+              value={profile?.age?.toString() || ""}
+              placeholder="Idade"
+            />
           </View>
 
           <Text style={styles.labelInfo}>Endereço:</Text>
           <View style={styles.textInfo}>
-            <TextInput style={styles.inputInfo} editable={isEditing} placeholder="Rua A 10" />
+            <TextInput
+              style={styles.inputInfo}
+              editable={isEditing}
+              value={profile?.address || ""}
+              placeholder="Endereço"
+            />
           </View>
         </View>
       )}
@@ -54,66 +111,54 @@ export default function CardInfoPerfil({ activeTab }: Props) {
 
             <View style={styles.textInfoSaude}>
               <Text style={styles.labelInfoSaude}>Tipo sanguíneo</Text>
-              <Text style={styles.labelInfoSaude}>O+</Text>
+              <Text style={styles.labelInfoSaude}>{profile?.blood || "-"}</Text>
             </View>
 
             <View style={styles.textInfoSaude}>
               <Text style={styles.labelInfoSaude}>Altura</Text>
-              <Text style={styles.labelInfoSaude}>1,80m</Text>
+              <Text style={styles.labelInfoSaude}>
+                {profile?.height || "-"}
+              </Text>
             </View>
 
             <View style={styles.textInfoSaude}>
               <Text style={styles.labelInfoSaude}>Peso</Text>
-              <Text style={styles.labelInfoSaude}>85,5Kg</Text>
+              <Text style={styles.labelInfoSaude}>
+                {profile?.weight || "-"}
+              </Text>
             </View>
 
             <View style={styles.textInfoSaude}>
               <Text style={styles.labelInfoSaude}>IMC</Text>
-              <Text style={styles.labelInfoSaude}>20,70</Text>
-            </View>
-          </View>
-
-          <View style={styles.cardInfo}>
-            <Text style={styles.tittleInfo}>Condições de Saúde</Text>
-            <View style={styles.textInfoSaudeCond}>
-              <View style={styles.textInfoSaudeCondCaixa}>
-                <Text style={styles.labelInfoSaudeCond}>Diabetes</Text>
-              </View>
-              <View style={styles.textInfoSaudeCondCaixa}>
-                <Text style={styles.labelInfoSaudeCond}>Hipertensão</Text>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.cardInfo}>
-            <Text style={styles.tittleInfo}>Alergias</Text>
-            <View style={styles.textInfoSaudeCond}>
-              <View style={styles.textInfoSaudeCondCaixa}>
-                <Text style={styles.labelInfoSaudeCond}>Penicilina</Text>
-              </View>
+              <Text style={styles.labelInfoSaude}>{profile?.IMC || "-"}</Text>
             </View>
           </View>
         </View>
       )}
-    
 
-    {activeTab === "opcao3" && ( 
-      <View style={styles.cardInfo}>
-      <Text style={styles.tittleInfo}>Contatos de emergencia</Text>
-            <View style={styles.textInfoSaudeContato}>           
-              <Text style={styles.labelInfoSaudeContato}>Contato Principal</Text>
-              <Text style={styles.labelInfoSaudeContato}>Contato: (85) 9 999999</Text>
-            </View>
-            <TouchableOpacity style={styles.buttonAddPhone}>
-              <Text style={styles.buttonAddPhoneText}>Adicionar novo contato<MaterialCommunityIcons name="phone-plus" size={18} color={"white"}/></Text>
-            </TouchableOpacity>
+      {activeTab === "opcao3" && (
+        <View style={styles.cardInfo}>
+          <Text style={styles.tittleInfo}>Contatos de Emergência</Text>
+          <View style={styles.textInfoSaudeContato}>
+            <Text style={styles.labelInfoSaudeContato}>Contato Principal</Text>
+            <Text style={styles.labelInfoSaudeContato}>
+              {profile?.phoneHelp
+                ? `Contato: ${maskPhone(profile.phoneHelp)}`
+                : "Nenhum contato registrado"}
+            </Text>
           </View>
-          
-     )} 
-     </View>    
-    
-
-     
-    
+          <TouchableOpacity style={styles.buttonAddPhone}>
+            <Text style={styles.buttonAddPhoneText}>
+              Adicionar novo contato
+              <MaterialCommunityIcons
+                name="phone-plus"
+                size={18}
+                color={"white"}
+              />
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </View>
   );
 }
