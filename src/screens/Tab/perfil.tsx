@@ -35,16 +35,15 @@ export default function Perfil() {
               </View>
 
               <Text style={styles.nome}>{profile?.name}</Text>
-              <Text style={styles.info}>CPF: {profile?.CPF}</Text>
+              <Text style={styles.info}>
+                {profile?.created_at
+                  ? new Date(profile.created_at).toLocaleString()
+                  : ""}
+              </Text>
 
               <View style={styles.statusAvatar}>
                 <View style={styles.planoStatus}>
                   <Text style={styles.planoStatusText}>Plano Básico</Text>
-                </View>
-                <View style={styles.idSatus}>
-                  <Text style={styles.idStatusText}>
-                    Telefone: {profile?.phone}
-                  </Text>
                 </View>
               </View>
             </>

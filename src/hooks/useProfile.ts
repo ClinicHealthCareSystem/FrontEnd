@@ -2,9 +2,20 @@ import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface UserProfile {
+  created_at: string;
   name: string;
   phone: string;
   CPF: string;
+  plan: string;
+  registration: string;
+  email: string;
+  age: number;
+  address: string;
+  blood: string;
+  height: string;
+  weight: string;
+  IMC: string;
+  phoneHelp: string;
 }
 
 export function useProfile() {
