@@ -4,7 +4,12 @@ export default StyleSheet.create({
   background: {
     flex: 1,
     backgroundColor: "#acd9e6",
+  },
+
+  scrollArea: {
+    flexGrow: 1,
     padding: 20,
+    paddingBottom: 100,
   },
 
   caixa: {

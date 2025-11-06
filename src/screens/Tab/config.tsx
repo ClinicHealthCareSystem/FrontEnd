@@ -1,14 +1,10 @@
-import {
-  View,
-  ScrollView,
-  Switch,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import { View, ScrollView, Switch, TouchableOpacity, Text } from "react-native";
 import React, { useState } from "react";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import styles from "../../styles/TabStyles/config";
+import HeaderHome from "../../components/headerHome";
+import TabsNavegation from "../../components/tabsNavegation";
+
 export default function Config() {
   const [FontSize, SetFontsize] = useState(false);
   const [DarkMode, SetDarkMode] = useState(false);
@@ -16,7 +12,8 @@ export default function Config() {
 
   return (
     <View style={styles.background}>
-      <ScrollView>
+      <HeaderHome />
+      <ScrollView contentContainerStyle={styles.scrollArea}>
         <View style={styles.caixa}>
           <Text style={styles.texto}>Aumentar a Fonte</Text>
           <Switch
@@ -54,6 +51,7 @@ export default function Config() {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <TabsNavegation />
     </View>
   );
 }
