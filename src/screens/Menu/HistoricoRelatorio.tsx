@@ -63,7 +63,7 @@ const DATA_EXAMPLE: ItemDataEx[] = [
         status: 'PENDENTE',
     },
 ];
-const Item = ({ item, onPress, textColor, isExpanded }: ItemPropsEx) => {
+const Item = ({ item, onPress, isExpanded }: ItemPropsEx) => {
     const animatedHeight = useRef(new Animated.Value(0)).current;
     const measuredHeightRef = useRef(0);
 
@@ -87,15 +87,15 @@ const Item = ({ item, onPress, textColor, isExpanded }: ItemPropsEx) => {
         <TouchableOpacity
             onPress={onPress}
             activeOpacity={0.85}
-            style={[HistoricoStyle.item, { backgroundColor: "#0D47AB", overflow: 'hidden' }]}
+            style={HistoricoStyle.TouchableOpacity}
         >
-            <View style={{ padding: 12 }}>
-                <Text style={[HistoricoStyle.title, { color: '#FFFF', fontSize: 20 }]}>
+            <View style={{padding: HistoricoStyle.itemContent.padding}}>
+                <Text style={[HistoricoStyle.title, { color: HistoricoStyle.value.color, fontSize: HistoricoStyle.itemContent.fontSize }]}>
                     {item.title}
                 </Text>
 
                 <View
-                    style={{ position: 'absolute', opacity: 0, left: 12, right: 12 }}
+                    style={HistoricoStyle.ViewOnMeasure}
                     pointerEvents="none"
                     onLayout={onMeasure}
                 >
@@ -124,11 +124,11 @@ const ExpandedContent = ({ item }: { item: ItemDataEx }) => {
     const status = getStatusConfig();
 
     return (
-        <View style={{ paddingTop: 12 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+        <View style={HistoricoStyle.ViewInTheBox}>
+            <View style={HistoricoStyle.ViewCalendarLabel}>
+                <View style={HistoricoStyle.ViewCalendar}>
                     <Ionicons name="calendar" size={18} color="#FFFFFF" />
-                    <Text style={{ color: '#FFFFFF', marginLeft: 8, fontSize: 13 }}>
+                    <Text style={HistoricoStyle.TextCalendar}>
                         {item.dataConsulta}
                     </Text>
                 </View>
@@ -176,12 +176,12 @@ const ExpandedContent = ({ item }: { item: ItemDataEx }) => {
             {item.status === 'DISPONIVEL' && (
                 <View style={HistoricoStyle.actionsRow}>
                 <TouchableOpacity style={HistoricoStyle.actionButton}>
-                    <Ionicons name="document-text-outline" size={16} color="#0D47AB" />
+                    <Ionicons name="document-text-outline" size={16} color={HistoricoStyle.actionText.color}/>
                     <Text style={HistoricoStyle.actionText}>Ver PDF</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={HistoricoStyle.actionButton}>
-                    <Ionicons name="share-social-outline" size={16} color="#0D47AB" />
+                    <Ionicons name="share-social-outline" size={16} color={HistoricoStyle.actionText.color} />
                     <Text style={HistoricoStyle.actionText}>Compartilhar</Text>
                 </TouchableOpacity>
             </View>
