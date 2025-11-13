@@ -73,7 +73,7 @@ export const theme: Theme = {
 };
 
 // 2. Criação dos Estilos Globais com StyleSheet.create()
-export const globalStyles = StyleSheet.create({
+const baseStyles = {
   // Containers
   container: {
     flex: 1,
@@ -152,9 +152,13 @@ export const globalStyles = StyleSheet.create({
       },
     }),
   },
+};
+
+export const globalStyles = StyleSheet.create({
+  ...baseStyles,
   // MedicamentoCard
   medicamentoCardContainer: {
-    ...this.card,
+    ...baseStyles.card,
     backgroundColor: theme.colors.primary,
     marginTop: theme.spacing.large,
     marginHorizontal: theme.spacing.large,
@@ -166,7 +170,7 @@ export const globalStyles = StyleSheet.create({
     marginBottom: theme.spacing.small,
   },
   medicamentoCardTitle: {
-    ...this.title,
+    ...baseStyles.title,
     color: theme.colors.white,
     marginBottom: theme.spacing.medium,
   },
@@ -180,7 +184,7 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
   },
   medicamentoCardInfoText: {
-    ...this.text,
+    ...baseStyles.text,
     marginLeft: theme.spacing.small,
     color: theme.colors.white,
     fontWeight: "bold",
@@ -190,7 +194,7 @@ export const globalStyles = StyleSheet.create({
   },
   // MedicamentoCardTodos
   medicamentoCardTodosContainer: {
-    ...this.card,
+    ...baseStyles.card,
     backgroundColor: theme.colors.primary,
     marginTop: theme.spacing.large,
     marginHorizontal: theme.spacing.large,
@@ -201,12 +205,12 @@ export const globalStyles = StyleSheet.create({
     marginBottom: theme.spacing.medium,
   },
   medicamentoCardTodosTitle: {
-    ...this.title,
+    ...baseStyles.title,
     fontSize: theme.fontSize.large,
     color: theme.colors.white,
   },
   medicamentoCardTodosBadge: {
-    ...this.text,
+    ...baseStyles.text,
     fontSize: theme.fontSize.small,
     fontWeight: "bold",
     color: theme.colors.white,
@@ -217,7 +221,7 @@ export const globalStyles = StyleSheet.create({
     marginBottom: theme.spacing.medium,
   },
   medicamentoCardTodosInfoText: {
-    ...this.text,
+    ...baseStyles.text,
     marginLeft: theme.spacing.small,
     fontSize: theme.fontSize.small,
     color: theme.colors.white,
@@ -228,15 +232,48 @@ export const globalStyles = StyleSheet.create({
     marginTop: theme.spacing.medium,
   },
   medicamentoCardTodosButtonPrimary: {
-    ...this.button,
+    ...baseStyles.button,
     backgroundColor: "#3284f1",
     flex: 1,
     marginRight: theme.spacing.small,
   },
   medicamentoCardTodosButtonSecondary: {
-    ...this.button,
+    ...baseStyles.button,
     backgroundColor: "#3284f1",
     flex: 1,
     marginLeft: theme.spacing.small,
+  },
+  // Index/Tela Inicial
+  scrollBackground: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.colors.background,
+  },
+  background: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  titulo: {
+    ...baseStyles.title,
+    color: theme.colors.primary,
+    fontSize: theme.fontSize.xlarge,
+    marginBottom: theme.spacing.small,
+  },
+  subTitulo: {
+    ...baseStyles.text,
+    color: theme.colors.text,
+    fontSize: theme.fontSize.medium,
+    marginBottom: theme.spacing.large,
+  },
+  buttonLogin: {
+    ...baseStyles.button,
+    width: '80%',
+    marginBottom: theme.spacing.medium,
+  },
+  textButton: {
+    ...baseStyles.buttonText,
   },
 });
