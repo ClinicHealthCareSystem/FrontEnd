@@ -18,7 +18,7 @@ import {Concluido} from "../../components/concluido";
 import { useScheduling } from "../../hooks/useScheduling";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
-import styles from "../../styles/MenuStyles/exames";
+import { globalStyles } from "../../styles/globalStyles";
 
 export default function Exames() {
   const {
@@ -74,7 +74,7 @@ export default function Exames() {
     router.push("/confirmacaoExame");
   };
   return (
-    <View style={styles.background}>
+    <View style={globalStyles.agendarExamesBackground}>
       <SafeAreaView style={{ flex: 1 }}>
         <HeaderHome
           titulo="Saúde Mania"
@@ -84,10 +84,10 @@ export default function Exames() {
 
         />
         <ScrollView>
-          <View style={styles.bodyView}>
-            <Text style={styles.formLabel}>Exame:</Text>
-            <View style={styles.formInput}>
-              <Ionicons name="flask-outline" style={styles.formIcon} />
+          <View style={globalStyles.agendarExamesBodyView}>
+            <Text style={globalStyles.agendarExamesFormLabel}>Exame:</Text>
+            <View style={globalStyles.agendarExamesFormInput}>
+              <Ionicons name="flask-outline" style={globalStyles.agendarExamesFormIcon} />
               <Controller
                 control={control}
                 name="exame"
@@ -100,7 +100,7 @@ export default function Exames() {
                     <Picker
                       selectedValue={value}
                       onValueChange={onChange}
-                      style={styles.formPicker}
+                      style={globalStyles.agendarExamesFormPicker}
                     >
                       <Picker.Item label="Selecione seu exame" value={null} />
                       <Picker.Item label="Exame de Sangue" value="sangue" />
@@ -118,9 +118,9 @@ export default function Exames() {
               />
             </View>
 
-            <Text style={styles.formLabel}>Unidade:</Text>
-            <View style={styles.formInput}>
-              <Ionicons name="business" style={styles.formIcon} />
+            <Text style={globalStyles.agendarExamesFormLabel}>Unidade:</Text>
+            <View style={globalStyles.agendarExamesFormInput}>
+              <Ionicons name="business" style={globalStyles.agendarExamesFormIcon} />
               <Controller
                 control={control}
                 name="unidade"
@@ -133,7 +133,7 @@ export default function Exames() {
                     <Picker
                       selectedValue={value}
                       onValueChange={onChange}
-                      style={styles.formPicker}
+                      style={globalStyles.agendarExamesFormPicker}
                     >
                       <Picker.Item
                         label="Selecione uma unidade para seu exame"
@@ -153,9 +153,9 @@ export default function Exames() {
               />
             </View>
 
-            <Text style={styles.formLabel}>Convênio:</Text>
-            <View style={styles.formInput}>
-              <Ionicons name="medkit" style={styles.formIcon} />
+            <Text style={globalStyles.agendarExamesFormLabel}>Convênio:</Text>
+            <View style={globalStyles.agendarExamesFormInput}>
+              <Ionicons name="medkit" style={globalStyles.agendarExamesFormIcon} />
               <Controller
                       control={control}
                       name="convenio"
@@ -168,7 +168,7 @@ export default function Exames() {
                           <Picker
                             selectedValue={value}
                             onValueChange={onChange}
-                            style={styles.formPicker}
+                            style={globalStyles.agendarExamesFormPicker}
                           >
                             <Picker.Item label="Selecione um convênio" value={null} />
                             <Picker.Item label="Amil" value="Amil" />
@@ -185,9 +185,9 @@ export default function Exames() {
                     />
 
             </View>
-            <Text style={styles.formLabel}>Data:</Text>
-            <View style={styles.formInput}>
-              <Ionicons name="calendar-number" style={styles.formIcon} />
+            <Text style={globalStyles.agendarExamesFormLabel}>Data:</Text>
+            <View style={globalStyles.agendarExamesFormInput}>
+              <Ionicons name="calendar-number" style={globalStyles.agendarExamesFormIcon} />
               <Controller
                 control={control}
                 name="data"
@@ -199,7 +199,7 @@ export default function Exames() {
                         type="date"
                         value={date.toISOString().split("T")[0]}
                         onChange={handleWebDateChange}
-                        style={styles.setDate}
+                        style={globalStyles.agendarExamesSetDate}
                       />
                     ) : (
                       <>
@@ -224,9 +224,9 @@ export default function Exames() {
               />
             </View>
 
-            <Text style={styles.formLabel}>Horário:</Text>
-            <View style={styles.formInput}>
-              <Ionicons name="time" style={styles.formIcon} />
+            <Text style={globalStyles.agendarExamesFormLabel}>Horário:</Text>
+            <View style={globalStyles.agendarExamesFormInput}>
+              <Ionicons name="time" style={globalStyles.agendarExamesFormIcon} />
               <Controller
                 control={control}
                 name="hora"
@@ -238,7 +238,7 @@ export default function Exames() {
                         type="time"
                         value={time.toTimeString().slice(0, 5)}
                         onChange={handleWebTimeChange}
-                        style={styles.setTime}
+                        style={globalStyles.agendarExamesSetTime}
                       />
                     ) : (
                       <>
@@ -266,10 +266,10 @@ export default function Exames() {
             </View>
 
             <TouchableOpacity
-                              style={styles.scheduleButton}
+                              style={globalStyles.agendarExamesScheduleButton}
                               onPress={handleSubmit(() => setModalVisible(true))}
                               >
-              <Text style={styles.scheduleButtonText}>Próximo</Text>
+              <Text style={globalStyles.agendarExamesScheduleButtonText}>Próximo</Text>
             </TouchableOpacity>
                         <Modal visible={modalVisible} animationType="fade" transparent={true}>
               <Concluido

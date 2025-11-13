@@ -152,7 +152,7 @@ const baseStyles = {
       },
     }),
   },
-};
+} as const;
 
 export const globalStyles = StyleSheet.create({
   ...baseStyles,
@@ -274,6 +274,117 @@ export const globalStyles = StyleSheet.create({
     marginBottom: theme.spacing.medium,
   },
   textButton: {
+    ...baseStyles.buttonText,
+  },
+  // Cadastro Screen
+  cadastroBackground: {
+    backgroundColor: theme.colors.background,
+    padding: theme.spacing.medium,
+  },
+  cadastroTitulo: {
+    ...baseStyles.title,
+    color: theme.colors.primary,
+    fontSize: theme.fontSize.xlarge,
+    marginBottom: theme.spacing.large,
+  },
+  cadastroLabel: {
+    ...baseStyles.text,
+    color: theme.colors.primary,
+    fontSize: theme.fontSize.medium,
+    marginBottom: theme.spacing.small,
+  },
+  cadastroInputCaixa: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.borderRadius.small,
+    borderWidth: 1,
+    borderColor: theme.colors.primary,
+    marginBottom: theme.spacing.medium,
+    paddingHorizontal: theme.spacing.small,
+  },
+  cadastroInput: {
+    ...baseStyles.input,
+    flex: 1,
+    borderWidth: 0,
+  },
+  cadastroIcon: {
+    marginRight: theme.spacing.small,
+  },
+  cadastroButtonAceitar: {
+    ...baseStyles.text,
+    color: theme.colors.primary,
+    textDecorationLine: 'underline',
+    marginBottom: theme.spacing.medium,
+  },
+  cadastroButtonCadastrar: {
+    ...baseStyles.button,
+    width: '100%',
+    marginBottom: theme.spacing.medium,
+  },
+  cadastroVoltaLogin: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: theme.spacing.medium,
+  },
+  cadastroTextVoltaLogin: {
+    ...baseStyles.text,
+    color: theme.colors.primary,
+    textDecorationLine: 'underline',
+    marginLeft: theme.spacing.small,
+  },
+  // AgendarExames Screen
+  agendarExamesBackground: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  agendarExamesBodyView: {
+    padding: theme.spacing.medium,
+  },
+  agendarExamesFormLabel: {
+    ...baseStyles.text,
+    color: theme.colors.primary,
+    fontSize: theme.fontSize.medium,
+    marginBottom: theme.spacing.small,
+  },
+  agendarExamesFormInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.borderRadius.small,
+    borderWidth: 1,
+    borderColor: theme.colors.primary,
+    marginBottom: theme.spacing.medium,
+    paddingHorizontal: theme.spacing.small,
+  },
+  agendarExamesFormIcon: {
+    fontSize: 24,
+    color: theme.colors.primary,
+    marginRight: theme.spacing.small,
+  },
+  agendarExamesFormPicker: {
+    flex: 1,
+    color: theme.colors.primary,
+  },
+  agendarExamesSetDate: {
+    flex: 1,
+    borderWidth: 0,
+    color: theme.colors.primary,
+    backgroundColor: 'transparent',
+  },
+  agendarExamesSetTime: {
+    flex: 1,
+    borderWidth: 0,
+    color: theme.colors.primary,
+    backgroundColor: 'transparent',
+  },
+  agendarExamesScheduleButton: {
+    ...baseStyles.button,
+    width: '100%',
+    marginTop: theme.spacing.medium,
+  },
+  agendarExamesScheduleButtonText: {
     ...baseStyles.buttonText,
   },
 });

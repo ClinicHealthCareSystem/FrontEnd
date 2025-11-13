@@ -12,7 +12,7 @@ import {
   Modal,
 } from "react-native";
 
-import styles from "../../styles/InicioStyles/cadastro";
+import { globalStyles } from "../../styles/globalStyles";
 
 import { useSignUp } from "../../hooks/useSignUp";
 import {
@@ -87,14 +87,14 @@ export default function Cadastro() {
   };
 
   return (
-    <ScrollView style={styles.background}>
-      <Text style={styles.titulo}>Cadastro</Text>
+    <ScrollView style={globalStyles.cadastroBackground}>
+      <Text style={globalStyles.cadastroTitulo}>Cadastro</Text>
 
-      <Text style={styles.label}>Nome Completo</Text>
-      <View style={styles.inputCaixa}>
-        <Ionicons name="person-outline" size={30}  color="#0D47AB" style={styles.id_card} />
+      <Text style={globalStyles.cadastroLabel}>Nome Completo</Text>
+      <View style={globalStyles.cadastroInputCaixa}>
+        <Ionicons name="person-outline" size={30}  color="#0D47AB" style={globalStyles.cadastroIcon} />
         <TextInput
-          style={styles.input}
+          style={globalStyles.cadastroInput}
           onChangeText={(text) =>
             setName(text.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, ""))
           }
@@ -110,11 +110,11 @@ export default function Cadastro() {
         </Text>
       ) : null}
 
-      <Text style={styles.label}>CPF</Text>
-      <View style={styles.inputCaixa}>
-        <MaterialCommunityIcons name="badge-account-horizontal-outline" size={30} color="#0D47AB"  style={styles.id_card} />
+      <Text style={globalStyles.cadastroLabel}>CPF</Text>
+      <View style={globalStyles.cadastroInputCaixa}>
+        <MaterialCommunityIcons name="badge-account-horizontal-outline" size={30} color="#0D47AB"  style={globalStyles.cadastroIcon} />
         <TextInput
-          style={styles.input}
+          style={globalStyles.cadastroInput}
           onChangeText={(text) => setCPF(maskCPF(text))}
           value={CPF}
           placeholder="Digite seu CPF"
@@ -130,11 +130,11 @@ export default function Cadastro() {
         </Text>
       ) : null}
 
-      <Text style={styles.label}>Celular</Text>
-      <View style={styles.inputCaixa}>
-        <Ionicons name="call-outline" size={30}  color="#0D47AB" style={styles.phone} />
+      <Text style={globalStyles.cadastroLabel}>Celular</Text>
+      <View style={globalStyles.cadastroInputCaixa}>
+        <Ionicons name="call-outline" size={30}  color="#0D47AB" style={globalStyles.cadastroIcon} />
         <TextInput
-          style={styles.input}
+          style={globalStyles.cadastroInput}
           onChangeText={(text) => setPhone(maskPhone(text))}
           value={phone}
           placeholder="Digite seu celular"
@@ -150,11 +150,11 @@ export default function Cadastro() {
         </Text>
       ) : null}
 
-      <Text style={styles.label}>Crie uma Senha</Text>
-      <View style={styles.inputCaixa}>
-        <Ionicons name="lock-closed-outline" size={30} color="#0D47AB" style={styles.lock} />
+      <Text style={globalStyles.cadastroLabel}>Crie uma Senha</Text>
+      <View style={globalStyles.cadastroInputCaixa}>
+        <Ionicons name="lock-closed-outline" size={30} color="#0D47AB" style={globalStyles.cadastroIcon} />
         <TextInput
-          style={styles.input}
+          style={globalStyles.cadastroInput}
           onChangeText={(text) =>
             setPassword(text.replace(/[^A-Za-z0-9]/g, ""))
           }
@@ -167,13 +167,13 @@ export default function Cadastro() {
         />
         <TouchableOpacity onPress={passwordEyes}>
           {passwordShow ? (
-            <Ionicons name="eye-outline" size={30}  color="#0D47AB" style={styles.eyeOpened} />
+            <Ionicons name="eye-outline" size={30}  color="#0D47AB" style={globalStyles.cadastroIcon} />
           ) : (
             <Ionicons
               name="eye-off-outline"
               size={30}
               color="#0D47AB"
-              style={styles.eyeClosed}
+              style={globalStyles.cadastroIcon}
             />
           )}
         </TouchableOpacity>
@@ -185,7 +185,7 @@ export default function Cadastro() {
       ) : null}
 
       <TouchableOpacity onPress={abrirTermos}>
-        <Text style={styles.buttonAceitar}>Aceite os Termos</Text>
+        <Text style={globalStyles.cadastroButtonAceitar}>Aceite os Termos</Text>
       </TouchableOpacity>
 
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
@@ -206,21 +206,21 @@ export default function Cadastro() {
       ) : null}
 
       <TouchableOpacity
-        style={[styles.buttonCadastrar, !aceitarTermos && { opacity: 0.6 }]}
+        style={[globalStyles.cadastroButtonCadastrar, !aceitarTermos && { opacity: 0.6 }]}
         disabled={!aceitarTermos}
         onPress={handleSubmit}
       >
-        <Text style={styles.buttonText}>Cadastrar</Text>
+        <Text style={globalStyles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
 
       {error ? (
         <Text style={{ color: "red", marginBottom: 10 }}>{error}</Text>
       ) : null}
 
-      <View style={styles.voltaLogin}>
-        <Text style={styles.text}>Já tem uma conta?</Text>
+      <View style={globalStyles.cadastroVoltaLogin}>
+        <Text style={globalStyles.text}>Já tem uma conta?</Text>
         <TouchableOpacity onPress={() => router.replace("/login")}>
-          <Text style={styles.textVoltaLogin}>Login</Text>
+          <Text style={globalStyles.cadastroTextVoltaLogin}>Login</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
