@@ -1,76 +1,59 @@
 import { StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { theme, globalStyles } from "../globalStyles"; // Importando o tema e os estilos globais
 
 export default StyleSheet.create({
   CardContainer: {
-    backgroundColor: "#0D47AB",
-    borderRadius: 12,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.7,
-    shadowRadius: 8,
-    elevation: 5,
-    padding: 16,
-    marginTop: 20,
-    marginHorizontal: 20,
+    ...globalStyles.card,
+    backgroundColor: theme.colors.primary,
+    marginTop: theme.spacing.large,
+    marginHorizontal: theme.spacing.large,
   },
-
   headerCard: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: theme.spacing.medium,
   },
-
   titleRemedio: {
-    fontSize: RFValue(20),
-    color: "white",
-    fontWeight: "bold",
+    ...globalStyles.title,
+    fontSize: theme.fontSize.large,
+    color: theme.colors.white,
   },
-
-
   textBadge: {
-    fontSize: RFValue(14),
+    ...globalStyles.text,
+    fontSize: theme.fontSize.small,
     fontWeight: "bold",
-    color: "white",
+    color: theme.colors.white,
   },
-
   infoRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 18,
+    marginBottom: theme.spacing.medium,
   },
-
   textInfo: {
-    marginLeft: 6,
-    fontSize: RFValue(14),
-    color: "white",
+    ...globalStyles.text,
+    marginLeft: theme.spacing.small,
+    fontSize: theme.fontSize.small,
+    color: theme.colors.white,
   },
-
   buttonsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 14,
+    marginTop: theme.spacing.medium,
   },
-
   buttonPrimary: {
-    backgroundColor: "#3284f1",
-    padding: 10,
-    borderRadius: 8,
+    ...globalStyles.button,
+    backgroundColor: "#3284f1", // Cor específica, manter por enquanto
     flex: 1,
-    marginRight: 6,
+    marginRight: theme.spacing.small,
   },
-
   buttonSecondary: {
-    backgroundColor: "#3284f1",
-    padding: 10,
-    borderRadius: 8,
+    ...globalStyles.button,
+    backgroundColor: "#3284f1", // Cor específica, manter por enquanto
     flex: 1,
-    marginLeft: 6,
+    marginLeft: theme.spacing.small,
   },
-
   buttonText: {
-    color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
+    ...globalStyles.buttonText,
   },
 });

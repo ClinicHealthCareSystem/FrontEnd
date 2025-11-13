@@ -1,49 +1,38 @@
 import { StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { theme, globalStyles } from "../globalStyles"; // Importando o tema e os estilos globais
 
 export default StyleSheet.create({
   CardContainer: {
-    backgroundColor: "#0D47AB",
-    borderRadius: 12,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.7,
-    shadowRadius: 8,
-    elevation: 5,
-    padding: 16,
-    marginTop: 30,
-    marginHorizontal: 20,
+    ...globalStyles.card,
+    backgroundColor: theme.colors.primary,
+    marginTop: theme.spacing.large,
+    marginHorizontal: theme.spacing.large,
   },
   headerCardMedicamentoTittle:{
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: 8,
-
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: theme.spacing.small,
   },
-
   titleRemedio: {
-    fontSize: RFValue(26),
-    color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
-    marginBottom: 15,
+    ...globalStyles.title,
+    color: theme.colors.white,
+    marginBottom: theme.spacing.medium,
   },
-
   infoCardView: {
     paddingBottom: 6,
-    marginBottom: 12,
-    backgroundColor: "#083b94ff",
-    borderRadius: 12,
+    marginBottom: theme.spacing.medium,
+    backgroundColor: theme.colors.primaryDark,
+    borderRadius: theme.borderRadius.medium,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-
   textCardView: {
-    fontSize: RFValue(16),
-    marginLeft: 10,
-    color: "white",
+    ...globalStyles.text,
+    marginLeft: theme.spacing.small,
+    color: theme.colors.white,
     fontWeight: "bold",
     marginTop: 5,
     textAlign: "center",
