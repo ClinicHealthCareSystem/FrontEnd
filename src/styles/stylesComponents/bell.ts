@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { RFValue } from "react-native-responsive-fontsize";
+import { theme } from '../globalStyles';
 
 export default StyleSheet.create({
     bellContainer:{
@@ -12,7 +13,7 @@ export default StyleSheet.create({
         position: 'absolute',
         top: -5,
         right: -8,
-        backgroundColor: '#FF3B30',
+        backgroundColor: theme.colors.error,
         borderRadius: 10,
         minWidth: 20,
         height: 20,
@@ -21,7 +22,7 @@ export default StyleSheet.create({
         paddingHorizontal: 4,
     },
     badgeText: {
-        color: 'white',
+        color: theme.colors.white,
         fontSize: RFValue(12),
         fontWeight: 'bold',
     },
@@ -35,30 +36,30 @@ export default StyleSheet.create({
         top: RFValue(60),
         width: RFValue(300),
         height: RFValue(300),
-        backgroundColor:'white',
-        shadowColor: "#000",
+        backgroundColor: theme.colors.white,
+        shadowColor: theme.colors.black,
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        borderRadius: 10,
+        borderRadius: theme.borderRadius.medium,
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        padding: RFValue(10),
+        padding: theme.spacing.small,
     },
     noteTitle: {
-        fontSize: RFValue(20),
-        marginBottom: RFValue(10),
+        fontSize: theme.fontSize.large,
+        marginBottom: theme.spacing.small,
         textAlign: 'center',
-        color: '#000',
+        color: theme.colors.black,
     },
     noteContent:{
         borderWidth: 1,
         borderColor: '#ccc',
-        borderRadius: 5,
-        padding: RFValue(10),
+        borderRadius: theme.borderRadius.small,
+        padding: theme.spacing.small,
         width: RFValue(280),
-        marginBottom: RFValue(8),
+        marginBottom: theme.spacing.small,
         overflow: 'hidden',
     },
     noteRow: {
@@ -72,7 +73,7 @@ export default StyleSheet.create({
     },
     NoteText: {
         fontSize: RFValue(15),
-        color: '#000',
+        color: theme.colors.black,
     },
     NoteDateTime: {
         fontSize: RFValue(12),
