@@ -152,4 +152,91 @@ export const globalStyles = StyleSheet.create({
       },
     }),
   },
+  // MedicamentoCard
+  medicamentoCardContainer: {
+    ...this.card,
+    backgroundColor: theme.colors.primary,
+    marginTop: theme.spacing.large,
+    marginHorizontal: theme.spacing.large,
+  },
+  medicamentoCardHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: theme.spacing.small,
+  },
+  medicamentoCardTitle: {
+    ...this.title,
+    color: theme.colors.white,
+    marginBottom: theme.spacing.medium,
+  },
+  medicamentoCardInfoView: {
+    paddingBottom: 6,
+    marginBottom: theme.spacing.medium,
+    backgroundColor: theme.colors.primaryDark,
+    borderRadius: theme.borderRadius.medium,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  medicamentoCardInfoText: {
+    ...this.text,
+    marginLeft: theme.spacing.small,
+    color: theme.colors.white,
+    fontWeight: "bold",
+    marginTop: 5,
+    textAlign: "center",
+    padding: 5,
+  },
+  // MedicamentoCardTodos
+  medicamentoCardTodosContainer: {
+    ...this.card,
+    backgroundColor: theme.colors.primary,
+    marginTop: theme.spacing.large,
+    marginHorizontal: theme.spacing.large,
+  },
+  medicamentoCardTodosHeader: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: theme.spacing.medium,
+  },
+  medicamentoCardTodosTitle: {
+    ...this.title,
+    fontSize: theme.fontSize.large,
+    color: theme.colors.white,
+  },
+  medicamentoCardTodosBadge: {
+    ...this.text,
+    fontSize: theme.fontSize.small,
+    fontWeight: "bold",
+    color: theme.colors.white,
+  },
+  medicamentoCardTodosInfoRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: theme.spacing.medium,
+  },
+  medicamentoCardTodosInfoText: {
+    ...this.text,
+    marginLeft: theme.spacing.small,
+    fontSize: theme.fontSize.small,
+    color: theme.colors.white,
+  },
+  medicamentoCardTodosButtonsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: theme.spacing.medium,
+  },
+  medicamentoCardTodosButtonPrimary: {
+    ...this.button,
+    backgroundColor: "#3284f1",
+    flex: 1,
+    marginRight: theme.spacing.small,
+  },
+  medicamentoCardTodosButtonSecondary: {
+    ...this.button,
+    backgroundColor: "#3284f1",
+    flex: 1,
+    marginLeft: theme.spacing.small,
+  },
 });

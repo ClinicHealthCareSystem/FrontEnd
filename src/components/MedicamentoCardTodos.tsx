@@ -1,48 +1,55 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import styles from "../styles/stylesComponents/MedicamentosCardTodos";
+import { globalStyles } from "../styles/globalStyles";
+
+interface MedicamentoCardTodosProps {
+  tittleRemedio: string;
+  inicio: string;
+  termino: string;
+  prescrito: string;
+}
 
 export default function MedicamentoCardTodos({
   tittleRemedio = "",
   inicio = "",
   termino = "",
   prescrito = "",
-}) {
+}: MedicamentoCardTodosProps) {
   
 
   return (
-    <View style={styles.CardContainer}>
-      <View style={styles.headerCard}>
-        <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
+    <View style={globalStyles.medicamentoCardTodosContainer}>
+      <View style={globalStyles.medicamentoCardTodosHeader}>
+        <Text style={globalStyles.medicamentoCardTodosTitle}>{tittleRemedio}</Text>
       
       </View>
 
 
       
-      <View style={styles.infoRow}>
+      <View style={globalStyles.medicamentoCardTodosInfoRow}>
         <MaterialCommunityIcons name="calendar-start" size={18} color="white" />
-        <Text style={styles.textInfo}>Início: {inicio}</Text>
+        <Text style={globalStyles.medicamentoCardTodosInfoText}>Início: {inicio}</Text>
       </View>
 
-      <View style={styles.infoRow}>
+      <View style={globalStyles.medicamentoCardTodosInfoRow}>
         <MaterialCommunityIcons name="calendar-end" size={18} color="white" />
-        <Text style={styles.textInfo}>Término: {termino}</Text>
+        <Text style={globalStyles.medicamentoCardTodosInfoText}>Término: {termino}</Text>
       </View>
 
-      <View style={styles.infoRow}>
+      <View style={globalStyles.medicamentoCardTodosInfoRow}>
         <MaterialCommunityIcons name="stethoscope" size={18} color="white" />
-        <Text style={styles.textInfo}>Prescrito por: {prescrito}</Text>
+        <Text style={globalStyles.medicamentoCardTodosInfoText}>Prescrito por: {prescrito}</Text>
       </View>
 
       
-      <View style={styles.buttonsRow}>
-        <TouchableOpacity style={styles.buttonPrimary}>
-          <Text style={styles.buttonText}>Ver Detalhes</Text>
+      <View style={globalStyles.medicamentoCardTodosButtonsRow}>
+        <TouchableOpacity style={globalStyles.medicamentoCardTodosButtonPrimary}>
+          <Text style={globalStyles.buttonText}>Ver Detalhes</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonSecondary}>
-          <Text style={styles.buttonText}>Histórico</Text>
+        <TouchableOpacity style={globalStyles.medicamentoCardTodosButtonSecondary}>
+          <Text style={globalStyles.buttonText}>Histórico</Text>
         </TouchableOpacity>
       </View>
     </View>
