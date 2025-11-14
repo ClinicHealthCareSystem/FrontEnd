@@ -1,8 +1,17 @@
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/TabStyles/perfil";
-import { maskCPF, maskPhone } from "../utils/userValidations";
+import {
+  maskCPF,
+  maskPhone,
+  unmaskCPF,
+  unmaskPhone,
+  validateAddress,
+  validateEmail,
+  validatePhone,
+} from "../utils/userValidations";
+import { useUpdateInfoUser } from "../hooks/useUpdateInfoUser";
 
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
@@ -22,7 +31,57 @@ type Props = {
 };
 
 export default function CardInfoPerfil({ activeTab, profile }: Props) {
-  const [isEditing, setIsEditing] = useState(false);
+  const [cpf, setCpf] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const { error, success, handleUpdateUser } = useUpdateInfoUser();
+
+  const [touched, setTouched] = useState({
+    cpf: false,
+    email: false,
+    phone: false,
+    address: false,
+  });
+
+  useEffect(() => {
+    if (profile) {
+      setCpf(maskCPF(profile.CPF));
+      setPhone(maskPhone(profile.phone));
+      setEmail(profile.email);
+      setAddress(profile.address || "");
+    }
+  }, [profile]);
+
+  const phoneError = touched.phone ? validatePhone(phone) : "";
+  const emailError = touched.email ? validateEmail(email) : "";
+  const addressError = touched.address ? validateAddress(address) : "";
+
+  const updateUser = () => {
+    setTouched({
+      cpf: true,
+      email: true,
+      phone: true,
+      address: true,
+    });
+
+    const currentPhoneError = validatePhone(phone);
+    const currentEmailError = validateEmail(email);
+    const currentAddressError = validateAddress(address);
+
+    if (!currentPhoneError && !currentEmailError && !currentAddressError) {
+      const unmaskedPhone = unmaskPhone(phone);
+      const unmaskedCpf = unmaskCPF(cpf);
+      console.log("Atualizando:", {
+        cpf,
+        email,
+        unmaskedPhone,
+        address,
+      });
+
+      handleUpdateUser(unmaskedCpf, email, unmaskedPhone, address);
+    }
+  };
 
   return (
     <View>
@@ -30,23 +89,13 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
         <View style={styles.cardInfo}>
           <View style={styles.cardInfoTittle}>
             <Text style={styles.tittleInfo}>Informações Pessoais</Text>
-            <TouchableOpacity
-              style={styles.editButton}
-              onPress={() => setIsEditing(!isEditing)}
-            >
-              <MaterialCommunityIcons
-                name={isEditing ? "check" : "account-edit"}
-                size={30}
-                color={"white"}
-              />
-            </TouchableOpacity>
           </View>
 
           <Text style={styles.labelInfo}>Nome:</Text>
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              editable={isEditing}
+              editable={false}
               value={profile?.name || ""}
               placeholder="Nome"
             />
@@ -56,9 +105,10 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              editable={isEditing}
-              value={maskCPF(profile?.CPF) || ""}
+              editable={false}
+              value={cpf}
               placeholder="CPF"
+              onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
             />
           </View>
 
@@ -66,27 +116,38 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              editable={isEditing}
-              value={profile?.email || ""}
+              onChangeText={(text) => setEmail(text)}
+              value={email}
               placeholder="Email"
+              onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
             />
           </View>
+          {emailError && (
+            <Text style={{ color: "red", margin: "auto" }}>{emailError}</Text>
+          )}
 
           <Text style={styles.labelInfo}>Telefone:</Text>
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              editable={isEditing}
-              value={maskPhone(profile?.phone) || ""}
+              onChangeText={(text) => setPhone(maskPhone(text))}
+              value={phone}
               placeholder="Telefone"
+              keyboardType="numeric"
+              maxLength={15}
+              onBlur={() => setTouched((prev) => ({ ...prev, phone: true }))}
             />
           </View>
+
+          {phoneError && (
+            <Text style={{ color: "red", margin: "auto" }}>{phoneError}</Text>
+          )}
 
           <Text style={styles.labelInfo}>Idade:</Text>
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              editable={isEditing}
+              editable={false}
               value={profile?.age?.toString() || ""}
               placeholder="Idade"
             />
@@ -96,11 +157,30 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              editable={isEditing}
-              value={profile?.address || ""}
+              onChangeText={(text) => setAddress(text)}
+              value={address}
               placeholder="Endereço"
+              onBlur={() => setTouched((prev) => ({ ...prev, address: true }))}
             />
           </View>
+          {addressError && (
+            <Text style={{ color: "red", margin: "auto" }}>{addressError}</Text>
+          )}
+
+          {success ? (
+            <Text style={{ color: "#07C66A", textAlign: "center" }}>
+              {success}
+            </Text>
+          ) : null}
+
+          {error ? (
+            <Text style={{ color: "red", marginTop: 10, textAlign: "center" }}>
+              {error}
+            </Text>
+          ) : null}
+          <TouchableOpacity style={styles.editUserButton} onPress={updateUser}>
+            <Text style={styles.updateUserText}>Atualizar Informações</Text>
+          </TouchableOpacity>
         </View>
       )}
 
