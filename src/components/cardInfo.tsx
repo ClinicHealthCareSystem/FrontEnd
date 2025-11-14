@@ -35,6 +35,9 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+
+  const [isEditing, setIsEditing] = useState(false);
+
   const { error, success, handleUpdateUser } = useUpdateInfoUser();
 
   const [touched, setTouched] = useState({
@@ -72,14 +75,9 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
     if (!currentPhoneError && !currentEmailError && !currentAddressError) {
       const unmaskedPhone = unmaskPhone(phone);
       const unmaskedCpf = unmaskCPF(cpf);
-      console.log("Atualizando:", {
-        cpf,
-        email,
-        unmaskedPhone,
-        address,
-      });
 
       handleUpdateUser(unmaskedCpf, email, unmaskedPhone, address);
+      setIsEditing(false);
     }
   };
 
@@ -89,6 +87,20 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
         <View style={styles.cardInfo}>
           <View style={styles.cardInfoTittle}>
             <Text style={styles.tittleInfo}>Informações Pessoais</Text>
+
+            <TouchableOpacity
+              style={styles.editButton}
+              onPress={() => {
+                if (isEditing) updateUser();
+                setIsEditing(!isEditing);
+              }}
+            >
+              <MaterialCommunityIcons
+                name={isEditing ? "check" : "account-edit"}
+                size={30}
+                color={"white"}
+              />
+            </TouchableOpacity>
           </View>
 
           <Text style={styles.labelInfo}>Nome:</Text>
@@ -97,7 +109,6 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
               style={styles.inputInfo}
               editable={false}
               value={profile?.name || ""}
-              placeholder="Nome"
             />
           </View>
 
@@ -107,8 +118,6 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
               style={styles.inputInfo}
               editable={false}
               value={cpf}
-              placeholder="CPF"
-              onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
             />
           </View>
 
@@ -116,32 +125,30 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              onChangeText={(text) => setEmail(text)}
+              editable={isEditing}
+              onChangeText={setEmail}
               value={email}
               placeholder="Email"
               onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
             />
           </View>
-          {emailError && (
-            <Text style={{ color: "red", margin: "auto" }}>{emailError}</Text>
-          )}
+
+          {emailError && <Text style={{ color: "red", textAlign: "center" }}>{emailError}</Text>}
 
           <Text style={styles.labelInfo}>Telefone:</Text>
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
+              editable={isEditing}
               onChangeText={(text) => setPhone(maskPhone(text))}
               value={phone}
-              placeholder="Telefone"
-              keyboardType="numeric"
               maxLength={15}
+              keyboardType="numeric"
               onBlur={() => setTouched((prev) => ({ ...prev, phone: true }))}
             />
           </View>
 
-          {phoneError && (
-            <Text style={{ color: "red", margin: "auto" }}>{phoneError}</Text>
-          )}
+          {phoneError && <Text style={{ color: "red", textAlign: "center" }}>{phoneError}</Text>}
 
           <Text style={styles.labelInfo}>Idade:</Text>
           <View style={styles.textInfo}>
@@ -149,7 +156,6 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
               style={styles.inputInfo}
               editable={false}
               value={profile?.age?.toString() || ""}
-              placeholder="Idade"
             />
           </View>
 
@@ -157,61 +163,43 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
           <View style={styles.textInfo}>
             <TextInput
               style={styles.inputInfo}
-              onChangeText={(text) => setAddress(text)}
+              editable={isEditing}
+              onChangeText={setAddress}
               value={address}
-              placeholder="Endereço"
               onBlur={() => setTouched((prev) => ({ ...prev, address: true }))}
             />
           </View>
-          {addressError && (
-            <Text style={{ color: "red", margin: "auto" }}>{addressError}</Text>
-          )}
 
-          {success ? (
-            <Text style={{ color: "#07C66A", textAlign: "center" }}>
-              {success}
-            </Text>
-          ) : null}
+          {addressError && <Text style={{ color: "red", textAlign: "center" }}>{addressError}</Text>}
 
-          {error ? (
-            <Text style={{ color: "red", marginTop: 10, textAlign: "center" }}>
-              {error}
-            </Text>
-          ) : null}
-          <TouchableOpacity style={styles.editUserButton} onPress={updateUser}>
-            <Text style={styles.updateUserText}>Atualizar Informações</Text>
-          </TouchableOpacity>
+          {success && <Text style={{ color: "#07C66A", textAlign: "center" }}>{success}</Text>}
+
+          {error && <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>}
         </View>
       )}
 
       {activeTab === "opcao2" && (
-        <View>
-          <View style={styles.cardInfo}>
-            <Text style={styles.tittleInfo}>Informações de Saúde</Text>
+        <View style={styles.cardInfo}>
+          <Text style={styles.tittleInfo}>Informações de Saúde</Text>
 
-            <View style={styles.textInfoSaude}>
-              <Text style={styles.labelInfoSaude}>Tipo sanguíneo</Text>
-              <Text style={styles.labelInfoSaude}>{profile?.blood || "-"}</Text>
-            </View>
+          <View style={styles.textInfoSaude}>
+            <Text style={styles.labelInfoSaude}>Tipo sanguíneo</Text>
+            <Text style={styles.labelInfoSaude}>{profile?.blood || "-"}</Text>
+          </View>
 
-            <View style={styles.textInfoSaude}>
-              <Text style={styles.labelInfoSaude}>Altura</Text>
-              <Text style={styles.labelInfoSaude}>
-                {profile?.height || "-"}
-              </Text>
-            </View>
+          <View style={styles.textInfoSaude}>
+            <Text style={styles.labelInfoSaude}>Altura</Text>
+            <Text style={styles.labelInfoSaude}>{profile?.height || "-"}</Text>
+          </View>
 
-            <View style={styles.textInfoSaude}>
-              <Text style={styles.labelInfoSaude}>Peso</Text>
-              <Text style={styles.labelInfoSaude}>
-                {profile?.weight || "-"}
-              </Text>
-            </View>
+          <View style={styles.textInfoSaude}>
+            <Text style={styles.labelInfoSaude}>Peso</Text>
+            <Text style={styles.labelInfoSaude}>{profile?.weight || "-"}</Text>
+          </View>
 
-            <View style={styles.textInfoSaude}>
-              <Text style={styles.labelInfoSaude}>IMC</Text>
-              <Text style={styles.labelInfoSaude}>{profile?.IMC || "-"}</Text>
-            </View>
+          <View style={styles.textInfoSaude}>
+            <Text style={styles.labelInfoSaude}>IMC</Text>
+            <Text style={styles.labelInfoSaude}>{profile?.IMC || "-"}</Text>
           </View>
         </View>
       )}
@@ -219,6 +207,7 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
       {activeTab === "opcao3" && (
         <View style={styles.cardInfo}>
           <Text style={styles.tittleInfo}>Contatos de Emergência</Text>
+
           <View style={styles.textInfoSaudeContato}>
             <Text style={styles.labelInfoSaudeContato}>Contato Principal</Text>
             <Text style={styles.labelInfoSaudeContato}>
@@ -227,14 +216,11 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
                 : "Nenhum contato registrado"}
             </Text>
           </View>
+
           <TouchableOpacity style={styles.buttonAddPhone}>
             <Text style={styles.buttonAddPhoneText}>
-              Adicionar novo contato
-              <MaterialCommunityIcons
-                name="phone-plus"
-                size={18}
-                color={"white"}
-              />
+              Adicionar novo contato{" "}
+              <MaterialCommunityIcons name="phone-plus" size={18} color={"white"} />
             </Text>
           </TouchableOpacity>
         </View>

@@ -146,6 +146,13 @@ export default StyleSheet.create({
     fontWeight: "700",
     outlineWidth: 0,
   },
+   editButton:{
+position: "absolute",
+  right: 0,   
+  top: "50%", 
+  transform: [{ translateY: -15 }], 
+  padding: 4,
+  },
 
   textInfoSaude: {
     backgroundColor: "#083b94ff",
