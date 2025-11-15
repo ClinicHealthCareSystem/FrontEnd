@@ -35,7 +35,7 @@ export default function Recuperar() {
     const result = await validateCode(code, phone as string);
 
     if (result && !result.success) {
-      console.log("Erro: ", result.message);
+      throw new Error("Error");
     }
   };
 

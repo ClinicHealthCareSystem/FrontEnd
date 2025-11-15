@@ -11,7 +11,6 @@ export function useVerifyCode() {
     const codeValue = value;
 
     if (!codeValue || codeValue.length !== 6) {
-      console.log("Erro: ", "Digite um código válido");
       return;
     }
 

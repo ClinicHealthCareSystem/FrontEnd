@@ -7,7 +7,6 @@ export function useScheduling() {
 
   const handleScheduling = async (data: any) => {
     setError("");
-    console.log("Envio dos dados de atendimento atendimento");
   };
 
   return { error, handleScheduling };

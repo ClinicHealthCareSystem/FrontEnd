@@ -25,7 +25,6 @@ export default function login(router: any) {
               localStorage.setItem("token", token);
             } else {
               await SecureStore.setItemAsync("token", token);
-              console.log("Token salvo no SecureStore");
             }
 
             router.replace("/menu");
@@ -39,7 +38,6 @@ export default function login(router: any) {
         setError("CPF ou senha inválidos");
       }
     } catch (err) {
-      console.log("Erro ao logar: " + err);
       setError("Erro no servidor, tente novamente mais tarde");
     }
   };

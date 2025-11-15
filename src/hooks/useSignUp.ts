@@ -12,7 +12,6 @@ export function useSignUp() {
     password: string
   ) => {
     setError("");
-    console.log(name, CPF, phone, password);
 
     try {
       const response = await fetch(`http://localhost:3000/user/signUp`, {
@@ -22,7 +21,6 @@ export function useSignUp() {
       });
 
       const json = await response.json();
-      console.log(response.status, json);
 
       if (response.ok) {
         router.replace("/login");
@@ -30,7 +28,6 @@ export function useSignUp() {
         setError("Erro ao cadastrar");
       }
     } catch (error) {
-      console.log("erro no catch do signup", error);
       setError("Erro de conexão");
     }
   };

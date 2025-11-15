@@ -26,7 +26,6 @@ export function useUpdateInfoUser() {
       );
 
       const json = await response.json();
-      console.log(response.status, json);
 
       if (response.ok) {
         setSuccess("Informações atualizadas com sucesso!");
@@ -37,7 +36,6 @@ export function useUpdateInfoUser() {
         setError("Erro ao atualizar informações do usuário");
       }
     } catch (error) {
-      console.log("erro no catch de atualizar usuário", error);
       setError("Erro de conexão");
     }
   };

@@ -23,19 +23,15 @@ export function useUpdateUser() {
       );
 
       const json = await response.json();
-      console.log(json);
-      console.log(response.status);
 
       if (!response.ok) {
         throw new Error(`ERROR HTTP: ${response.status}`);
       }
 
       if (response.ok) {
-        console.log("Dados do usuário atualizado com sucesso");
         router.replace("/login");
       }
     } catch (error) {
-      console.log("Não foi possível atualizar os dados do usuário: " + error);
       throw new Error("Não foi possível atulizar seus dados: " + error);
     }
   };
