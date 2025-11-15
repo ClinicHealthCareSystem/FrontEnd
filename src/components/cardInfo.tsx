@@ -81,6 +81,31 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
     }
   };
 
+  const [iconColor, setIconColor] = useState("white");
+  const [iconName, setIconName] = useState<"account-edit" | "check">(
+    "account-edit"
+  );
+
+  const handlePressEdit = () => {
+    if (!isEditing) {
+      setIsEditing(true);
+      setIconColor("#FFD700");
+      setIconName("account-edit");
+      return;
+    }
+
+    updateUser();
+
+    setIconName("check");
+    setIconColor("#07C66A");
+
+    setTimeout(() => {
+      setIsEditing(false);
+      setIconName("account-edit");
+      setIconColor("white");
+    }, 800);
+  };
+
   return (
     <View>
       {activeTab === "opcao1" && (
@@ -90,15 +115,12 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
 
             <TouchableOpacity
               style={styles.editButton}
-              onPress={() => {
-                if (isEditing) updateUser();
-                setIsEditing(!isEditing);
-              }}
+              onPress={handlePressEdit}
             >
               <MaterialCommunityIcons
-                name={isEditing ? "check" : "account-edit"}
+                name={iconName}
                 size={30}
-                color={"white"}
+                color={iconColor}
               />
             </TouchableOpacity>
           </View>
@@ -114,11 +136,7 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
 
           <Text style={styles.labelInfo}>CPF:</Text>
           <View style={styles.textInfo}>
-            <TextInput
-              style={styles.inputInfo}
-              editable={false}
-              value={cpf}
-            />
+            <TextInput style={styles.inputInfo} editable={false} value={cpf} />
           </View>
 
           <Text style={styles.labelInfo}>Email:</Text>
@@ -133,7 +151,11 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
             />
           </View>
 
-          {emailError && <Text style={{ color: "red", textAlign: "center" }}>{emailError}</Text>}
+          {emailError && (
+            <Text style={{ color: "red", textAlign: "center" }}>
+              {emailError}
+            </Text>
+          )}
 
           <Text style={styles.labelInfo}>Telefone:</Text>
           <View style={styles.textInfo}>
@@ -148,7 +170,11 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
             />
           </View>
 
-          {phoneError && <Text style={{ color: "red", textAlign: "center" }}>{phoneError}</Text>}
+          {phoneError && (
+            <Text style={{ color: "red", textAlign: "center" }}>
+              {phoneError}
+            </Text>
+          )}
 
           <Text style={styles.labelInfo}>Idade:</Text>
           <View style={styles.textInfo}>
@@ -170,11 +196,21 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
             />
           </View>
 
-          {addressError && <Text style={{ color: "red", textAlign: "center" }}>{addressError}</Text>}
+          {addressError && (
+            <Text style={{ color: "red", textAlign: "center" }}>
+              {addressError}
+            </Text>
+          )}
 
-          {success && <Text style={{ color: "#07C66A", textAlign: "center" }}>{success}</Text>}
+          {success && (
+            <Text style={{ color: "#07C66A", textAlign: "center" }}>
+              {success}
+            </Text>
+          )}
 
-          {error && <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>}
+          {error && (
+            <Text style={{ color: "red", textAlign: "center" }}>{error}</Text>
+          )}
         </View>
       )}
 
@@ -220,7 +256,11 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
           <TouchableOpacity style={styles.buttonAddPhone}>
             <Text style={styles.buttonAddPhoneText}>
               Adicionar novo contato{" "}
-              <MaterialCommunityIcons name="phone-plus" size={18} color={"white"} />
+              <MaterialCommunityIcons
+                name="phone-plus"
+                size={18}
+                color={"white"}
+              />
             </Text>
           </TouchableOpacity>
         </View>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import { Alert } from "react-native";
 
 export function useUpdateInfoUser() {
   const [error, setError] = useState("");

@@ -146,12 +146,12 @@ export default StyleSheet.create({
     fontWeight: "700",
     outlineWidth: 0,
   },
-   editButton:{
-position: "absolute",
-  right: 0,   
-  top: "50%", 
-  transform: [{ translateY: -15 }], 
-  padding: 4,
+  editButton: {
+    position: "absolute",
+    right: 0,
+    top: "30%",
+    transform: [{ translateY: -15 }],
+    padding: 4,
   },
 
   textInfoSaude: {
@@ -233,22 +233,5 @@ position: "absolute",
     color: "white",
     fontSize: 18,
     fontWeight: "600",
-  },
-
-  editUserButton: {
-    backgroundColor: "#3284f1",
-    justifyContent: "center",
-    width: "70%",
-    height: 50,
-    borderRadius: 8,
-    alignItems: "center",
-    margin: 'auto',
-    marginTop: 10,
-  },
-
-  updateUserText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
   },
 });
