@@ -1,7 +1,6 @@
 import { Text, View, TextInput, TouchableOpacity, Modal } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
-import styles from "../styles/TabStyles/perfil";
 import {
   maskCPF,
   maskPhone,
@@ -12,6 +11,7 @@ import {
   validatePhone,
 } from "../utils/userValidations";
 import { useUpdateInfoUser } from "../hooks/useUpdateInfoUser";
+import styles from "../styles/TabStyles/perfil";
 
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";

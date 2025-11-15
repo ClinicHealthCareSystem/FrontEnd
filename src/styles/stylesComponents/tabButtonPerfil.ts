@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-   tabsCaixa: {
+  tabsCaixa: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignSelf: "center",
@@ -16,6 +16,7 @@ export default StyleSheet.create({
     elevation: 5,
     borderRadius: 8,
   },
+  
   tabButtonPerfil: {
     paddingVertical: 8,
     paddingHorizontal: 16,
@@ -29,10 +30,10 @@ export default StyleSheet.create({
   },
 
   tabButtonActive: {
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
   },
 
   tabTextActive: {
-    color: '#0D47AB',
+    color: "#0D47AB",
   },
 });

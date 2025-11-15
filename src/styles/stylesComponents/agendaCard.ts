@@ -12,7 +12,7 @@ export default StyleSheet.create({
     elevation: 5,
     padding: 16,
     marginBottom: 20,
-    
+
     marginHorizontal: 20,
   },
 
@@ -59,7 +59,7 @@ export default StyleSheet.create({
     marginRight: 8,
     backgroundColor: "#3284f1",
   },
-  
+
   buttonCardCancel: {
     flex: 1,
     borderRadius: 12,

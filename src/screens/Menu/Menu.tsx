@@ -1,6 +1,5 @@
 import { View, ScrollView } from "react-native";
 import styles from "../../styles/MenuStyles/menu";
-
 import { Ionicons } from "@expo/vector-icons";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";

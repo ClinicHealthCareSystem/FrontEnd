@@ -5,7 +5,6 @@ import HeaderHome from "../../components/headerHome";
 import TabsNavegation from "../../components/tabsNavegation";
 import AgendaCard from "../../components/agendaCard";
 import TabsButtonPerfil from "../../components/TabButtonsPerfil";
-
 import styles from "../../styles/MenuStyles/agendar";
 
 export default function AgendarScreen() {

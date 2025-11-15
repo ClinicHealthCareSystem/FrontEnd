@@ -1,8 +1,7 @@
-
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, Modal, Pressable, Touchable } from 'react-native';
+import React, { useState } from "react";
+import { View, TouchableOpacity, Text, Modal, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from '../styles/stylesComponents/bell';
+import styles from "../styles/stylesComponents/bell";
 
 export default function Bell() {
   const [sideBarVisible, setSideBarVisible] = useState(false);
@@ -28,11 +27,11 @@ export default function Bell() {
         visible={sideBarVisible}
         onRequestClose={toggleSideBar}
       >
-        <Pressable
-          style={styles.modalOverlay}
-          onPress={toggleSideBar}
-        >
-          <Pressable style={styles.sideBar} onPress={e => e.stopPropagation()}>
+        <Pressable style={styles.modalOverlay} onPress={toggleSideBar}>
+          <Pressable
+            style={styles.sideBar}
+            onPress={(e) => e.stopPropagation()}
+          >
             <View>
               <Text style={styles.noteTitle}>Notificações</Text>
               <TouchableOpacity style={styles.noteContent}>

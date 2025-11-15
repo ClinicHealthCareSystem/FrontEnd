@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { useRouter } from "expo-router";
 import { TermosServico } from "../../components/termos";
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
   Text,
   TextInput,
@@ -92,7 +92,12 @@ export default function Cadastro() {
 
       <Text style={styles.label}>Nome Completo</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="person-outline" size={30}  color="#0D47AB" style={styles.id_card} />
+        <Ionicons
+          name="person-outline"
+          size={30}
+          color="#0D47AB"
+          style={styles.id_card}
+        />
         <TextInput
           style={styles.input}
           onChangeText={(text) =>
@@ -112,7 +117,12 @@ export default function Cadastro() {
 
       <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
-        <MaterialCommunityIcons name="badge-account-horizontal-outline" size={30} color="#0D47AB"  style={styles.id_card} />
+        <MaterialCommunityIcons
+          name="badge-account-horizontal-outline"
+          size={30}
+          color="#0D47AB"
+          style={styles.id_card}
+        />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setCPF(maskCPF(text))}
@@ -132,7 +142,12 @@ export default function Cadastro() {
 
       <Text style={styles.label}>Celular</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="call-outline" size={30}  color="#0D47AB" style={styles.phone} />
+        <Ionicons
+          name="call-outline"
+          size={30}
+          color="#0D47AB"
+          style={styles.phone}
+        />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setPhone(maskPhone(text))}
@@ -145,14 +160,19 @@ export default function Cadastro() {
         />
       </View>
       {touched.phone && phoneError ? (
-        <Text style={{ color: "red", marginBottom: 20,  marginTop: -10 }}>
+        <Text style={{ color: "red", marginBottom: 20, marginTop: -10 }}>
           {phoneError}
         </Text>
       ) : null}
 
       <Text style={styles.label}>Crie uma Senha</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="lock-closed-outline" size={30} color="#0D47AB" style={styles.lock} />
+        <Ionicons
+          name="lock-closed-outline"
+          size={30}
+          color="#0D47AB"
+          style={styles.lock}
+        />
         <TextInput
           style={styles.input}
           onChangeText={(text) =>
@@ -167,7 +187,12 @@ export default function Cadastro() {
         />
         <TouchableOpacity onPress={passwordEyes}>
           {passwordShow ? (
-            <Ionicons name="eye-outline" size={30}  color="#0D47AB" style={styles.eyeOpened} />
+            <Ionicons
+              name="eye-outline"
+              size={30}
+              color="#0D47AB"
+              style={styles.eyeOpened}
+            />
           ) : (
             <Ionicons
               name="eye-off-outline"

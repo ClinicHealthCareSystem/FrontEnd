@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useRouter } from "expo-router";
 
 export function useUpdateInfoUser() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const router = useRouter();
 
   const handleUpdateUser = async (
     cpf: string,

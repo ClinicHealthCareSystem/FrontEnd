@@ -7,7 +7,7 @@ import planos from "../../styles/MenuStyles/planos";
 export default function Planos() {
   return (
     <View style={planos.background}>
-      <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false}/>
+      <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} />
       <ScrollView style={planos.background}>
         <View style={planos.card}>
           <Text style={planos.titlecard}>Plano A</Text>

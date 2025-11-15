@@ -22,8 +22,6 @@ export function useUpdateUser() {
         }
       );
 
-      const json = await response.json();
-
       if (!response.ok) {
         throw new Error(`ERROR HTTP: ${response.status}`);
       }
