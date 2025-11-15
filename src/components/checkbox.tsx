@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
+
 const Checkbox = () => {
   const [checked, setChecked] = useState(false);
   const alternarMarcacao = () => {

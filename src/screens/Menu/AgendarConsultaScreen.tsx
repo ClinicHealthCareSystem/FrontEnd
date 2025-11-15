@@ -10,29 +10,19 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
-import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Concluido } from "../../components/concluido";
-
 import { useScheduling } from "../../hooks/useScheduling";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
-
 import styles from "../../styles/MenuStyles/agendarConsulta";
 
 const AgendarConsultaScreen = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm({});
+  const { control, handleSubmit, setValue } = useForm({});
 
-  const router = useRouter();
   const { handleScheduling } = useScheduling();
   const [modalVisible, setModalVisible] = useState(false);
-  const [aceitarTermos, setAceitarTermos] = useState(false);
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -294,7 +284,6 @@ const AgendarConsultaScreen = () => {
               <Concluido
                 onAccept={handleSubmit((data) => {
                   handleScheduling(data);
-                  setAceitarTermos(true);
                   setModalVisible(false);
                 })}
               />

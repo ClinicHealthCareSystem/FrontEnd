@@ -14,7 +14,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import {Concluido} from "../../components/concluido";
+import { Concluido } from "../../components/concluido";
 import { useScheduling } from "../../hooks/useScheduling";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
@@ -30,8 +30,8 @@ export default function Exames() {
 
   const router = useRouter();
   const { handleScheduling } = useScheduling();
-     const [modalVisible, setModalVisible] = useState(false);
-      const [aceitarTermos, setAceitarTermos] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [aceitarTermos, setAceitarTermos] = useState(false);
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -81,7 +81,6 @@ export default function Exames() {
           mostrarBusca={false}
           mostrarVoltar={true}
           subTitulo="Agende seu exame com a melhor do Brasil"
-
         />
         <ScrollView>
           <View style={styles.bodyView}>
@@ -157,33 +156,35 @@ export default function Exames() {
             <View style={styles.formInput}>
               <Ionicons name="medkit" style={styles.formIcon} />
               <Controller
-                      control={control}
-                      name="convenio"
-                      rules={{ required: "Selecione um convênio" }}
-                      render={({
-                        field: { onChange, value },
-                        fieldState: { error },
-                      }) => (
-                        <View style={{ flex: 1 }}>
-                          <Picker
-                            selectedValue={value}
-                            onValueChange={onChange}
-                            style={styles.formPicker}
-                          >
-                            <Picker.Item label="Selecione um convênio" value={null} />
-                            <Picker.Item label="Amil" value="Amil" />
-                            <Picker.Item label="SulAmérica" value="SulAmérica" />
-                            <Picker.Item label="Unimed" value="Unimed" />
-                            <Picker.Item label="Hapvida" value="Hapvida" />
-                            <Picker.Item label="Bradesco Saúde" value="Bradesco Saúde" />
-                          </Picker>
-                          {error && (
-                            <Text style={{ color: "red" }}>{error.message}</Text>
-                          )}
-                        </View>
-                      )}
-                    />
-
+                control={control}
+                name="convenio"
+                rules={{ required: "Selecione um convênio" }}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <View style={{ flex: 1 }}>
+                    <Picker
+                      selectedValue={value}
+                      onValueChange={onChange}
+                      style={styles.formPicker}
+                    >
+                      <Picker.Item label="Selecione um convênio" value={null} />
+                      <Picker.Item label="Amil" value="Amil" />
+                      <Picker.Item label="SulAmérica" value="SulAmérica" />
+                      <Picker.Item label="Unimed" value="Unimed" />
+                      <Picker.Item label="Hapvida" value="Hapvida" />
+                      <Picker.Item
+                        label="Bradesco Saúde"
+                        value="Bradesco Saúde"
+                      />
+                    </Picker>
+                    {error && (
+                      <Text style={{ color: "red" }}>{error.message}</Text>
+                    )}
+                  </View>
+                )}
+              />
             </View>
             <Text style={styles.formLabel}>Data:</Text>
             <View style={styles.formInput}>
@@ -266,17 +267,21 @@ export default function Exames() {
             </View>
 
             <TouchableOpacity
-                              style={styles.scheduleButton}
-                              onPress={handleSubmit(() => setModalVisible(true))}
-                              >
+              style={styles.scheduleButton}
+              onPress={handleSubmit(() => setModalVisible(true))}
+            >
               <Text style={styles.scheduleButtonText}>Próximo</Text>
             </TouchableOpacity>
-                        <Modal visible={modalVisible} animationType="fade" transparent={true}>
+            <Modal
+              visible={modalVisible}
+              animationType="fade"
+              transparent={true}
+            >
               <Concluido
                 onAccept={handleSubmit((data) => {
-                  handleScheduling(data);   
+                  handleScheduling(data);
                   setAceitarTermos(true);
-                  setModalVisible(false);  
+                  setModalVisible(false);
                 })}
               />
             </Modal>

@@ -4,7 +4,7 @@ import styles from "../styles/stylesComponents/agendaCard";
 
 import marcacaoButtons from "../styles/stylesComponents/marcacaoButtons";
 import { router } from "expo-router";
-import { FadeIn, FadeOut } from 'react-native-reanimated';
+import { FadeIn, FadeOut } from "react-native-reanimated";
 import Reanimated from "react-native-reanimated";
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";

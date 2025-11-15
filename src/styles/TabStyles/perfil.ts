@@ -106,29 +106,21 @@ export default StyleSheet.create({
     width: "90%",
     alignSelf: "center",
   },
-  cardInfoTittle:{
-   justifyContent: "center",
-  alignItems: "center",
-  position: "relative",
-  marginBottom: 8,
-    
-    
-  },
-  editButton:{
-position: "absolute",
-  right: 0,   
-  top: "50%", 
-  transform: [{ translateY: -15 }], 
-  padding: 4,
+
+  cardInfoTittle: {
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+    marginBottom: 8,
   },
 
- tittleInfo: {
-  fontSize: 24,
-  fontWeight: "bold",
-  marginBottom: 8,
-  color: "white",
-  textAlign: "center",
-},
+  tittleInfo: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 8,
+    color: "white",
+    textAlign: "center",
+  },
 
   textInfo: {
     backgroundColor: "white",
@@ -154,8 +146,15 @@ position: "absolute",
     fontWeight: "700",
     outlineWidth: 0,
   },
+  editButton: {
+    position: "absolute",
+    right: 0,
+    top: "30%",
+    transform: [{ translateY: -15 }],
+    padding: 4,
+  },
 
-  textInfoSaude:{
+  textInfoSaude: {
     backgroundColor: "#083b94ff",
     borderRadius: 8,
     padding: 6,
@@ -165,18 +164,17 @@ position: "absolute",
     marginTop: 15,
     marginBottom: 15,
     alignSelf: "center",
-
   },
 
-  labelInfoSaude:{
+  labelInfoSaude: {
     fontSize: 16,
     color: "white",
     marginHorizontal: 30,
     fontWeight: "600",
-
   },
-  textInfoSaudeCond:{
-     backgroundColor: "#0D47AB",
+
+  textInfoSaudeCond: {
+    backgroundColor: "#0D47AB",
     padding: 6,
     width: "90%",
     borderColor: "#ADD8E6",
@@ -186,38 +184,36 @@ position: "absolute",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-
   },
-  labelInfoSaudeCond:{
-     fontSize: 16,
+
+  labelInfoSaudeCond: {
+    fontSize: 16,
     color: "white",
-    
     fontWeight: "600",
     textAlign: "center",
-
-
   },
-  textInfoSaudeCondCaixa:{
-  backgroundColor: "#083b94ff",
-  borderRadius: 8,
-  paddingVertical: 8,
-  paddingHorizontal: 16,
-  borderWidth: 1,
-  borderColor: "#ADD8E6",
-  margin: 6,             
-  alignItems: "center",
 
+  textInfoSaudeCondCaixa: {
+    backgroundColor: "#083b94ff",
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderWidth: 1,
+    borderColor: "#ADD8E6",
+    margin: 6,
+    alignItems: "center",
   },
-  textInfoSaudeContato:{
+
+  textInfoSaudeContato: {
     backgroundColor: "white",
     padding: 6,
     width: "100%",
     borderRadius: 8,
     marginTop: 15,
     marginBottom: 15,
-    
   },
-  labelInfoSaudeContato:{
+
+  labelInfoSaudeContato: {
     fontSize: 16,
     color: "#0D47AB",
     fontWeight: "bold",
@@ -225,21 +221,72 @@ position: "absolute",
     marginTop: 10,
     marginBottom: 10,
   },
-  buttonAddPhone:{
-      backgroundColor:  "#083b94ff",
-      borderRadius: 8,
-      padding: 12,
-      
-            
+
+  buttonAddPhone: {
+    backgroundColor: "#083b94ff",
+    borderRadius: 8,
+    padding: 12,
   },
-  buttonAddPhoneText:{
+
+  buttonAddPhoneText: {
     textAlign: "center",
     color: "white",
     fontSize: 18,
     fontWeight: "600",
-    
-
   },
-  
 
+  // modal
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 16,
+    paddingVertical: 30,
+    paddingHorizontal: 25,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 10,
+  },
+
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+
+  buttonClose: {
+    backgroundColor: "red",
+  },
+
+  buttonSubmit: {
+    backgroundColor: "#07C66A",
+  },
+
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#0D47AB",
+  },
 });

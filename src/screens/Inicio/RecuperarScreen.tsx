@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-
 import {
   Text,
   TextInput,
@@ -9,7 +8,6 @@ import {
   View,
   ScrollView,
 } from "react-native";
-
 import styles from "../../styles/InicioStyles/recuperar";
 import { useVerifyCode } from "../../hooks/useVerifyCode";
 import { verifyCode } from "../../utils/authValidations";
@@ -35,7 +33,7 @@ export default function Recuperar() {
     const result = await validateCode(code, phone as string);
 
     if (result && !result.success) {
-      console.log("Erro: ", result.message);
+      throw new Error("Error");
     }
   };
 

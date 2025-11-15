@@ -27,7 +27,6 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
 
-
   textBadge: {
     fontSize: RFValue(14),
     fontWeight: "bold",

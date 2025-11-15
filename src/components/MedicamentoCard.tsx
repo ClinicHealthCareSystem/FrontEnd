@@ -3,9 +3,8 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../styles/stylesComponents/MedicamentoCard";
-import TabsButtonPerfil from "./TabButtonsPerfil";
 
-import { FadeIn, FadeOut } from 'react-native-reanimated';
+import { FadeIn, FadeOut } from "react-native-reanimated";
 import Reanimated from "react-native-reanimated";
 
 export default function MedicamentoCard({
@@ -14,25 +13,26 @@ export default function MedicamentoCard({
   hora1 = "",
   hora2 = "",
 }) {
-  const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(
-    "opcao1"
-  );
   const [liked, setLiked] = useState(false);
   const [liked2, setLiked2] = useState(false);
-  const [notify, setNotify] = useState(true); 
+  const [notify, setNotify] = useState(true);
 
   return (
-    <Reanimated.View style={styles.CardContainer} entering={FadeIn.duration(700)} exiting={FadeOut.duration(500)}>
+    <Reanimated.View
+      style={styles.CardContainer}
+      entering={FadeIn.duration(700)}
+      exiting={FadeOut.duration(500)}
+    >
       <View style={styles.headerCardMedicamentoTittle}>
-      <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
-      <TouchableOpacity onPress={() => setNotify(!notify)}>
+        <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
+        <TouchableOpacity onPress={() => setNotify(!notify)}>
           <Ionicons
             name={notify ? "notifications" : "notifications-off"}
             size={24}
             color={notify ? "white" : "gray"}
           />
         </TouchableOpacity>
-        </View>
+      </View>
       <View style={styles.infoCardView}>
         <Text style={styles.textCardView}>{vezesdia}</Text>
       </View>

@@ -15,7 +15,6 @@ export default function login(router: any) {
       });
 
       const json = await response.json();
-      console.log(response.status, json);
 
       if (response.ok) {
         const token = json.access_token;
@@ -24,10 +23,8 @@ export default function login(router: any) {
           try {
             if (typeof window !== "undefined" && window.localStorage) {
               localStorage.setItem("token", token);
-              console.log("Token salvo no localStorage");
             } else {
               await SecureStore.setItemAsync("token", token);
-              console.log("Token salvo no SecureStore");
             }
 
             router.replace("/menu");
@@ -41,7 +38,6 @@ export default function login(router: any) {
         setError("CPF ou senha inválidos");
       }
     } catch (err) {
-      console.log("Erro ao logar: " + err);
       setError("Erro no servidor, tente novamente mais tarde");
     }
   };

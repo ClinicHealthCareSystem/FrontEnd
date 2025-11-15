@@ -106,3 +106,18 @@ export const validatePhone = (phone?: string) => {
     return "O número deve começar com 9 após o DDD";
   return "";
 };
+
+export const validateEmail = (email?: string) => {
+  if (!email) return "Informe um email";
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!regex.test(email)) return "Email inválido";
+  return "";
+};
+
+export const validateAddress = (address?: string) => {
+  if (!address || address.trim().length === 0) return "Informe um endereço";
+  if (address.trim().length < 8) return "Endereço muito curto";
+  if (!/\d/.test(address)) return "Inclua o número do endereço";
+  if (!/[a-zA-ZÀ-ÿ]/.test(address)) return "Inclua o nome da rua";
+  return "";
+};
