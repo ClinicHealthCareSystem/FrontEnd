@@ -1,4 +1,4 @@
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Modal } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import styles from "../styles/TabStyles/perfil";
@@ -35,6 +35,7 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+  const [phoneHelp, setPhoneHelp] = useState("");
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -45,20 +46,24 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
     email: false,
     phone: false,
     address: false,
+    phoneHelp: false,
   });
 
   useEffect(() => {
     if (profile) {
       setCpf(maskCPF(profile.CPF));
-      setPhone(maskPhone(profile.phone));
+      setPhone(maskPhone(profile.phone) || "Telefone");
       setEmail(profile.email);
-      setAddress(profile.address || "");
+      setAddress(profile.address || "Endereço");
+      setPhoneHelp(maskPhone(profile.phoneHelp || "Celular de Emergência"));
     }
   }, [profile]);
 
   const phoneError = touched.phone ? validatePhone(phone) : "";
   const emailError = touched.email ? validateEmail(email) : "";
   const addressError = touched.address ? validateAddress(address) : "";
+  const phoneHelpError = touched.phoneHelp ? validatePhone(phoneHelp) : "";
+  const isPhoneHelpValid = phoneHelp.trim() === "" || !validatePhone(phoneHelp);
 
   const updateUser = () => {
     setTouched({
@@ -66,17 +71,31 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
       email: true,
       phone: true,
       address: true,
+      phoneHelp: true,
     });
 
     const currentPhoneError = validatePhone(phone);
     const currentEmailError = validateEmail(email);
     const currentAddressError = validateAddress(address);
 
-    if (!currentPhoneError && !currentEmailError && !currentAddressError) {
+    if (
+      !currentPhoneError &&
+      !currentEmailError &&
+      !currentAddressError &&
+      isPhoneHelpValid
+    ) {
       const unmaskedPhone = unmaskPhone(phone);
+      const unmaskedPhoneHelp =
+        phoneHelp.trim() === "" ? null : unmaskPhone(phoneHelp);
       const unmaskedCpf = unmaskCPF(cpf);
 
-      handleUpdateUser(unmaskedCpf, email, unmaskedPhone, address);
+      handleUpdateUser(
+        unmaskedCpf,
+        email,
+        unmaskedPhone,
+        address,
+        unmaskedPhoneHelp
+      );
       setIsEditing(false);
     }
   };
@@ -104,6 +123,26 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
       setIconName("account-edit");
       setIconColor("white");
     }, 800);
+  };
+
+  const [modal, setModalVisible] = useState(false);
+  const handleAddPhoneHelp = () => {
+    setTouched((prev) => ({ ...prev, phoneHelp: true }));
+
+    if (!isPhoneHelpValid) return;
+
+    const unmaskedPhoneHelp =
+      phoneHelp.trim() === "" ? null : unmaskPhone(phoneHelp);
+
+    handleUpdateUser(
+      unmaskCPF(cpf),
+      email,
+      unmaskPhone(phone),
+      address,
+      unmaskedPhoneHelp
+    );
+
+    setModalVisible(false);
   };
 
   return (
@@ -253,7 +292,10 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
             </Text>
           </View>
 
-          <TouchableOpacity style={styles.buttonAddPhone}>
+          <TouchableOpacity
+            style={styles.buttonAddPhone}
+            onPress={() => setModalVisible(true)}
+          >
             <Text style={styles.buttonAddPhoneText}>
               Adicionar novo contato{" "}
               <MaterialCommunityIcons
@@ -263,6 +305,67 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
               />
             </Text>
           </TouchableOpacity>
+
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modal}
+            onRequestClose={() => {
+              setModalVisible(!modal);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Text style={styles.modalText}>
+                  Adicionar Contato de Emergência
+                </Text>
+                <View style={styles.textInfo}>
+                  <TextInput
+                    style={styles.inputInfo}
+                    onChangeText={(text) => setPhoneHelp(maskPhone(text))}
+                    value={phoneHelp}
+                    maxLength={15}
+                    keyboardType="numeric"
+                    onBlur={() =>
+                      setTouched((prev) => ({ ...prev, phoneHelp: true }))
+                    }
+                  />
+                </View>
+
+                {phoneHelpError && (
+                  <Text
+                    style={{
+                      color: "red",
+                      textAlign: "center",
+                      marginBottom: 20,
+                    }}
+                  >
+                    {phoneHelpError}
+                  </Text>
+                )}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    width: "100%",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <TouchableOpacity
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => setModalVisible(!modal)}
+                  >
+                    <Text style={styles.textStyle}>Cancelar</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.button, styles.buttonSubmit]}
+                    onPress={handleAddPhoneHelp}
+                  >
+                    <Text style={styles.textStyle}>Adicionar</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
         </View>
       )}
     </View>

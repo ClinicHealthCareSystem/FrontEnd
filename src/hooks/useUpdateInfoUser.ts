@@ -10,7 +10,8 @@ export function useUpdateInfoUser() {
     cpf: string,
     email: string,
     phone: string,
-    address: string
+    address: string,
+    phoneHelp?: string | null
   ) => {
     setError("");
     setSuccess("");
@@ -20,7 +21,7 @@ export function useUpdateInfoUser() {
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cpf, email, phone, address }),
+          body: JSON.stringify({ cpf, email, phone, address, phoneHelp }),
         }
       );
 

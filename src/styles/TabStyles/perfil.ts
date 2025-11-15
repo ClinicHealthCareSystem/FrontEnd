@@ -234,4 +234,59 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
   },
+
+  // modal
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 16,
+    paddingVertical: 30,
+    paddingHorizontal: 25,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 10,
+  },
+
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+
+  buttonClose: {
+    backgroundColor: "red",
+  },
+
+  buttonSubmit: {
+    backgroundColor: "#07C66A",
+  },
+
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#0D47AB",
+  },
 });
