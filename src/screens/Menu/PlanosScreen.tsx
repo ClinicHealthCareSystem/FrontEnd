@@ -3,11 +3,26 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import planos from "../../styles/MenuStyles/planos";
+import { PlanosType } from "../../utils/authPlanos";
+import planoAssinar from "../../hooks/planoAssinar";
+import { useRouter } from "expo-router";
 
+
+const planosData: PlanosType[] = [
+  { id: "1", nome: "Plano A" },
+  { id: "2", nome: "Plano B" },
+  { id: "3", nome: "Plano C" },
+];
 export default function Planos() {
+  const router = useRouter;
+  const { error, handleAssinarPlano } = planoAssinar(router);
+
+  const handleSubmit = (plano: PlanosType) => {
+    handleAssinarPlano(plano);
+  }
   return (
     <View style={planos.background}>
-      <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false}/>
+      <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} />
       <ScrollView style={planos.background}>
         <View style={planos.card}>
           <Text style={planos.titlecard}>Plano A</Text>
@@ -23,7 +38,7 @@ export default function Planos() {
             24 horas{"\n"}• Até 30% de desconto em exames laboratoriais
           </Text>
 
-          <TouchableOpacity style={planos.buttoncard}>
+          <TouchableOpacity style={planos.buttoncard} onPress={() => handleSubmit(planosData[0])}>
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
         </View>

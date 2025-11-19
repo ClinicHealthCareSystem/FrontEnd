@@ -5,12 +5,16 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../../styles/TabStyles/perfil";
 import TabsButtonPerfil from "../../components/TabButtonsPerfil";
 import CardInfoPerfil from "../../components/cardInfo";
-import { useState } from "react";
+import { use, useState } from "react";
+import { useRouter } from "expo-router";
+import meuPlano from "../../hooks/meuPlano";
 
 export default function Perfil() {
   const [activeTab, setActiveTab] = useState<"opcao1" | "opcao2" | "opcao3">(
     "opcao1"
   );
+  const { error, plano } = meuPlano();
+  
   return (
     <View style={styles.background}>
       <HeaderHome mostrarBusca={false} titulo="Meu Perfil" />
@@ -30,7 +34,7 @@ export default function Perfil() {
 
           <View style={styles.statusAvatar}>
             <View style={styles.planoStatus}>
-              <Text style={styles.planoStatusText}>Plano Básico</Text>
+              <Text style={styles.planoStatusText}>{plano}</Text>
             </View>
             <View style={styles.idSatus}>
               <Text style={styles.idStatusText}>Registro: #2020612</Text>
