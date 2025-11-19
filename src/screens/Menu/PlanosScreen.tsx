@@ -57,7 +57,7 @@ export default function Planos() {
             odontológica básica{"\n"}• Até 4 dependentes
           </Text>
 
-          <TouchableOpacity style={planos.buttoncard}>
+          <TouchableOpacity style={planos.buttoncard} onPress={() => handleSubmit(planosData[1])}>
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
         </View>
@@ -76,7 +76,7 @@ export default function Planos() {
             24 horas{"\n"}• Até 30% de desconto em exames laboratoriais
           </Text>
 
-          <TouchableOpacity style={planos.buttoncard}>
+          <TouchableOpacity style={planos.buttoncard} onPress={() => handleSubmit(planosData[2])}>
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
         </View>
