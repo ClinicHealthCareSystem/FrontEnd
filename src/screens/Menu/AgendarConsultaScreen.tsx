@@ -134,6 +134,37 @@ const AgendarConsultaScreen = () => {
                   </View>
                 )}
               />
+              
+            </View>
+
+            <Text style={styles.formLabel}>Medico:</Text>
+            <View style={styles.formInput}>
+              <Ionicons name="medical-outline" style={styles.formIcon} />
+              <Controller
+                control={control}
+                name="especialista"
+                rules={{ required: "Selecione um especialista" }}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => (
+                  <View style={{ flex: 1 }}>
+                    <Picker
+                      selectedValue={value}
+                      onValueChange={onChange}
+                      style={styles.formPicker}
+                    >
+                      <Picker.Item label="Selecione um especialista" value={null} />
+                      <Picker.Item label="Dr. João Paulo" value="Dr. João Paulo" />
+                      <Picker.Item label="Dr. Mario Lucas" value="Dr. Mario Lucas" />
+                    </Picker>
+                    {error && (
+                      <Text style={{ color: "red" }}>{error.message}</Text>
+                    )}
+                  </View>
+                )}
+              />
+              
             </View>
             <Text style={styles.formLabel}>Tipo de Atendimento:</Text>
             <View style={styles.formInput}>
