@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-
 export default StyleSheet.create({
 
   safe: {
@@ -23,7 +22,12 @@ export default StyleSheet.create({
     marginHorizontal: 18,
     borderRadius: 8,
     backgroundColor: "#0D47AB",
-    
+
+  },
+
+  itemContent: {
+    padding: 12,
+    fontSize: 20
   },
 
   section: {
@@ -102,5 +106,44 @@ export default StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
+
+  ViewInTheBox: {
+    paddingTop: 12,
+
+  },
+
+  ViewCalendar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1
+  },
+
+  ViewCalendarLabel: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10
+  },
+
+  TextCalendar: {
+    color: '#FFFFFF',
+    marginLeft: 8,
+    fontSize: 13
+  },
+
+  ViewOnMeasure: {
+    position: 'absolute',
+    opacity: 0,
+    left: 12,
+    right: 12
+  },
+
+  TouchableOpacity: {
+    overflow: 'hidden',
+    backgroundColor: "#0D47AB",
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 18,
+    borderRadius: 8,
+  }
 
 })
