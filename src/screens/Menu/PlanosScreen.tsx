@@ -7,11 +7,10 @@ import { PlanosType } from "../../utils/authPlanos";
 import planoAssinar from "../../hooks/planoAssinar";
 import { useRouter } from "expo-router";
 
-
 const planosData: PlanosType[] = [
-  { id: "1", nome: "Plano A" },
-  { id: "2", nome: "Plano B" },
-  { id: "3", nome: "Plano C" },
+  { id: "1", nome: "Plano Básico" },
+  { id: "2", nome: "Plano Pro" },
+  { id: "3", nome: "Plano Plus" },
 ];
 export default function Planos() {
   const router = useRouter;
@@ -19,13 +18,13 @@ export default function Planos() {
 
   const handleSubmit = (plano: PlanosType) => {
     handleAssinarPlano(plano);
-  }
+  };
   return (
     <View style={planos.background}>
       <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} />
       <ScrollView style={planos.background}>
         <View style={planos.card}>
-          <Text style={planos.titlecard}>Plano A</Text>
+          <Text style={planos.titlecard}>Plano Básico</Text>
           <Text style={planos.price}>R$ 89,90/mês</Text>
           <Text style={planos.subtitle}>Perfeito para uso individual</Text>
 
@@ -38,13 +37,16 @@ export default function Planos() {
             24 horas{"\n"}• Até 30% de desconto em exames laboratoriais
           </Text>
 
-          <TouchableOpacity style={planos.buttoncard} onPress={() => handleSubmit(planosData[0])}>
+          <TouchableOpacity
+            style={planos.buttoncard}
+            onPress={() => handleSubmit(planosData[0])}
+          >
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
         </View>
 
         <View style={planos.card}>
-          <Text style={planos.titlecard}>Plano B</Text>
+          <Text style={planos.titlecard}>Plano Pro</Text>
           <Text style={planos.price}>R$ 149,90/mês</Text>
           <Text style={planos.subtitle}>Mais benefícios para a família</Text>
 
@@ -57,13 +59,16 @@ export default function Planos() {
             odontológica básica{"\n"}• Até 4 dependentes
           </Text>
 
-          <TouchableOpacity style={planos.buttoncard} onPress={() => handleSubmit(planosData[1])}>
+          <TouchableOpacity
+            style={planos.buttoncard}
+            onPress={() => handleSubmit(planosData[1])}
+          >
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
         </View>
 
         <View style={planos.card}>
-          <Text style={planos.titlecard}>Plano C</Text>
+          <Text style={planos.titlecard}>Plano Plus</Text>
           <Text style={planos.price}>R$ 249,90/mês</Text>
           <Text style={planos.subtitle}>Cobertura completa</Text>
 
@@ -76,7 +81,10 @@ export default function Planos() {
             24 horas{"\n"}• Até 30% de desconto em exames laboratoriais
           </Text>
 
-          <TouchableOpacity style={planos.buttoncard} onPress={() => handleSubmit(planosData[2])}>
+          <TouchableOpacity
+            style={planos.buttoncard}
+            onPress={() => handleSubmit(planosData[2])}
+          >
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
         </View>
