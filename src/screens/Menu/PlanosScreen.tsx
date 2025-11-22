@@ -110,7 +110,7 @@ export default function Planos() {
             onAccept={confirmarAssistunar}/>
       </Modal >
       <Modal visible={modalConcluido} animationType="fade" transparent={true}>
-          <Concluido onAccept={() => setModalConcluido(false)}/>
+          <Concluido  modalTittle="Plano mudado com sucesso" onAccept={() => setModalConcluido(false)}/>
       </Modal>
       <TabsNavegation />
     </View>

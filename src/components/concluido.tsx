@@ -1,17 +1,20 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import CheckAnimation from "../animations/checkAnimation";
 import styles from "../styles/stylesComponents/termos";
-
-export const Concluido = ({ onAccept }: { onAccept: () => void }) => {
+type ConcluidoProps = {
+  modalTittle?: string;
+  onAccept: () => void;
+};
+export const Concluido = ({ modalTittle = "", onAccept }: ConcluidoProps) => {
   return (
     <View style={styles.background}>
       <View style={styles.caixa}>
         <View style={styles.scrollTermo}>
-          <Text style={styles.termoText}>Consulta Marcada com Sucesso!</Text>
+          <Text style={styles.termoText}>{modalTittle}</Text>
           <CheckAnimation />
         </View>
-        <View style={styles.areaButton}>
-          <TouchableOpacity style={styles.termoButton} onPress={onAccept}>
+        <View style={styles.areaButton2}>
+          <TouchableOpacity style={styles.termoButton2} onPress={onAccept}>
             <Text style={styles.termoButtonText}>Aceitar</Text>
           </TouchableOpacity>
         </View>

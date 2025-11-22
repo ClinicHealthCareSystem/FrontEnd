@@ -281,7 +281,7 @@ const AgendarConsultaScreen = () => {
               animationType="fade"
               transparent={true}
             >
-              <Concluido
+              <Concluido modalTittle="Consulta Agendada Com Sucesso"
                 onAccept={handleSubmit((data) => {
                   handleScheduling(data);
                   setModalVisible(false);
