@@ -237,7 +237,7 @@ export default function HistoricoRelatorio() {
   };
   return (
     <SafeAreaView style={HistoricoStyle.safe}>
-      <HeaderHome titulo="Resultados" />
+      <HeaderHome  mostrarBusca={false} mostrarVoltar={true} titulo="Resultados" />
       <View style={HistoricoStyle.body}>
         <FlatList
           data={DATA_EXAMPLE}
