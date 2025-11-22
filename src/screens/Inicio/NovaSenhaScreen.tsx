@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
   Text,
   TextInput,
@@ -75,8 +76,8 @@ export default function Novasenha() {
 
       <Text style={styles.label}>CPF</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons
-          name="id-card-outline"
+       <MaterialCommunityIcons
+          name="badge-account-horizontal-outline"
           size={30}
           color="#0D47AB"
           style={styles.id_card}
@@ -86,6 +87,7 @@ export default function Novasenha() {
           onChangeText={(text) => setCPF(maskCPF(text))}
           value={CPF}
           placeholder="Digite seu CPF"
+          placeholderTextColor="#0D47AB"
           keyboardType="numeric"
           maxLength={14}
           onBlur={() => setTouched((prev) => ({ ...prev, cpf: true }))}
@@ -146,7 +148,7 @@ export default function Novasenha() {
 
       <Text style={styles.label}>Confirmar Senha</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="lock-closed-outline" size={30} style={styles.lock} />
+        <Ionicons name="lock-closed-outline" size={30}  color="#0D47AB" style={styles.lock} />
         <TextInput
           style={styles.input}
           onChangeText={(text) =>
@@ -166,11 +168,12 @@ export default function Novasenha() {
           style={styles.buttonEye}
         >
           {passwordShow2 ? (
-            <Ionicons name="eye-outline" size={30} style={styles.eyeOpened} />
+            <Ionicons name="eye-outline" size={30} color="#0D47AB" style={styles.eyeOpened} />
           ) : (
             <Ionicons
               name="eye-off-outline"
               size={30}
+              color="#0D47AB"
               style={styles.eyeClosed}
             />
           )}
