@@ -282,6 +282,7 @@ const AgendarConsultaScreen = () => {
               transparent={true}
             >
               <Concluido
+                mensagem="Consulta agendada com sucesso!"
                 onAccept={handleSubmit((data) => {
                   handleScheduling(data);
                   setModalVisible(false);

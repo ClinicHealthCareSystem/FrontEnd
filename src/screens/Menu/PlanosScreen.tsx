@@ -7,7 +7,7 @@ import planos from "../../styles/MenuStyles/planos";
 import { Concluido } from "../../components/concluido";
 import { TermosPlanos } from "../../components/termosPlanos";
 import { PlanosType } from "../../utils/authPlanos";
-import planoAssinar from "../../hooks/planoAssinar";
+import usePlanoAssinar from "../../hooks/usePlanoAssinar";
 import { useRouter } from "expo-router";
 
 const planosData: PlanosType[] = [
@@ -16,28 +16,33 @@ const planosData: PlanosType[] = [
   { id: "3", nome: "Plano Plus" },
 ];
 export default function Planos() {
-  const[modalVisible, setModalVisible] = useState(false);
-  const[modalConcluido, setModalConcluido] = useState(false);
-  const[planoSelecionado, setPlanoSelecionado] = useState<PlanosType | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalConcluido, setModalConcluido] = useState(false);
+  const [planoSelecionado, setPlanoSelecionado] = useState<PlanosType | null>(
+    null
+  );
 
   const router = useRouter();
-  const { error, handleAssinarPlano } = planoAssinar(router);
-
+  const { error, handleAssinarPlano } = usePlanoAssinar(router);
 
   const abrirModalConfirmacao = (plano: PlanosType) => {
     setPlanoSelecionado(plano);
     setModalVisible(true);
   };
   const confirmarAssistunar = () => {
-    if(!planoSelecionado) return;
+    if (!planoSelecionado) return;
     setModalVisible(false);
     handleAssinarPlano(planoSelecionado);
     setModalConcluido(true);
-    
   };
   return (
     <View style={planos.background}>
-      <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} mostrarVoltar={true} titulo="Planos" />
+      <HeaderHome
+        subTitulo="Escolha os melhores planos"
+        mostrarBusca={false}
+        mostrarVoltar={true}
+        titulo="Planos"
+      />
       <ScrollView style={planos.background}>
         <View style={planos.card}>
           <Text style={planos.titlecard}>Plano Básico</Text>
@@ -55,7 +60,7 @@ export default function Planos() {
 
           <TouchableOpacity
             style={planos.buttoncard}
-            onPress={() =>abrirModalConfirmacao(planosData[0])}
+            onPress={() => abrirModalConfirmacao(planosData[0])}
           >
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
@@ -106,11 +111,16 @@ export default function Planos() {
         </View>
       </ScrollView>
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
-          <TermosPlanos onClose={() => setModalVisible(false)}
-            onAccept={confirmarAssistunar}/>
-      </Modal >
+        <TermosPlanos
+          onClose={() => setModalVisible(false)}
+          onAccept={confirmarAssistunar}
+        />
+      </Modal>
       <Modal visible={modalConcluido} animationType="fade" transparent={true}>
-          <Concluido onAccept={() => setModalConcluido(false)}/>
+        <Concluido
+          mensagem="Plano assinado com sucesso!"
+          onAccept={() => setModalConcluido(false)}
+        />
       </Modal>
       <TabsNavegation />
     </View>

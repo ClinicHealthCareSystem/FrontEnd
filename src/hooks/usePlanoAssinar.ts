@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { PlanosType } from "../utils/authPlanos";
-export default function planoAssinar(router: any) {
+
+export default function usePlanoAssinar(router: any) {
   const [error, setError] = useState("");
 
   const handleAssinarPlano = async (plano: PlanosType) => {

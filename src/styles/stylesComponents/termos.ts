@@ -38,7 +38,7 @@ export default StyleSheet.create({
   },
 
   termoText: {
-    textAlign: "justify",
+    textAlign: "center",
     paddingLeft: 15,
     paddingRight: 15,
     color: "black",
@@ -47,7 +47,7 @@ export default StyleSheet.create({
   },
 
   areaButton: {
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     width: "80%",

@@ -278,6 +278,7 @@ export default function Exames() {
               transparent={true}
             >
               <Concluido
+                mensagem="Exame agendado com sucesso!"
                 onAccept={handleSubmit((data) => {
                   handleScheduling(data);
                   setAceitarTermos(true);
