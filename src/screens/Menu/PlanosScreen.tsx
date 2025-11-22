@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, ScrollView, Modal } from "react-native";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import planos from "../../styles/MenuStyles/planos";
+import { Concluido } from "../../components/concluido";
 import { TermosPlanos } from "../../components/termosPlanos";
 import { PlanosType } from "../../utils/authPlanos";
 import planoAssinar from "../../hooks/planoAssinar";
@@ -16,14 +17,12 @@ const planosData: PlanosType[] = [
 ];
 export default function Planos() {
   const[modalVisible, setModalVisible] = useState(false);
+  const[modalConcluido, setModalConcluido] = useState(false);
   const[planoSelecionado, setPlanoSelecionado] = useState<PlanosType | null>(null);
 
   const router = useRouter();
   const { error, handleAssinarPlano } = planoAssinar(router);
 
-  // const handleSubmit = (plano: PlanosType) => {
-  //   handleAssinarPlano(plano);
-  // };
 
   const abrirModalConfirmacao = (plano: PlanosType) => {
     setPlanoSelecionado(plano);
@@ -31,9 +30,11 @@ export default function Planos() {
   };
   const confirmarAssistunar = () => {
     if(!planoSelecionado) return;
+    setModalVisible(false);
     handleAssinarPlano(planoSelecionado);
-    setModalVisible(false)
-  }
+    setModalConcluido(true);
+    
+  };
   return (
     <View style={planos.background}>
       <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} />
@@ -107,6 +108,9 @@ export default function Planos() {
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
           <TermosPlanos onClose={() => setModalVisible(false)}
             onAccept={confirmarAssistunar}/>
+      </Modal >
+      <Modal visible={modalConcluido} animationType="fade" transparent={true}>
+          <Concluido onAccept={() => setModalConcluido(false)}/>
       </Modal>
       <TabsNavegation />
     </View>
