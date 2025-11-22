@@ -45,7 +45,7 @@ export default function Recuperar() {
         accessible={true}
         accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir"
       >
-        Foi enviado um código para seu Watsapp. Digite o código para prosseguir
+        Foi enviado um código para seu Whatsapp. Digite o código para prosseguir
       </Text>
       <Text style={styles.label}>Digite o código</Text>
       <View style={styles.inputCaixa}>
