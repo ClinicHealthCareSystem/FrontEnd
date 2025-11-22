@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { useState } from "react";
+import { View, Text, TouchableOpacity, ScrollView, Modal } from "react-native";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import planos from "../../styles/MenuStyles/planos";
+import { TermosPlanos } from "../../components/termosPlanos";
 import { PlanosType } from "../../utils/authPlanos";
 import planoAssinar from "../../hooks/planoAssinar";
 import { useRouter } from "expo-router";
@@ -13,12 +15,25 @@ const planosData: PlanosType[] = [
   { id: "3", nome: "Plano Plus" },
 ];
 export default function Planos() {
-  const router = useRouter;
+  const[modalVisible, setModalVisible] = useState(false);
+  const[planoSelecionado, setPlanoSelecionado] = useState<PlanosType | null>(null);
+
+  const router = useRouter();
   const { error, handleAssinarPlano } = planoAssinar(router);
 
-  const handleSubmit = (plano: PlanosType) => {
-    handleAssinarPlano(plano);
+  // const handleSubmit = (plano: PlanosType) => {
+  //   handleAssinarPlano(plano);
+  // };
+
+  const abrirModalConfirmacao = (plano: PlanosType) => {
+    setPlanoSelecionado(plano);
+    setModalVisible(true);
   };
+  const confirmarAssistunar = () => {
+    if(!planoSelecionado) return;
+    handleAssinarPlano(planoSelecionado);
+    setModalVisible(false)
+  }
   return (
     <View style={planos.background}>
       <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} />
@@ -39,7 +54,7 @@ export default function Planos() {
 
           <TouchableOpacity
             style={planos.buttoncard}
-            onPress={() => handleSubmit(planosData[0])}
+            onPress={() =>abrirModalConfirmacao(planosData[0])}
           >
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
@@ -61,7 +76,7 @@ export default function Planos() {
 
           <TouchableOpacity
             style={planos.buttoncard}
-            onPress={() => handleSubmit(planosData[1])}
+            onPress={() => abrirModalConfirmacao(planosData[1])}
           >
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
@@ -83,12 +98,16 @@ export default function Planos() {
 
           <TouchableOpacity
             style={planos.buttoncard}
-            onPress={() => handleSubmit(planosData[2])}
+            onPress={() => abrirModalConfirmacao(planosData[2])}
           >
             <Text style={planos.buttoncardtext}>Assinar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <Modal visible={modalVisible} animationType="fade" transparent={true}>
+          <TermosPlanos onClose={() => setModalVisible(false)}
+            onAccept={confirmarAssistunar}/>
+      </Modal>
       <TabsNavegation />
     </View>
   );
