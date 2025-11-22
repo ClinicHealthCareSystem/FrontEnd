@@ -47,7 +47,7 @@ export default StyleSheet.create({
   },
 
   areaButton: {
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
     width: "80%",
