@@ -9,7 +9,7 @@ import HeaderHome from "../../components/headerHome";
 import TabsButtonPerfil from "../../components/TabButtonsPerfil";
 
 export default function MedicamentosScreen() {
-  const [activeTab, setActiveTab] = useState<"pessoal" | "saude" | "apoio">(
+  const [activeTab, setActiveTab] = useState<"pessoal" | "saude">(
     "pessoal"
   );
   return (
@@ -18,6 +18,7 @@ export default function MedicamentosScreen() {
         titulo="Medicamentos"
         subTitulo="Veja seus Medicamentos"
         mostrarBusca={false}
+        mostrarVoltar={true}
       />
 
       <ScrollView style={styles.bodyMed}>
@@ -25,11 +26,10 @@ export default function MedicamentosScreen() {
           tabs={[
             { label: "Hoje", value: "pessoal" },
             { label: "Todos", value: "saude" },
-            { label: "Adicionar", value: "apoio" },
           ]}
           activeTab={activeTab}
           onPress={(value) =>
-            setActiveTab(value as "pessoal" | "saude" | "apoio")
+            setActiveTab(value as "pessoal" | "saude")
           }
         />
         {activeTab === "pessoal" && (
