@@ -37,7 +37,7 @@ export default function Planos() {
   };
   return (
     <View style={planos.background}>
-      <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} />
+      <HeaderHome subTitulo="Escolha os melhores planos" mostrarBusca={false} mostrarVoltar={true} titulo="Planos" />
       <ScrollView style={planos.background}>
         <View style={planos.card}>
           <Text style={planos.titlecard}>Plano Básico</Text>
