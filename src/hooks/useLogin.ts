@@ -35,7 +35,11 @@ export default function login(router: any) {
           setError("Token não recebido do servidor");
         }
       } else {
-        setError("CPF ou senha inválidos");
+          if (response.status === 429) {
+          setError("Muitas tentativas de login. Aguarde 15 segundos e tente novamente.");
+        } else {
+          setError("CPF ou senha inválidos");
+        }
       }
     } catch (err) {
       setError("Erro no servidor, tente novamente mais tarde");
