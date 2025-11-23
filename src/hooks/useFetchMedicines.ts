@@ -8,10 +8,15 @@ export function useFetchMedicines(userId: string) {
   const load = async () => {
     try {
       setLoading(true);
-      const res = await fetch(
-        `http://localhost:3000/medicines/byUser/${userId}`
+      const response = await fetch(
+        `http://localhost:3000/medicines/byUser/${userId}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
       );
-      const json = await res.json();
+
+      const json = await response.json();
       setData(json);
     } catch (e) {
       setError("Erro ao carregar medicamentos");

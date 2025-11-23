@@ -34,7 +34,7 @@ export default function MedicamentoCard({
         </TouchableOpacity>
       </View>
       <View style={styles.infoCardView}>
-        <Text style={styles.textCardView}>{vezesdia}</Text>
+        <Text style={styles.textCardView}>{vezesdia} vezes ao dia</Text>
       </View>
 
       <View style={styles.infoCardView}>
