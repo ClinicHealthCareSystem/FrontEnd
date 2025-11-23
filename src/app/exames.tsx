@@ -1,4 +1,4 @@
-import Exames from "../screens/AgendarExamesScreen";
+import Exames from "../screens/Menu/AgendarExamesScreen";
 
 export default function CadastroRoute() {
   return <Exames />;

@@ -1,4 +1,4 @@
-import AgendarConsultaScreen from "../screens/AgendarConsultaScreen";
+import AgendarConsultaScreen from "../screens/Menu/AgendarConsultaScreen";
 
 export default function AgendarConsultaRoute() {
   return <AgendarConsultaScreen />;

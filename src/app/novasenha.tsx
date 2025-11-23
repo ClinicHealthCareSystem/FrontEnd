@@ -1,4 +1,4 @@
-import NovaSenha from "../screens/NovaSenhaScreen";
+import NovaSenha from "../screens/Inicio/NovaSenhaScreen";
 
 export default function NovaSenhaRoute() {
   return <NovaSenha />;

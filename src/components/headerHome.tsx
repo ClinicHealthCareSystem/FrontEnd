@@ -1,27 +1,41 @@
 import React from "react";
 import { Text, TouchableOpacity, View, TextInput } from "react-native";
-
 import { Ionicons } from "@expo/vector-icons";
-import styles from "../stylesComponents/headerHome";
+import { useRouter } from "expo-router";
+import { FadeIn, FadeOut } from "react-native-reanimated";
+import Reanimated from "react-native-reanimated";
+import Bell from "../components/bell";
+import styles from "../styles/stylesComponents/headerHome";
 
 export default function HeaderHome({
   titulo = "Saúde Mania",
   subTitulo = "",
   mostrarBusca = true,
+  mostrarVoltar = false,
 }) {
+  const router = useRouter();
+
   return (
-    <View style={styles.headerView}>
+    <Reanimated.View
+      style={styles.headerView}
+      entering={FadeIn.duration(800)}
+      exiting={FadeOut.duration(500)}
+    >
       <View style={styles.headerContent}>
-        <View style={{ flex: 1 }} />
+        {mostrarVoltar ? (
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={styles.headerBackButton}
+          >
+            <Ionicons name="arrow-back" size={24} color="white" />
+          </TouchableOpacity>
+        ) : (
+          <View style={{ width: 24 }} />
+        )}
+
         <Text style={styles.headerTitle}>{titulo}</Text>
-        <TouchableOpacity style={styles.headerNotificationContainer}>
-          <Ionicons
-            name="notifications"
-            size={20}
-            color="white"
-            style={styles.headerNotifications}
-          />
-        </TouchableOpacity>
+
+        <Bell />
       </View>
 
       {mostrarBusca ? (
@@ -44,6 +58,6 @@ export default function HeaderHome({
           </View>
         )
       )}
-    </View>
+    </Reanimated.View>
   );
 }

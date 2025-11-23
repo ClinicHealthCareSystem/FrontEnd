@@ -7,7 +7,6 @@ export function useSendCode() {
 
   const handleVerificationCode = async (phone: string) => {
     setError("");
-    console.log(phone);
     try {
       const response = await fetch(
         `http://localhost:3000/whatsapp/sendVerificationCode`,
@@ -25,18 +24,20 @@ export function useSendCode() {
       }
 
       if (response.ok) {
-        console.log("Código enviado com sucesso!");
         router.push({
           pathname: "/recuperar",
           params: { phone: phone },
         });
       } else {
-        console.log(
-          "Não foi possível enviar o código para o celular fornecido"
+        throw new Error(
+          "We were unable to send the code to the provided mobile phone number."
         );
       }
     } catch (error) {
-      console.log(error);
+      throw new Error(
+        "We were unable to send the code to the provided mobile phone number." +
+          `${error}`
+      );
     }
   };
 
