@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useForm, Controller } from "react-hook-form";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -139,7 +140,7 @@ const AgendarConsultaScreen = () => {
 
             <Text style={styles.formLabel}>Medico:</Text>
             <View style={styles.formInput}>
-              <Ionicons name="medical-outline" style={styles.formIcon} />
+              <MaterialCommunityIcons name="stethoscope" style={styles.formIcon} />
               <Controller
                 control={control}
                 name="especialista"
