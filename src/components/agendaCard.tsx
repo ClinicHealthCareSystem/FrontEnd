@@ -92,10 +92,7 @@ export default function AgendaCard({ activeTab }: Props) {
               <Text style={styles.DateHour}>
                 01/09/2025 (Segunda-Feira) 13:50
               </Text>
-              <View style={styles.infoCardView}>
-                <Text style={styles.labelCardView}>Nome do profissional</Text>
-                <Text style={styles.textCardView}>Fernando</Text>
-              </View>
+
 
               <View style={styles.infoCardView}>
                 <Text style={styles.labelCardView}>Nome do paciente</Text>

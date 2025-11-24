@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Picker } from "@react-native-picker/picker";
 import { Concluido } from "../../components/concluido";
 import { useConsultation } from "../../hooks/useConsultation";
@@ -117,7 +118,7 @@ const AgendarConsultaScreen = () => {
             {/* Escolher Médico */}
             <Text style={styles.formLabel}>Escolha um Médico:</Text>
             <View style={styles.formInput}>
-              <Ionicons name="medical-outline" style={styles.formIcon} />
+              <MaterialCommunityIcons name="stethoscope" style={styles.formIcon} />
               <Picker
                 selectedValue={medico}
                 onValueChange={setMedico}

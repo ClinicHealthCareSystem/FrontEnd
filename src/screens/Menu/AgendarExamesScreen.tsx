@@ -76,10 +76,10 @@ export default function Exames() {
     <View style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
         <HeaderHome
-          titulo="Saúde Mania"
+          titulo="Exames"
           mostrarBusca={false}
           mostrarVoltar={true}
-          subTitulo="Agende seu exame com a melhor do Brasil"
+          subTitulo="Agende seu exame"
         />
         <ScrollView>
           <View style={styles.bodyView}>
