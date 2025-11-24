@@ -15,7 +15,7 @@ export const Concluido = ({ modalTittle = "", onAccept }: ConcluidoProps) => {
         </View>
         <View style={styles.areaButton2}>
           <TouchableOpacity style={styles.termoButton2} onPress={onAccept}>
-            <Text style={styles.termoButtonText}>Aceitar</Text>
+            <Text style={styles.termoButtonText}>OK</Text>
           </TouchableOpacity>
         </View>
       </View>

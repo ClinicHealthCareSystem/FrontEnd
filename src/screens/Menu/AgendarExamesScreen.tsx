@@ -13,9 +13,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import { Concluido } from "../../components/concluido";
-import { useScheduling } from "../../hooks/useScheduling";
+import { useConsultation } from "../../hooks/useConsultation";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import styles from "../../styles/MenuStyles/exames";
@@ -29,7 +28,7 @@ export default function Exames() {
   } = useForm({});
 
   const router = useRouter();
-  const { handleScheduling } = useScheduling();
+  const { error, consultation } = useConsultation();
   const [modalVisible, setModalVisible] = useState(false);
   const [aceitarTermos, setAceitarTermos] = useState(false);
 
@@ -186,7 +185,7 @@ export default function Exames() {
                 )}
               />
             </View>
-            <Text style={styles.formLabel}>Data:</Text>
+            {/* <Text style={styles.formLabel}>Data:</Text>
             <View style={styles.formInput}>
               <Ionicons name="calendar-number" style={styles.formIcon} />
               <Controller
@@ -264,7 +263,7 @@ export default function Exames() {
                   </View>
                 )}
               />
-            </View>
+            </View> */}
 
             <TouchableOpacity
               style={styles.scheduleButton}
@@ -280,7 +279,7 @@ export default function Exames() {
               <Concluido
                 modalTittle="Exame agendado com sucesso!"
                 onAccept={handleSubmit((data) => {
-                  handleScheduling(data);
+                  consultation(data);
                   setAceitarTermos(true);
                   setModalVisible(false);
                 })}
