@@ -108,4 +108,20 @@ export default StyleSheet.create({
     fontSize: RFValue(18),
     fontWeight: "bold",
   },
+
+  formData: {
+    width: "100%",
+    borderWidth: 0,
+    borderColor: "white",
+    color: "#0D47AB",
+    outlineWidth: 0,
+  },
+
+  formHora: {
+    width: "100%",
+    color: "#0D47AB",
+    borderWidth: 0,
+    elevation: 0,
+    outlineWidth: 0,
+  },
 });
