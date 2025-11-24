@@ -60,6 +60,8 @@ export default StyleSheet.create({
     backgroundColor: "transparent",
     outlineWidth: 0,
     marginRight: 10,
+    width: "100%",
+    color: "#0D47AB",
   },
 
   formTextInput: {

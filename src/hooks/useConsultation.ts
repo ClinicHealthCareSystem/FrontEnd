@@ -4,7 +4,6 @@ export function useConsultation() {
   const [error, setError] = useState("");
 
   const consultation = async (formData: any) => {
-    console.log(formData);
     setError("");
 
     try {

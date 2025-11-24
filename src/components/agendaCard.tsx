@@ -5,26 +5,28 @@ import { router } from "expo-router";
 import { FadeIn, FadeOut } from "react-native-reanimated";
 import Reanimated from "react-native-reanimated";
 import { useFetchConsultations } from "../hooks/useFetchConsultations";
+import { useFetchExams } from "../hooks/useFetchExams";
 
 type Props = {
   activeTab: "opcao1" | "opcao2" | "opcao3";
 };
 
 export default function AgendaCard({ activeTab }: Props) {
-  const { schedules, loading } = useFetchConsultations();
+  const { schedules, loading: loadingConsulta } = useFetchConsultations();
+  const { exams, loading: loadingExames } = useFetchExams();
+
+  const loading = loadingConsulta || loadingExames;
 
   if (loading) {
     return <ActivityIndicator size="large" color="#000" />;
   }
 
   const list =
-    activeTab === "opcao3"
-      ? []
-      : schedules.filter(
-          (item: any) =>
-            (activeTab === "opcao1" && item.type === "consulta") ||
-            (activeTab === "opcao2" && item.type === "exame")
-        );
+    activeTab === "opcao1"
+      ? schedules.filter((item: any) => item.type === "consulta")
+      : activeTab === "opcao2"
+      ? exams.filter((item: any) => item.type === "exame")
+      : [];
 
   return (
     <Reanimated.View
@@ -87,29 +89,25 @@ export default function AgendaCard({ activeTab }: Props) {
             </View>
           )}
 
-          {list.length > 0 && (
-            <View style={styles.CardContainer}>
+          {list.map((item: any) => (
+            <View key={item.id} style={styles.CardContainer}>
               <Text style={styles.DateHour}>
-                01/09/2025 (Segunda-Feira) 13:50
+                Dia: {item.serviceDate} Horário: {item.serviceTime}
               </Text>
+
               <View style={styles.infoCardView}>
-                <Text style={styles.labelCardView}>Nome do profissional</Text>
-                <Text style={styles.textCardView}>Fernando</Text>
+                <Text style={styles.labelCardView}>Serviço</Text>
+                <Text style={styles.textCardView}>{item.exame}</Text>
               </View>
 
               <View style={styles.infoCardView}>
-                <Text style={styles.labelCardView}>Nome do paciente</Text>
-                <Text style={styles.textCardView}>Chaves</Text>
+                <Text style={styles.labelCardView}>Local</Text>
+                <Text style={styles.textCardView}>{item.unit}</Text>
               </View>
 
               <View style={styles.infoCardView}>
-                <Text style={styles.labelCardView}>Tipo da Exame</Text>
-                <Text style={styles.textCardView}>Hemograma</Text>
-              </View>
-
-              <View style={styles.infoCardView}>
-                <Text style={styles.labelCardView}>Local do enxame</Text>
-                <Text style={styles.textCardView}>Av. Exemplo Nº 123</Text>
+                <Text style={styles.labelCardView}>Tipo do agendamento</Text>
+                <Text style={styles.textCardView}>{item.serviceModel}</Text>
               </View>
 
               <View style={styles.caixaButtonOption}>
@@ -122,7 +120,7 @@ export default function AgendaCard({ activeTab }: Props) {
                 </TouchableOpacity>
               </View>
             </View>
-          )}
+          ))}
         </>
       )}
 

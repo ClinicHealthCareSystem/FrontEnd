@@ -12,50 +12,49 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
 import { Concluido } from "../../components/concluido";
-import { useConsultation } from "../../hooks/useConsultation";
+import { useExams } from "../../hooks/useExams";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import styles from "../../styles/MenuStyles/exames";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const [userId, setUserId] = useState("");
-const [medico, setMedico] = useState("");
-const [exame, setExames] = useState("");
-const [unidade, setUnidade] = useState("");
-const [atendimento, setAtendimento] = useState("");
-const [data, setData] = useState("");
-const [horario, setHorario] = useState("");
-
-const formatDate = (text: string) => {
-  const cleaned = text.replace(/\D/g, "");
-  const limited = cleaned.substring(0, 8);
-
-  if (limited.length <= 2) {
-    return limited;
-  } else if (limited.length <= 4) {
-    return `${limited.substring(0, 2)}/${limited.substring(2)}`;
-  } else {
-    return `${limited.substring(0, 2)}/${limited.substring(
-      2,
-      4
-    )}/${limited.substring(4)}`;
-  }
-};
-
-const formatTime = (text: string) => {
-  const cleaned = text.replace(/\D/g, "");
-  const limited = cleaned.substring(0, 4);
-
-  if (limited.length <= 2) {
-    return limited;
-  } else {
-    return `${limited.substring(0, 2)}:${limited.substring(2)}`;
-  }
-};
-
 export default function Exames() {
-  const { error, consultation } = useConsultation();
+  const { error, exams } = useExams();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [userId, setUserId] = useState("");
+  const [exame, setExames] = useState("");
+  const [unidade, setUnidade] = useState("");
+  const [atendimento, setAtendimento] = useState("");
+  const [data, setData] = useState("");
+  const [horario, setHorario] = useState("");
+
+  const formatDate = (text: string) => {
+    const cleaned = text.replace(/\D/g, "");
+    const limited = cleaned.substring(0, 8);
+
+    if (limited.length <= 2) {
+      return limited;
+    } else if (limited.length <= 4) {
+      return `${limited.substring(0, 2)}/${limited.substring(2)}`;
+    } else {
+      return `${limited.substring(0, 2)}/${limited.substring(
+        2,
+        4
+      )}/${limited.substring(4)}`;
+    }
+  };
+
+  const formatTime = (text: string) => {
+    const cleaned = text.replace(/\D/g, "");
+    const limited = cleaned.substring(0, 4);
+
+    if (limited.length <= 2) {
+      return limited;
+    } else {
+      return `${limited.substring(0, 2)}:${limited.substring(2)}`;
+    }
+  };
 
   const fetchUserId = async () => {
     const token = await AsyncStorage.getItem("token");
@@ -69,13 +68,11 @@ export default function Exames() {
 
   const isFormValid = () => {
     return (
-      medico &&
       exame &&
       unidade &&
       atendimento &&
       data &&
       horario &&
-      medico.trim() !== "" &&
       exame.trim() !== "" &&
       unidade.trim() !== "" &&
       atendimento.trim() !== "" &&
@@ -90,14 +87,13 @@ export default function Exames() {
       const formData = {
         userId: id,
         type: "exame",
-        medico: medico,
         exame: exame,
         unidade: unidade,
         atendimento: atendimento,
         data: data,
         horario: horario,
       };
-      consultation(formData);
+      exams(formData);
     } else {
       console.log("Preencha todos os campos antes de agendar");
     }
