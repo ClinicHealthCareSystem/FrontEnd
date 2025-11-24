@@ -79,7 +79,7 @@ export default function Exames() {
           titulo="Exames"
           mostrarBusca={false}
           mostrarVoltar={true}
-          subTitulo="Agende seu exame"
+          subTitulo="Faça seu agendamento"
         />
         <ScrollView>
           <View style={styles.bodyView}>

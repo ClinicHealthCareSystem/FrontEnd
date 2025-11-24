@@ -108,7 +108,7 @@ const AgendarConsultaScreen = () => {
     <View style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
         <HeaderHome
-          titulo="Saúde Mania"
+          titulo="Consultas"
           mostrarBusca={false}
           subTitulo="Faça seu agendamento"
           mostrarVoltar={true}
