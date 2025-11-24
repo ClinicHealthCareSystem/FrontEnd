@@ -73,4 +73,11 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
+
+  noItem: {
+    textAlign: "center",
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
