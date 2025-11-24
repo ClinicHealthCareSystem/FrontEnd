@@ -13,21 +13,22 @@ export default function usePlanoAssinar(router: any) {
       return;
     }
     try {
-      const response = await fetch(`http://localhost:3000/planos/assinar`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ planoId: plano.id, planoNome: plano.nome }),
-      });
+      const response = await fetch(
+        `http://localhost:3000/plans/subscribePlans`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ planoId: plano.id, planoNome: plano.nome }),
+        }
+      );
 
       if (!response.ok) {
-        console.log(error);
         setError("Erro ao assinar o plano");
       }
     } catch {
-      console.log(error);
       setError("Erro no servidor, tente novamente mais tarde");
     }
   };

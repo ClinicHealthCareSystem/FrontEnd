@@ -15,12 +15,14 @@ import { useConsultation } from "../../hooks/useConsultation";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import styles from "../../styles/MenuStyles/agendarConsulta";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AgendarConsultaScreen = () => {
   const { error, consultation } = useConsultation();
   const [modalVisible, setModalVisible] = useState(false);
 
   // campos
+  const [userId, setUserId] = useState("");
   const [medico, setMedico] = useState("");
   const [servico, setServico] = useState("");
   const [unidade, setUnidade] = useState("");
@@ -55,6 +57,16 @@ const AgendarConsultaScreen = () => {
     }
   };
 
+  const fetchUserId = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (!token) throw new Error("Token não encontrado");
+
+    const [, payload] = token.split(".");
+    const decoded = JSON.parse(atob(payload));
+
+    return decoded.sub;
+  };
+
   const isFormValid = () => {
     return (
       medico &&
@@ -72,10 +84,20 @@ const AgendarConsultaScreen = () => {
     );
   };
 
-  const send = () => {
+  const send = (id: string) => {
     if (isFormValid()) {
       setModalVisible(true);
-      console.log(medico, servico, unidade, atendimento, data, horario);
+      const formData = {
+        userId: id,
+        type: "consulta",
+        medico: medico,
+        servico: servico,
+        unidade: unidade,
+        atendimento: atendimento,
+        data: data,
+        horario: horario,
+      };
+      consultation(formData);
     } else {
       console.log("Preencha todos os campos antes de agendar");
     }
@@ -192,9 +214,10 @@ const AgendarConsultaScreen = () => {
                 { opacity: isFormValid() ? 1 : 0.5 },
               ]}
               disabled={!isFormValid()}
-              onPress={() => {
+              onPress={async () => {
                 if (isFormValid()) {
-                  send();
+                  const id = await fetchUserId();
+                  send(id);
                 }
               }}
             >

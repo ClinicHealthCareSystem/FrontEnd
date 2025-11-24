@@ -117,7 +117,10 @@ export default function Planos() {
         />
       </Modal>
       <Modal visible={modalConcluido} animationType="fade" transparent={true}>
-          <Concluido  modalTittle="Plano mudado com sucesso" onAccept={() => setModalConcluido(false)}/>
+        <Concluido
+          modalTittle="Plano atualizado com sucesso"
+          onAccept={() => setModalConcluido(false)}
+        />
       </Modal>
       <TabsNavegation />
     </View>
