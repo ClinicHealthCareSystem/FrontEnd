@@ -4,7 +4,6 @@ export function useExams() {
   const [error, setError] = useState("");
 
   const exams = async (formData: any) => {
-    console.log(formData);
     setError("");
 
     try {
@@ -16,7 +15,6 @@ export function useExams() {
 
       const json = await response.json();
       if (response.ok) {
-        console.log(json);
       } else {
         setError("Erro agendar consulta");
       }

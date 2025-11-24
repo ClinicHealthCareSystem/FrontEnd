@@ -99,7 +99,7 @@ const AgendarConsultaScreen = () => {
       };
       consultation(formData);
     } else {
-      console.log("Preencha todos os campos antes de agendar");
+      throw new Error("Preencha todos os campos antes de agendar");
     }
   };
 

@@ -18,7 +18,6 @@ export function useConsultation() {
 
       const json = await response.json();
       if (response.ok) {
-        console.log(json);
       } else {
         setError("Erro agendar consulta");
       }
