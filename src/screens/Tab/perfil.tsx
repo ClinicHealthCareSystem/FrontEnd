@@ -44,7 +44,7 @@ export default function Perfil() {
 
               <View style={styles.statusAvatar}>
                 <View style={styles.planoStatus}>
-                  <Text style={styles.planoStatusText}>{profile?.plan}</Text>
+                  <Text style={styles.planoStatusText}>Plano {profile?.plan}</Text>
                 </View>
                 <View style={styles.idSatus}>
                   <Text style={styles.idStatusText}>

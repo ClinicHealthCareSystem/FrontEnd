@@ -11,9 +11,9 @@ import usePlanoAssinar from "../../hooks/usePlanoAssinar";
 import { useRouter } from "expo-router";
 
 const planosData: PlanosType[] = [
-  { id: "1", nome: "Plano Básico" },
-  { id: "2", nome: "Plano Pro" },
-  { id: "3", nome: "Plano Plus" },
+  { id: "1", nome: "Basico" },
+  { id: "2", nome: "Pro" },
+  { id: "3", nome: "Plus" },
 ];
 export default function Planos() {
   const [modalVisible, setModalVisible] = useState(false);
