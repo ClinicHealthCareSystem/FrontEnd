@@ -108,7 +108,7 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
   const handlePressEdit = () => {
     if (!isEditing) {
       setIsEditing(true);
-      setIconColor("#FFD700");
+      setIconColor("#2DCEC4");
       setIconName("account-edit");
       return;
     }
