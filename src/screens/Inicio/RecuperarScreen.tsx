@@ -26,14 +26,13 @@ export default function Recuperar() {
 
   const handleSubmit = async () => {
     const currentCodeError = verifyCode(code);
-    if (!currentCodeError) {
-      validateCode(code, phone as string);
-    }
+
+    if (currentCodeError) return;
 
     const result = await validateCode(code, phone as string);
 
     if (result && !result.success) {
-      throw new Error("Error");
+      return;
     }
   };
 
