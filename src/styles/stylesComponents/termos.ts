@@ -38,7 +38,7 @@ export default StyleSheet.create({
   },
 
   termoText: {
-    textAlign: "justify",
+    textAlign: "center",
     paddingLeft: 15,
     paddingRight: 15,
     color: "black",
@@ -53,6 +53,12 @@ export default StyleSheet.create({
     width: "80%",
     marginTop: 10,
   },
+  areaButton2: {
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+  marginTop: 10,
+  },
 
   termoButton: {
     width: "45%",
@@ -62,6 +68,15 @@ export default StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
   },
+    termoButton2: {
+    width: "65%",
+    backgroundColor: "#3284f1",
+    alignItems: "center",
+    height: 40,
+    borderRadius: 10,
+    justifyContent: "center",
+  },
+
 
   termoButtonText: {
     alignItems: "center",

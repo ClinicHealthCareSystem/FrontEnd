@@ -14,7 +14,7 @@ export default StyleSheet.create({
   headerContent: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between", 
+    justifyContent: "space-between",
     marginTop: 25,
     position: "relative",
   },
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     fontSize: RFValue(28),
     fontWeight: "bold",
     color: "white",
-    
+
     left: 0,
     right: 0,
     textAlign: "center",

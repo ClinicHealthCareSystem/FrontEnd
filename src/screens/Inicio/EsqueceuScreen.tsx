@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
-
 import {
   Text,
   TextInput,
@@ -8,7 +7,6 @@ import {
   View,
   ScrollView,
 } from "react-native";
-
 import styles from "../../styles/InicioStyles/esqueceu";
 import { useSendCode } from "../../hooks/useSendCode";
 import {
@@ -53,7 +51,12 @@ export default function Esqueceu() {
 
       <Text style={styles.label}>Telefone</Text>
       <View style={styles.inputCaixa}>
-        <Ionicons name="call-outline" size={30}  color="#0D47AB" style={styles.phone} />
+        <Ionicons
+          name="call-outline"
+          size={30}
+          color="#0D47AB"
+          style={styles.phone}
+        />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setPhone(maskPhone(text))}

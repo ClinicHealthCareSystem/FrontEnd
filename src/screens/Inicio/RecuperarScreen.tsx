@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-
 import {
   Text,
   TextInput,
@@ -9,7 +8,6 @@ import {
   View,
   ScrollView,
 } from "react-native";
-
 import styles from "../../styles/InicioStyles/recuperar";
 import { useVerifyCode } from "../../hooks/useVerifyCode";
 import { verifyCode } from "../../utils/authValidations";
@@ -28,14 +26,13 @@ export default function Recuperar() {
 
   const handleSubmit = async () => {
     const currentCodeError = verifyCode(code);
-    if (!currentCodeError) {
-      validateCode(code, phone as string);
-    }
+
+    if (currentCodeError) return;
 
     const result = await validateCode(code, phone as string);
 
     if (result && !result.success) {
-      console.log("Erro: ", result.message);
+      return;
     }
   };
 
@@ -47,7 +44,7 @@ export default function Recuperar() {
         accessible={true}
         accessibilityLabel="Foi enviado um SMS para seu telefone. Digite o código para prosseguir"
       >
-        Foi enviado um código para seu Watsapp. Digite o código para prosseguir
+        Foi enviado um código para seu Whatsapp. Digite o código para prosseguir
       </Text>
       <Text style={styles.label}>Digite o código</Text>
       <View style={styles.inputCaixa}>

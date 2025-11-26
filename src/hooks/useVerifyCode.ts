@@ -11,7 +11,6 @@ export function useVerifyCode() {
     const codeValue = value;
 
     if (!codeValue || codeValue.length !== 6) {
-      console.log("Erro: ", "Digite um código válido");
       return;
     }
 
@@ -44,7 +43,9 @@ export function useVerifyCode() {
         return { success: false, message: result.message };
       }
 
-      router.push({ pathname: "/novasenha" });
+      if (result?.success) {
+        router.push({ pathname: "/novasenha" });
+      }
       return { success: true, message: "Código válido" };
     } catch (error) {
       setError("Não foi possível verificar o código");

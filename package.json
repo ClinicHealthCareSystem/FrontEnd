@@ -12,7 +12,6 @@
     "@expo/metro-runtime": "~6.1.2",
     "@lottiefiles/dotlottie-react": "^0.17.3",
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "@react-native-community/datetimepicker": "8.4.4",
     "@react-native-picker/picker": "2.11.1",
     "@rneui/base": "github:react-native-elements/react-native-elements#base",
     "@rneui/themed": "^4.0.0-rc.8",

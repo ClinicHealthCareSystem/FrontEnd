@@ -4,280 +4,210 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Platform,
   Modal,
+  TextInput,
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useForm, Controller } from "react-hook-form";
-import { useRouter } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import {Concluido} from "../../components/concluido";
-import { useScheduling } from "../../hooks/useScheduling";
+import { Concluido } from "../../components/concluido";
+import { useExams } from "../../hooks/useExams";
 import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import styles from "../../styles/MenuStyles/exames";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Exames() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm({});
+  const { error, exams } = useExams();
+  const [modalVisible, setModalVisible] = useState(false);
 
-  const router = useRouter();
-  const { handleScheduling } = useScheduling();
-     const [modalVisible, setModalVisible] = useState(false);
-      const [aceitarTermos, setAceitarTermos] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [exame, setExames] = useState("");
+  const [unidade, setUnidade] = useState("");
+  const [atendimento, setAtendimento] = useState("");
+  const [data, setData] = useState("");
+  const [horario, setHorario] = useState("");
 
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
+  const formatDate = (text: string) => {
+    const cleaned = text.replace(/\D/g, "");
+    const limited = cleaned.substring(0, 8);
 
-  const toggleDatePicker = () => setShowDatePicker(!showDatePicker);
-  const toggleTimePicker = () => setShowTimePicker(!showTimePicker);
-
-  const handleWebDateChange = (event: any) => {
-    const selectedDate = new Date(event.target.value);
-    setDate(selectedDate);
-    setValue("data", formatDate(selectedDate));
-  };
-  const handleWebTimeChange = (event: any) => {
-    const [hours, minutes] = event.target.value.split(":");
-    const selectedTime = new Date();
-    selectedTime.setHours(parseInt(hours), parseInt(minutes));
-    setTime(selectedTime);
-    setValue("hora", formatTime(selectedTime));
-  };
-  const onDateChange = (event: any, selectedDate?: Date) => {
-    if (selectedDate) {
-      setDate(selectedDate);
-      setValue("data", formatDate(selectedDate));
+    if (limited.length <= 2) {
+      return limited;
+    } else if (limited.length <= 4) {
+      return `${limited.substring(0, 2)}/${limited.substring(2)}`;
+    } else {
+      return `${limited.substring(0, 2)}/${limited.substring(
+        2,
+        4
+      )}/${limited.substring(4)}`;
     }
-    if (Platform.OS === "android") toggleDatePicker();
   };
-  const onTimeChange = (event: any, selectedTime?: Date) => {
-    if (selectedTime) {
-      setTime(selectedTime);
-      setValue("hora", formatTime(selectedTime));
+
+  const formatTime = (text: string) => {
+    const cleaned = text.replace(/\D/g, "");
+    const limited = cleaned.substring(0, 4);
+
+    if (limited.length <= 2) {
+      return limited;
+    } else {
+      return `${limited.substring(0, 2)}:${limited.substring(2)}`;
     }
-    if (Platform.OS === "android") toggleTimePicker();
   };
-  const formatDate = (d: Date) => d.toLocaleDateString("pt-BR");
-  const formatTime = (t: Date) =>
-    t.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-  const handleExameScheduling = (data: any) => {
-    router.push("/confirmacaoExame");
+
+  const fetchUserId = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (!token) throw new Error("Token não encontrado");
+
+    const [, payload] = token.split(".");
+    const decoded = JSON.parse(atob(payload));
+
+    return decoded.sub;
   };
+
+  const isFormValid = () => {
+    return (
+      exame &&
+      unidade &&
+      atendimento &&
+      data &&
+      horario &&
+      exame.trim() !== "" &&
+      unidade.trim() !== "" &&
+      atendimento.trim() !== "" &&
+      data.trim() !== "" &&
+      horario.trim() !== ""
+    );
+  };
+
+  const send = (id: string) => {
+    if (isFormValid()) {
+      setModalVisible(true);
+      const formData = {
+        userId: id,
+        type: "exame",
+        exame: exame,
+        unidade: unidade,
+        atendimento: atendimento,
+        data: data,
+        horario: horario,
+      };
+      exams(formData);
+    } else {
+      throw new Error("Preencha todos os campos antes de agendar");
+    }
+  };
+
   return (
     <View style={styles.background}>
       <SafeAreaView style={{ flex: 1 }}>
         <HeaderHome
-          titulo="Saúde Mania"
+          titulo="Exames"
           mostrarBusca={false}
           mostrarVoltar={true}
-          subTitulo="Agende seu exame com a melhor do Brasil"
-
+          subTitulo="Faça seu agendamento"
         />
         <ScrollView>
           <View style={styles.bodyView}>
-            <Text style={styles.formLabel}>Exame:</Text>
+            <Text style={styles.formLabel}>Escolha seu Exame:</Text>
             <View style={styles.formInput}>
-              <Ionicons name="flask-outline" style={styles.formIcon} />
-              <Controller
-                control={control}
-                name="exame"
-                rules={{ required: "Selecione um exame" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <View style={{ flex: 1 }}>
-                    <Picker
-                      selectedValue={value}
-                      onValueChange={onChange}
-                      style={styles.formPicker}
-                    >
-                      <Picker.Item label="Selecione seu exame" value={null} />
-                      <Picker.Item label="Exame de Sangue" value="sangue" />
-                      <Picker.Item label="Raio-X" value="raiox" />
-                      <Picker.Item
-                        label="Exame de Prostata"
-                        value="examedeprostata"
-                      />
-                    </Picker>
-                    {error && (
-                      <Text style={{ color: "red" }}>{error.message}</Text>
-                    )}
-                  </View>
-                )}
-              />
+              <Ionicons name="clipboard-outline" style={styles.formIcon} />
+              <Picker
+                selectedValue={exame}
+                onValueChange={setExames}
+                style={styles.formPicker}
+              >
+                <Picker.Item label="Selecione um serviço" value={null} />
+                <Picker.Item label="Exame de sangue" value="Exame de sangue" />
+                <Picker.Item label="Raio-x" value="Raio-x" />
+                <Picker.Item label="Prostata" value="Prostata" />
+              </Picker>
             </View>
 
-            <Text style={styles.formLabel}>Unidade:</Text>
+            <Text style={styles.formLabel}>Escolha uma Unidade:</Text>
             <View style={styles.formInput}>
               <Ionicons name="business" style={styles.formIcon} />
-              <Controller
-                control={control}
-                name="unidade"
-                rules={{ required: "Selecione sua unidade de preferencia" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <View style={{ flex: 1 }}>
-                    <Picker
-                      selectedValue={value}
-                      onValueChange={onChange}
-                      style={styles.formPicker}
-                    >
-                      <Picker.Item
-                        label="Selecione uma unidade para seu exame"
-                        value={null}
-                      />
-                      <Picker.Item label="Meireles" />
-                      <Picker.Item label="Aldeota" />
-                      <Picker.Item label="Mucuripe" />
-                      <Picker.Item label="Praia de Iracema" />
-                      <Picker.Item label="Messejana" />
-                    </Picker>
-                    {error && (
-                      <Text style={{ color: "red" }}>{error.message}</Text>
-                    )}
-                  </View>
-                )}
-              />
+              <Picker
+                selectedValue={unidade}
+                onValueChange={setUnidade}
+                style={styles.formPicker}
+              >
+                <Picker.Item label="Selecione uma unidade" value={null} />
+                <Picker.Item label="Meireles" value="Meireles" />
+                <Picker.Item label="Aldeota" value="Aldeota" />
+                <Picker.Item label="Mucuripe" value="Mucuripe" />
+              </Picker>
             </View>
 
-            <Text style={styles.formLabel}>Convênio:</Text>
+            <Text style={styles.formLabel}>Forma de Atendimento:</Text>
             <View style={styles.formInput}>
-              <Ionicons name="medkit" style={styles.formIcon} />
-              <Controller
-                      control={control}
-                      name="convenio"
-                      rules={{ required: "Selecione um convênio" }}
-                      render={({
-                        field: { onChange, value },
-                        fieldState: { error },
-                      }) => (
-                        <View style={{ flex: 1 }}>
-                          <Picker
-                            selectedValue={value}
-                            onValueChange={onChange}
-                            style={styles.formPicker}
-                          >
-                            <Picker.Item label="Selecione um convênio" value={null} />
-                            <Picker.Item label="Amil" value="Amil" />
-                            <Picker.Item label="SulAmérica" value="SulAmérica" />
-                            <Picker.Item label="Unimed" value="Unimed" />
-                            <Picker.Item label="Hapvida" value="Hapvida" />
-                            <Picker.Item label="Bradesco Saúde" value="Bradesco Saúde" />
-                          </Picker>
-                          {error && (
-                            <Text style={{ color: "red" }}>{error.message}</Text>
-                          )}
-                        </View>
-                      )}
-                    />
-
+              <Ionicons name="people" style={styles.formIcon} />
+              <Picker
+                selectedValue={atendimento}
+                onValueChange={setAtendimento}
+                style={styles.formPicker}
+              >
+                <Picker.Item label="Selecione uma modalidade" value={null} />
+                <Picker.Item label="Presencial" value="Presencial" />
+                <Picker.Item label="Remoto" value="Remoto" />
+              </Picker>
             </View>
-            <Text style={styles.formLabel}>Data:</Text>
+
+            <Text style={styles.formLabel}>Data do Atendimento:</Text>
             <View style={styles.formInput}>
               <Ionicons name="calendar-number" style={styles.formIcon} />
-              <Controller
-                control={control}
-                name="data"
-                rules={{ required: "Selecione uma data" }}
-                render={({ fieldState: { error } }) => (
-                  <View style={{ flex: 1 }}>
-                    {Platform.OS == "web" ? (
-                      <input
-                        type="date"
-                        value={date.toISOString().split("T")[0]}
-                        onChange={handleWebDateChange}
-                        style={styles.setDate}
-                      />
-                    ) : (
-                      <>
-                        <TouchableOpacity onPress={toggleDatePicker}>
-                          <Text>{formatDate(date)}</Text>
-                        </TouchableOpacity>
-                        {showDatePicker && (
-                          <DateTimePicker
-                            value={date}
-                            mode="date"
-                            display="default"
-                            onChange={onDateChange}
-                          />
-                        )}
-                      </>
-                    )}
-                    {error && (
-                      <Text style={{ color: "red" }}>{error.message}</Text>
-                    )}
-                  </View>
-                )}
+              <TextInput
+                style={styles.formData}
+                placeholder="DD/MM/AAAA"
+                placeholderTextColor="#0D47AB"
+                value={data}
+                onChangeText={(text) => setData(formatDate(text))}
+                keyboardType="numeric"
+                maxLength={10}
               />
             </View>
 
-            <Text style={styles.formLabel}>Horário:</Text>
+            <Text style={styles.formLabel}>Horário do Atendimento:</Text>
             <View style={styles.formInput}>
               <Ionicons name="time" style={styles.formIcon} />
-              <Controller
-                control={control}
-                name="hora"
-                rules={{ required: "Selecione uma hora" }}
-                render={({ fieldState: { error } }) => (
-                  <View style={{ flex: 1 }}>
-                    {Platform.OS === "web" ? (
-                      <input
-                        type="time"
-                        value={time.toTimeString().slice(0, 5)}
-                        onChange={handleWebTimeChange}
-                        style={styles.setTime}
-                      />
-                    ) : (
-                      <>
-                        <TouchableOpacity onPress={toggleTimePicker}>
-                          <Text>{formatTime(time)}</Text>
-                        </TouchableOpacity>
-                        {showTimePicker && (
-                          <DateTimePicker
-                            value={time}
-                            mode="time"
-                            display="default"
-                            onChange={onTimeChange}
-                          />
-                        )}
-                      </>
-                    )}
-                    {error && (
-                      <Text style={{ color: "red", marginTop: 4 }}>
-                        {error.message}
-                      </Text>
-                    )}
-                  </View>
-                )}
+              <TextInput
+                style={styles.formHora}
+                placeholder="00:00"
+                placeholderTextColor="#0D47AB"
+                value={horario}
+                onChangeText={(text) => setHorario(formatTime(text))}
+                keyboardType="numeric"
+                maxLength={5}
               />
             </View>
 
             <TouchableOpacity
-                              style={styles.scheduleButton}
-                              onPress={handleSubmit(() => setModalVisible(true))}
-                              >
-              <Text style={styles.scheduleButtonText}>Próximo</Text>
+              style={[
+                styles.scheduleButton,
+                { opacity: isFormValid() ? 1 : 0.5 },
+              ]}
+              disabled={!isFormValid()}
+              onPress={async () => {
+                if (isFormValid()) {
+                  const id = await fetchUserId();
+                  send(id);
+                }
+              }}
+            >
+              <Text style={styles.scheduleButtonText}>Agendar</Text>
             </TouchableOpacity>
-                        <Modal visible={modalVisible} animationType="fade" transparent={true}>
+
+            <Modal
+              visible={modalVisible}
+              animationType="fade"
+              transparent={true}
+            >
               <Concluido
-                onAccept={handleSubmit((data) => {
-                  handleScheduling(data);   
-                  setAceitarTermos(true);
-                  setModalVisible(false);  
-                })}
+                modalTittle="Exame Agendado Com Sucesso"
+                onAccept={() => {
+                  setModalVisible(false);
+                }}
               />
             </Modal>
           </View>

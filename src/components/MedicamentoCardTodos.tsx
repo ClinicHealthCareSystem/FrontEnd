@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "../styles/stylesComponents/MedicamentosCardTodos";
 
 export default function MedicamentoCardTodos({
@@ -9,17 +9,12 @@ export default function MedicamentoCardTodos({
   termino = "",
   prescrito = "",
 }) {
-  
-
   return (
     <View style={styles.CardContainer}>
       <View style={styles.headerCard}>
         <Text style={styles.titleRemedio}>{tittleRemedio}</Text>
-      
       </View>
 
-
-      
       <View style={styles.infoRow}>
         <MaterialCommunityIcons name="calendar-start" size={18} color="white" />
         <Text style={styles.textInfo}>Início: {inicio}</Text>
@@ -35,7 +30,6 @@ export default function MedicamentoCardTodos({
         <Text style={styles.textInfo}>Prescrito por: {prescrito}</Text>
       </View>
 
-      
       <View style={styles.buttonsRow}>
         <TouchableOpacity style={styles.buttonPrimary}>
           <Text style={styles.buttonText}>Ver Detalhes</Text>

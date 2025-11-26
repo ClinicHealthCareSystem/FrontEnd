@@ -31,6 +31,22 @@ export default StyleSheet.create({
     marginBottom: 15,
   },
 
+  formData: {
+    width: "100%",
+    borderWidth: 0,
+    borderColor: "white",
+    color: "#0D47AB",
+    outlineWidth: 0,
+  },
+
+  formHora: {
+    width: "100%",
+    color: "#0D47AB",
+    borderWidth: 0,
+    elevation: 0,
+    outlineWidth: 0,
+  },
+
   formIcon: {
     fontSize: RFValue(20),
     marginRight: 5,
@@ -60,6 +76,8 @@ export default StyleSheet.create({
     backgroundColor: "transparent",
     outlineWidth: 0,
     marginRight: 10,
+    width: "100%",
+    color: "#0D47AB",
   },
 
   formTextInput: {

@@ -2,10 +2,10 @@ import React from "react";
 import { Text, TouchableOpacity, View, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import styles from "../styles/stylesComponents/headerHome";
-import {FadeIn, FadeOut} from 'react-native-reanimated';
+import { FadeIn, FadeOut } from "react-native-reanimated";
 import Reanimated from "react-native-reanimated";
 import Bell from "../components/bell";
+import styles from "../styles/stylesComponents/headerHome";
 
 export default function HeaderHome({
   titulo = "Saúde Mania",
@@ -16,7 +16,11 @@ export default function HeaderHome({
   const router = useRouter();
 
   return (
-    <Reanimated.View style={styles.headerView} entering={FadeIn.duration(800)} exiting={FadeOut.duration(500)}>
+    <Reanimated.View
+      style={styles.headerView}
+      entering={FadeIn.duration(800)}
+      exiting={FadeOut.duration(500)}
+    >
       <View style={styles.headerContent}>
         {mostrarVoltar ? (
           <TouchableOpacity
@@ -26,17 +30,14 @@ export default function HeaderHome({
             <Ionicons name="arrow-back" size={24} color="white" />
           </TouchableOpacity>
         ) : (
-          <View style={{ width: 24 }} /> 
+          <View style={{ width: 24 }} />
         )}
 
-        
         <Text style={styles.headerTitle}>{titulo}</Text>
 
-        
         <Bell />
       </View>
 
-      
       {mostrarBusca ? (
         <View>
           <Ionicons
