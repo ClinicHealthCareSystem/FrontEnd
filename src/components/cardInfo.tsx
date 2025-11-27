@@ -220,7 +220,7 @@ export default function CardInfoPerfil({ activeTab, profile }: Props) {
             <TextInput
               style={styles.inputInfo}
               editable={false}
-              value={profile?.age?.toString() || "-"}
+              value={profile?.age?.toString() || "Idade"}
             />
           </View>
 

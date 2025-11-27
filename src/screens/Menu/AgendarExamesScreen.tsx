@@ -17,6 +17,7 @@ import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import styles from "../../styles/MenuStyles/exames";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Buffer } from "buffer";
 
 export default function Exames() {
   const { error, exams } = useExams();
@@ -56,14 +57,17 @@ export default function Exames() {
     }
   };
 
-  const fetchUserId = async () => {
+  const fetchUserCredentials = async () => {
     const token = await AsyncStorage.getItem("token");
     if (!token) throw new Error("Token não encontrado");
 
     const [, payload] = token.split(".");
-    const decoded = JSON.parse(atob(payload));
+    const decoded = JSON.parse(Buffer.from(payload, "base64").toString("utf8"));
 
-    return decoded.sub;
+    return {
+      userId: decoded.sub,
+      username: decoded.username,
+    };
   };
 
   const isFormValid = () => {
@@ -81,11 +85,12 @@ export default function Exames() {
     );
   };
 
-  const send = (id: string) => {
+  const send = ({ userId, username }: { userId: string; username: string }) => {
     if (isFormValid()) {
       setModalVisible(true);
       const formData = {
-        userId: id,
+        userId: userId,
+        username: username,
         type: "exame",
         exame: exame,
         unidade: unidade,
@@ -190,8 +195,8 @@ export default function Exames() {
               disabled={!isFormValid()}
               onPress={async () => {
                 if (isFormValid()) {
-                  const id = await fetchUserId();
-                  send(id);
+                  const userCredentials = await fetchUserCredentials();
+                  send(userCredentials);
                 }
               }}
             >

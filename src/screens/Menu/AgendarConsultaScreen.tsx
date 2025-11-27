@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Picker } from "@react-native-picker/picker";
 import { Concluido } from "../../components/concluido";
 import { useConsultation } from "../../hooks/useConsultation";
@@ -17,6 +17,7 @@ import TabsNavegation from "../../components/tabsNavegation";
 import HeaderHome from "../../components/headerHome";
 import styles from "../../styles/MenuStyles/agendarConsulta";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Buffer } from "buffer";
 
 const AgendarConsultaScreen = () => {
   const { error, consultation } = useConsultation();
@@ -58,14 +59,17 @@ const AgendarConsultaScreen = () => {
     }
   };
 
-  const fetchUserId = async () => {
+  const fetchUserCredentials = async () => {
     const token = await AsyncStorage.getItem("token");
     if (!token) throw new Error("Token não encontrado");
 
     const [, payload] = token.split(".");
-    const decoded = JSON.parse(atob(payload));
+    const decoded = JSON.parse(Buffer.from(payload, "base64").toString("utf8"));
 
-    return decoded.sub;
+    return {
+      userId: decoded.sub,
+      username: decoded.username,
+    };
   };
 
   const isFormValid = () => {
@@ -85,11 +89,12 @@ const AgendarConsultaScreen = () => {
     );
   };
 
-  const send = (id: string) => {
+  const send = ({ userId, username }: { userId: string; username: string }) => {
     if (isFormValid()) {
       setModalVisible(true);
       const formData = {
-        userId: id,
+        userId: userId,
+        username: username,
         type: "consulta",
         medico: medico,
         servico: servico,
@@ -118,7 +123,10 @@ const AgendarConsultaScreen = () => {
             {/* Escolher Médico */}
             <Text style={styles.formLabel}>Escolha um Médico:</Text>
             <View style={styles.formInput}>
-              <MaterialCommunityIcons name="stethoscope" style={styles.formIcon} />
+              <MaterialCommunityIcons
+                name="stethoscope"
+                style={styles.formIcon}
+              />
               <Picker
                 selectedValue={medico}
                 onValueChange={setMedico}
@@ -217,8 +225,8 @@ const AgendarConsultaScreen = () => {
               disabled={!isFormValid()}
               onPress={async () => {
                 if (isFormValid()) {
-                  const id = await fetchUserId();
-                  send(id);
+                  const userCredentials = await fetchUserCredentials();
+                  send(userCredentials);
                 }
               }}
             >
